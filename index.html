@@ -4,22 +4,21 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Scanner de Filtros PRO</title>
-<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Barlow+Condensed:wght@400;600;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 
 <style>
   :root {
-    --bg: #0a0c0f;
-    --panel: #111318;
-    --border: #1e2530;
-    --green: #00e676;
-    --green-dim: #00e67622;
-    --green-glow: 0 0 20px #00e67640;
-    --amber: #ffb300;
-    --red: #ff3d3d;
-    --text: #e0e8f0;
-    --muted: #4a5568;
-    --font-mono: 'Share Tech Mono', monospace;
-    --font-ui: 'Barlow Condensed', sans-serif;
+    --bg: #f0f2f5;
+    --panel: #ffffff;
+    --border: #dde2ea;
+    --blue: #1a6dff;
+    --blue-dim: #1a6dff18;
+    --amber: #e67e00;
+    --red: #e02020;
+    --green: #1aaa55;
+    --text: #111827;
+    --muted: #6b7280;
+    --font: 'Inter', sans-serif;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -27,61 +26,54 @@
   body {
     background: var(--bg);
     color: var(--text);
-    font-family: var(--font-ui);
+    font-family: var(--font);
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
   }
 
-  /* HEADER */
   header {
     width: 100%;
-    max-width: 480px;
-    padding: 16px 20px 12px;
+    max-width: 500px;
+    padding: 20px 20px 16px;
     display: flex;
-    align-items: baseline;
+    align-items: center;
     gap: 10px;
-    border-bottom: 1px solid var(--border);
   }
   header h1 {
-    font-family: var(--font-mono);
-    font-size: 18px;
-    color: var(--green);
-    letter-spacing: 2px;
-    text-transform: uppercase;
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--text);
+    letter-spacing: -0.5px;
   }
+  header h1 span { color: var(--blue); }
   .badge {
-    font-family: var(--font-mono);
-    font-size: 10px;
-    background: var(--green);
-    color: #000;
-    padding: 2px 6px;
-    border-radius: 2px;
-    font-weight: bold;
-    letter-spacing: 1px;
+    font-size: 11px;
+    background: var(--blue);
+    color: #fff;
+    padding: 3px 8px;
+    border-radius: 20px;
+    font-weight: 700;
   }
 
-  /* MAIN */
   main {
     width: 100%;
-    max-width: 480px;
-    padding: 16px;
+    max-width: 500px;
+    padding: 0 16px 32px;
     display: flex;
     flex-direction: column;
-    gap: 14px;
+    gap: 16px;
   }
 
-  /* VIEWFINDER */
   .viewfinder-wrap {
     position: relative;
     background: #000;
-    border: 1px solid var(--border);
-    border-radius: 6px;
+    border-radius: 16px;
     overflow: hidden;
     aspect-ratio: 4/3;
+    box-shadow: 0 4px 24px #0002;
   }
-
   video {
     width: 100%;
     height: 100%;
@@ -89,36 +81,31 @@
     display: block;
   }
 
-  /* scan zone overlay */
   .scan-zone {
     position: absolute;
-    top: 50%;
-    left: 50%;
+    top: 50%; left: 50%;
     transform: translate(-50%, -50%);
-    width: 78%;
-    height: 30%;
+    width: 78%; height: 30%;
     pointer-events: none;
   }
   .scan-zone::before, .scan-zone::after,
   .scan-zone .corner-br, .scan-zone .corner-bl {
     content: '';
     position: absolute;
-    width: 18px;
-    height: 18px;
-    border-color: var(--green);
+    width: 22px; height: 22px;
+    border-color: #fff;
     border-style: solid;
   }
-  .scan-zone::before { top: 0; left: 0; border-width: 2px 0 0 2px; }
-  .scan-zone::after  { top: 0; right: 0; border-width: 2px 2px 0 0; }
-  .scan-zone .corner-br { bottom: 0; right: 0; border-width: 0 2px 2px 0; }
-  .scan-zone .corner-bl { bottom: 0; left: 0; border-width: 0 0 2px 2px; }
+  .scan-zone::before { top: 0; left: 0; border-width: 3px 0 0 3px; border-radius: 3px 0 0 0; }
+  .scan-zone::after  { top: 0; right: 0; border-width: 3px 3px 0 0; border-radius: 0 3px 0 0; }
+  .scan-zone .corner-br { bottom: 0; right: 0; border-width: 0 3px 3px 0; border-radius: 0 0 3px 0; }
+  .scan-zone .corner-bl { bottom: 0; left: 0; border-width: 0 0 3px 3px; border-radius: 0 0 0 3px; }
 
-  /* scan line animation */
   .scan-line {
     position: absolute;
-    left: 2px; right: 2px;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--green), transparent);
+    left: 3px; right: 3px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #fff, transparent);
     animation: scanline 2s linear infinite;
     opacity: 0;
   }
@@ -128,227 +115,201 @@
     100% { top: calc(100% - 4px); }
   }
 
-  /* viewfinder status */
   .vf-status {
     position: absolute;
-    bottom: 8px;
+    bottom: 12px;
     left: 0; right: 0;
     text-align: center;
-    font-family: var(--font-mono);
-    font-size: 11px;
-    color: var(--green);
-    letter-spacing: 1px;
-    text-transform: uppercase;
+    font-size: 13px;
+    font-weight: 600;
+    color: #fff;
+    text-shadow: 0 1px 4px #0006;
+    letter-spacing: 0.3px;
   }
-  .vf-status.error { color: var(--red); }
+  .vf-status.error { color: #ff6b6b; }
 
-  /* CAPTURE BUTTON */
   .btn-capture {
     width: 100%;
-    padding: 16px;
-    font-family: var(--font-mono);
-    font-size: 15px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    background: transparent;
-    border: 1px solid var(--green);
-    color: var(--green);
-    border-radius: 4px;
+    padding: 18px;
+    font-family: var(--font);
+    font-size: 18px;
+    font-weight: 700;
+    background: var(--blue);
+    border: none;
+    color: #fff;
+    border-radius: 14px;
     cursor: pointer;
     transition: all 0.15s;
-    position: relative;
-    overflow: hidden;
+    box-shadow: 0 4px 16px #1a6dff33;
   }
-  .btn-capture:hover {
-    background: var(--green-dim);
-    box-shadow: var(--green-glow);
-  }
-  .btn-capture:active {
-    background: var(--green);
-    color: #000;
-  }
-  .btn-capture:disabled {
-    opacity: 0.4;
-    cursor: not-allowed;
-  }
+  .btn-capture:hover  { background: #1558d6; }
+  .btn-capture:active { transform: scale(0.98); }
+  .btn-capture:disabled { opacity: 0.45; cursor: not-allowed; transform: none; }
   .btn-capture .spinner {
     display: none;
-    width: 14px; height: 14px;
-    border: 2px solid transparent;
-    border-top-color: var(--green);
+    width: 20px; height: 20px;
+    border: 3px solid #ffffff55;
+    border-top-color: #fff;
     border-radius: 50%;
     animation: spin 0.7s linear infinite;
     margin: 0 auto;
   }
-  .btn-capture.loading .label { display: none; }
+  .btn-capture.loading .label   { display: none; }
   .btn-capture.loading .spinner { display: block; }
   @keyframes spin { to { transform: rotate(360deg); } }
 
-  /* MANUAL SEARCH */
   .manual-row {
     display: flex;
-    gap: 8px;
+    gap: 10px;
   }
   .manual-row input {
     flex: 1;
-    padding: 11px 14px;
-    font-family: var(--font-mono);
-    font-size: 14px;
-    letter-spacing: 2px;
+    padding: 15px 16px;
+    font-family: var(--font);
+    font-size: 17px;
+    font-weight: 600;
     text-transform: uppercase;
+    letter-spacing: 1px;
     background: var(--panel);
-    border: 1px solid var(--border);
+    border: 2px solid var(--border);
     color: var(--text);
-    border-radius: 4px;
+    border-radius: 12px;
     outline: none;
     transition: border-color 0.15s;
   }
-  .manual-row input:focus { border-color: var(--green); }
-  .manual-row input::placeholder { color: var(--muted); text-transform: none; letter-spacing: 0; }
+  .manual-row input:focus { border-color: var(--blue); }
+  .manual-row input::placeholder { color: #b0b8c4; text-transform: none; letter-spacing: 0; font-weight: 400; }
   .manual-row button {
-    padding: 11px 18px;
-    font-family: var(--font-mono);
-    font-size: 13px;
-    letter-spacing: 2px;
+    padding: 15px 20px;
+    font-family: var(--font);
+    font-size: 16px;
+    font-weight: 700;
     background: var(--panel);
-    border: 1px solid var(--border);
+    border: 2px solid var(--border);
     color: var(--text);
-    border-radius: 4px;
+    border-radius: 12px;
     cursor: pointer;
     transition: all 0.15s;
     white-space: nowrap;
   }
-  .manual-row button:hover { border-color: var(--green); color: var(--green); }
+  .manual-row button:hover { border-color: var(--blue); color: var(--blue); }
 
-  /* RESULT PANEL */
   .result-panel {
     background: var(--panel);
-    border: 1px solid var(--border);
-    border-radius: 6px;
+    border: 2px solid var(--border);
+    border-radius: 16px;
     overflow: hidden;
-    transition: all 0.2s;
     display: none;
+    box-shadow: 0 2px 12px #0001;
   }
   .result-panel.visible { display: block; }
 
   .result-header {
-    padding: 10px 14px;
+    padding: 14px 18px;
     display: flex;
     align-items: center;
-    gap: 8px;
-    border-bottom: 1px solid var(--border);
+    gap: 10px;
+    border-bottom: 2px solid var(--border);
   }
-  .result-header .status-dot {
-    width: 8px; height: 8px;
+  .status-dot {
+    width: 10px; height: 10px;
     border-radius: 50%;
     background: var(--green);
     flex-shrink: 0;
   }
-  .result-header .status-dot.approx { background: var(--amber); }
-  .result-header .status-dot.error  { background: var(--red); }
-  .result-header .status-label {
-    font-family: var(--font-mono);
-    font-size: 12px;
-    letter-spacing: 1px;
+  .status-dot.approx { background: var(--amber); }
+  .status-dot.error  { background: var(--red); }
+  .status-label {
+    font-size: 14px;
+    font-weight: 700;
     text-transform: uppercase;
-  }
-  .result-header .status-label.approx { color: var(--amber); }
-  .result-header .status-label.error  { color: var(--red); }
-
-  /* found card */
-  .found-card {
-    padding: 14px;
-  }
-  .found-code {
-    font-family: var(--font-mono);
-    font-size: 28px;
+    letter-spacing: 0.5px;
     color: var(--green);
-    letter-spacing: 3px;
+  }
+  .status-label.approx { color: var(--amber); }
+  .status-label.error  { color: var(--red); }
+
+  .found-card { padding: 18px; }
+  .found-code {
+    font-size: 36px;
+    font-weight: 800;
+    color: var(--blue);
+    letter-spacing: 1px;
     line-height: 1;
-    margin-bottom: 10px;
+    margin-bottom: 14px;
   }
   .found-grid {
     display: grid;
     grid-template-columns: auto 1fr;
-    gap: 4px 12px;
-    font-size: 14px;
+    gap: 8px 16px;
   }
   .found-grid .lbl {
-    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 700;
     color: var(--muted);
-    font-size: 11px;
-    letter-spacing: 1px;
     text-transform: uppercase;
+    letter-spacing: 0.5px;
     padding-top: 2px;
   }
   .found-grid .val {
-    font-family: var(--font-ui);
-    font-weight: 600;
-    font-size: 15px;
+    font-size: 18px;
+    font-weight: 700;
     color: var(--text);
   }
 
-  /* equivalencias */
   .equiv-section {
-    border-top: 1px solid var(--border);
-    padding: 12px 14px;
+    border-top: 2px solid var(--border);
+    padding: 16px 18px;
   }
   .equiv-title {
-    font-family: var(--font-mono);
-    font-size: 11px;
+    font-size: 13px;
+    font-weight: 700;
     color: var(--muted);
-    letter-spacing: 2px;
     text-transform: uppercase;
-    margin-bottom: 10px;
+    letter-spacing: 0.5px;
+    margin-bottom: 12px;
   }
   .equiv-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 6px;
+    gap: 8px;
   }
   .equiv-chip {
-    background: #0d1117;
-    border: 1px solid var(--border);
-    border-radius: 3px;
-    padding: 6px 10px;
+    background: var(--bg);
+    border: 2px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 14px;
     cursor: pointer;
-    transition: border-color 0.15s;
+    transition: all 0.15s;
   }
-  .equiv-chip:hover { border-color: var(--green); }
-  .equiv-chip .chip-code {
-    font-family: var(--font-mono);
-    font-size: 13px;
+  .equiv-chip:hover { border-color: var(--blue); background: var(--blue-dim); }
+  .equiv-chip.active { border-color: var(--blue); background: var(--blue-dim); }
+  .equiv-chip.active .chip-code { color: var(--blue); }
+  .chip-code {
+    font-size: 15px;
+    font-weight: 700;
     color: var(--text);
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
   }
-  .equiv-chip .chip-marca {
-    font-family: var(--font-ui);
-    font-size: 11px;
+  .chip-marca {
+    font-size: 12px;
+    font-weight: 500;
     color: var(--muted);
-    margin-top: 1px;
+    margin-top: 2px;
   }
-  .equiv-chip.active { border-color: var(--green); background: var(--green-dim); }
-  .equiv-chip.active .chip-code { color: var(--green); }
 
-  /* not found / error */
   .not-found {
-    padding: 16px 14px;
-    font-family: var(--font-mono);
-    font-size: 13px;
+    padding: 20px 18px;
+    font-size: 16px;
     color: var(--muted);
     line-height: 1.6;
-  }
-  .not-found .detected {
-    color: var(--amber);
-    font-size: 11px;
-    margin-top: 6px;
   }
 </style>
 </head>
 <body>
 
 <header>
-  <h1>⬡ FilterScan</h1>
+  <h1>Filter<span>Scan</span></h1>
   <span class="badge">PRO</span>
 </header>
 
@@ -504,37 +465,34 @@ document.getElementById("manual").addEventListener("keydown", e => {
   if (e.key === "Enter") buscarManual();
 });
 
-// ─── EQUIVALENCIAS ───────────────────────────────────────────
-function getEquivalencias(tipo, modelo) {
-  return Object.entries(DB).filter(([k, v]) => v.tipo === tipo && v.modelo === modelo);
-}
-
 // ─── RENDER RESULTADO ────────────────────────────────────────
 function mostrar(codigo, data, aproximado = false, detectado = "") {
   const panel = document.getElementById("resultado");
-  const equiv = getEquivalencias(data.tipo, data.modelo);
 
   const statusClass = aproximado ? "approx" : "";
   const statusLabel = aproximado
     ? `Coincidencia aproximada${detectado ? ` (detectado: ${detectado})` : ""}`
     : "Código encontrado";
 
-  // chips de equivalencias (excluir el actual)
-  const otros = equiv.filter(([k]) => k !== codigo);
+  // Equivalencias vienen directo de la DB
+  const equivs = data.equivalencias || [];
 
-  const chipsHTML = otros.length > 0 ? `
+  const chipsHTML = equivs.length > 0 ? `
     <div class="equiv-section">
-      <div class="equiv-title">Equivalencias · ${otros.length} código${otros.length !== 1 ? "s" : ""}</div>
+      <div class="equiv-title">Equivalencias · ${equivs.length} código${equivs.length !== 1 ? "s" : ""}</div>
       <div class="equiv-grid">
-        ${otros.map(([k, v]) => `
-          <div class="equiv-chip" onclick="resaltarChip(this, '${k}')">
-            <div class="chip-code">${k}</div>
-            <div class="chip-marca">${v.marca}</div>
+        ${equivs.map(e => `
+          <div class="equiv-chip" onclick="resaltarChip(this, '${e.codigo.toUpperCase()}')">
+            <div class="chip-code">${e.codigo.toUpperCase()}</div>
+            <div class="chip-marca">${e.marca}</div>
           </div>
         `).join("")}
       </div>
     </div>
   ` : "";
+
+  // Modelos: puede ser array
+  const modelos = Array.isArray(data.modelos) ? data.modelos.join(" / ") : (data.modelos || "—");
 
   panel.innerHTML = `
     <div class="result-header">
@@ -544,9 +502,9 @@ function mostrar(codigo, data, aproximado = false, detectado = "") {
     <div class="found-card">
       <div class="found-code">${codigo}</div>
       <div class="found-grid">
-        <span class="lbl">Marca</span>  <span class="val">${data.marca}</span>
-        <span class="lbl">Tipo</span>   <span class="val">${data.tipo}</span>
-        <span class="lbl">Vehículo</span><span class="val">${data.modelo}</span>
+        <span class="lbl">Marca</span>    <span class="val">${data.marca}</span>
+        <span class="lbl">Tipo</span>     <span class="val">${data.tipo}</span>
+        <span class="lbl">Vehículo</span> <span class="val">${modelos}</span>
       </div>
     </div>
     ${chipsHTML}
