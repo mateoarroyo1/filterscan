@@ -304,6 +304,164 @@
     color: var(--muted);
     line-height: 1.6;
   }
+
+  /* TABS */
+  .tabs {
+    display: flex;
+    background: var(--panel);
+    border: 2px solid var(--border);
+    border-radius: 14px;
+    padding: 4px;
+    gap: 4px;
+  }
+  .tab-btn {
+    flex: 1;
+    padding: 11px 8px;
+    font-family: var(--font);
+    font-size: 14px;
+    font-weight: 700;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    background: transparent;
+    color: var(--muted);
+    transition: all 0.15s;
+  }
+  .tab-btn.active {
+    background: var(--blue);
+    color: #fff;
+    box-shadow: 0 2px 8px #1a6dff33;
+  }
+
+  .tab-panel { display: none; }
+  .tab-panel.active { display: flex; flex-direction: column; gap: 14px; }
+
+  /* VEHICLE SEARCH */
+  .vehicle-select {
+    width: 100%;
+    padding: 15px 16px;
+    font-family: var(--font);
+    font-size: 16px;
+    font-weight: 600;
+    background: var(--panel);
+    border: 2px solid var(--border);
+    color: var(--text);
+    border-radius: 12px;
+    outline: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    cursor: pointer;
+    transition: border-color 0.15s;
+  }
+  .vehicle-select:focus { border-color: var(--blue); }
+
+  .filter-type-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .filter-type-btn {
+    padding: 12px 10px;
+    font-family: var(--font);
+    font-size: 13px;
+    font-weight: 700;
+    background: var(--panel);
+    border: 2px solid var(--border);
+    color: var(--text);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.15s;
+    text-align: center;
+  }
+  .filter-type-btn:hover { border-color: var(--blue); color: var(--blue); }
+  .filter-type-btn.active { background: var(--blue); color: #fff; border-color: var(--blue); }
+
+  /* VEHICLE RESULTS */
+  .vehicle-result-panel {
+    background: var(--panel);
+    border: 2px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    display: none;
+  }
+  .vehicle-result-panel.visible { display: block; }
+
+  .vr-header {
+    padding: 14px 18px;
+    border-bottom: 2px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .vr-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text);
+  }
+  .vr-subtitle {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+  .vr-count {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--blue);
+    background: var(--blue-dim);
+    padding: 4px 10px;
+    border-radius: 20px;
+  }
+
+  .vr-group {
+    border-bottom: 1px solid var(--border);
+  }
+  .vr-group:last-child { border-bottom: none; }
+  .vr-group-header {
+    padding: 12px 18px;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--muted);
+    background: #f8f9fb;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .vr-group-count {
+    font-size: 11px;
+    background: var(--border);
+    padding: 2px 7px;
+    border-radius: 10px;
+    color: var(--muted);
+  }
+  .vr-codes {
+    padding: 12px 18px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+  }
+  .vr-code-chip {
+    background: var(--bg);
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .vr-code-chip:hover { border-color: var(--blue); background: var(--blue-dim); }
+  .vr-code-chip .vc-code {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text);
+  }
+  .vr-code-chip .vc-marca {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 1px;
+  }
 </style>
 </head>
 <body>
@@ -315,31 +473,53 @@
 
 <main>
 
-  <!-- CÁMARA -->
-  <div class="viewfinder-wrap" id="viewfinder">
-    <video id="video" autoplay playsinline muted></video>
-    <div class="scan-zone">
-      <div class="corner-br"></div>
-      <div class="corner-bl"></div>
-      <div class="scan-line"></div>
+  <!-- TABS -->
+  <div class="tabs">
+    <button class="tab-btn active" onclick="switchTab('scanner')">📷 Escanear</button>
+    <button class="tab-btn" onclick="switchTab('vehiculo')">🚛 Por Vehículo</button>
+  </div>
+
+  <!-- TAB: SCANNER -->
+  <div class="tab-panel active" id="tab-scanner">
+
+    <div class="viewfinder-wrap" id="viewfinder">
+      <video id="video" autoplay playsinline muted></video>
+      <div class="scan-zone">
+        <div class="corner-br"></div>
+        <div class="corner-bl"></div>
+        <div class="scan-line"></div>
+      </div>
+      <div class="vf-status" id="vfStatus">Iniciando cámara...</div>
     </div>
-    <div class="vf-status" id="vfStatus">Iniciando cámara...</div>
+
+    <button class="btn-capture" id="btnCaptura" onclick="capturar()" disabled>
+      <span class="label">⬡ Escanear código</span>
+      <span class="spinner"></span>
+    </button>
+
+    <div class="manual-row">
+      <input id="manual" type="text" placeholder="Código manual (ej: H601/4)" autocomplete="off">
+      <button onclick="buscarManual()">BUSCAR</button>
+    </div>
+
+    <div class="result-panel" id="resultado"></div>
+
   </div>
 
-  <!-- CAPTURA -->
-  <button class="btn-capture" id="btnCaptura" onclick="capturar()" disabled>
-    <span class="label">⬡ Escanear código</span>
-    <span class="spinner"></span>
-  </button>
+  <!-- TAB: POR VEHÍCULO -->
+  <div class="tab-panel" id="tab-vehiculo">
 
-  <!-- MANUAL -->
-  <div class="manual-row">
-    <input id="manual" type="text" placeholder="Código manual (ej: H601/4)" autocomplete="off">
-    <button onclick="buscarManual()">BUSCAR</button>
+    <select class="vehicle-select" id="vehicleSelect" onchange="onVehicleChange()">
+      <option value="">— Seleccioná el vehículo —</option>
+    </select>
+
+    <div id="filterTypeSection" style="display:none">
+      <div class="filter-type-grid" id="filterTypeGrid"></div>
+    </div>
+
+    <div class="vehicle-result-panel" id="vehicleResult"></div>
+
   </div>
-
-  <!-- RESULTADO -->
-  <div class="result-panel" id="resultado"></div>
 
 </main>
 
@@ -353,7 +533,7 @@ let DB = {};
 // ─── CARGAR DB ────────────────────────────────────────────────
 fetch("database.json")
   .then(r => r.json())
-  .then(d => { DB = d; console.log("DB cargada:", Object.keys(DB).length, "registros"); })
+  .then(d => { DB = d; console.log("DB cargada:", Object.keys(DB).length, "registros"); poblarVehiculos(); })
   .catch(() => console.error("No se pudo cargar database.json"));
 
 // ─── CÁMARA ──────────────────────────────────────────────────
@@ -530,6 +710,134 @@ function resaltarChip(el, codigo) {
   document.querySelectorAll(".equiv-chip").forEach(c => c.classList.remove("active"));
   el.classList.add("active");
   document.getElementById("manual").value = codigo;
+}
+
+// ─── TABS ────────────────────────────────────────────────────
+function switchTab(tab) {
+  document.querySelectorAll('.tab-btn').forEach((b, i) => {
+    b.classList.toggle('active', (i === 0 && tab === 'scanner') || (i === 1 && tab === 'vehiculo'));
+  });
+  document.getElementById('tab-scanner').classList.toggle('active', tab === 'scanner');
+  document.getElementById('tab-vehiculo').classList.toggle('active', tab === 'vehiculo');
+}
+
+// ─── BÚSQUEDA POR VEHÍCULO ────────────────────────────────────
+function poblarVehiculos() {
+  // Extraer lista única de modelos de la DB
+  const modelosSet = new Set();
+  for (const key in DB) {
+    const modelos = DB[key].modelos || [];
+    modelos.forEach(m => modelosSet.add(m));
+  }
+  const sorted = [...modelosSet].sort();
+  const sel = document.getElementById('vehicleSelect');
+  sorted.forEach(m => {
+    const opt = document.createElement('option');
+    opt.value = m;
+    opt.textContent = m;
+    sel.appendChild(opt);
+  });
+}
+
+function onVehicleChange() {
+  const modelo = document.getElementById('vehicleSelect').value;
+  const section = document.getElementById('filterTypeSection');
+  const grid = document.getElementById('filterTypeGrid');
+  const resultPanel = document.getElementById('vehicleResult');
+
+  resultPanel.classList.remove('visible');
+  resultPanel.innerHTML = '';
+
+  if (!modelo) {
+    section.style.display = 'none';
+    return;
+  }
+
+  // Encontrar todos los tipos de filtro para este modelo
+  const tiposSet = new Set();
+  for (const key in DB) {
+    if ((DB[key].modelos || []).includes(modelo)) {
+      tiposSet.add(DB[key].tipo);
+    }
+  }
+
+  const tipos = [...tiposSet].sort();
+  grid.innerHTML = tipos.map(t => `
+    <button class="filter-type-btn" onclick="mostrarFiltrosPorTipo('${modelo}', '${t}', this)">
+      ${t}
+    </button>
+  `).join('');
+
+  section.style.display = 'block';
+}
+
+function mostrarFiltrosPorTipo(modelo, tipo, btnEl) {
+  // Marcar botón activo
+  document.querySelectorAll('.filter-type-btn').forEach(b => b.classList.remove('active'));
+  btnEl.classList.add('active');
+
+  // Buscar todos los códigos de ese tipo para ese modelo
+  const codigos = [];
+  for (const key in DB) {
+    const d = DB[key];
+    if ((d.modelos || []).includes(modelo) && d.tipo === tipo) {
+      codigos.push({ codigo: key, marca: d.marca });
+    }
+  }
+
+  const panel = document.getElementById('vehicleResult');
+
+  if (codigos.length === 0) {
+    panel.innerHTML = `<div class="not-found">No hay filtros cargados para este tipo.</div>`;
+    panel.classList.add('visible');
+    return;
+  }
+
+  // Agrupar por marca
+  const porMarca = {};
+  codigos.forEach(c => {
+    const m = c.marca || 'Otras';
+    if (!porMarca[m]) porMarca[m] = [];
+    porMarca[m].push(c);
+  });
+
+  const totalCodigos = codigos.length;
+  const gruposHTML = Object.entries(porMarca).sort((a,b) => a[0].localeCompare(b[0])).map(([marca, items]) => `
+    <div class="vr-group">
+      <div class="vr-group-header">
+        ${marca}
+        <span class="vr-group-count">${items.length}</span>
+      </div>
+      <div class="vr-codes">
+        ${items.map(c => `
+          <div class="vr-code-chip" onclick="verDetalle('${c.codigo}')">
+            <div class="vc-code">${c.codigo}</div>
+            <div class="vc-marca">${c.marca}</div>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  `).join('');
+
+  panel.innerHTML = `
+    <div class="vr-header">
+      <div>
+        <div class="vr-title">${tipo}</div>
+        <div class="vr-subtitle">${modelo}</div>
+      </div>
+      <span class="vr-count">${totalCodigos} códigos</span>
+    </div>
+    ${gruposHTML}
+  `;
+  panel.classList.add('visible');
+  panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+function verDetalle(codigo) {
+  // Cambiar a tab scanner y mostrar el resultado
+  switchTab('scanner');
+  const data = DB[codigo.toUpperCase()];
+  if (data) mostrar(codigo.toUpperCase(), data, false);
 }
 
 // ─── UTILS ───────────────────────────────────────────────────
