@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scanner de Filtros PRO</title>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Barlow+Condensed:wght@400;600;700;900&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg: #0a0c0f;
+    --panel: #111318;
+    --border: #1e2530;
+    --green: #00e676;
+    --green-dim: #00e67622;
+    --green-glow: 0 0 20px #00e67640;
+    --amber: #ffb300;
+    --red: #ff3d3d;
+    --text: #e0e8f0;
+    --muted: #4a5568;
+    --font-mono: 'Share Tech Mono', monospace;
+    --font-ui: 'Barlow Condensed', sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-ui);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* HEADER */
+  header {
+    width: 100%;
+    max-width: 480px;
+    padding: 16px 20px 12px;
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+  header h1 {
+    font-family: var(--font-mono);
+    font-size: 18px;
+    color: var(--green);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+  .badge {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    background: var(--green);
+    color: #000;
+    padding: 2px 6px;
+    border-radius: 2px;
+    font-weight: bold;
+    letter-spacing: 1px;
+  }
+
+  /* MAIN */
+  main {
+    width: 100%;
+    max-width: 480px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  /* VIEWFINDER */
+  .viewfinder-wrap {
+    position: relative;
+    background: #000;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+    aspect-ratio: 4/3;
+  }
+
+  video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* scan zone overlay */
+  .scan-zone {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 78%;
+    height: 30%;
+    pointer-events: none;
+  }
+  .scan-zone::before, .scan-zone::after,
+  .scan-zone .corner-br, .scan-zone .corner-bl {
+    content: '';
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    border-color: var(--green);
+    border-style: solid;
+  }
+  .scan-zone::before { top: 0; left: 0; border-width: 2px 0 0 2px; }
+  .scan-zone::after  { top: 0; right: 0; border-width: 2px 2px 0 0; }
+  .scan-zone .corner-br { bottom: 0; right: 0; border-width: 0 2px 2px 0; }
+  .scan-zone .corner-bl { bottom: 0; left: 0; border-width: 0 0 2px 2px; }
+
+  /* scan line animation */
+  .scan-line {
+    position: absolute;
+    left: 2px; right: 2px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--green), transparent);
+    animation: scanline 2s linear infinite;
+    opacity: 0;
+  }
+  .scanning .scan-line { opacity: 1; }
+  @keyframes scanline {
+    0%   { top: 4px; }
+    100% { top: calc(100% - 4px); }
+  }
+
+  /* viewfinder status */
+  .vf-status {
+    position: absolute;
+    bottom: 8px;
+    left: 0; right: 0;
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--green);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .vf-status.error { color: var(--red); }
+
+  /* CAPTURE BUTTON */
+  .btn-capture {
+    width: 100%;
+    padding: 16px;
+    font-family: var(--font-mono);
+    font-size: 15px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    background: transparent;
+    border: 1px solid var(--green);
+    color: var(--green);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.15s;
+    position: relative;
+    overflow: hidden;
+  }
+  .btn-capture:hover {
+    background: var(--green-dim);
+    box-shadow: var(--green-glow);
+  }
+  .btn-capture:active {
+    background: var(--green);
+    color: #000;
+  }
+  .btn-capture:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+  .btn-capture .spinner {
+    display: none;
+    width: 14px; height: 14px;
+    border: 2px solid transparent;
+    border-top-color: var(--green);
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+    margin: 0 auto;
+  }
+  .btn-capture.loading .label { display: none; }
+  .btn-capture.loading .spinner { display: block; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* MANUAL SEARCH */
+  .manual-row {
+    display: flex;
+    gap: 8px;
+  }
+  .manual-row input {
+    flex: 1;
+    padding: 11px 14px;
+    font-family: var(--font-mono);
+    font-size: 14px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    color: var(--text);
+    border-radius: 4px;
+    outline: none;
+    transition: border-color 0.15s;
+  }
+  .manual-row input:focus { border-color: var(--green); }
+  .manual-row input::placeholder { color: var(--muted); text-transform: none; letter-spacing: 0; }
+  .manual-row button {
+    padding: 11px 18px;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    letter-spacing: 2px;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    color: var(--text);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+  .manual-row button:hover { border-color: var(--green); color: var(--green); }
+
+  /* RESULT PANEL */
+  .result-panel {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+    transition: all 0.2s;
+    display: none;
+  }
+  .result-panel.visible { display: block; }
+
+  .result-header {
+    padding: 10px 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  .result-header .status-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--green);
+    flex-shrink: 0;
+  }
+  .result-header .status-dot.approx { background: var(--amber); }
+  .result-header .status-dot.error  { background: var(--red); }
+  .result-header .status-label {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .result-header .status-label.approx { color: var(--amber); }
+  .result-header .status-label.error  { color: var(--red); }
+
+  /* found card */
+  .found-card {
+    padding: 14px;
+  }
+  .found-code {
+    font-family: var(--font-mono);
+    font-size: 28px;
+    color: var(--green);
+    letter-spacing: 3px;
+    line-height: 1;
+    margin-bottom: 10px;
+  }
+  .found-grid {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 4px 12px;
+    font-size: 14px;
+  }
+  .found-grid .lbl {
+    font-family: var(--font-mono);
+    color: var(--muted);
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding-top: 2px;
+  }
+  .found-grid .val {
+    font-family: var(--font-ui);
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--text);
+  }
+
+  /* equivalencias */
+  .equiv-section {
+    border-top: 1px solid var(--border);
+    padding: 12px 14px;
+  }
+  .equiv-title {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .equiv-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+  }
+  .equiv-chip {
+    background: #0d1117;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 6px 10px;
+    cursor: pointer;
+    transition: border-color 0.15s;
+  }
+  .equiv-chip:hover { border-color: var(--green); }
+  .equiv-chip .chip-code {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--text);
+    letter-spacing: 1px;
+  }
+  .equiv-chip .chip-marca {
+    font-family: var(--font-ui);
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 1px;
+  }
+  .equiv-chip.active { border-color: var(--green); background: var(--green-dim); }
+  .equiv-chip.active .chip-code { color: var(--green); }
+
+  /* not found / error */
+  .not-found {
+    padding: 16px 14px;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  .not-found .detected {
+    color: var(--amber);
+    font-size: 11px;
+    margin-top: 6px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>⬡ FilterScan</h1>
+  <span class="badge">PRO</span>
+</header>
+
+<main>
+
+  <!-- CÁMARA -->
+  <div class="viewfinder-wrap" id="viewfinder">
+    <video id="video" autoplay playsinline muted></video>
+    <div class="scan-zone">
+      <div class="corner-br"></div>
+      <div class="corner-bl"></div>
+      <div class="scan-line"></div>
+    </div>
+    <div class="vf-status" id="vfStatus">Iniciando cámara...</div>
+  </div>
+
+  <!-- CAPTURA -->
+  <button class="btn-capture" id="btnCaptura" onclick="capturar()" disabled>
+    <span class="label">⬡ Escanear código</span>
+    <span class="spinner"></span>
+  </button>
+
+  <!-- MANUAL -->
+  <div class="manual-row">
+    <input id="manual" type="text" placeholder="Código manual (ej: H601/4)" autocomplete="off">
+    <button onclick="buscarManual()">BUSCAR</button>
+  </div>
+
+  <!-- RESULTADO -->
+  <div class="result-panel" id="resultado"></div>
+
+</main>
+
+<script>
+const video    = document.getElementById("video");
+const vfStatus = document.getElementById("vfStatus");
+const btnCap   = document.getElementById("btnCaptura");
+const scanZone = document.querySelector(".scan-zone");
+let DB = {};
+
+// ─── CARGAR DB ────────────────────────────────────────────────
+fetch("database.json")
+  .then(r => r.json())
+  .then(d => { DB = d; console.log("DB cargada:", Object.keys(DB).length, "registros"); })
+  .catch(() => console.error("No se pudo cargar database.json"));
+
+// ─── CÁMARA ──────────────────────────────────────────────────
+navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } })
+  .then(stream => {
+    video.srcObject = stream;
+    vfStatus.textContent = "Listo — Apuntar al código";
+    btnCap.disabled = false;
+  })
+  .catch(() => {
+    vfStatus.textContent = "Error al acceder a la cámara";
+    vfStatus.classList.add("error");
+  });
+
+// ─── CAPTURA Y PROCESADO ─────────────────────────────────────
+function capturar() {
+  const vw = video.videoWidth  || 640;
+  const vh = video.videoHeight || 480;
+
+  // Mandamos el frame completo: Claude encuentra el codigo solo
+  const canvas = document.createElement("canvas");
+  canvas.width  = vw;
+  canvas.height = vh;
+  const ctx = canvas.getContext("2d");
+  ctx.drawImage(video, 0, 0);
+
+  const base64 = canvas.toDataURL("image/jpeg", 0.85).split(",")[1];
+
+  setLoading(true);
+  scanZone.classList.add("scanning");
+
+  leerConClaude(base64);
+}
+
+// ─── CLAUDE VISION (vía proxy Netlify) ───────────────────────
+async function leerConClaude(base64) {
+  try {
+    // Llamamos a NUESTRA función serverless, no directo a Anthropic.
+    // La API key nunca sale del servidor.
+    const response = await fetch("/.netlify/functions/claude", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ imageBase64: base64 })
+    });
+
+    const data = await response.json();
+
+    if (data.error) throw new Error(data.error);
+
+    const codigoRaw = data.codigo || "NO_DETECTADO";
+    const codigo = codigoRaw.toUpperCase().replace(/\s+/g, "");
+
+    console.log("Claude detectó:", codigo);
+    buscarInteligente(codigo);
+
+  } catch (e) {
+    console.error("Error Claude API:", e);
+    mostrarError("Error: " + e.message + "\nRevisa los logs en Netlify o usá búsqueda manual.");
+  } finally {
+    setLoading(false);
+    scanZone.classList.remove("scanning");
+  }
+}
+
+// ─── BÚSQUEDA ────────────────────────────────────────────────
+function buscarInteligente(codigo) {
+  if (!codigo || codigo === "NO_DETECTADO") {
+    mostrarError("No se detectó ningún código en la imagen.\nIntentá de nuevo con mejor iluminación.");
+    return;
+  }
+
+  // Buscar exacto
+  if (DB[codigo]) {
+    return mostrar(codigo, DB[codigo], false);
+  }
+
+  // Buscar sin espacios / variantes
+  const normalizado = codigo.replace(/[\s\-]/g, "");
+  if (DB[normalizado]) {
+    return mostrar(normalizado, DB[normalizado], false);
+  }
+
+  // Fuzzy por distancia Levenshtein
+  let mejor = null;
+  let mejorDist = Infinity;
+
+  for (const key in DB) {
+    const d = levenshtein(codigo, key);
+    if (d < mejorDist) { mejorDist = d; mejor = key; }
+  }
+
+  const umbral = Math.max(2, Math.floor(codigo.length * 0.25));
+
+  if (mejorDist <= umbral && mejor) {
+    mostrar(mejor, DB[mejor], true, codigo);
+  } else {
+    mostrarError(`Código no encontrado en la base de datos.\nDetectado: ${codigo}`);
+  }
+}
+
+function buscarManual() {
+  const codigo = document.getElementById("manual").value.trim().toUpperCase();
+  if (!codigo) return;
+  buscarInteligente(codigo);
+}
+
+// Enter en input
+document.getElementById("manual").addEventListener("keydown", e => {
+  if (e.key === "Enter") buscarManual();
+});
+
+// ─── EQUIVALENCIAS ───────────────────────────────────────────
+function getEquivalencias(tipo, modelo) {
+  return Object.entries(DB).filter(([k, v]) => v.tipo === tipo && v.modelo === modelo);
+}
+
+// ─── RENDER RESULTADO ────────────────────────────────────────
+function mostrar(codigo, data, aproximado = false, detectado = "") {
+  const panel = document.getElementById("resultado");
+  const equiv = getEquivalencias(data.tipo, data.modelo);
+
+  const statusClass = aproximado ? "approx" : "";
+  const statusLabel = aproximado
+    ? `Coincidencia aproximada${detectado ? ` (detectado: ${detectado})` : ""}`
+    : "Código encontrado";
+
+  // chips de equivalencias (excluir el actual)
+  const otros = equiv.filter(([k]) => k !== codigo);
+
+  const chipsHTML = otros.length > 0 ? `
+    <div class="equiv-section">
+      <div class="equiv-title">Equivalencias · ${otros.length} código${otros.length !== 1 ? "s" : ""}</div>
+      <div class="equiv-grid">
+        ${otros.map(([k, v]) => `
+          <div class="equiv-chip" onclick="resaltarChip(this, '${k}')">
+            <div class="chip-code">${k}</div>
+            <div class="chip-marca">${v.marca}</div>
+          </div>
+        `).join("")}
+      </div>
+    </div>
+  ` : "";
+
+  panel.innerHTML = `
+    <div class="result-header">
+      <div class="status-dot ${statusClass}"></div>
+      <span class="status-label ${statusClass}">${statusLabel}</span>
+    </div>
+    <div class="found-card">
+      <div class="found-code">${codigo}</div>
+      <div class="found-grid">
+        <span class="lbl">Marca</span>  <span class="val">${data.marca}</span>
+        <span class="lbl">Tipo</span>   <span class="val">${data.tipo}</span>
+        <span class="lbl">Vehículo</span><span class="val">${data.modelo}</span>
+      </div>
+    </div>
+    ${chipsHTML}
+  `;
+
+  panel.classList.add("visible");
+  panel.scrollIntoView({ behavior: "smooth", block: "nearest" });
+}
+
+function mostrarError(msg) {
+  const panel = document.getElementById("resultado");
+  panel.innerHTML = `
+    <div class="result-header">
+      <div class="status-dot error"></div>
+      <span class="status-label error">Sin resultado</span>
+    </div>
+    <div class="not-found">${msg.replace(/\n/g, "<br>")}</div>
+  `;
+  panel.classList.add("visible");
+}
+
+function resaltarChip(el, codigo) {
+  document.querySelectorAll(".equiv-chip").forEach(c => c.classList.remove("active"));
+  el.classList.add("active");
+  document.getElementById("manual").value = codigo;
+}
+
+// ─── UTILS ───────────────────────────────────────────────────
+function setLoading(on) {
+  btnCap.disabled = on;
+  btnCap.classList.toggle("loading", on);
+  vfStatus.textContent = on ? "Analizando con IA..." : "Listo — Apuntar al código";
+}
+
+function levenshtein(a, b) {
+  const m = a.length, n = b.length;
+  const dp = Array.from({ length: m + 1 }, (_, i) => [i]);
+  for (let j = 0; j <= n; j++) dp[0][j] = j;
+  for (let i = 1; i <= m; i++)
+    for (let j = 1; j <= n; j++)
+      dp[i][j] = a[i-1] === b[j-1]
+        ? dp[i-1][j-1]
+        : 1 + Math.min(dp[i-1][j-1], dp[i][j-1], dp[i-1][j]);
+  return dp[m][n];
+}
+</script>
+</body>
+</html>
