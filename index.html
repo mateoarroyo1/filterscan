@@ -7,642 +7,568 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg: #f4f4f6;
+  --bg: #f0f2f5;
   --panel: #fff;
-  --border: #e8e8ec;
-  --orange: #ff6a00;
-  --orange-light: #fff0e6;
-  --dark: #111214;
-  --dark2: #1c1e22;
-  --dark3: #26282e;
-  --green: #22c55e;
-  --red: #ef4444;
-  --amber: #f59e0b;
-  --text: #111214;
-  --muted: #8a8f9a;
+  --border: #e2e8f0;
+  --blue: #1a6dff;
+  --blue-light: #e8f0ff;
+  --green: #16a34a;
+  --green-light: #dcfce7;
+  --red: #dc2626;
+  --red-light: #fee2e2;
+  --amber: #d97706;
+  --text: #0f172a;
+  --muted: #64748b;
   --f: 'Inter', sans-serif;
-  --nav: 64px;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-html, body { height: 100%; }
-body { font-family: var(--f); background: var(--dark); color: #fff; overflow: hidden; }
+body { font-family: var(--f); background: var(--bg); color: var(--text); min-height: 100vh; }
+
+/* ── TOPBAR ── */
+.topbar {
+  position: sticky; top: 0; z-index: 50;
+  background: var(--panel); border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; padding: 14px 16px; gap: 12px;
+  box-shadow: 0 1px 8px #0000000a;
+}
+.topbar-title { flex: 1; font-size: 20px; font-weight: 900; letter-spacing: -0.5px; }
+.topbar-title span { color: var(--blue); }
+.menu-btn {
+  width: 42px; height: 42px; border: none; background: none;
+  cursor: pointer; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 5px;
+  border-radius: 10px; transition: background .15s;
+}
+.menu-btn:hover { background: var(--bg); }
+.menu-btn span { display: block; width: 22px; height: 2.5px; background: var(--text); border-radius: 2px; }
+
+/* ── DRAWER ── */
+.overlay { position: fixed; inset: 0; background: #0006; z-index: 90; opacity: 0; pointer-events: none; transition: opacity .25s; }
+.overlay.open { opacity: 1; pointer-events: all; }
+.drawer {
+  position: fixed; top: 0; right: -280px; bottom: 0; width: 270px;
+  background: var(--panel); z-index: 100; transition: right .25s cubic-bezier(.4,0,.2,1);
+  display: flex; flex-direction: column; box-shadow: -4px 0 24px #0002;
+}
+.drawer.open { right: 0; }
+.drawer-hdr {
+  padding: 20px 20px 16px; border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.drawer-logo { font-size: 18px; font-weight: 900; }
+.drawer-logo span { color: var(--blue); }
+.drawer-close { width: 36px; height: 36px; border: none; background: var(--bg); border-radius: 8px; cursor: pointer; font-size: 18px; color: var(--muted); }
+.drawer-nav { flex: 1; padding: 12px; }
+.d-item {
+  display: flex; align-items: center; gap: 14px; padding: 14px 16px;
+  border-radius: 12px; cursor: pointer; transition: all .15s;
+  margin-bottom: 4px; border: none; background: none; width: 100%; text-align: left; font-family: var(--f);
+}
+.d-item:hover { background: var(--bg); }
+.d-item.active { background: var(--blue-light); }
+.d-item.active .d-label { color: var(--blue); }
+.d-item.active .d-icon { background: var(--blue); }
+.d-icon { width: 42px; height: 42px; border-radius: 10px; background: var(--bg); display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; transition: background .15s; }
+.d-label { font-size: 15px; font-weight: 700; color: var(--text); }
+.d-sub   { font-size: 12px; color: var(--muted); margin-top: 1px; }
 
 /* ── PAGES ── */
-.page { position: fixed; inset: 0; bottom: var(--nav); display: none; flex-direction: column; overflow-y: auto; }
-.page.active { display: flex; }
+.page { display: none; max-width: 500px; margin: 0 auto; padding: 16px; }
+.page.active { display: block; }
 
-/* ── BOTTOM NAV ── */
-.nav {
-  position: fixed; bottom: 0; left: 0; right: 0; height: var(--nav);
-  background: var(--dark); border-top: 1px solid var(--dark3);
-  display: flex; z-index: 200;
+/* ── SCANNER ── */
+.viewfinder {
+  position: relative; background: #000; border-radius: 16px;
+  overflow: hidden; aspect-ratio: 4/3; margin-bottom: 12px; box-shadow: 0 4px 20px #0002;
 }
-.nav-btn {
-  flex: 1; display: flex; flex-direction: column; align-items: center;
-  justify-content: center; gap: 4px; border: none; background: none;
-  cursor: pointer; font-family: var(--f); color: var(--muted); transition: color .15s;
+.viewfinder video { width: 100%; height: 100%; object-fit: cover; display: block; }
+.sz {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+  width: 76%; height: 28%; pointer-events: none;
 }
-.nav-btn.active { color: var(--orange); }
-.nav-icon { font-size: 22px; line-height: 1; }
-.nav-label { font-size: 11px; font-weight: 600; }
-
-/* ══════════ SCANNER PAGE ══════════ */
-#page-scanner {
-  background: var(--dark);
-}
-
-.scanner-header {
-  padding: 16px 20px 12px;
-  display: flex; align-items: center; justify-content: space-between;
-  flex-shrink: 0;
-}
-.brand-logo {
-  font-size: 18px; font-weight: 900; letter-spacing: 1px;
-  color: #fff;
-}
-.brand-logo span { color: var(--orange); }
-.scan-flash-btn {
-  width: 38px; height: 38px; border-radius: 50%;
-  background: var(--dark3); border: none; cursor: pointer;
-  font-size: 18px; display: flex; align-items: center; justify-content: center;
-}
-
-/* viewfinder */
-.vf-wrap {
-  flex: 1; position: relative; overflow: hidden;
-  min-height: 0;
-}
-.vf-wrap video { width: 100%; height: 100%; object-fit: cover; display: block; }
-
-/* corners */
-.vf-zone {
-  position: absolute; top: 50%; left: 50%;
-  transform: translate(-50%, -55%);
-  width: 72%; height: 22%; pointer-events: none;
-}
-.vfc { position: absolute; width: 22px; height: 22px; border-color: var(--orange); border-style: solid; }
-.vfc.tl{top:0;left:0;border-width:3px 0 0 3px;border-radius:4px 0 0 0;}
-.vfc.tr{top:0;right:0;border-width:3px 3px 0 0;border-radius:0 4px 0 0;}
-.vfc.br{bottom:0;right:0;border-width:0 3px 3px 0;border-radius:0 0 4px 0;}
-.vfc.bl{bottom:0;left:0;border-width:0 0 3px 3px;border-radius:0 0 0 4px;}
-.vfl {
+.szc { position: absolute; width: 20px; height: 20px; border-color: #fff; border-style: solid; }
+.szc.tl{top:0;left:0;border-width:3px 0 0 3px;border-radius:4px 0 0 0;}
+.szc.tr{top:0;right:0;border-width:3px 3px 0 0;border-radius:0 4px 0 0;}
+.szc.br{bottom:0;right:0;border-width:0 3px 3px 0;border-radius:0 0 4px 0;}
+.szc.bl{bottom:0;left:0;border-width:0 0 3px 3px;border-radius:0 0 0 4px;}
+.szl {
   position: absolute; left: 3px; right: 3px; height: 2px;
-  background: linear-gradient(90deg, transparent, var(--orange), transparent);
+  background: linear-gradient(90deg,transparent,#fff,transparent);
   animation: sl 2s linear infinite; opacity: 0;
 }
-.scanning .vfl { opacity: 1; }
+.scanning .szl { opacity: 1; }
 @keyframes sl { 0%{top:3px} 100%{top:calc(100% - 3px)} }
+.vf-st { position: absolute; bottom: 10px; left: 0; right: 0; text-align: center; font-size: 13px; font-weight: 600; color: #fff; text-shadow: 0 1px 6px #0008; }
 
-/* scan hint */
-.scan-hint {
-  position: absolute; bottom: 20%; left: 0; right: 0;
-  text-align: center; font-size: 13px; font-weight: 500;
-  color: rgba(255,255,255,.55);
-}
-
-/* manual input floating over camera */
-.scan-manual-row {
-  position: absolute; bottom: 0; left: 0; right: 0;
-  padding: 14px 16px;
-  background: linear-gradient(to top, var(--dark) 60%, transparent);
-  display: flex; gap: 10px;
-}
-.scan-manual-row input {
-  flex: 1; padding: 13px 16px; font-family: var(--f); font-size: 15px; font-weight: 600;
-  text-transform: uppercase; letter-spacing: 1px;
-  background: var(--dark2); border: 1.5px solid var(--dark3); color: #fff;
-  border-radius: 12px; outline: none; transition: border-color .15s;
-}
-.scan-manual-row input:focus { border-color: var(--orange); }
-.scan-manual-row input::placeholder { text-transform: none; letter-spacing: 0; font-weight: 400; color: var(--muted); }
-.scan-manual-row button {
-  padding: 13px 18px; font-family: var(--f); font-size: 14px; font-weight: 700;
-  background: var(--orange); color: #fff; border: none; border-radius: 12px; cursor: pointer;
-}
-
-/* big scan button */
-.scan-btn-wrap {
-  padding: 0 16px 16px; flex-shrink: 0;
-  background: var(--dark);
-}
 .scan-btn {
-  width: 100%; padding: 17px; font-family: var(--f); font-size: 17px; font-weight: 800;
-  background: var(--orange); color: #fff; border: none; border-radius: 14px; cursor: pointer;
-  transition: all .12s; letter-spacing: .3px;
+  width: 100%; padding: 18px; font-family: var(--f); font-size: 18px; font-weight: 800;
+  background: var(--blue); color: #fff; border: none; border-radius: 14px; cursor: pointer;
+  box-shadow: 0 4px 16px #1a6dff33; transition: all .12s; margin-bottom: 10px;
 }
 .scan-btn:active { transform: scale(.97); }
-.scan-btn:disabled { opacity: .35; cursor: not-allowed; transform: none; }
+.scan-btn:disabled { opacity: .4; cursor: not-allowed; transform: none; }
 .scan-btn .sp { display:none; width:18px;height:18px;border:3px solid #fff4;border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;margin:0 auto; }
-.scan-btn.loading .lbl{display:none;} .scan-btn.loading .sp{display:block;}
+.scan-btn.loading .lbl{display:none;}.scan-btn.loading .sp{display:block;}
 @keyframes spin{to{transform:rotate(360deg)}}
 
-/* ── RESULT SHEET (slides up) ── */
-.result-sheet {
-  position: fixed; left: 0; right: 0; bottom: var(--nav);
-  background: var(--panel); border-radius: 22px 22px 0 0;
-  box-shadow: 0 -8px 40px #00000040;
-  transform: translateY(100%); transition: transform .3s cubic-bezier(.4,0,.2,1);
-  z-index: 150; overflow-y: auto;
-  max-height: calc(100vh - var(--nav) - 50px);
+.manual-row { display: flex; gap: 10px; margin-bottom: 14px; }
+.manual-row input {
+  flex: 1; padding: 14px 16px; font-family: var(--f); font-size: 16px; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 1px;
+  background: var(--panel); border: 2px solid var(--border); color: var(--text);
+  border-radius: 12px; outline: none; transition: border-color .15s;
 }
-.result-sheet.open { transform: translateY(0); }
+.manual-row input:focus { border-color: var(--blue); }
+.manual-row input::placeholder { text-transform: none; letter-spacing: 0; font-weight: 400; color: #aab; }
+.manual-row button {
+  padding: 14px 18px; font-family: var(--f); font-size: 15px; font-weight: 700;
+  background: var(--panel); border: 2px solid var(--border); color: var(--text);
+  border-radius: 12px; cursor: pointer; transition: all .15s;
+}
+.manual-row button:hover { border-color: var(--blue); color: var(--blue); }
 
-.rs-handle {
-  width: 36px; height: 4px; background: #d1d5db; border-radius: 2px;
-  margin: 12px auto 0;
-}
-.rs-close {
-  position: absolute; top: 14px; right: 16px;
-  width: 32px; height: 32px; border-radius: 50%; border: none;
-  background: var(--bg); cursor: pointer; font-size: 16px; color: var(--muted);
-  display: flex; align-items: center; justify-content: center;
-}
+/* ── RESULT CARD ── */
+.result-card { background: var(--panel); border: 2px solid var(--border); border-radius: 16px; overflow: hidden; display: none; }
+.result-card.show { display: block; }
 
-/* result header card (dark) */
-.rs-card {
-  margin: 10px 16px 0;
-  background: var(--dark); border-radius: 16px; padding: 16px;
-  color: #fff;
-}
-.rs-card-top { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 10px; }
-.rs-brand { font-size: 11px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
-.rs-code  { font-size: 30px; font-weight: 900; letter-spacing: .5px; line-height: 1; }
-.rs-stock-wrap { text-align: right; }
-.rs-stock-num { font-size: 42px; font-weight: 900; line-height: 1; color: #fff; }
-.rs-stock-num.zero{color:var(--red);} .rs-stock-num.low{color:var(--amber);} .rs-stock-num.ok{color:var(--green);}
-.rs-stock-lbl { font-size: 11px; color: var(--muted); margin-top: 2px; text-align: right; }
-.rs-tags { display: flex; gap: 6px; flex-wrap: wrap; }
-.rs-tag {
-  padding: 4px 10px; border-radius: 20px; font-size: 12px; font-weight: 600;
-  background: rgba(255,106,0,.18); color: var(--orange); border: 1px solid rgba(255,106,0,.3);
-  display: flex; align-items: center; gap: 4px;
-}
+.rc-head { padding: 12px 16px; display: flex; align-items: center; gap: 8px; border-bottom: 2px solid var(--border); }
+.rc-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--green); flex-shrink: 0; }
+.rc-dot.ap{background:var(--amber);} .rc-dot.er{background:var(--red);}
+.rc-lbl { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; color: var(--green); }
+.rc-lbl.ap{color:var(--amber);} .rc-lbl.er{color:var(--red);}
 
-/* mov buttons */
-.rs-mov-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 14px 16px 0; }
-.rs-mov-btn {
-  padding: 15px; font-family: var(--f); font-size: 16px; font-weight: 800;
-  border-radius: 12px; cursor: pointer; border: none; transition: all .12s;
-  display: flex; align-items: center; justify-content: center; gap: 6px;
-}
-.rs-mov-btn:active { transform: scale(.96); }
-.btn-salida  { background: var(--orange); color: #fff; }
-.btn-entrada { background: var(--bg); color: var(--text); border: 2px solid var(--border); }
+.rc-main { padding: 16px; }
+.rc-code { font-size: 34px; font-weight: 900; color: var(--blue); letter-spacing: 1px; line-height: 1; margin-bottom: 12px; }
+.rc-grid { display: grid; grid-template-columns: auto 1fr; gap: 6px 14px; margin-bottom: 14px; }
+.rc-fl { font-size: 11px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .5px; padding-top: 3px; }
+.rc-fv { font-size: 17px; font-weight: 700; }
 
-/* qty row */
-.rs-qty-row {
-  display: flex; align-items: center; gap: 12px;
-  padding: 10px 16px 0;
-}
-.rs-qty-lbl { font-size: 14px; font-weight: 700; color: var(--muted); flex-shrink: 0; }
-.qty-ctrl { display: flex; align-items: center; border: 2px solid var(--border); border-radius: 10px; overflow: hidden; }
-.qty-btn { width: 40px; height: 40px; border: none; background: var(--bg); font-size: 20px; font-weight: 700; cursor: pointer; color: var(--text); }
-.qty-btn:active { background: var(--border); }
-.qty-inp { width: 50px; text-align: center; font-size: 18px; font-weight: 800; border: none; border-left: 2px solid var(--border); border-right: 2px solid var(--border); outline: none; font-family: var(--f); color: var(--text); background: #fff; padding: 6px 0; }
-
-.rs-feedback { text-align: center; padding: 8px 16px 0; font-size: 14px; font-weight: 600; color: var(--muted); display: none; }
-.rs-feedback.show { display: block; }
-
-/* sections */
-.rs-section { padding: 18px 16px 0; }
-.rs-section-title {
-  font-size: 12px; font-weight: 800; color: var(--text); text-transform: uppercase;
-  letter-spacing: 1px; margin-bottom: 10px; display: flex; align-items: center; gap: 8px;
-}
-.rs-section-badge {
-  width: 20px; height: 20px; border-radius: 50%; background: var(--orange);
-  color: #fff; font-size: 11px; font-weight: 800;
-  display: flex; align-items: center; justify-content: center;
-}
-
-/* vehicle rows */
-.veh-row {
-  display: flex; align-items: center; gap: 12px;
-  padding: 12px 0; border-bottom: 1px solid var(--border);
-}
-.veh-row:last-child { border-bottom: none; }
-.veh-icon {
-  width: 44px; height: 44px; border-radius: 10px; background: var(--bg);
-  display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0;
-}
-.veh-name { font-size: 15px; font-weight: 700; }
-.veh-sub  { font-size: 12px; color: var(--muted); margin-top: 1px; }
-
-/* equivalencias */
-.equiv-toggle-btn {
-  width: 100%; display: flex; align-items: center; justify-content: space-between;
-  padding: 14px 0; border: none; background: none; cursor: pointer; font-family: var(--f);
-}
-.etb-left { display: flex; align-items: center; gap: 8px; }
-.etb-title { font-size: 12px; font-weight: 800; color: var(--text); text-transform: uppercase; letter-spacing: 1px; }
-.etb-arr { font-size: 16px; color: var(--muted); transition: transform .2s; }
-.equiv-toggle-btn.open .etb-arr { transform: rotate(180deg); }
-.equiv-body { display: none; padding-bottom: 16px; }
-.equiv-body.open { display: block; }
-
-.eq-row {
+/* stock inline en resultado */
+.rc-stock-row {
   display: flex; align-items: center; justify-content: space-between;
-  padding: 10px 0; border-bottom: 1px solid var(--border);
+  background: var(--bg); border-radius: 12px; padding: 12px 14px;
 }
-.eq-row:last-child { border-bottom: none; }
-.eq-marca { font-size: 13px; color: var(--muted); font-weight: 500; min-width: 90px; }
-.eq-code  { font-size: 15px; font-weight: 700; flex: 1; padding: 0 8px; }
-.eq-stock-badge {
-  padding: 3px 10px; border-radius: 20px; font-size: 12px; font-weight: 700;
-  white-space: nowrap;
-}
-.esb-ok   { background: #dcfce7; color: #15803d; }
-.esb-low  { background: #fef3c7; color: #b45309; }
-.esb-zero { background: #fee2e2; color: #b91c1c; }
-.esb-none { background: var(--bg); color: var(--muted); }
+.rc-stock-label { font-size: 13px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .5px; }
+.rc-stock-num { font-size: 42px; font-weight: 900; line-height: 1; }
+.rc-stock-num.zero{color:var(--red);} .rc-stock-num.low{color:var(--amber);} .rc-stock-num.ok{color:var(--green);}
 
-.rs-bottom-pad { height: 20px; }
+/* cantidad + botones */
+.rc-mov { border-top: 2px solid var(--border); padding: 14px 16px; }
+.qty-row { display: flex; align-items: center; gap: 14px; margin-bottom: 12px; }
+.qty-lbl { font-size: 15px; font-weight: 700; flex-shrink: 0; }
+.qty-ctrl { display: flex; align-items: center; border: 2px solid var(--border); border-radius: 12px; overflow: hidden; }
+.qty-btn { width: 44px; height: 44px; border: none; background: var(--bg); font-size: 22px; font-weight: 700; cursor: pointer; color: var(--text); transition: background .1s; }
+.qty-btn:active { background: var(--border); }
+.qty-inp { width: 54px; text-align: center; font-size: 20px; font-weight: 800; border: none; border-left: 2px solid var(--border); border-right: 2px solid var(--border); outline: none; font-family: var(--f); color: var(--text); background: var(--panel); padding: 8px 0; }
+.mov-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.mov-btn { padding: 18px 10px; border: none; border-radius: 13px; cursor: pointer; font-family: var(--f); font-weight: 900; font-size: 20px; transition: all .12s; display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.mov-btn:active{transform:scale(.95);}
+.mov-btn-sub{font-size:12px;font-weight:600;opacity:.7;}
+.btn-ing{background:var(--green-light);color:var(--green);border:2px solid #86efac;}
+.btn-ing:hover{background:#bbf7d0;}
+.btn-sal{background:var(--red-light);color:var(--red);border:2px solid #fca5a5;}
+.btn-sal:hover{background:#fecaca;}
+.mov-feedback{text-align:center;padding:8px;font-size:14px;font-weight:600;color:var(--muted);display:none;}
+.mov-feedback.show{display:block;}
 
-/* ══════════ FLOTA PAGE ══════════ */
-#page-flota { background: var(--bg); }
+/* equivalencias colapsables */
+.equiv-toggle {
+  width: 100%; padding: 13px 16px; display: flex; align-items: center; justify-content: space-between;
+  border: none; background: none; border-top: 2px solid var(--border); cursor: pointer;
+  font-family: var(--f); font-size: 13px; font-weight: 700; color: var(--muted);
+  text-transform: uppercase; letter-spacing: .5px; transition: background .15s;
+}
+.equiv-toggle:hover{background:var(--bg);}
+.equiv-toggle .arr{transition:transform .2s;font-size:16px;}
+.equiv-toggle.open .arr{transform:rotate(180deg);}
+.equiv-body{display:none;padding:0 16px 14px;}
+.equiv-body.open{display:block;}
+.equiv-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;}
+.eq-chip{background:var(--bg);border:2px solid var(--border);border-radius:9px;padding:8px 12px;cursor:pointer;transition:all .15s;}
+.eq-chip:hover,.eq-chip.on{border-color:var(--blue);background:var(--blue-light);}
+.eq-chip.on .eq-code{color:var(--blue);}
+.eq-code{font-size:14px;font-weight:700;letter-spacing:.5px;}
+.eq-marca{font-size:11px;color:var(--muted);margin-top:1px;}
+.rc-nf{padding:18px 16px;font-size:15px;color:var(--muted);line-height:1.6;}
 
-.flota-header {
-  padding: 20px 20px 8px; background: var(--panel);
-  border-bottom: 1px solid var(--border); flex-shrink: 0;
-}
-.flota-title { font-size: 24px; font-weight: 900; color: var(--text); }
-.flota-sub   { font-size: 13px; color: var(--muted); margin-top: 2px; }
+/* ── VEHÍCULO + STOCK ── */
+.sec-title { font-size: 20px; font-weight: 800; margin-bottom: 4px; margin-top: 4px; }
+.sec-sub   { font-size: 14px; color: var(--muted); margin-bottom: 16px; }
 
-.flota-list { flex: 1; overflow-y: auto; padding: 12px 16px; }
+.veh-select, .stock-veh-select {
+  width: 100%; padding: 15px 16px; font-family: var(--f); font-size: 16px; font-weight: 600;
+  background: var(--panel); border: 2px solid var(--border); color: var(--text);
+  border-radius: 12px; outline: none; appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2.5'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 14px center;
+  cursor: pointer; transition: border-color .15s; margin-bottom: 12px;
+}
+.veh-select:focus,.stock-veh-select:focus{border-color:var(--blue);}
 
-.flota-item {
-  background: var(--panel); border-radius: 14px; margin-bottom: 10px;
-  display: flex; align-items: center; gap: 14px; padding: 14px 16px;
-  cursor: pointer; transition: all .15s; border: 1.5px solid transparent;
+.tipo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 14px; }
+.tipo-btn {
+  padding: 13px 10px; font-family: var(--f); font-size: 14px; font-weight: 700;
+  background: var(--panel); border: 2px solid var(--border); color: var(--text);
+  border-radius: 10px; cursor: pointer; transition: all .15s; text-align: center;
 }
-.flota-item:hover { border-color: var(--orange); }
-.flota-item.active { border-color: var(--orange); background: #fff8f4; }
-.fi-icon {
-  width: 46px; height: 46px; border-radius: 10px; background: var(--bg);
-  display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0;
-}
-.fi-info { flex: 1; min-width: 0; }
-.fi-name { font-size: 16px; font-weight: 800; color: var(--text); }
-.fi-filters { font-size: 12px; font-weight: 700; color: var(--orange); margin-top: 2px; text-transform: uppercase; letter-spacing: .5px; }
-.fi-arrow { color: var(--muted); font-size: 18px; }
+.tipo-btn:hover{border-color:var(--blue);color:var(--blue);}
+.tipo-btn.on{background:var(--blue);color:#fff;border-color:var(--blue);}
 
-/* flota detail panel */
-.flota-detail {
-  background: var(--panel); border-radius: 20px 20px 0 0;
-  position: fixed; left: 0; right: 0; bottom: var(--nav);
-  max-height: 75vh; transform: translateY(100%);
-  transition: transform .3s cubic-bezier(.4,0,.2,1);
-  z-index: 100; overflow-y: auto;
-  box-shadow: 0 -4px 30px #00000018;
+/* tabla de codigos con stock */
+.codes-table {
+  background: var(--panel); border: 2px solid var(--border); border-radius: 14px; overflow: hidden; display: none;
 }
-.flota-detail.open { transform: translateY(0); }
-.fd-handle { width: 36px; height: 4px; background: #d1d5db; border-radius: 2px; margin: 12px auto 0; }
-.fd-header {
-  padding: 14px 18px; display: flex; align-items: center; justify-content: space-between;
-  border-bottom: 1px solid var(--border);
+.codes-table.show{display:block;}
+.ct-head {
+  padding: 12px 16px; border-bottom: 2px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
 }
-.fd-title { font-size: 18px; font-weight: 900; }
-.fd-close {
-  width: 32px; height: 32px; border-radius: 50%; border: none;
-  background: var(--bg); cursor: pointer; font-size: 16px; color: var(--muted);
+.ct-title{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;}
+.ct-count{font-size:12px;font-weight:700;color:var(--blue);background:var(--blue-light);padding:3px 10px;border-radius:20px;}
+.ct-group-hdr{
+  padding:9px 16px;font-size:11px;font-weight:700;color:var(--muted);
+  text-transform:uppercase;letter-spacing:.5px;background:#f8fafc;
+  display:flex;justify-content:space-between;border-bottom:1px solid var(--border);
 }
+.ct-row {
+  padding: 12px 16px; border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; gap: 12px; cursor: pointer; transition: background .12s;
+}
+.ct-row:last-child{border-bottom:none;}
+.ct-row:hover{background:var(--bg);}
+.ct-info{flex:1;}
+.ct-code{font-size:16px;font-weight:800;letter-spacing:.5px;}
+.ct-marca{font-size:12px;color:var(--muted);}
+.ct-stock{font-size:26px;font-weight:900;min-width:44px;text-align:right;}
+.ct-stock.zero{color:var(--red);}.ct-stock.low{color:var(--amber);}.ct-stock.ok{color:var(--green);}
 
-/* filtros por tipo */
-.fd-tipo-item {
-  border-bottom: 1px solid var(--border); overflow: hidden;
+/* lista stock general */
+.stock-list{background:var(--panel);border:2px solid var(--border);border-radius:16px;overflow:hidden;}
+.sl-hdr{padding:14px 16px;border-bottom:2px solid var(--border);display:flex;justify-content:space-between;align-items:center;}
+.sl-hdr-title{font-size:16px;font-weight:800;}
+.sl-refresh{padding:7px 12px;font-family:var(--f);font-size:12px;font-weight:700;background:var(--bg);border:2px solid var(--border);border-radius:8px;cursor:pointer;color:var(--muted);transition:all .15s;}
+.sl-refresh:hover{border-color:var(--blue);color:var(--blue);}
+.sl-item{padding:13px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px;}
+.sl-item:last-child{border-bottom:none;}
+.sl-info{flex:1;min-width:0;}
+.sl-tipo{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;}
+.sl-veh{font-size:16px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.sl-n{font-size:28px;font-weight:900;min-width:46px;text-align:right;}
+.sl-n.zero{color:var(--red);}.sl-n.low{color:var(--amber);}.sl-n.ok{color:var(--green);}
+.sl-empty{padding:28px;text-align:center;font-size:15px;color:var(--muted);}
+.tipo-stock-row{padding:24px 20px;display:flex;align-items:center;justify-content:space-between;background:var(--panel);}
+.tipo-stock-label{font-size:14px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;}
+.tipo-stock-num{font-size:72px;font-weight:900;line-height:1;color:var(--text);}
+.tipo-stock-num.zero{color:var(--red);}.tipo-stock-num.low{color:var(--amber);}.tipo-stock-num.ok{color:var(--green);}
+.tipo-stock-footer{padding:12px 20px 16px;font-size:13px;color:var(--muted);border-top:1px solid var(--border);}
+.home-btn{padding:8px 14px;font-family:var(--f);font-size:14px;font-weight:700;background:var(--bg);border:2px solid var(--border);color:var(--text);border-radius:10px;cursor:pointer;transition:all .15s;white-space:nowrap;}
+.home-btn:hover{border-color:var(--blue);color:var(--blue);}
+.tipo-stock-row {
+  padding: 24px 20px; display: flex; align-items: center;
+  justify-content: space-between; background: var(--panel);
 }
-.fd-tipo-item:last-child { border-bottom: none; }
-
-.fd-tipo-header {
-  width: 100%; display: flex; align-items: center; justify-content: space-between;
-  padding: 15px 18px; border: none; background: none; cursor: pointer; font-family: var(--f);
+.tipo-stock-label { font-size: 14px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .5px; }
+.tipo-stock-num { font-size: 72px; font-weight: 900; line-height: 1; color: var(--text); }
+.tipo-stock-num.zero{color:var(--red);} .tipo-stock-num.low{color:var(--amber);} .tipo-stock-num.ok{color:var(--green);}
+.tipo-stock-footer { padding: 12px 20px 16px; font-size: 13px; color: var(--muted); border-top: 1px solid var(--border); }
+.home-btn {
+  padding: 8px 14px; font-family: var(--f); font-size: 14px; font-weight: 700;
+  background: var(--bg); border: 2px solid var(--border); color: var(--text);
+  border-radius: 10px; cursor: pointer; transition: all .15s; white-space: nowrap;
 }
-.fd-tipo-left { text-align: left; }
-.fd-tipo-name { font-size: 16px; font-weight: 800; color: var(--text); }
-.fd-tipo-right { display: flex; align-items: center; gap: 10px; }
-.fd-tipo-stock { font-size: 28px; font-weight: 900; }
-.fd-tipo-stock.zero{color:var(--red);} .fd-tipo-stock.low{color:var(--amber);} .fd-tipo-stock.ok{color:var(--green);}
-.fd-tipo-arr { font-size: 16px; color: var(--muted); transition: transform .2s; }
-.fd-tipo-header.open .fd-tipo-arr { transform: rotate(180deg); }
-
-.fd-equiv-body { display: none; background: var(--bg); }
-.fd-equiv-body.open { display: block; }
-.fd-eq-row {
-  display: flex; align-items: center; gap: 12px;
-  padding: 11px 18px; border-bottom: 1px solid var(--border);
-  cursor: pointer; transition: background .12s;
-}
-.fd-eq-row:last-child { border-bottom: none; }
-.fd-eq-row:hover { background: #fff; }
-.fd-eq-marca { font-size: 12px; color: var(--muted); font-weight: 500; min-width: 80px; }
-.fd-eq-code  { font-size: 15px; font-weight: 700; flex: 1; }
-.fd-eq-stock {
-  padding: 3px 10px; border-radius: 20px; font-size: 12px; font-weight: 700;
-}
-.fes-ok   { background: #dcfce7; color: #15803d; }
-.fes-low  { background: #fef3c7; color: #b45309; }
-.fes-zero { background: #fee2e2; color: #b91c1c; }
+.home-btn:hover { border-color: var(--blue); color: var(--blue); }
 </style>
 </head>
 <body>
 
-<!-- ══ SCANNER PAGE ══ -->
-<div class="page active" id="page-scanner">
-
-  <div class="scanner-header">
-    <div class="brand-logo">FILTER<span>SCAN</span></div>
-    <button class="scan-flash-btn">⚡</button>
-  </div>
-
-  <div class="vf-wrap">
-    <video id="video" autoplay playsinline muted></video>
-    <div id="sz" class="vf-zone">
-      <div class="vfc tl"></div><div class="vfc tr"></div>
-      <div class="vfc br"></div><div class="vfc bl"></div>
-      <div class="vfl"></div>
-    </div>
-    <div class="scan-hint" id="scanHint">Apuntar al código del filtro</div>
-
-    <div class="scan-manual-row">
-      <input id="manual" type="text" placeholder="Buscar por código..." autocomplete="off">
-      <button onclick="buscarManual()">IR</button>
-    </div>
-  </div>
-
-  <div class="scan-btn-wrap">
-    <button class="scan-btn" id="btnCap" onclick="capturar()" disabled>
-      <span class="lbl">📷 Escanear</span>
-      <span class="sp"></span>
-    </button>
-  </div>
-
+<!-- TOPBAR -->
+<div class="topbar">
+  <button class="home-btn" id="homeBtn" onclick="goPage('scanner')" style="display:none">
+    ← Inicio
+  </button>
+  <div class="topbar-title" style="flex:1">Filter<span>Scan</span></div>
+  <button class="menu-btn" onclick="toggleDrawer()">
+    <span></span><span></span><span></span>
+  </button>
 </div>
 
-<!-- ══ RESULT SHEET ══ -->
-<div class="result-sheet" id="resultSheet">
-  <div class="rs-handle"></div>
-  <button class="rs-close" onclick="closeResult()">✕</button>
-
-  <div class="rs-card">
-    <div class="rs-card-top">
+<!-- DRAWER -->
+<div class="overlay" id="overlay" onclick="closeDrawer()"></div>
+<div class="drawer" id="drawer">
+  <div class="drawer-hdr">
+    <div class="drawer-logo">Filter<span>Scan</span></div>
+    <button class="drawer-close" onclick="closeDrawer()">✕</button>
+  </div>
+  <div class="drawer-nav">
+    <button class="d-item" id="di-vehiculo" onclick="goPage('vehiculo')">
+      <div class="d-icon">🚛</div>
       <div>
-        <div class="rs-brand" id="rsBrand">—</div>
-        <div class="rs-code"  id="rsCode">—</div>
+        <div class="d-label">Buscar por camión</div>
+        <div class="d-sub">Filtros y stock por modelo</div>
       </div>
-      <div class="rs-stock-wrap">
-        <div class="rs-stock-num" id="rsStockNum">—</div>
-        <div class="rs-stock-lbl">en stock</div>
-      </div>
-    </div>
-    <div class="rs-tags" id="rsTags"></div>
-  </div>
-
-  <div class="rs-mov-btns">
-    <button class="rs-mov-btn btn-salida"  onclick="registrarMov(-1)">↑ Salida</button>
-    <button class="rs-mov-btn btn-entrada" onclick="registrarMov(+1)">↓ Entrada</button>
-  </div>
-
-  <div class="rs-qty-row">
-    <span class="rs-qty-lbl">Cantidad</span>
-    <div class="qty-ctrl">
-      <button class="qty-btn" onclick="qtyChange(-1)">−</button>
-      <input class="qty-inp" id="qtyVal" type="number" value="1" min="1" max="999">
-      <button class="qty-btn" onclick="qtyChange(+1)">+</button>
-    </div>
-  </div>
-
-  <div class="rs-feedback" id="rsFeedback"></div>
-
-  <!-- Compatible con -->
-  <div class="rs-section">
-    <div class="rs-section-title">
-      Compatible con
-      <span class="rs-section-badge" id="rsVehCount">0</span>
-    </div>
-    <div id="rsVehiculos"></div>
-  </div>
-
-  <!-- Equivalencias -->
-  <div class="rs-section" style="padding-bottom:0">
-    <button class="equiv-toggle-btn" id="equivToggle" onclick="toggleEquiv()">
-      <div class="etb-left">
-        <span class="etb-title">Equivalencias</span>
-        <span class="rs-section-badge" id="rsEquivCount">0</span>
-      </div>
-      <span class="etb-arr">▾</span>
     </button>
-    <div class="equiv-body" id="equivBody"></div>
+    <button class="d-item" id="di-stock" onclick="goPage('stock')">
+      <div class="d-icon">📦</div>
+      <div>
+        <div class="d-label">Stock general</div>
+        <div class="d-sub">Ver todas las existencias</div>
+      </div>
+    </button>
   </div>
-
-  <div class="rs-bottom-pad"></div>
 </div>
 
-<!-- ══ FLOTA PAGE ══ -->
-<div class="page" id="page-flota">
+<!-- PAGE: SCANNER -->
+<div class="page active" id="page-scanner">
+  <div style="height:12px"></div>
 
-  <div class="flota-header">
-    <div class="flota-title">Flota</div>
-    <div class="flota-sub">Filtros y stock por vehículo</div>
+  <div class="viewfinder">
+    <video id="video" autoplay playsinline muted></video>
+    <div id="sz" class="sz">
+      <div class="szc tl"></div><div class="szc tr"></div>
+      <div class="szc br"></div><div class="szc bl"></div>
+      <div class="szl"></div>
+    </div>
+    <div class="vf-st" id="vfSt">Iniciando cámara...</div>
   </div>
 
-  <div class="flota-list" id="flotaList">
-    <div style="padding:30px;text-align:center;color:var(--muted);font-size:14px;">Cargando...</div>
-  </div>
-
-</div>
-
-<!-- Flota detail sheet -->
-<div class="flota-detail" id="flotaDetail">
-  <div class="fd-handle"></div>
-  <div class="fd-header">
-    <div class="fd-title" id="fdTitle">—</div>
-    <button class="fd-close" onclick="closeFlotaDetail()">✕</button>
-  </div>
-  <div id="fdBody"></div>
-</div>
-
-<!-- ══ BOTTOM NAV ══ -->
-<nav class="nav">
-  <button class="nav-btn active" id="nav-scanner" onclick="goPage('scanner')">
-    <span class="nav-icon">⬜</span>
-    <span class="nav-label">Escanear</span>
+  <button class="scan-btn" id="btnCap" onclick="capturar()" disabled>
+    <span class="lbl">📷 Escanear código</span>
+    <span class="sp"></span>
   </button>
-  <button class="nav-btn" id="nav-flota" onclick="goPage('flota')">
-    <span class="nav-icon">🚛</span>
-    <span class="nav-label">Flota</span>
-  </button>
-</nav>
+
+  <div class="manual-row">
+    <input id="manual" type="text" placeholder="Código manual..." autocomplete="off">
+    <button onclick="buscarManual()">BUSCAR</button>
+  </div>
+
+  <div class="result-card" id="resultado"></div>
+  <div style="height:24px"></div>
+</div>
+
+<!-- PAGE: VEHÍCULO -->
+<div class="page" id="page-vehiculo">
+  <div style="height:12px"></div>
+  <div class="sec-title">Buscar por camión</div>
+  <div class="sec-sub">Seleccioná el modelo para ver sus filtros y stock</div>
+
+  <select class="veh-select" id="vehicleSelect" onchange="onVehicleChange()">
+    <option value="">— Seleccioná el vehículo —</option>
+  </select>
+
+  <div id="tipoSection" style="display:none">
+    <div style="font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px;">Tipo de filtro</div>
+    <div class="tipo-grid" id="tipoGrid"></div>
+  </div>
+
+  <div class="codes-table" id="codesTable"></div>
+  <div style="height:24px"></div>
+</div>
+
+<!-- PAGE: STOCK -->
+<div class="page" id="page-stock">
+  <div style="height:12px"></div>
+  <div class="sec-title">Stock general</div>
+  <div class="sec-sub">Filtrá por vehículo o mirá todo</div>
+
+  <select class="stock-veh-select" id="stockVehSel" onchange="stockFiltrar()">
+    <option value="">— Todos los vehículos —</option>
+  </select>
+
+  <div class="stock-list">
+    <div class="sl-hdr">
+      <span class="sl-hdr-title">📋 Existencias</span>
+      <button class="sl-refresh" onclick="stockCargarLista()">↻ Actualizar</button>
+    </div>
+    <div id="stockBody"><div class="sl-empty">Cargando...</div></div>
+  </div>
+  <div style="height:24px"></div>
+</div>
 
 <script>
 const SHEET_URL = "/.netlify/functions/sheets";
+
 let DB = {};
 let allStock = [];
-let currentGrupo = null;
+let currentGrupo = null; // grupo activo en el scanner
 
 // ── DB ──
 fetch("database.json")
   .then(r => r.json())
-  .then(d => { DB = d; renderFlota(); loadStock(); })
+  .then(d => { DB = d; poblarSelectores(); stockCargarLista(); })
   .catch(() => console.error("Error DB"));
 
-async function loadStock() {
-  try {
-    const res = await fetch(SHEET_URL + '?accion=lista');
-    const d = await res.json();
-    allStock = d.items || [];
-  } catch(e) { allStock = []; }
+// ── DRAWER ──
+function toggleDrawer() {
+  document.getElementById('drawer').classList.toggle('open');
+  document.getElementById('overlay').classList.toggle('open');
+}
+function closeDrawer() {
+  document.getElementById('drawer').classList.remove('open');
+  document.getElementById('overlay').classList.remove('open');
 }
 
 // ── NAV ──
 function goPage(name) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.d-item').forEach(b => b.classList.remove('active'));
   document.getElementById('page-' + name).classList.add('active');
-  document.getElementById('nav-' + name).classList.add('active');
-  if (name !== 'scanner') closeResult();
+  const di = document.getElementById('di-' + name);
+  if (di) di.classList.add('active');
+  // mostrar botón home solo cuando no estás en scanner
+  document.getElementById('homeBtn').style.display = name === 'scanner' ? 'none' : 'block';
+  closeDrawer();
+  window.scrollTo(0, 0);
 }
 
 // ── CÁMARA ──
-const video = document.getElementById('video');
+const video  = document.getElementById('video');
+const vfSt   = document.getElementById('vfSt');
 const btnCap = document.getElementById('btnCap');
-const sz = document.getElementById('sz');
+const sz     = document.getElementById('sz');
 
 navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } })
-  .then(s => { video.srcObject = s; btnCap.disabled = false; document.getElementById('scanHint').textContent = 'Apuntar al código del filtro'; })
-  .catch(() => { document.getElementById('scanHint').textContent = 'Sin acceso a cámara'; });
+  .then(s => { video.srcObject = s; vfSt.textContent = 'Apuntar al código del filtro'; btnCap.disabled = false; })
+  .catch(() => { vfSt.textContent = 'Sin acceso a cámara'; });
 
 function capturar() {
   const c = document.createElement('canvas');
   c.width = video.videoWidth||640; c.height = video.videoHeight||480;
   c.getContext('2d').drawImage(video, 0, 0);
   const b64 = c.toDataURL('image/jpeg', .85).split(',')[1];
-  btnCap.disabled = true; btnCap.classList.add('loading');
-  sz.classList.add('scanning');
-  document.getElementById('scanHint').textContent = 'Analizando...';
-  fetch('/.netlify/functions/claude', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({imageBase64:b64}) })
-    .then(r => r.json())
-    .then(d => { if(d.error) throw new Error(d.error); procesarCodigo((d.codigo||'NO_DETECTADO').toUpperCase().replace(/\s+/g,'')); })
-    .catch(e => alert('Error: ' + e.message))
-    .finally(() => { btnCap.disabled=false; btnCap.classList.remove('loading'); sz.classList.remove('scanning'); document.getElementById('scanHint').textContent='Apuntar al código del filtro'; });
+  setScanLoading(true);
+  leerClaude(b64);
 }
 
-function buscarManual() {
-  const c = document.getElementById('manual').value.trim().toUpperCase();
-  if (c) procesarCodigo(c);
+function setScanLoading(on) {
+  btnCap.disabled = on;
+  btnCap.classList.toggle('loading', on);
+  vfSt.textContent = on ? 'Analizando...' : 'Apuntar al código del filtro';
+  sz.classList.toggle('scanning', on);
 }
-document.getElementById('manual').addEventListener('keydown', e => { if(e.key==='Enter') buscarManual(); });
 
-// ── BUSCAR EN DB ──
+async function leerClaude(b64) {
+  try {
+    const res  = await fetch('/.netlify/functions/claude', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ imageBase64: b64 }) });
+    const data = await res.json();
+    if (data.error) throw new Error(data.error);
+    const codigo = (data.codigo||'NO_DETECTADO').toUpperCase().replace(/\s+/g,'');
+    buscarInteligente(codigo);
+  } catch(e) { mostrarError('Error: ' + e.message); }
+  finally    { setScanLoading(false); }
+}
+
+// ── BÚSQUEDA ──
 function buscarEnDB(codigo) {
   let key = codigo.toUpperCase();
   if (DB[key]) return { key, data: DB[key] };
   const norm = key.replace(/[\s\-]/g,'');
-  if (DB[norm]) return { key:norm, data:DB[norm] };
-  let best=null, bestD=Infinity;
-  const umbral = Math.max(2, Math.floor(key.length*.25));
-  for (const k in DB) { const d=lev(key,k); if(d<bestD){bestD=d;best=k;} }
-  if (bestD<=umbral && best) return { key:best, data:DB[best], aprox:true, orig:codigo };
+  if (DB[norm]) return { key: norm, data: DB[norm] };
+  let best = null, bestD = Infinity;
+  const umbral = Math.max(2, Math.floor(key.length * .25));
+  for (const k in DB) { const d = lev(key,k); if (d < bestD) { bestD=d; best=k; } }
+  if (bestD <= umbral && best) return { key:best, data:DB[best], aprox:true, orig:codigo };
   return null;
 }
 
-function procesarCodigo(codigo) {
-  if (!codigo || codigo==='NO_DETECTADO') { alert('No se detectó ningún código.'); return; }
+function buscarInteligente(codigo) {
+  if (!codigo || codigo === 'NO_DETECTADO') { mostrarError('No se detectó ningún código. Intentá de nuevo.'); return; }
   const f = buscarEnDB(codigo);
-  if (!f) { alert('Código no encontrado: ' + codigo); return; }
-  mostrarResult(f.key, f.data);
+  if (!f) { mostrarError('Código no encontrado: ' + codigo); return; }
+  mostrarResultado(f.key, f.data, f.aprox, f.orig||codigo);
 }
 
-// ── RESULTADO ──
-async function mostrarResult(codigo, data) {
-  const modelos = Array.isArray(data.modelos) ? data.modelos : [data.modelos||'—'];
+function buscarManual() {
+  const c = document.getElementById('manual').value.trim().toUpperCase();
+  if (c) buscarInteligente(c);
+}
+document.getElementById('manual').addEventListener('keydown', e => { if(e.key==='Enter') buscarManual(); });
+
+// ── RESULTADO SCANNER ──
+async function mostrarResultado(codigo, data, aprox, detectado) {
+  const panel  = document.getElementById('resultado');
+  const modelos = Array.isArray(data.modelos) ? data.modelos.join(' / ') : (data.modelos||'—');
   const equivs  = data.equivalencias || [];
   const grupoId = getGrupoId(data.tipo, data.modelos);
 
   currentGrupo = {
-    grupoId, tipo: data.tipo,
-    modelos: modelos.join(' / '),
+    grupoId, tipo: data.tipo, modelos,
     codigos: [codigo, ...equivs.map(e=>e.codigo.toUpperCase())].slice(0,8).join(', ')
   };
 
-  // Header
-  document.getElementById('rsBrand').textContent = data.marca;
-  document.getElementById('rsCode').textContent  = codigo;
-  document.getElementById('rsTags').innerHTML    = `<span class="rs-tag">⬡ ${data.tipo}</span>`;
+  // Equivalencias colapsables
+  const equivHTML = equivs.length ? `
+    <button class="equiv-toggle" id="equivToggle" onclick="toggleEquiv()">
+      Equivalencias (${equivs.length})
+      <span class="arr">▾</span>
+    </button>
+    <div class="equiv-body" id="equivBody">
+      <div class="equiv-grid" style="padding-top:10px;">
+        ${equivs.map(e=>`
+          <div class="eq-chip" onclick="chipClick(this,'${e.codigo.toUpperCase()}')">
+            <div class="eq-code">${e.codigo.toUpperCase()}</div>
+            <div class="eq-marca">${e.marca}</div>
+          </div>`).join('')}
+      </div>
+    </div>` : '';
 
-  // Vehículos
-  document.getElementById('rsVehCount').textContent = modelos.length;
-  document.getElementById('rsVehiculos').innerHTML  = modelos.map(m => `
-    <div class="veh-row">
-      <div class="veh-icon">🚛</div>
-      <div><div class="veh-name">${m}</div></div>
-    </div>`).join('');
+  panel.innerHTML = `
+    <div class="rc-head">
+      <div class="rc-dot${aprox?' ap':''}"></div>
+      <span class="rc-lbl${aprox?' ap':''}">${aprox?`Coincidencia aprox. (${detectado})`:'Código encontrado'}</span>
+    </div>
+    <div class="rc-main">
+      <div class="rc-code">${codigo}</div>
+      <div class="rc-grid">
+        <span class="rc-fl">Marca</span>    <span class="rc-fv">${data.marca}</span>
+        <span class="rc-fl">Tipo</span>     <span class="rc-fv">${data.tipo}</span>
+        <span class="rc-fl">Vehículo</span> <span class="rc-fv">${modelos}</span>
+      </div>
+      <div class="rc-stock-row">
+        <div class="rc-stock-label">Stock actual</div>
+        <div class="rc-stock-num" id="rcStockNum">...</div>
+      </div>
+    </div>
+    <div class="rc-mov">
+      <div class="qty-row">
+        <span class="qty-lbl">Cantidad</span>
+        <div class="qty-ctrl">
+          <button class="qty-btn" onclick="qtyChange(-1)">−</button>
+          <input class="qty-inp" id="qtyVal" type="number" value="1" min="1" max="999">
+          <button class="qty-btn" onclick="qtyChange(+1)">+</button>
+        </div>
+      </div>
+      <div class="mov-btns">
+        <button class="mov-btn btn-ing" onclick="registrarMov(+1)">↑ INGRESO<span class="mov-btn-sub">Suma al stock</span></button>
+        <button class="mov-btn btn-sal" onclick="registrarMov(-1)">↓ SALIDA<span class="mov-btn-sub">Resta del stock</span></button>
+      </div>
+      <div class="mov-feedback" id="movFeedback"></div>
+    </div>
+    ${equivHTML}`;
 
-  // Equivalencias
-  document.getElementById('rsEquivCount').textContent = equivs.length;
-  document.getElementById('equivBody').innerHTML = equivs.map(e => `
-    <div class="eq-row">
-      <span class="eq-marca">${e.marca}</span>
-      <span class="eq-code">${e.codigo.toUpperCase()}</span>
-      <span class="eq-stock-badge esb-none" id="eqs-${e.codigo.toUpperCase()}">...</span>
-    </div>`).join('');
+  panel.classList.add('show');
+  panel.scrollIntoView({ behavior:'smooth', block:'nearest' });
 
-  // Reset
-  document.getElementById('qtyVal').value = 1;
-  document.getElementById('rsFeedback').classList.remove('show');
-  document.getElementById('rsStockNum').textContent = '...';
-  document.getElementById('rsStockNum').className = 'rs-stock-num';
-  const et = document.getElementById('equivToggle');
-  et.classList.remove('open');
-  document.getElementById('equivBody').classList.remove('open');
-
-  // Abrir sheet
-  document.getElementById('resultSheet').classList.add('open');
-
-  // Cargar stock total
-  const stockItem = allStock.find(i =>
-    i.tipo.toUpperCase()===data.tipo.toUpperCase() &&
-    modelos.some(m => i.modelos.toUpperCase().includes(m.toUpperCase()))
-  );
-  if (stockItem !== undefined) {
-    setStockNum(stockItem.stock, 'rsStockNum', 'rs-stock-num');
-  } else {
-    try {
-      const s = await apiGetStock(grupoId);
-      setStockNum(s, 'rsStockNum', 'rs-stock-num');
-    } catch(e) { document.getElementById('rsStockNum').textContent='?'; }
-  }
-
-  // Cargar stock por equivalencia
-  for (const e of equivs) {
-    const key = e.codigo.toUpperCase();
-    const el  = document.getElementById('eqs-' + key);
-    if (!el) continue;
-    // buscar en allStock por código similar
-    const si = allStock.find(i => i.codigos && i.codigos.toUpperCase().includes(key));
-    if (si !== undefined) {
-      setEquivStock(el, si.stock);
-    } else {
-      el.textContent = '—';
-      el.className = 'eq-stock-badge esb-none';
-    }
-  }
+  // Cargar stock async
+  try {
+    const stock = await apiGetStock(grupoId);
+    actualizarRcStock(stock);
+  } catch(e) { document.getElementById('rcStockNum').textContent = '?'; }
 }
 
-function setStockNum(n, id, cls) {
-  const el = document.getElementById(id);
-  el.textContent = n;
-  el.className = cls + ' ' + (n===0?'zero':n<=2?'low':'ok');
-}
-
-function setEquivStock(el, n) {
-  if (n === undefined || n === null) { el.textContent='—'; el.className='eq-stock-badge esb-none'; return; }
-  el.textContent = n===0 ? 'Sin stock' : n<=2 ? `${n} · bajo` : `${n} en stock`;
-  el.className = 'eq-stock-badge ' + (n===0?'esb-zero':n<=2?'esb-low':'esb-ok');
-}
-
-function closeResult() {
-  document.getElementById('resultSheet').classList.remove('open');
+function mostrarError(msg) {
+  const panel = document.getElementById('resultado');
+  panel.innerHTML = `
+    <div class="rc-head"><div class="rc-dot er"></div><span class="rc-lbl er">Sin resultado</span></div>
+    <div class="rc-nf">${msg.replace(/\n/g,'<br>')}</div>`;
+  panel.classList.add('show');
   currentGrupo = null;
+}
+
+function actualizarRcStock(n) {
+  const el = document.getElementById('rcStockNum');
+  if (!el) return;
+  el.textContent = n;
+  el.className = 'rc-stock-num ' + (n===0?'zero':n<=2?'low':'ok');
 }
 
 function toggleEquiv() {
@@ -650,6 +576,12 @@ function toggleEquiv() {
   const body = document.getElementById('equivBody');
   btn.classList.toggle('open');
   body.classList.toggle('open');
+}
+
+function chipClick(el, codigo) {
+  document.querySelectorAll('.eq-chip').forEach(c=>c.classList.remove('on'));
+  el.classList.add('on');
+  document.getElementById('manual').value = codigo;
 }
 
 // ── MOVIMIENTOS ──
@@ -660,126 +592,158 @@ function qtyChange(d) {
 
 async function registrarMov(dir) {
   if (!currentGrupo) return;
-  const qty   = parseInt(document.getElementById('qtyVal').value)||1;
-  const delta = dir * qty;
-  const fb    = document.getElementById('rsFeedback');
+  const qty    = parseInt(document.getElementById('qtyVal').value)||1;
+  const delta  = dir * qty;
+  const fb     = document.getElementById('movFeedback');
   fb.textContent = 'Guardando...'; fb.classList.add('show');
   try {
     const nuevo = await apiUpdate(currentGrupo, delta);
-    setStockNum(nuevo, 'rsStockNum', 'rs-stock-num');
-    fb.textContent = dir<0 ? `✅ Salida ${qty} — Stock: ${nuevo}` : `✅ Entrada ${qty} — Stock: ${nuevo}`;
+    actualizarRcStock(nuevo);
+    fb.textContent = dir>0 ? `✅ Ingresados ${qty} — Stock: ${nuevo}` : `✅ Retirados ${qty} — Stock: ${nuevo}`;
     document.getElementById('qtyVal').value = 1;
     setTimeout(() => fb.classList.remove('show'), 2500);
-    loadStock();
+    stockCargarLista();
   } catch(e) {
     fb.textContent = '❌ Error al guardar.';
     setTimeout(() => fb.classList.remove('show'), 3000);
   }
 }
 
-// ── FLOTA ──
-function renderFlota() {
-  const modelos = new Set();
-  for (const k in DB) (DB[k].modelos||[]).forEach(m => modelos.add(m));
-
-  const list = document.getElementById('flotaList');
-  list.innerHTML = [...modelos].sort().map(m => {
-    const tipos = new Set();
-    for (const k in DB) if ((DB[k].modelos||[]).includes(m)) tipos.add(DB[k].tipo);
-    return `
-      <div class="flota-item" onclick="abrirFlotaDetail('${m.replace(/'/g,"\\'")}')">
-        <div class="fi-icon">🚛</div>
-        <div class="fi-info">
-          <div class="fi-name">${m}</div>
-          <div class="fi-filters">${tipos.size} tipos de filtro</div>
-        </div>
-        <span class="fi-arrow">›</span>
-      </div>`;
-  }).join('');
+// ── VEHÍCULO ──
+function poblarSelectores() {
+  const set = new Set();
+  for (const k in DB) (DB[k].modelos||[]).forEach(m => set.add(m));
+  const opts = [...set].sort();
+  ['vehicleSelect','stockVehSel'].forEach(id => {
+    const sel = document.getElementById(id);
+    opts.forEach(m => { const o=document.createElement('option'); o.value=m; o.textContent=m; sel.appendChild(o); });
+  });
 }
 
-async function abrirFlotaDetail(modelo) {
-  document.getElementById('fdTitle').textContent = modelo;
-  const body = document.getElementById('fdBody');
+function onVehicleChange() {
+  const modelo = document.getElementById('vehicleSelect').value;
+  const sec    = document.getElementById('tipoSection');
+  const grid   = document.getElementById('tipoGrid');
+  const table  = document.getElementById('codesTable');
+  table.classList.remove('show'); table.innerHTML = '';
+  if (!modelo) { sec.style.display='none'; return; }
+  const tipos = new Set();
+  for (const k in DB) if ((DB[k].modelos||[]).includes(modelo)) tipos.add(DB[k].tipo);
+  grid.innerHTML = [...tipos].sort().map(t=>`<button class="tipo-btn" onclick="mostrarTipo('${modelo}','${t}',this)">${t}</button>`).join('');
+  sec.style.display = 'block';
+}
 
-  // Agrupar por tipo
-  const tiposMap = {};
+async function mostrarTipo(modelo, tipo, btn) {
+  document.querySelectorAll('.tipo-btn').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+
+  // Juntar todos los códigos del grupo
+  const codigos = [];
   for (const k in DB) {
     const d = DB[k];
-    if ((d.modelos||[]).includes(modelo)) {
-      if (!tiposMap[d.tipo]) tiposMap[d.tipo] = [];
-      tiposMap[d.tipo].push({ codigo: k, marca: d.marca });
+    if ((d.modelos||[]).includes(modelo) && d.tipo===tipo)
+      codigos.push({ codigo:k, marca:d.marca });
+  }
+
+  // Equivalencias colapsables HTML
+  const equivHTML = codigos.length ? `
+    <button class="equiv-toggle" id="vehEquivToggle" onclick="toggleVehEquiv()" style="width:100%;padding:13px 16px;display:flex;align-items:center;justify-content:space-between;border:none;background:none;border-top:2px solid var(--border);cursor:pointer;font-family:var(--f);font-size:13px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;">
+      Ver equivalencias (${codigos.length})
+      <span id="vehEquivArr" style="transition:transform .2s;font-size:16px;">▾</span>
+    </button>
+    <div id="vehEquivBody" style="display:none;padding:0 16px 14px;">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;padding-top:10px;">
+        ${codigos.map(c=>`
+          <div class="eq-chip" onclick="irAScanner('${c.codigo}')">
+            <div class="eq-code">${c.codigo}</div>
+            <div class="eq-marca">${c.marca}</div>
+          </div>`).join('')}
+      </div>
+    </div>` : '';
+
+  const table = document.getElementById('codesTable');
+  table.innerHTML = `
+    <div class="ct-head">
+      <span class="ct-title">${tipo}</span>
+      <span class="ct-count">${modelo}</span>
+    </div>
+    <div class="tipo-stock-row">
+      <div class="tipo-stock-label">Unidades en stock</div>
+      <div class="tipo-stock-num" id="tipoStockNum">...</div>
+    </div>
+    <div class="tipo-stock-footer">Incluye todas las marcas equivalentes</div>
+    ${equivHTML}`;
+  table.classList.add('show');
+  table.scrollIntoView({ behavior:'smooth', block:'nearest' });
+
+  // Buscar stock: primero en allStock (más confiable), si no llamar a la API
+  const stockItem = allStock.find(item =>
+    item.tipo.toUpperCase() === tipo.toUpperCase() &&
+    item.modelos.toUpperCase().includes(modelo.toUpperCase())
+  );
+
+  const el = document.getElementById('tipoStockNum');
+  if (stockItem !== undefined) {
+    const stock = stockItem.stock;
+    if (el) { el.textContent=stock; el.className='tipo-stock-num '+(stock===0?'zero':stock<=2?'low':'ok'); }
+  } else {
+    // No está en allStock todavía, consultar API directo
+    if (codigos.length) {
+      const grupoId = getGrupoId(tipo, DB[codigos[0].codigo]?.modelos || [modelo]);
+      try {
+        const stock = await apiGetStock(grupoId);
+        if (el) { el.textContent=stock; el.className='tipo-stock-num '+(stock===0?'zero':stock<=2?'low':'ok'); }
+      } catch(e) { if(el) el.textContent='?'; }
+    } else {
+      if(el) { el.textContent='0'; el.className='tipo-stock-num zero'; }
     }
   }
-
-  body.innerHTML = Object.keys(tiposMap).sort().map((tipo, idx) => {
-    const codigos = tiposMap[tipo];
-    const grupoId = getGrupoId(tipo, DB[codigos[0].codigo]?.modelos || [modelo]);
-
-    // Buscar stock en allStock
-    const si = allStock.find(i =>
-      i.tipo.toUpperCase()===tipo.toUpperCase() &&
-      i.modelos.toUpperCase().includes(modelo.toUpperCase())
-    );
-    const stockVal = si ? si.stock : '...';
-    const stockCls = stockVal==='...' ? '' : stockVal===0?'zero':stockVal<=2?'low':'ok';
-
-    const equivRows = codigos.map(c => `
-      <div class="fd-eq-row" onclick="irAScanner('${c.codigo}')">
-        <span class="fd-eq-marca">${c.marca}</span>
-        <span class="fd-eq-code">${c.codigo}</span>
-        <span class="fd-eq-stock fes-none" id="fdeq-${c.codigo.replace(/\//g,'-')}">—</span>
-      </div>`).join('');
-
-    return `
-      <div class="fd-tipo-item">
-        <button class="fd-tipo-header" id="fdth-${idx}" onclick="toggleFdTipo(${idx})">
-          <div class="fd-tipo-left">
-            <div class="fd-tipo-name">${tipo}</div>
-          </div>
-          <div class="fd-tipo-right">
-            <span class="fd-tipo-stock ${stockCls}" id="fdts-${grupoId.replace(/[^a-z0-9]/gi,'-')}">${stockVal}</span>
-            <span class="fd-tipo-arr">▾</span>
-          </div>
-        </button>
-        <div class="fd-equiv-body" id="fdeb-${idx}">
-          ${equivRows}
-        </div>
-      </div>`;
-  }).join('');
-
-  document.getElementById('flotaDetail').classList.add('open');
-
-  // Cargar stocks que faltan
-  for (const tipo of Object.keys(tiposMap)) {
-    if (allStock.find(i => i.tipo.toUpperCase()===tipo.toUpperCase() && i.modelos.toUpperCase().includes(modelo.toUpperCase()))) continue;
-    const codigos = tiposMap[tipo];
-    const grupoId = getGrupoId(tipo, DB[codigos[0].codigo]?.modelos || [modelo]);
-    const safeId  = grupoId.replace(/[^a-z0-9]/gi,'-');
-    try {
-      const s = await apiGetStock(grupoId);
-      const el = document.getElementById('fdts-' + safeId);
-      if (el) { el.textContent=s; el.className='fd-tipo-stock '+(s===0?'zero':s<=2?'low':'ok'); }
-    } catch(e) {}
-  }
 }
 
-function toggleFdTipo(idx) {
-  const hdr  = document.getElementById('fdth-' + idx);
-  const body = document.getElementById('fdeb-' + idx);
-  hdr.classList.toggle('open');
-  body.classList.toggle('open');
-}
-
-function closeFlotaDetail() {
-  document.getElementById('flotaDetail').classList.remove('open');
+function toggleVehEquiv() {
+  const body = document.getElementById('vehEquivBody');
+  const arr  = document.getElementById('vehEquivArr');
+  const open = body.style.display === 'block';
+  body.style.display = open ? 'none' : 'block';
+  arr.style.transform = open ? '' : 'rotate(180deg)';
 }
 
 function irAScanner(codigo) {
-  closeFlotaDetail();
   goPage('scanner');
   const f = buscarEnDB(codigo);
-  if (f) mostrarResult(f.key, f.data);
+  if (f) mostrarResultado(f.key, f.data, f.aprox, f.orig||codigo);
+}
+
+// ── STOCK GENERAL ──
+function stockFiltrar() {
+  const modelo = document.getElementById('stockVehSel').value;
+  const items  = modelo ? allStock.filter(i=>i.modelos.includes(modelo)) : allStock;
+  renderStock(items);
+}
+
+async function stockCargarLista() {
+  const body = document.getElementById('stockBody');
+  if (!SHEET_URL || SHEET_URL.includes('TU_URL')) {
+    body.innerHTML = '<div class="sl-empty">Configurá Google Sheets para ver el stock.</div>'; return;
+  }
+  try {
+    const res = await fetch(SHEET_URL + '?accion=lista');
+    const d   = await res.json();
+    allStock  = (d.items||[]).sort((a,b)=>a.stock-b.stock||a.modelos.localeCompare(b.modelos));
+    stockFiltrar();
+  } catch(e) { body.innerHTML = '<div class="sl-empty">Error al cargar.</div>'; }
+}
+
+function renderStock(items) {
+  const body = document.getElementById('stockBody');
+  if (!items.length) { body.innerHTML='<div class="sl-empty">Sin datos.</div>'; return; }
+  body.innerHTML = items.map(i => {
+    const cls = i.stock===0?'zero':i.stock<=2?'low':'ok';
+    return `<div class="sl-item">
+      <div class="sl-info"><div class="sl-tipo">${i.tipo}</div><div class="sl-veh">${i.modelos}</div></div>
+      <div class="sl-n ${cls}">${i.stock}</div>
+    </div>`;
+  }).join('');
 }
 
 // ── SHEETS API ──
