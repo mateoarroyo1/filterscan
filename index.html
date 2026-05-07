@@ -305,6 +305,205 @@
     line-height: 1.6;
   }
 
+  /* INVENTARIO */
+  .inv-search-row {
+    display: flex;
+    gap: 10px;
+  }
+  .inv-search-row input {
+    flex: 1;
+    padding: 15px 16px;
+    font-family: var(--font);
+    font-size: 17px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    background: var(--panel);
+    border: 2px solid var(--border);
+    color: var(--text);
+    border-radius: 12px;
+    outline: none;
+    transition: border-color 0.15s;
+  }
+  .inv-search-row input:focus { border-color: var(--blue); }
+  .inv-search-row input::placeholder { color: #b0b8c4; text-transform: none; letter-spacing: 0; font-weight: 400; }
+  .inv-search-row button {
+    padding: 15px 18px;
+    font-family: var(--font);
+    font-size: 15px;
+    font-weight: 700;
+    background: var(--blue);
+    border: none;
+    color: #fff;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+  .inv-search-row button:active { transform: scale(0.97); }
+
+  .inv-confirm-card {
+    background: var(--panel);
+    border: 2px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    display: none;
+  }
+  .inv-confirm-card.visible { display: block; }
+
+  .inv-card-top {
+    padding: 16px 18px;
+    border-bottom: 2px solid var(--border);
+  }
+  .inv-card-tipo {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+  }
+  .inv-card-vehiculo {
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--text);
+  }
+  .inv-card-codigo {
+    font-size: 14px;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+
+  .inv-stock-section {
+    padding: 20px 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  .inv-stock-label {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .inv-stock-number {
+    font-size: 52px;
+    font-weight: 800;
+    color: var(--text);
+    line-height: 1;
+    min-width: 80px;
+    text-align: center;
+  }
+  .inv-stock-number.low { color: var(--amber); }
+  .inv-stock-number.zero { color: var(--red); }
+
+  .inv-btns {
+    display: flex;
+    gap: 10px;
+    padding: 0 18px 18px;
+  }
+  .inv-btn {
+    flex: 1;
+    padding: 18px;
+    font-family: var(--font);
+    font-size: 28px;
+    font-weight: 800;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.12s;
+  }
+  .inv-btn:active { transform: scale(0.95); }
+  .inv-btn-minus { background: #fff0f0; color: var(--red); border: 2px solid #fcc; }
+  .inv-btn-plus  { background: #f0fff5; color: var(--green); border: 2px solid #b2f0cb; }
+  .inv-btn-minus:hover { background: #ffe0e0; }
+  .inv-btn-plus:hover  { background: #dcfce9; }
+
+  .inv-saving {
+    text-align: center;
+    padding: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--muted);
+    display: none;
+  }
+  .inv-saving.visible { display: block; }
+
+  /* LISTA DE STOCK */
+  .inv-list-panel {
+    background: var(--panel);
+    border: 2px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+  .inv-list-header {
+    padding: 14px 18px;
+    border-bottom: 2px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .inv-list-title {
+    font-size: 15px;
+    font-weight: 800;
+    color: var(--text);
+  }
+  .inv-refresh-btn {
+    padding: 6px 12px;
+    font-family: var(--font);
+    font-size: 12px;
+    font-weight: 700;
+    background: var(--bg);
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    cursor: pointer;
+    color: var(--muted);
+    transition: all 0.15s;
+  }
+  .inv-refresh-btn:hover { border-color: var(--blue); color: var(--blue); }
+
+  .inv-list-item {
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .inv-list-item:last-child { border-bottom: none; }
+  .inv-item-info { flex: 1; min-width: 0; }
+  .inv-item-tipo {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .inv-item-vehiculo {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .inv-item-stock {
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--text);
+    min-width: 48px;
+    text-align: right;
+  }
+  .inv-item-stock.low  { color: var(--amber); }
+  .inv-item-stock.zero { color: var(--red); }
+  .inv-empty {
+    padding: 30px 18px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 15px;
+  }
+
   /* TABS */
   .tabs {
     display: flex;
@@ -476,7 +675,8 @@
   <!-- TABS -->
   <div class="tabs">
     <button class="tab-btn active" onclick="switchTab('scanner')">📷 Escanear</button>
-    <button class="tab-btn" onclick="switchTab('vehiculo')">🚛 Por Vehículo</button>
+    <button class="tab-btn" onclick="switchTab('vehiculo')">🚛 Vehículo</button>
+    <button class="tab-btn" onclick="switchTab('inventario')">📦 Stock</button>
   </div>
 
   <!-- TAB: SCANNER -->
@@ -518,6 +718,46 @@
     </div>
 
     <div class="vehicle-result-panel" id="vehicleResult"></div>
+
+  </div>
+
+  <!-- TAB: INVENTARIO -->
+  <div class="tab-panel" id="tab-inventario">
+
+    <!-- Buscar/escanear código para modificar stock -->
+    <div class="inv-search-row">
+      <input id="invManual" type="text" placeholder="Código del filtro..." autocomplete="off">
+      <button onclick="invBuscarManual()">BUSCAR</button>
+    </div>
+
+    <!-- Tarjeta de confirmación + botones +/- -->
+    <div class="inv-confirm-card" id="invCard">
+      <div class="inv-card-top">
+        <div class="inv-card-tipo" id="invCardTipo"></div>
+        <div class="inv-card-vehiculo" id="invCardVehiculo"></div>
+        <div class="inv-card-codigo" id="invCardCodigo"></div>
+      </div>
+      <div class="inv-stock-section">
+        <div>
+          <div class="inv-stock-label">Stock actual</div>
+        </div>
+        <div class="inv-stock-number" id="invStockNum">—</div>
+      </div>
+      <div class="inv-btns">
+        <button class="inv-btn inv-btn-minus" onclick="invModificar(-1)">− Retirar</button>
+        <button class="inv-btn inv-btn-plus"  onclick="invModificar(+1)">+ Ingresar</button>
+      </div>
+      <div class="inv-saving" id="invSaving">Guardando en Google Sheets...</div>
+    </div>
+
+    <!-- Lista de todo el stock -->
+    <div class="inv-list-panel">
+      <div class="inv-list-header">
+        <span class="inv-list-title">📋 Stock actual</span>
+        <button class="inv-refresh-btn" onclick="invCargarLista()">↻ Actualizar</button>
+      </div>
+      <div id="invListBody"><div class="inv-empty">Cargando...</div></div>
+    </div>
 
   </div>
 
@@ -714,11 +954,14 @@ function resaltarChip(el, codigo) {
 
 // ─── TABS ────────────────────────────────────────────────────
 function switchTab(tab) {
+  const tabs = ['scanner', 'vehiculo', 'inventario'];
   document.querySelectorAll('.tab-btn').forEach((b, i) => {
-    b.classList.toggle('active', (i === 0 && tab === 'scanner') || (i === 1 && tab === 'vehiculo'));
+    b.classList.toggle('active', tabs[i] === tab);
   });
-  document.getElementById('tab-scanner').classList.toggle('active', tab === 'scanner');
-  document.getElementById('tab-vehiculo').classList.toggle('active', tab === 'vehiculo');
+  tabs.forEach(t => {
+    document.getElementById('tab-' + t).classList.toggle('active', t === tab);
+  });
+  if (tab === 'inventario') invCargarLista();
 }
 
 // ─── BÚSQUEDA POR VEHÍCULO ────────────────────────────────────
@@ -838,6 +1081,162 @@ function verDetalle(codigo) {
   switchTab('scanner');
   const data = DB[codigo.toUpperCase()];
   if (data) mostrar(codigo.toUpperCase(), data, false);
+}
+
+// ─── INVENTARIO ──────────────────────────────────────────────
+// URL del Google Apps Script — reemplazá con la tuya
+const SHEET_URL = "https://script.google.com/macros/s/AKfycby3pMP4OhIIfZEhtWi9hakLvRPmhBqaweTCnmDiINVIiodo5VGYZuob1XIy37wVhddHbQ/exec";
+
+let invGrupoActual = null; // { grupoId, tipo, modelos, codigos }
+
+// Construye un ID de grupo: "ACEITE__FORD CARGO 1933"
+function getGrupoId(tipo, modelos) {
+  return (tipo + "__" + [...modelos].sort().join("|")).toUpperCase();
+}
+
+// Dado un código, encuentra su grupo en la DB
+function invEncontrarGrupo(codigo) {
+  codigo = codigo.toUpperCase().trim();
+  const data = DB[codigo];
+  if (!data) return null;
+  return {
+    grupoId:  getGrupoId(data.tipo, data.modelos),
+    tipo:     data.tipo,
+    modelos:  data.modelos,
+    codigos:  [codigo, ...(data.equivalencias || []).map(e => e.codigo.toUpperCase())]
+  };
+}
+
+// Busca manual en tab inventario
+function invBuscarManual() {
+  const codigo = document.getElementById('invManual').value.trim().toUpperCase();
+  if (!codigo) return;
+  const grupo = invEncontrarGrupo(codigo);
+  if (!grupo) {
+    alert("Código no encontrado en la base de datos.");
+    return;
+  }
+  invMostrarTarjeta(grupo, codigo);
+}
+
+// Enter en input inventario
+document.getElementById('invManual').addEventListener('keydown', e => {
+  if (e.key === 'Enter') invBuscarManual();
+});
+
+// Muestra la tarjeta con stock actual
+async function invMostrarTarjeta(grupo, codigoEscaneado) {
+  invGrupoActual = grupo;
+
+  document.getElementById('invCardTipo').textContent     = grupo.tipo;
+  document.getElementById('invCardVehiculo').textContent = grupo.modelos.join(" / ");
+  document.getElementById('invCardCodigo').textContent   = "Escaneado: " + codigoEscaneado;
+
+  const card = document.getElementById('invCard');
+  card.classList.add('visible');
+
+  // Obtener stock actual del sheet
+  const stockNum = document.getElementById('invStockNum');
+  stockNum.textContent = "...";
+  stockNum.className = 'inv-stock-number';
+
+  try {
+    const stock = await invGetStock(grupo.grupoId);
+    invActualizarNumero(stock);
+  } catch(e) {
+    stockNum.textContent = "?";
+  }
+
+  card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+function invActualizarNumero(stock) {
+  const el = document.getElementById('invStockNum');
+  el.textContent = stock;
+  el.className = 'inv-stock-number' + (stock === 0 ? ' zero' : stock <= 2 ? ' low' : '');
+}
+
+// Modifica stock (+1 o -1)
+async function invModificar(delta) {
+  if (!invGrupoActual) return;
+
+  const saving = document.getElementById('invSaving');
+  saving.classList.add('visible');
+
+  try {
+    const nuevoStock = await invUpdateStock(invGrupoActual, delta);
+    invActualizarNumero(nuevoStock);
+    saving.textContent = delta > 0 ? "✅ Ingresado correctamente" : "✅ Retirado correctamente";
+    setTimeout(() => {
+      saving.classList.remove('visible');
+      saving.textContent = "Guardando en Google Sheets...";
+    }, 2000);
+  } catch(e) {
+    saving.textContent = "❌ Error al guardar. Revisá la conexión.";
+    setTimeout(() => saving.classList.remove('visible'), 3000);
+  }
+}
+
+// GET stock de un grupo
+async function invGetStock(grupoId) {
+  const url = SHEET_URL + "?accion=get&grupoId=" + encodeURIComponent(grupoId);
+  const res = await fetch(url);
+  const data = await res.json();
+  return data.stock || 0;
+}
+
+// UPDATE stock
+async function invUpdateStock(grupo, delta) {
+  const res = await fetch(SHEET_URL, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      accion:   "update",
+      grupoId:  grupo.grupoId,
+      tipo:     grupo.tipo,
+      modelos:  grupo.modelos.join(" / "),
+      codigos:  grupo.codigos.slice(0, 8).join(", "),
+      delta:    delta
+    })
+  });
+  const data = await res.json();
+  return data.nuevoStock;
+}
+
+// Carga lista completa de stock
+async function invCargarLista() {
+  const body = document.getElementById('invListBody');
+  body.innerHTML = '<div class="inv-empty">Cargando...</div>';
+
+  try {
+    const url = SHEET_URL + "?accion=lista";
+    const res = await fetch(url);
+    const data = await res.json();
+    const items = data.items || [];
+
+    if (!items.length) {
+      body.innerHTML = '<div class="inv-empty">No hay stock cargado todavía.</div>';
+      return;
+    }
+
+    // Ordenar: stock 0 primero (urgente), luego por vehículo
+    items.sort((a, b) => a.stock - b.stock || a.modelos.localeCompare(b.modelos));
+
+    body.innerHTML = items.map(item => {
+      const cls = item.stock === 0 ? 'zero' : item.stock <= 2 ? 'low' : '';
+      return `
+        <div class="inv-list-item">
+          <div class="inv-item-info">
+            <div class="inv-item-tipo">${item.tipo}</div>
+            <div class="inv-item-vehiculo">${item.modelos}</div>
+          </div>
+          <div class="inv-item-stock ${cls}">${item.stock}</div>
+        </div>
+      `;
+    }).join('');
+  } catch(e) {
+    body.innerHTML = '<div class="inv-empty">Error al cargar. Verificá la conexión.</div>';
+  }
 }
 
 // ─── UTILS ───────────────────────────────────────────────────
