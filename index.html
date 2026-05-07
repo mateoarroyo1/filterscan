@@ -21,30 +21,17 @@
   --muted: #64748b;
   --f: 'Inter', sans-serif;
 }
-
 * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+body { font-family: var(--f); background: var(--bg); color: var(--text); min-height: 100vh; }
 
-body {
-  font-family: var(--f);
-  background: var(--bg);
-  color: var(--text);
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-/* ─── HEADER ─────────────────────────────── */
+/* ── TOPBAR ── */
 .topbar {
   position: sticky; top: 0; z-index: 50;
-  background: var(--panel);
-  border-bottom: 1px solid var(--border);
-  display: flex; align-items: center;
-  padding: 14px 16px; gap: 12px;
+  background: var(--panel); border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; padding: 14px 16px; gap: 12px;
   box-shadow: 0 1px 8px #0000000a;
 }
-.topbar-title {
-  flex: 1; font-size: 20px; font-weight: 900;
-  color: var(--text); letter-spacing: -0.5px;
-}
+.topbar-title { flex: 1; font-size: 20px; font-weight: 900; letter-spacing: -0.5px; }
 .topbar-title span { color: var(--blue); }
 .menu-btn {
   width: 42px; height: 42px; border: none; background: none;
@@ -53,371 +40,274 @@ body {
   border-radius: 10px; transition: background .15s;
 }
 .menu-btn:hover { background: var(--bg); }
-.menu-btn span {
-  display: block; width: 22px; height: 2.5px;
-  background: var(--text); border-radius: 2px;
-  transition: all .25s;
-}
+.menu-btn span { display: block; width: 22px; height: 2.5px; background: var(--text); border-radius: 2px; }
 
-/* ─── DRAWER ─────────────────────────────── */
-.drawer-overlay {
-  position: fixed; inset: 0; background: #0006;
-  z-index: 90; opacity: 0; pointer-events: none;
-  transition: opacity .25s;
-}
-.drawer-overlay.open { opacity: 1; pointer-events: all; }
-
+/* ── DRAWER ── */
+.overlay { position: fixed; inset: 0; background: #0006; z-index: 90; opacity: 0; pointer-events: none; transition: opacity .25s; }
+.overlay.open { opacity: 1; pointer-events: all; }
 .drawer {
-  position: fixed; top: 0; right: -280px; bottom: 0;
-  width: 270px; background: var(--panel);
-  z-index: 100; transition: right .25s cubic-bezier(.4,0,.2,1);
-  display: flex; flex-direction: column;
-  box-shadow: -4px 0 24px #0002;
+  position: fixed; top: 0; right: -280px; bottom: 0; width: 270px;
+  background: var(--panel); z-index: 100; transition: right .25s cubic-bezier(.4,0,.2,1);
+  display: flex; flex-direction: column; box-shadow: -4px 0 24px #0002;
 }
 .drawer.open { right: 0; }
-
-.drawer-header {
-  padding: 20px 20px 16px;
-  border-bottom: 1px solid var(--border);
+.drawer-hdr {
+  padding: 20px 20px 16px; border-bottom: 1px solid var(--border);
   display: flex; align-items: center; justify-content: space-between;
 }
 .drawer-logo { font-size: 18px; font-weight: 900; }
 .drawer-logo span { color: var(--blue); }
-.drawer-close {
-  width: 36px; height: 36px; border: none; background: var(--bg);
-  border-radius: 8px; cursor: pointer; font-size: 18px; color: var(--muted);
-  transition: all .15s;
+.drawer-close { width: 36px; height: 36px; border: none; background: var(--bg); border-radius: 8px; cursor: pointer; font-size: 18px; color: var(--muted); }
+.drawer-nav { flex: 1; padding: 12px; }
+.d-item {
+  display: flex; align-items: center; gap: 14px; padding: 14px 16px;
+  border-radius: 12px; cursor: pointer; transition: all .15s;
+  margin-bottom: 4px; border: none; background: none; width: 100%; text-align: left; font-family: var(--f);
 }
-.drawer-close:hover { background: var(--border); }
+.d-item:hover { background: var(--bg); }
+.d-item.active { background: var(--blue-light); }
+.d-item.active .d-label { color: var(--blue); }
+.d-item.active .d-icon { background: var(--blue); }
+.d-icon { width: 42px; height: 42px; border-radius: 10px; background: var(--bg); display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; transition: background .15s; }
+.d-label { font-size: 15px; font-weight: 700; color: var(--text); }
+.d-sub   { font-size: 12px; color: var(--muted); margin-top: 1px; }
 
-.drawer-nav { flex: 1; padding: 12px 12px; }
-
-.drawer-item {
-  display: flex; align-items: center; gap: 14px;
-  padding: 14px 16px; border-radius: 12px;
-  cursor: pointer; transition: all .15s;
-  margin-bottom: 4px; border: none; background: none;
-  width: 100%; text-align: left; font-family: var(--f);
-}
-.drawer-item:hover { background: var(--bg); }
-.drawer-item.active { background: var(--blue-light); }
-.drawer-item.active .di-label { color: var(--blue); }
-.drawer-item.active .di-icon { background: var(--blue); }
-.di-icon {
-  width: 42px; height: 42px; border-radius: 10px;
-  background: var(--bg); display: flex; align-items: center;
-  justify-content: center; font-size: 20px; flex-shrink: 0;
-  transition: background .15s;
-}
-.di-text { flex: 1; }
-.di-label { font-size: 15px; font-weight: 700; color: var(--text); }
-.di-sub   { font-size: 12px; color: var(--muted); margin-top: 1px; }
-
-/* ─── PAGES ─────────────────────────────── */
+/* ── PAGES ── */
 .page { display: none; max-width: 500px; margin: 0 auto; padding: 16px; }
 .page.active { display: block; }
 
-/* ─── SCANNER (main) ─────────────────────── */
+/* ── SCANNER ── */
 .viewfinder {
-  position: relative; background: #000;
-  border-radius: 16px; overflow: hidden;
-  aspect-ratio: 4/3; margin-bottom: 12px;
-  box-shadow: 0 4px 20px #0002;
+  position: relative; background: #000; border-radius: 16px;
+  overflow: hidden; aspect-ratio: 4/3; margin-bottom: 12px; box-shadow: 0 4px 20px #0002;
 }
-.viewfinder video { width:100%;height:100%;object-fit:cover;display:block; }
-
-.scan-zone {
-  position: absolute; top:50%;left:50%;
-  transform:translate(-50%,-50%);
-  width:76%;height:28%;pointer-events:none;
+.viewfinder video { width: 100%; height: 100%; object-fit: cover; display: block; }
+.sz {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+  width: 76%; height: 28%; pointer-events: none;
 }
-.sz-corner {
-  position:absolute;width:20px;height:20px;
-  border-color:#fff;border-style:solid;
+.szc { position: absolute; width: 20px; height: 20px; border-color: #fff; border-style: solid; }
+.szc.tl{top:0;left:0;border-width:3px 0 0 3px;border-radius:4px 0 0 0;}
+.szc.tr{top:0;right:0;border-width:3px 3px 0 0;border-radius:0 4px 0 0;}
+.szc.br{bottom:0;right:0;border-width:0 3px 3px 0;border-radius:0 0 4px 0;}
+.szc.bl{bottom:0;left:0;border-width:0 0 3px 3px;border-radius:0 0 0 4px;}
+.szl {
+  position: absolute; left: 3px; right: 3px; height: 2px;
+  background: linear-gradient(90deg,transparent,#fff,transparent);
+  animation: sl 2s linear infinite; opacity: 0;
 }
-.sz-corner.tl{top:0;left:0;border-width:3px 0 0 3px;border-radius:4px 0 0 0;}
-.sz-corner.tr{top:0;right:0;border-width:3px 3px 0 0;border-radius:0 4px 0 0;}
-.sz-corner.br{bottom:0;right:0;border-width:0 3px 3px 0;border-radius:0 0 4px 0;}
-.sz-corner.bl{bottom:0;left:0;border-width:0 0 3px 3px;border-radius:0 0 0 4px;}
-.sz-line {
-  position:absolute;left:3px;right:3px;height:2px;
-  background:linear-gradient(90deg,transparent,#fff,transparent);
-  animation:sl 2s linear infinite;opacity:0;
-}
-.scanning .sz-line{opacity:1;}
-@keyframes sl{0%{top:3px}100%{top:calc(100% - 3px)}}
-.vf-status {
-  position:absolute;bottom:10px;left:0;right:0;text-align:center;
-  font-size:13px;font-weight:600;color:#fff;text-shadow:0 1px 6px #0008;
-}
+.scanning .szl { opacity: 1; }
+@keyframes sl { 0%{top:3px} 100%{top:calc(100% - 3px)} }
+.vf-st { position: absolute; bottom: 10px; left: 0; right: 0; text-align: center; font-size: 13px; font-weight: 600; color: #fff; text-shadow: 0 1px 6px #0008; }
 
 .scan-btn {
-  width:100%;padding:18px;font-family:var(--f);font-size:18px;font-weight:800;
-  background:var(--blue);color:#fff;border:none;border-radius:14px;cursor:pointer;
-  box-shadow:0 4px 16px #1a6dff33;transition:all .12s;margin-bottom:10px;
+  width: 100%; padding: 18px; font-family: var(--f); font-size: 18px; font-weight: 800;
+  background: var(--blue); color: #fff; border: none; border-radius: 14px; cursor: pointer;
+  box-shadow: 0 4px 16px #1a6dff33; transition: all .12s; margin-bottom: 10px;
 }
-.scan-btn:active{transform:scale(.97);}
-.scan-btn:disabled{opacity:.4;cursor:not-allowed;transform:none;}
-.scan-btn .sp{
-  display:none;width:18px;height:18px;
-  border:3px solid #fff4;border-top-color:#fff;
-  border-radius:50%;animation:spin .7s linear infinite;margin:0 auto;
-}
+.scan-btn:active { transform: scale(.97); }
+.scan-btn:disabled { opacity: .4; cursor: not-allowed; transform: none; }
+.scan-btn .sp { display:none; width:18px;height:18px;border:3px solid #fff4;border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;margin:0 auto; }
 .scan-btn.loading .lbl{display:none;}.scan-btn.loading .sp{display:block;}
 @keyframes spin{to{transform:rotate(360deg)}}
 
-.manual-row{display:flex;gap:10px;margin-bottom:12px;}
-.manual-row input{
-  flex:1;padding:14px 16px;font-family:var(--f);font-size:16px;font-weight:600;
-  text-transform:uppercase;letter-spacing:1px;
-  background:var(--panel);border:2px solid var(--border);
-  color:var(--text);border-radius:12px;outline:none;transition:border-color .15s;
+.manual-row { display: flex; gap: 10px; margin-bottom: 14px; }
+.manual-row input {
+  flex: 1; padding: 14px 16px; font-family: var(--f); font-size: 16px; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 1px;
+  background: var(--panel); border: 2px solid var(--border); color: var(--text);
+  border-radius: 12px; outline: none; transition: border-color .15s;
 }
-.manual-row input:focus{border-color:var(--blue);}
-.manual-row input::placeholder{text-transform:none;letter-spacing:0;font-weight:400;color:#aab;}
-.manual-row button{
-  padding:14px 18px;font-family:var(--f);font-size:15px;font-weight:700;
-  background:var(--panel);border:2px solid var(--border);color:var(--text);
-  border-radius:12px;cursor:pointer;transition:all .15s;
+.manual-row input:focus { border-color: var(--blue); }
+.manual-row input::placeholder { text-transform: none; letter-spacing: 0; font-weight: 400; color: #aab; }
+.manual-row button {
+  padding: 14px 18px; font-family: var(--f); font-size: 15px; font-weight: 700;
+  background: var(--panel); border: 2px solid var(--border); color: var(--text);
+  border-radius: 12px; cursor: pointer; transition: all .15s;
 }
-.manual-row button:hover{border-color:var(--blue);color:var(--blue);}
+.manual-row button:hover { border-color: var(--blue); color: var(--blue); }
 
-/* resultado */
-.result-card{
-  background:var(--panel);border:2px solid var(--border);
-  border-radius:16px;overflow:hidden;display:none;
+/* ── RESULT CARD ── */
+.result-card { background: var(--panel); border: 2px solid var(--border); border-radius: 16px; overflow: hidden; display: none; }
+.result-card.show { display: block; }
+
+.rc-head { padding: 12px 16px; display: flex; align-items: center; gap: 8px; border-bottom: 2px solid var(--border); }
+.rc-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--green); flex-shrink: 0; }
+.rc-dot.ap{background:var(--amber);} .rc-dot.er{background:var(--red);}
+.rc-lbl { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; color: var(--green); }
+.rc-lbl.ap{color:var(--amber);} .rc-lbl.er{color:var(--red);}
+
+.rc-main { padding: 16px; }
+.rc-code { font-size: 34px; font-weight: 900; color: var(--blue); letter-spacing: 1px; line-height: 1; margin-bottom: 12px; }
+.rc-grid { display: grid; grid-template-columns: auto 1fr; gap: 6px 14px; margin-bottom: 14px; }
+.rc-fl { font-size: 11px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .5px; padding-top: 3px; }
+.rc-fv { font-size: 17px; font-weight: 700; }
+
+/* stock inline en resultado */
+.rc-stock-row {
+  display: flex; align-items: center; justify-content: space-between;
+  background: var(--bg); border-radius: 12px; padding: 12px 14px;
 }
-.result-card.show{display:block;}
-.rc-head{
-  padding:12px 16px;display:flex;align-items:center;gap:8px;
-  border-bottom:2px solid var(--border);
+.rc-stock-label { font-size: 13px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .5px; }
+.rc-stock-num { font-size: 42px; font-weight: 900; line-height: 1; }
+.rc-stock-num.zero{color:var(--red);} .rc-stock-num.low{color:var(--amber);} .rc-stock-num.ok{color:var(--green);}
+
+/* cantidad + botones */
+.rc-mov { border-top: 2px solid var(--border); padding: 14px 16px; }
+.qty-row { display: flex; align-items: center; gap: 14px; margin-bottom: 12px; }
+.qty-lbl { font-size: 15px; font-weight: 700; flex-shrink: 0; }
+.qty-ctrl { display: flex; align-items: center; border: 2px solid var(--border); border-radius: 12px; overflow: hidden; }
+.qty-btn { width: 44px; height: 44px; border: none; background: var(--bg); font-size: 22px; font-weight: 700; cursor: pointer; color: var(--text); transition: background .1s; }
+.qty-btn:active { background: var(--border); }
+.qty-inp { width: 54px; text-align: center; font-size: 20px; font-weight: 800; border: none; border-left: 2px solid var(--border); border-right: 2px solid var(--border); outline: none; font-family: var(--f); color: var(--text); background: var(--panel); padding: 8px 0; }
+.mov-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.mov-btn { padding: 18px 10px; border: none; border-radius: 13px; cursor: pointer; font-family: var(--f); font-weight: 900; font-size: 20px; transition: all .12s; display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.mov-btn:active{transform:scale(.95);}
+.mov-btn-sub{font-size:12px;font-weight:600;opacity:.7;}
+.btn-ing{background:var(--green-light);color:var(--green);border:2px solid #86efac;}
+.btn-ing:hover{background:#bbf7d0;}
+.btn-sal{background:var(--red-light);color:var(--red);border:2px solid #fca5a5;}
+.btn-sal:hover{background:#fecaca;}
+.mov-feedback{text-align:center;padding:8px;font-size:14px;font-weight:600;color:var(--muted);display:none;}
+.mov-feedback.show{display:block;}
+
+/* equivalencias colapsables */
+.equiv-toggle {
+  width: 100%; padding: 13px 16px; display: flex; align-items: center; justify-content: space-between;
+  border: none; background: none; border-top: 2px solid var(--border); cursor: pointer;
+  font-family: var(--f); font-size: 13px; font-weight: 700; color: var(--muted);
+  text-transform: uppercase; letter-spacing: .5px; transition: background .15s;
 }
-.rc-dot{width:9px;height:9px;border-radius:50%;background:var(--green);flex-shrink:0;}
-.rc-dot.ap{background:var(--amber);}.rc-dot.er{background:var(--red);}
-.rc-lbl{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--green);}
-.rc-lbl.ap{color:var(--amber);}.rc-lbl.er{color:var(--red);}
-.rc-body{padding:16px;}
-.rc-code{font-size:34px;font-weight:900;color:var(--blue);letter-spacing:1px;line-height:1;margin-bottom:12px;}
-.rc-grid{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;}
-.rc-fl{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;padding-top:3px;}
-.rc-fv{font-size:17px;font-weight:700;}
-.equiv-section{border-top:2px solid var(--border);padding:14px 16px;}
-.equiv-title{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px;}
+.equiv-toggle:hover{background:var(--bg);}
+.equiv-toggle .arr{transition:transform .2s;font-size:16px;}
+.equiv-toggle.open .arr{transform:rotate(180deg);}
+.equiv-body{display:none;padding:0 16px 14px;}
+.equiv-body.open{display:block;}
 .equiv-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;}
-.eq-chip{
-  background:var(--bg);border:2px solid var(--border);border-radius:9px;
-  padding:8px 12px;cursor:pointer;transition:all .15s;
-}
+.eq-chip{background:var(--bg);border:2px solid var(--border);border-radius:9px;padding:8px 12px;cursor:pointer;transition:all .15s;}
 .eq-chip:hover,.eq-chip.on{border-color:var(--blue);background:var(--blue-light);}
 .eq-chip.on .eq-code{color:var(--blue);}
 .eq-code{font-size:14px;font-weight:700;letter-spacing:.5px;}
 .eq-marca{font-size:11px;color:var(--muted);margin-top:1px;}
 .rc-nf{padding:18px 16px;font-size:15px;color:var(--muted);line-height:1.6;}
 
-/* ─── VEHÍCULO ───────────────────────────── */
-.section-title{font-size:20px;font-weight:800;margin-bottom:4px;}
-.section-sub{font-size:14px;color:var(--muted);margin-bottom:16px;}
+/* ── VEHÍCULO + STOCK ── */
+.sec-title { font-size: 20px; font-weight: 800; margin-bottom: 4px; margin-top: 4px; }
+.sec-sub   { font-size: 14px; color: var(--muted); margin-bottom: 16px; }
 
-.veh-select{
-  width:100%;padding:15px 16px;font-family:var(--f);font-size:16px;font-weight:600;
-  background:var(--panel);border:2px solid var(--border);color:var(--text);
-  border-radius:12px;outline:none;appearance:none;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2.5'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
-  background-repeat:no-repeat;background-position:right 14px center;
-  cursor:pointer;transition:border-color .15s;margin-bottom:12px;
+.veh-select, .stock-veh-select {
+  width: 100%; padding: 15px 16px; font-family: var(--f); font-size: 16px; font-weight: 600;
+  background: var(--panel); border: 2px solid var(--border); color: var(--text);
+  border-radius: 12px; outline: none; appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2.5'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 14px center;
+  cursor: pointer; transition: border-color .15s; margin-bottom: 12px;
 }
-.veh-select:focus{border-color:var(--blue);}
-.tipo-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;}
-.tipo-btn{
-  padding:13px 10px;font-family:var(--f);font-size:14px;font-weight:700;
-  background:var(--panel);border:2px solid var(--border);color:var(--text);
-  border-radius:10px;cursor:pointer;transition:all .15s;text-align:center;
+.veh-select:focus,.stock-veh-select:focus{border-color:var(--blue);}
+
+.tipo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 14px; }
+.tipo-btn {
+  padding: 13px 10px; font-family: var(--f); font-size: 14px; font-weight: 700;
+  background: var(--panel); border: 2px solid var(--border); color: var(--text);
+  border-radius: 10px; cursor: pointer; transition: all .15s; text-align: center;
 }
 .tipo-btn:hover{border-color:var(--blue);color:var(--blue);}
 .tipo-btn.on{background:var(--blue);color:#fff;border-color:var(--blue);}
-.veh-result{
-  background:var(--panel);border:2px solid var(--border);
-  border-radius:14px;overflow:hidden;display:none;
+
+/* tabla de codigos con stock */
+.codes-table {
+  background: var(--panel); border: 2px solid var(--border); border-radius: 14px; overflow: hidden; display: none;
 }
-.veh-result.show{display:block;}
-.vr-top{
-  padding:12px 16px;border-bottom:2px solid var(--border);
-  display:flex;justify-content:space-between;align-items:center;
+.codes-table.show{display:block;}
+.ct-head {
+  padding: 12px 16px; border-bottom: 2px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
 }
-.vr-tipo{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;}
-.vr-veh{font-size:17px;font-weight:800;}
-.vr-count{font-size:12px;font-weight:700;color:var(--blue);background:var(--blue-light);padding:4px 10px;border-radius:20px;}
-.vr-group{border-bottom:1px solid var(--border);}
-.vr-group:last-child{border-bottom:none;}
-.vr-ghdr{
-  padding:10px 16px;font-size:11px;font-weight:700;color:var(--muted);
+.ct-title{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;}
+.ct-count{font-size:12px;font-weight:700;color:var(--blue);background:var(--blue-light);padding:3px 10px;border-radius:20px;}
+.ct-group-hdr{
+  padding:9px 16px;font-size:11px;font-weight:700;color:var(--muted);
   text-transform:uppercase;letter-spacing:.5px;background:#f8fafc;
-  display:flex;justify-content:space-between;
+  display:flex;justify-content:space-between;border-bottom:1px solid var(--border);
 }
-.vr-gn{font-size:11px;background:var(--border);padding:2px 7px;border-radius:10px;}
-.vr-codes{padding:10px 16px;display:grid;grid-template-columns:1fr 1fr;gap:6px;}
-.vr-chip{
-  background:var(--bg);border:2px solid var(--border);border-radius:8px;
-  padding:8px 12px;cursor:pointer;transition:all .15s;
+.ct-row {
+  padding: 12px 16px; border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; gap: 12px; cursor: pointer; transition: background .12s;
 }
-.vr-chip:hover{border-color:var(--blue);background:var(--blue-light);}
-.vr-chip-code{font-size:14px;font-weight:700;}
-.vr-chip-marca{font-size:11px;color:var(--muted);margin-top:1px;}
+.ct-row:last-child{border-bottom:none;}
+.ct-row:hover{background:var(--bg);}
+.ct-info{flex:1;}
+.ct-code{font-size:16px;font-weight:800;letter-spacing:.5px;}
+.ct-marca{font-size:12px;color:var(--muted);}
+.ct-stock{font-size:26px;font-weight:900;min-width:44px;text-align:right;}
+.ct-stock.zero{color:var(--red);}.ct-stock.low{color:var(--amber);}.ct-stock.ok{color:var(--green);}
 
-/* ─── MOVIMIENTOS ────────────────────────── */
-.mov-viewfinder{
-  position:relative;background:#000;border-radius:16px;overflow:hidden;
-  aspect-ratio:4/3;margin-bottom:12px;box-shadow:0 4px 20px #0002;
-}
-.mov-viewfinder video{width:100%;height:100%;object-fit:cover;display:block;}
-
-.mov-found-card{
-  background:var(--panel);border:2px solid var(--blue);
-  border-radius:16px;overflow:hidden;display:none;margin-bottom:4px;
-}
-.mov-found-card.show{display:block;}
-.mfc-top{padding:14px 16px;border-bottom:2px solid var(--border);}
-.mfc-tipo{font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:2px;}
-.mfc-veh{font-size:22px;font-weight:900;}
-.mfc-cod{font-size:13px;color:var(--muted);margin-top:2px;}
-
-.stock-display{
-  display:flex;align-items:center;gap:16px;
-  padding:18px 16px;border-bottom:2px solid var(--border);
-}
-.stock-num{font-size:68px;font-weight:900;line-height:1;min-width:90px;text-align:center;}
-.stock-num.zero{color:var(--red);}
-.stock-num.low{color:var(--amber);}
-.stock-num.ok{color:var(--green);}
-.stock-num-lbl{font-size:13px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;}
-
-.qty-row{
-  display:flex;align-items:center;gap:14px;
-  padding:14px 16px;border-bottom:2px solid var(--border);
-}
-.qty-lbl{font-size:15px;font-weight:700;flex-shrink:0;}
-.qty-ctrl{display:flex;align-items:center;border:2px solid var(--border);border-radius:12px;overflow:hidden;}
-.qty-btn{
-  width:46px;height:46px;border:none;background:var(--bg);
-  font-size:24px;font-weight:700;cursor:pointer;color:var(--text);transition:background .1s;
-}
-.qty-btn:active{background:var(--border);}
-.qty-inp{
-  width:56px;text-align:center;font-size:22px;font-weight:800;
-  border:none;border-left:2px solid var(--border);border-right:2px solid var(--border);
-  outline:none;font-family:var(--f);color:var(--text);background:var(--panel);padding:8px 0;
-}
-
-.mov-btns{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:14px 16px;}
-.mov-btn{
-  padding:22px 10px;border:none;border-radius:14px;cursor:pointer;
-  font-family:var(--f);font-weight:900;font-size:22px;
-  transition:all .12s;display:flex;flex-direction:column;align-items:center;gap:5px;
-}
-.mov-btn:active{transform:scale(.95);}
-.mov-btn-sub{font-size:13px;font-weight:600;opacity:.75;}
-.btn-ing{background:var(--green-light);color:var(--green);border:2px solid #86efac;}
-.btn-ing:hover{background:#bbf7d0;}
-.btn-sal{background:var(--red-light);color:var(--red);border:2px solid #fca5a5;}
-.btn-sal:hover{background:#fecaca;}
-
-.mov-saving{text-align:center;padding:10px;font-size:14px;font-weight:600;color:var(--muted);display:none;}
-.mov-saving.show{display:block;}
-
-/* ─── STOCK ──────────────────────────────── */
-.stock-veh-select{
-  width:100%;padding:15px 16px;font-family:var(--f);font-size:16px;font-weight:600;
-  background:var(--panel);border:2px solid var(--border);color:var(--text);
-  border-radius:12px;outline:none;appearance:none;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2.5'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
-  background-repeat:no-repeat;background-position:right 14px center;
-  cursor:pointer;transition:border-color .15s;margin-bottom:14px;
-}
-.stock-veh-select:focus{border-color:var(--blue);}
-
+/* lista stock general */
 .stock-list{background:var(--panel);border:2px solid var(--border);border-radius:16px;overflow:hidden;}
-.sl-hdr{
-  padding:14px 16px;border-bottom:2px solid var(--border);
-  display:flex;justify-content:space-between;align-items:center;
-}
+.sl-hdr{padding:14px 16px;border-bottom:2px solid var(--border);display:flex;justify-content:space-between;align-items:center;}
 .sl-hdr-title{font-size:16px;font-weight:800;}
-.sl-refresh{
-  padding:7px 12px;font-family:var(--f);font-size:12px;font-weight:700;
-  background:var(--bg);border:2px solid var(--border);border-radius:8px;
-  cursor:pointer;color:var(--muted);transition:all .15s;
-}
+.sl-refresh{padding:7px 12px;font-family:var(--f);font-size:12px;font-weight:700;background:var(--bg);border:2px solid var(--border);border-radius:8px;cursor:pointer;color:var(--muted);transition:all .15s;}
 .sl-refresh:hover{border-color:var(--blue);color:var(--blue);}
-.sl-item{
-  padding:14px 16px;border-bottom:1px solid var(--border);
-  display:flex;align-items:center;gap:12px;
-}
+.sl-item{padding:13px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px;}
 .sl-item:last-child{border-bottom:none;}
 .sl-info{flex:1;min-width:0;}
 .sl-tipo{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;}
 .sl-veh{font-size:16px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.sl-n{font-size:30px;font-weight:900;min-width:48px;text-align:right;}
+.sl-n{font-size:28px;font-weight:900;min-width:46px;text-align:right;}
 .sl-n.zero{color:var(--red);}.sl-n.low{color:var(--amber);}.sl-n.ok{color:var(--green);}
 .sl-empty{padding:28px;text-align:center;font-size:15px;color:var(--muted);}
 </style>
 </head>
 <body>
 
-<!-- ══════ TOPBAR ══════ -->
+<!-- TOPBAR -->
 <div class="topbar">
   <div class="topbar-title">Filter<span>Scan</span></div>
-  <button class="menu-btn" id="menuBtn" onclick="toggleDrawer()">
+  <button class="menu-btn" onclick="toggleDrawer()">
     <span></span><span></span><span></span>
   </button>
 </div>
 
-<!-- ══════ DRAWER ══════ -->
-<div class="drawer-overlay" id="overlay" onclick="closeDrawer()"></div>
+<!-- DRAWER -->
+<div class="overlay" id="overlay" onclick="closeDrawer()"></div>
 <div class="drawer" id="drawer">
-  <div class="drawer-header">
+  <div class="drawer-hdr">
     <div class="drawer-logo">Filter<span>Scan</span></div>
     <button class="drawer-close" onclick="closeDrawer()">✕</button>
   </div>
   <div class="drawer-nav">
-    <button class="drawer-item" id="di-vehiculo" onclick="goPage('vehiculo')">
-      <div class="di-icon">🚛</div>
-      <div class="di-text">
-        <div class="di-label">Buscar por vehículo</div>
-        <div class="di-sub">Ver filtros por modelo</div>
+    <button class="d-item" id="di-vehiculo" onclick="goPage('vehiculo')">
+      <div class="d-icon">🚛</div>
+      <div>
+        <div class="d-label">Buscar por camión</div>
+        <div class="d-sub">Filtros y stock por modelo</div>
       </div>
     </button>
-    <button class="drawer-item" id="di-movimientos" onclick="goPage('movimientos')">
-      <div class="di-icon">📋</div>
-      <div class="di-text">
-        <div class="di-label">Movimientos</div>
-        <div class="di-sub">Ingresos y salidas</div>
-      </div>
-    </button>
-    <button class="drawer-item" id="di-stock" onclick="goPage('stock')">
-      <div class="di-icon">📦</div>
-      <div class="di-text">
-        <div class="di-label">Stock por camión</div>
-        <div class="di-sub">Ver existencias</div>
+    <button class="d-item" id="di-stock" onclick="goPage('stock')">
+      <div class="d-icon">📦</div>
+      <div>
+        <div class="d-label">Stock general</div>
+        <div class="d-sub">Ver todas las existencias</div>
       </div>
     </button>
   </div>
 </div>
 
-<!-- ══════ PÁGINA: SCANNER ══════ -->
+<!-- PAGE: SCANNER -->
 <div class="page active" id="page-scanner">
-
   <div style="height:12px"></div>
 
   <div class="viewfinder">
     <video id="video" autoplay playsinline muted></video>
-    <div id="scanZone" class="scan-zone">
-      <div class="sz-corner tl"></div><div class="sz-corner tr"></div>
-      <div class="sz-corner br"></div><div class="sz-corner bl"></div>
-      <div class="sz-line"></div>
+    <div id="sz" class="sz">
+      <div class="szc tl"></div><div class="szc tr"></div>
+      <div class="szc br"></div><div class="szc bl"></div>
+      <div class="szl"></div>
     </div>
-    <div class="vf-status" id="vfStatus">Iniciando cámara...</div>
+    <div class="vf-st" id="vfSt">Iniciando cámara...</div>
   </div>
 
-  <button class="scan-btn" id="btnCaptura" onclick="capturar()" disabled>
+  <button class="scan-btn" id="btnCap" onclick="capturar()" disabled>
     <span class="lbl">📷 Escanear código</span>
     <span class="sp"></span>
   </button>
@@ -428,100 +318,35 @@ body {
   </div>
 
   <div class="result-card" id="resultado"></div>
-  <div style="height:20px"></div>
-
+  <div style="height:24px"></div>
 </div>
 
-<!-- ══════ PÁGINA: VEHÍCULO ══════ -->
+<!-- PAGE: VEHÍCULO -->
 <div class="page" id="page-vehiculo">
   <div style="height:12px"></div>
-  <div class="section-title">Buscar por vehículo</div>
-  <div class="section-sub">Seleccioná el modelo para ver sus filtros</div>
+  <div class="sec-title">Buscar por camión</div>
+  <div class="sec-sub">Seleccioná el modelo para ver sus filtros y stock</div>
 
   <select class="veh-select" id="vehicleSelect" onchange="onVehicleChange()">
     <option value="">— Seleccioná el vehículo —</option>
   </select>
 
-  <div id="tipoSection" style="display:none;margin-bottom:12px;">
+  <div id="tipoSection" style="display:none">
     <div style="font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px;">Tipo de filtro</div>
     <div class="tipo-grid" id="tipoGrid"></div>
   </div>
 
-  <div class="veh-result" id="vehResult"></div>
-  <div style="height:20px"></div>
+  <div class="codes-table" id="codesTable"></div>
+  <div style="height:24px"></div>
 </div>
 
-<!-- ══════ PÁGINA: MOVIMIENTOS ══════ -->
-<div class="page" id="page-movimientos">
-  <div style="height:12px"></div>
-  <div class="section-title">Movimientos</div>
-  <div class="section-sub" style="margin-bottom:14px">Escaneá o ingresá el código</div>
-
-  <div class="mov-viewfinder">
-    <video id="video2" autoplay playsinline muted></video>
-    <div id="scanZone2" class="scan-zone">
-      <div class="sz-corner tl"></div><div class="sz-corner tr"></div>
-      <div class="sz-corner br"></div><div class="sz-corner bl"></div>
-      <div class="sz-line"></div>
-    </div>
-    <div class="vf-status" id="vfStatus2">Cámara...</div>
-  </div>
-
-  <button class="scan-btn" id="btnMov" onclick="capturarMov()" disabled style="margin-bottom:10px;">
-    <span class="lbl">📷 Escanear</span>
-    <span class="sp"></span>
-  </button>
-
-  <div class="manual-row" style="margin-bottom:12px;">
-    <input id="movInput" type="text" placeholder="Código manual..." autocomplete="off">
-    <button onclick="movBuscarManual()">BUSCAR</button>
-  </div>
-
-  <!-- Tarjeta filtro encontrado -->
-  <div class="mov-found-card" id="movCard">
-    <div class="mfc-top">
-      <div class="mfc-tipo" id="mcTipo"></div>
-      <div class="mfc-veh"  id="mcVeh"></div>
-      <div class="mfc-cod"  id="mcCod"></div>
-    </div>
-
-    <div class="stock-display">
-      <div><div class="stock-num-lbl">Stock actual</div></div>
-      <div class="stock-num" id="movStockNum">—</div>
-    </div>
-
-    <div class="qty-row">
-      <span class="qty-lbl">Cantidad</span>
-      <div class="qty-ctrl">
-        <button class="qty-btn" onclick="qtyChange(-1)">−</button>
-        <input class="qty-inp" id="qtyVal" type="number" value="1" min="1" max="999">
-        <button class="qty-btn" onclick="qtyChange(+1)">+</button>
-      </div>
-    </div>
-
-    <div class="mov-btns">
-      <button class="mov-btn btn-ing" onclick="registrarMov(+1)">
-        ↑ INGRESO
-        <span class="mov-btn-sub">Suma al stock</span>
-      </button>
-      <button class="mov-btn btn-sal" onclick="registrarMov(-1)">
-        ↓ SALIDA
-        <span class="mov-btn-sub">Resta del stock</span>
-      </button>
-    </div>
-    <div class="mov-saving" id="movSaving"></div>
-  </div>
-
-  <div style="height:20px"></div>
-</div>
-
-<!-- ══════ PÁGINA: STOCK ══════ -->
+<!-- PAGE: STOCK -->
 <div class="page" id="page-stock">
   <div style="height:12px"></div>
-  <div class="section-title">Stock por camión</div>
-  <div class="section-sub">Filtrá por modelo para ver existencias</div>
+  <div class="sec-title">Stock general</div>
+  <div class="sec-sub">Filtrá por vehículo o mirá todo</div>
 
-  <select class="stock-veh-select" id="stockVehSelect" onchange="stockFiltrar()">
+  <select class="stock-veh-select" id="stockVehSel" onchange="stockFiltrar()">
     <option value="">— Todos los vehículos —</option>
   </select>
 
@@ -530,31 +355,25 @@ body {
       <span class="sl-hdr-title">📋 Existencias</span>
       <button class="sl-refresh" onclick="stockCargarLista()">↻ Actualizar</button>
     </div>
-    <div id="stockListBody"><div class="sl-empty">Cargando...</div></div>
+    <div id="stockBody"><div class="sl-empty">Cargando...</div></div>
   </div>
-  <div style="height:20px"></div>
+  <div style="height:24px"></div>
 </div>
 
 <script>
-// ══ CONFIG ══
 const SHEET_URL = "/.netlify/functions/sheets";
 
-// ══ ESTADO ══
 let DB = {};
-let movGrupoActual = null;
-let allStockItems  = [];
+let allStock = [];
+let currentGrupo = null; // grupo activo en el scanner
 
-// ══ DB ══
+// ── DB ──
 fetch("database.json")
   .then(r => r.json())
-  .then(d => {
-    DB = d;
-    poblarSelectores();
-    stockCargarLista();
-  })
-  .catch(() => console.error("Error cargando database.json"));
+  .then(d => { DB = d; poblarSelectores(); stockCargarLista(); })
+  .catch(() => console.error("Error DB"));
 
-// ══ DRAWER ══
+// ── DRAWER ──
 function toggleDrawer() {
   document.getElementById('drawer').classList.toggle('open');
   document.getElementById('overlay').classList.toggle('open');
@@ -564,10 +383,10 @@ function closeDrawer() {
   document.getElementById('overlay').classList.remove('open');
 }
 
-// ══ NAVEGACIÓN ══
+// ── NAV ──
 function goPage(name) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.drawer-item').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.d-item').forEach(b => b.classList.remove('active'));
   document.getElementById('page-' + name).classList.add('active');
   const di = document.getElementById('di-' + name);
   if (di) di.classList.add('active');
@@ -575,90 +394,44 @@ function goPage(name) {
   window.scrollTo(0, 0);
 }
 
-// ══ CÁMARA SCANNER ══
-const video     = document.getElementById('video');
-const vfStatus  = document.getElementById('vfStatus');
-const btnCap    = document.getElementById('btnCaptura');
-const scanZone  = document.getElementById('scanZone');
+// ── CÁMARA ──
+const video  = document.getElementById('video');
+const vfSt   = document.getElementById('vfSt');
+const btnCap = document.getElementById('btnCap');
+const sz     = document.getElementById('sz');
 
 navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } })
-  .then(s => {
-    video.srcObject = s;
-    vfStatus.textContent = 'Apuntar al código del filtro';
-    btnCap.disabled = false;
-  })
-  .catch(() => { vfStatus.textContent = 'Sin acceso a cámara'; });
+  .then(s => { video.srcObject = s; vfSt.textContent = 'Apuntar al código del filtro'; btnCap.disabled = false; })
+  .catch(() => { vfSt.textContent = 'Sin acceso a cámara'; });
 
 function capturar() {
   const c = document.createElement('canvas');
   c.width = video.videoWidth||640; c.height = video.videoHeight||480;
-  c.getContext('2d').drawImage(video,0,0);
-  const b64 = c.toDataURL('image/jpeg',.85).split(',')[1];
+  c.getContext('2d').drawImage(video, 0, 0);
+  const b64 = c.toDataURL('image/jpeg', .85).split(',')[1];
   setScanLoading(true);
-  leerClaude(b64, 'scanner');
+  leerClaude(b64);
 }
 
 function setScanLoading(on) {
   btnCap.disabled = on;
   btnCap.classList.toggle('loading', on);
-  vfStatus.textContent = on ? 'Analizando...' : 'Apuntar al código del filtro';
-  if (on) scanZone.classList.add('scanning');
-  else    scanZone.classList.remove('scanning');
+  vfSt.textContent = on ? 'Analizando...' : 'Apuntar al código del filtro';
+  sz.classList.toggle('scanning', on);
 }
 
-// ══ CÁMARA MOVIMIENTOS ══
-const video2    = document.getElementById('video2');
-const vfStatus2 = document.getElementById('vfStatus2');
-const btnMov    = document.getElementById('btnMov');
-const scanZone2 = document.getElementById('scanZone2');
-
-navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } })
-  .then(s => {
-    video2.srcObject = s;
-    vfStatus2.textContent = 'Apuntar al código';
-    btnMov.disabled = false;
-  })
-  .catch(() => { vfStatus2.textContent = 'Sin acceso a cámara'; });
-
-function capturarMov() {
-  const c = document.createElement('canvas');
-  c.width = video2.videoWidth||640; c.height = video2.videoHeight||480;
-  c.getContext('2d').drawImage(video2,0,0);
-  const b64 = c.toDataURL('image/jpeg',.85).split(',')[1];
-  setMovLoading(true);
-  leerClaude(b64, 'movimientos');
-}
-
-function setMovLoading(on) {
-  btnMov.disabled = on;
-  btnMov.classList.toggle('loading', on);
-  vfStatus2.textContent = on ? 'Analizando...' : 'Apuntar al código';
-  if (on) scanZone2.classList.add('scanning');
-  else    scanZone2.classList.remove('scanning');
-}
-
-// ══ CLAUDE API ══
-async function leerClaude(b64, destino) {
+async function leerClaude(b64) {
   try {
-    const res = await fetch('/.netlify/functions/claude', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ imageBase64: b64 })
-    });
+    const res  = await fetch('/.netlify/functions/claude', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ imageBase64: b64 }) });
     const data = await res.json();
     if (data.error) throw new Error(data.error);
     const codigo = (data.codigo||'NO_DETECTADO').toUpperCase().replace(/\s+/g,'');
-    if (destino === 'scanner')      buscarInteligente(codigo, 'scanner');
-    else if (destino === 'movimientos') movCargarFiltro(codigo);
-  } catch(e) {
-    if (destino === 'scanner') mostrarError('Error: ' + e.message);
-  } finally {
-    if (destino === 'scanner')      setScanLoading(false);
-    else if (destino === 'movimientos') setMovLoading(false);
-  }
+    buscarInteligente(codigo);
+  } catch(e) { mostrarError('Error: ' + e.message); }
+  finally    { setScanLoading(false); }
 }
 
-// ══ BÚSQUEDA ══
+// ── BÚSQUEDA ──
 function buscarEnDB(codigo) {
   let key = codigo.toUpperCase();
   if (DB[key]) return { key, data: DB[key] };
@@ -666,38 +439,44 @@ function buscarEnDB(codigo) {
   if (DB[norm]) return { key: norm, data: DB[norm] };
   let best = null, bestD = Infinity;
   const umbral = Math.max(2, Math.floor(key.length * .25));
-  for (const k in DB) {
-    const d = lev(key, k);
-    if (d < bestD) { bestD = d; best = k; }
-  }
-  if (bestD <= umbral && best) return { key: best, data: DB[best], aprox: true, original: codigo };
+  for (const k in DB) { const d = lev(key,k); if (d < bestD) { bestD=d; best=k; } }
+  if (bestD <= umbral && best) return { key:best, data:DB[best], aprox:true, orig:codigo };
   return null;
 }
 
-function buscarInteligente(codigo, destino) {
-  if (!codigo || codigo === 'NO_DETECTADO') {
-    mostrarError('No se detectó ningún código. Intentá de nuevo.'); return;
-  }
-  const found = buscarEnDB(codigo);
-  if (!found) { mostrarError('Código no encontrado: ' + codigo); return; }
-  mostrarResultado(found.key, found.data, found.aprox, found.original || codigo);
+function buscarInteligente(codigo) {
+  if (!codigo || codigo === 'NO_DETECTADO') { mostrarError('No se detectó ningún código. Intentá de nuevo.'); return; }
+  const f = buscarEnDB(codigo);
+  if (!f) { mostrarError('Código no encontrado: ' + codigo); return; }
+  mostrarResultado(f.key, f.data, f.aprox, f.orig||codigo);
 }
 
 function buscarManual() {
   const c = document.getElementById('manual').value.trim().toUpperCase();
-  if (c) buscarInteligente(c, 'scanner');
+  if (c) buscarInteligente(c);
 }
 document.getElementById('manual').addEventListener('keydown', e => { if(e.key==='Enter') buscarManual(); });
 
-// ══ RESULTADO SCANNER ══
-function mostrarResultado(codigo, data, aprox, detectado) {
-  const panel = document.getElementById('resultado');
+// ── RESULTADO SCANNER ──
+async function mostrarResultado(codigo, data, aprox, detectado) {
+  const panel  = document.getElementById('resultado');
   const modelos = Array.isArray(data.modelos) ? data.modelos.join(' / ') : (data.modelos||'—');
   const equivs  = data.equivalencias || [];
+  const grupoId = getGrupoId(data.tipo, data.modelos);
+
+  currentGrupo = {
+    grupoId, tipo: data.tipo, modelos,
+    codigos: [codigo, ...equivs.map(e=>e.codigo.toUpperCase())].slice(0,8).join(', ')
+  };
+
+  // Equivalencias colapsables
   const equivHTML = equivs.length ? `
-    <div class="equiv-section">
-      <div class="equiv-title">Equivalencias · ${equivs.length} código${equivs.length!==1?'s':''}</div>
-      <div class="equiv-grid">
+    <button class="equiv-toggle" id="equivToggle" onclick="toggleEquiv()">
+      Equivalencias (${equivs.length})
+      <span class="arr">▾</span>
+    </button>
+    <div class="equiv-body" id="equivBody">
+      <div class="equiv-grid" style="padding-top:10px;">
         ${equivs.map(e=>`
           <div class="eq-chip" onclick="chipClick(this,'${e.codigo.toUpperCase()}')">
             <div class="eq-code">${e.codigo.toUpperCase()}</div>
@@ -705,22 +484,49 @@ function mostrarResultado(codigo, data, aprox, detectado) {
           </div>`).join('')}
       </div>
     </div>` : '';
+
   panel.innerHTML = `
     <div class="rc-head">
       <div class="rc-dot${aprox?' ap':''}"></div>
-      <span class="rc-lbl${aprox?' ap':''}">${aprox?`Aprox. (${detectado})`:'Código encontrado'}</span>
+      <span class="rc-lbl${aprox?' ap':''}">${aprox?`Coincidencia aprox. (${detectado})`:'Código encontrado'}</span>
     </div>
-    <div class="rc-body">
+    <div class="rc-main">
       <div class="rc-code">${codigo}</div>
       <div class="rc-grid">
         <span class="rc-fl">Marca</span>    <span class="rc-fv">${data.marca}</span>
         <span class="rc-fl">Tipo</span>     <span class="rc-fv">${data.tipo}</span>
         <span class="rc-fl">Vehículo</span> <span class="rc-fv">${modelos}</span>
       </div>
+      <div class="rc-stock-row">
+        <div class="rc-stock-label">Stock actual</div>
+        <div class="rc-stock-num" id="rcStockNum">...</div>
+      </div>
+    </div>
+    <div class="rc-mov">
+      <div class="qty-row">
+        <span class="qty-lbl">Cantidad</span>
+        <div class="qty-ctrl">
+          <button class="qty-btn" onclick="qtyChange(-1)">−</button>
+          <input class="qty-inp" id="qtyVal" type="number" value="1" min="1" max="999">
+          <button class="qty-btn" onclick="qtyChange(+1)">+</button>
+        </div>
+      </div>
+      <div class="mov-btns">
+        <button class="mov-btn btn-ing" onclick="registrarMov(+1)">↑ INGRESO<span class="mov-btn-sub">Suma al stock</span></button>
+        <button class="mov-btn btn-sal" onclick="registrarMov(-1)">↓ SALIDA<span class="mov-btn-sub">Resta del stock</span></button>
+      </div>
+      <div class="mov-feedback" id="movFeedback"></div>
     </div>
     ${equivHTML}`;
+
   panel.classList.add('show');
   panel.scrollIntoView({ behavior:'smooth', block:'nearest' });
+
+  // Cargar stock async
+  try {
+    const stock = await apiGetStock(grupoId);
+    actualizarRcStock(stock);
+  } catch(e) { document.getElementById('rcStockNum').textContent = '?'; }
 }
 
 function mostrarError(msg) {
@@ -729,6 +535,21 @@ function mostrarError(msg) {
     <div class="rc-head"><div class="rc-dot er"></div><span class="rc-lbl er">Sin resultado</span></div>
     <div class="rc-nf">${msg.replace(/\n/g,'<br>')}</div>`;
   panel.classList.add('show');
+  currentGrupo = null;
+}
+
+function actualizarRcStock(n) {
+  const el = document.getElementById('rcStockNum');
+  if (!el) return;
+  el.textContent = n;
+  el.className = 'rc-stock-num ' + (n===0?'zero':n<=2?'low':'ok');
+}
+
+function toggleEquiv() {
+  const btn  = document.getElementById('equivToggle');
+  const body = document.getElementById('equivBody');
+  btn.classList.toggle('open');
+  body.classList.toggle('open');
 }
 
 function chipClick(el, codigo) {
@@ -737,209 +558,146 @@ function chipClick(el, codigo) {
   document.getElementById('manual').value = codigo;
 }
 
-// ══ VEHÍCULO ══
+// ── MOVIMIENTOS ──
+function qtyChange(d) {
+  const inp = document.getElementById('qtyVal');
+  if (inp) inp.value = Math.max(1, (parseInt(inp.value)||1) + d);
+}
+
+async function registrarMov(dir) {
+  if (!currentGrupo) return;
+  const qty    = parseInt(document.getElementById('qtyVal').value)||1;
+  const delta  = dir * qty;
+  const fb     = document.getElementById('movFeedback');
+  fb.textContent = 'Guardando...'; fb.classList.add('show');
+  try {
+    const nuevo = await apiUpdate(currentGrupo, delta);
+    actualizarRcStock(nuevo);
+    fb.textContent = dir>0 ? `✅ Ingresados ${qty} — Stock: ${nuevo}` : `✅ Retirados ${qty} — Stock: ${nuevo}`;
+    document.getElementById('qtyVal').value = 1;
+    setTimeout(() => fb.classList.remove('show'), 2500);
+    stockCargarLista();
+  } catch(e) {
+    fb.textContent = '❌ Error al guardar.';
+    setTimeout(() => fb.classList.remove('show'), 3000);
+  }
+}
+
+// ── VEHÍCULO ──
 function poblarSelectores() {
   const set = new Set();
   for (const k in DB) (DB[k].modelos||[]).forEach(m => set.add(m));
   const opts = [...set].sort();
-
-  [document.getElementById('vehicleSelect'),
-   document.getElementById('stockVehSelect')].forEach(sel => {
-    opts.forEach(m => {
-      const o = document.createElement('option');
-      o.value = m; o.textContent = m; sel.appendChild(o);
-    });
+  ['vehicleSelect','stockVehSel'].forEach(id => {
+    const sel = document.getElementById(id);
+    opts.forEach(m => { const o=document.createElement('option'); o.value=m; o.textContent=m; sel.appendChild(o); });
   });
 }
 
 function onVehicleChange() {
   const modelo = document.getElementById('vehicleSelect').value;
-  const sec = document.getElementById('tipoSection');
-  const grid = document.getElementById('tipoGrid');
-  const res  = document.getElementById('vehResult');
-  res.classList.remove('show'); res.innerHTML = '';
+  const sec    = document.getElementById('tipoSection');
+  const grid   = document.getElementById('tipoGrid');
+  const table  = document.getElementById('codesTable');
+  table.classList.remove('show'); table.innerHTML = '';
   if (!modelo) { sec.style.display='none'; return; }
   const tipos = new Set();
   for (const k in DB) if ((DB[k].modelos||[]).includes(modelo)) tipos.add(DB[k].tipo);
-  grid.innerHTML = [...tipos].sort().map(t=>`
-    <button class="tipo-btn" onclick="mostrarTipo('${modelo}','${t}',this)">${t}</button>`).join('');
+  grid.innerHTML = [...tipos].sort().map(t=>`<button class="tipo-btn" onclick="mostrarTipo('${modelo}','${t}',this)">${t}</button>`).join('');
   sec.style.display = 'block';
 }
 
-function mostrarTipo(modelo, tipo, btn) {
+async function mostrarTipo(modelo, tipo, btn) {
   document.querySelectorAll('.tipo-btn').forEach(b=>b.classList.remove('on'));
   btn.classList.add('on');
+
   const codigos = [];
   for (const k in DB) {
     const d = DB[k];
-    if ((d.modelos||[]).includes(modelo) && d.tipo===tipo) codigos.push({codigo:k, marca:d.marca});
+    if ((d.modelos||[]).includes(modelo) && d.tipo===tipo) codigos.push({ codigo:k, marca:d.marca });
   }
-  const panel = document.getElementById('vehResult');
-  if (!codigos.length) {
-    panel.innerHTML='<div class="sl-empty">Sin filtros.</div>';
-    panel.classList.add('show'); return;
-  }
-  const pm = {};
-  codigos.forEach(c=>{const m=c.marca||'Otras';if(!pm[m])pm[m]=[];pm[m].push(c);});
-  panel.innerHTML = `
-    <div class="vr-top">
-      <div><div class="vr-tipo">${tipo}</div><div class="vr-veh">${modelo}</div></div>
-      <span class="vr-count">${codigos.length} códigos</span>
-    </div>
-    ${Object.entries(pm).sort((a,b)=>a[0].localeCompare(b[0])).map(([marca,items])=>`
-      <div class="vr-group">
-        <div class="vr-ghdr">${marca}<span class="vr-gn">${items.length}</span></div>
-        <div class="vr-codes">
-          ${items.map(c=>`
-            <div class="vr-chip" onclick="irAScanner('${c.codigo}')">
-              <div class="vr-chip-code">${c.codigo}</div>
-              <div class="vr-chip-marca">${c.marca}</div>
-            </div>`).join('')}
+
+  const table = document.getElementById('codesTable');
+  table.innerHTML = `<div class="ct-head"><span class="ct-title">${tipo} · ${modelo}</span><span class="ct-count">${codigos.length} códigos</span></div>
+    ${codigos.map(c=>`
+      <div class="ct-row" onclick="irAScanner('${c.codigo}')">
+        <div class="ct-info">
+          <div class="ct-code">${c.codigo}</div>
+          <div class="ct-marca">${c.marca}</div>
         </div>
+        <div class="ct-stock" id="cts-${c.codigo}">...</div>
       </div>`).join('')}`;
-  panel.classList.add('show');
-  panel.scrollIntoView({ behavior:'smooth', block:'nearest' });
+  table.classList.add('show');
+  table.scrollIntoView({ behavior:'smooth', block:'nearest' });
+
+  // Cargar stock de cada código
+  for (const c of codigos) {
+    const grupoId = getGrupoId(tipo, DB[c.codigo]?.modelos || [modelo]);
+    try {
+      const stock = await apiGetStock(grupoId);
+      const el = document.getElementById('cts-' + c.codigo);
+      if (el) { el.textContent=stock; el.className='ct-stock '+(stock===0?'zero':stock<=2?'low':'ok'); }
+    } catch(e) {
+      const el = document.getElementById('cts-' + c.codigo);
+      if (el) el.textContent = '?';
+    }
+  }
 }
 
 function irAScanner(codigo) {
   goPage('scanner');
-  const found = buscarEnDB(codigo);
-  if (found) mostrarResultado(found.key, found.data, found.aprox, found.original||codigo);
+  const f = buscarEnDB(codigo);
+  if (f) mostrarResultado(f.key, f.data, f.aprox, f.orig||codigo);
 }
 
-// ══ MOVIMIENTOS ══
-function movBuscarManual() {
-  const c = document.getElementById('movInput').value.trim().toUpperCase();
-  if (c) movCargarFiltro(c);
-}
-document.getElementById('movInput').addEventListener('keydown', e => { if(e.key==='Enter') movBuscarManual(); });
-
-async function movCargarFiltro(codigo) {
-  const found = buscarEnDB(codigo);
-  if (!found) { alert('Código no encontrado: ' + codigo); return; }
-  const data    = found.data;
-  const modelos = Array.isArray(data.modelos) ? data.modelos.join(' / ') : (data.modelos||'—');
-  document.getElementById('mcTipo').textContent = data.tipo;
-  document.getElementById('mcVeh').textContent  = modelos;
-  document.getElementById('mcCod').textContent  = 'Código: ' + found.key;
-
-  const grupoId = getGrupoId(data.tipo, data.modelos);
-  movGrupoActual = {
-    grupoId, tipo: data.tipo, modelos,
-    codigos: [found.key, ...(data.equivalencias||[]).map(e=>e.codigo.toUpperCase())].slice(0,8).join(', ')
-  };
-
-  document.getElementById('movCard').classList.add('show');
-  document.getElementById('movStockNum').textContent = '...';
-  document.getElementById('movStockNum').className = 'stock-num';
-
-  try {
-    const stock = await apiGetStock(grupoId);
-    actualizarStockNum(stock, 'movStockNum');
-  } catch(e) { document.getElementById('movStockNum').textContent = '?'; }
-
-  document.getElementById('movCard').scrollIntoView({ behavior:'smooth', block:'nearest' });
-}
-
-function qtyChange(d) {
-  const inp = document.getElementById('qtyVal');
-  inp.value = Math.max(1, (parseInt(inp.value)||1) + d);
-}
-
-async function registrarMov(dir) {
-  if (!movGrupoActual) return;
-  const qty   = parseInt(document.getElementById('qtyVal').value)||1;
-  const delta = dir * qty;
-  const saving = document.getElementById('movSaving');
-  saving.textContent = 'Guardando...'; saving.classList.add('show');
-  try {
-    const nuevo = await apiUpdate(movGrupoActual, delta);
-    actualizarStockNum(nuevo, 'movStockNum');
-    saving.textContent = dir>0 ? `✅ Ingresados ${qty} — Stock: ${nuevo}` : `✅ Retirados ${qty} — Stock: ${nuevo}`;
-    document.getElementById('qtyVal').value = 1;
-    setTimeout(() => saving.classList.remove('show'), 2500);
-    stockCargarLista();
-  } catch(e) {
-    saving.textContent = '❌ Error al guardar.';
-    setTimeout(() => saving.classList.remove('show'), 3000);
-  }
-}
-
-function actualizarStockNum(n, id) {
-  const el = document.getElementById(id);
-  el.textContent = n;
-  el.className = 'stock-num ' + (n===0?'zero':n<=2?'low':'ok');
-}
-
-// ══ STOCK ══
+// ── STOCK GENERAL ──
 function stockFiltrar() {
-  const modelo = document.getElementById('stockVehSelect').value;
-  const items = modelo
-    ? allStockItems.filter(i => i.modelos.includes(modelo))
-    : allStockItems;
-  renderStockList(items);
+  const modelo = document.getElementById('stockVehSel').value;
+  const items  = modelo ? allStock.filter(i=>i.modelos.includes(modelo)) : allStock;
+  renderStock(items);
 }
 
 async function stockCargarLista() {
-  const body = document.getElementById('stockListBody');
+  const body = document.getElementById('stockBody');
   if (!SHEET_URL || SHEET_URL.includes('TU_URL')) {
-    body.innerHTML = '<div class="sl-empty">Configurá Google Sheets para ver el stock.</div>';
-    return;
+    body.innerHTML = '<div class="sl-empty">Configurá Google Sheets para ver el stock.</div>'; return;
   }
-  body.innerHTML = '<div class="sl-empty">Cargando...</div>';
   try {
     const res = await fetch(SHEET_URL + '?accion=lista');
-    const d = await res.json();
-    allStockItems = (d.items||[]).sort((a,b)=>a.stock-b.stock||a.modelos.localeCompare(b.modelos));
+    const d   = await res.json();
+    allStock  = (d.items||[]).sort((a,b)=>a.stock-b.stock||a.modelos.localeCompare(b.modelos));
     stockFiltrar();
-  } catch(e) {
-    body.innerHTML = '<div class="sl-empty">Error al cargar.</div>';
-  }
+  } catch(e) { body.innerHTML = '<div class="sl-empty">Error al cargar.</div>'; }
 }
 
-function renderStockList(items) {
-  const body = document.getElementById('stockListBody');
-  if (!items.length) { body.innerHTML='<div class="sl-empty">Sin datos para mostrar.</div>'; return; }
-  body.innerHTML = items.map(item => {
-    const cls = item.stock===0?'zero':item.stock<=2?'low':'ok';
+function renderStock(items) {
+  const body = document.getElementById('stockBody');
+  if (!items.length) { body.innerHTML='<div class="sl-empty">Sin datos.</div>'; return; }
+  body.innerHTML = items.map(i => {
+    const cls = i.stock===0?'zero':i.stock<=2?'low':'ok';
     return `<div class="sl-item">
-      <div class="sl-info">
-        <div class="sl-tipo">${item.tipo}</div>
-        <div class="sl-veh">${item.modelos}</div>
-      </div>
-      <div class="sl-n ${cls}">${item.stock}</div>
+      <div class="sl-info"><div class="sl-tipo">${i.tipo}</div><div class="sl-veh">${i.modelos}</div></div>
+      <div class="sl-n ${cls}">${i.stock}</div>
     </div>`;
   }).join('');
 }
 
-// ══ GOOGLE SHEETS API ══
+// ── SHEETS API ──
 function getGrupoId(tipo, modelos) {
-  return (tipo + '__' + [...(Array.isArray(modelos)?modelos:[modelos])].sort().join('|')).toUpperCase();
+  return (tipo+'__'+[...(Array.isArray(modelos)?modelos:[modelos])].sort().join('|')).toUpperCase();
 }
-
 async function apiGetStock(grupoId) {
-  if (!SHEET_URL || SHEET_URL.includes('TU_URL')) return 0;
-  const res = await fetch(SHEET_URL + '?accion=get&grupoId=' + encodeURIComponent(grupoId));
-  return (await res.json()).stock || 0;
+  const res = await fetch(SHEET_URL+'?accion=get&grupoId='+encodeURIComponent(grupoId));
+  return (await res.json()).stock||0;
 }
-
 async function apiUpdate(grupo, delta) {
-  if (!SHEET_URL || SHEET_URL.includes('TU_URL')) {
-    const cur = parseInt(document.getElementById('movStockNum').textContent)||0;
-    return Math.max(0, cur + delta);
-  }
-  const res = await fetch(SHEET_URL, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ accion:'update', ...grupo, delta })
-  });
+  const res = await fetch(SHEET_URL, { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({accion:'update',...grupo,delta}) });
   return (await res.json()).nuevoStock;
 }
 
-// ══ UTILS ══
-function lev(a, b) {
-  const m=a.length,n=b.length;
-  const dp=Array.from({length:m+1},(_,i)=>[i]);
+// ── UTILS ──
+function lev(a,b) {
+  const m=a.length,n=b.length,dp=Array.from({length:m+1},(_,i)=>[i]);
   for(let j=0;j<=n;j++)dp[0][j]=j;
   for(let i=1;i<=m;i++)for(let j=1;j<=n;j++)
     dp[i][j]=a[i-1]===b[j-1]?dp[i-1][j-1]:1+Math.min(dp[i-1][j-1],dp[i][j-1],dp[i-1][j]);
