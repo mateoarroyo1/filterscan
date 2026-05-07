@@ -2,1259 +2,947 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Scanner de Filtros PRO</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>FilterScan</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --bg: #f0f2f5;
-    --panel: #ffffff;
-    --border: #dde2ea;
-    --blue: #1a6dff;
-    --blue-dim: #1a6dff18;
-    --amber: #e67e00;
-    --red: #e02020;
-    --green: #1aaa55;
-    --text: #111827;
-    --muted: #6b7280;
-    --font: 'Inter', sans-serif;
-  }
+:root {
+  --bg: #f0f2f5;
+  --panel: #fff;
+  --border: #e2e8f0;
+  --blue: #1a6dff;
+  --blue-light: #e8f0ff;
+  --green: #16a34a;
+  --green-light: #dcfce7;
+  --red: #dc2626;
+  --red-light: #fee2e2;
+  --amber: #d97706;
+  --text: #0f172a;
+  --muted: #64748b;
+  --f: 'Inter', sans-serif;
+}
 
-  * { box-sizing: border-box; margin: 0; padding: 0; }
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
 
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: var(--font);
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
+body {
+  font-family: var(--f);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
 
-  header {
-    width: 100%;
-    max-width: 500px;
-    padding: 20px 20px 16px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  header h1 {
-    font-size: 22px;
-    font-weight: 800;
-    color: var(--text);
-    letter-spacing: -0.5px;
-  }
-  header h1 span { color: var(--blue); }
-  .badge {
-    font-size: 11px;
-    background: var(--blue);
-    color: #fff;
-    padding: 3px 8px;
-    border-radius: 20px;
-    font-weight: 700;
-  }
+/* ─── HEADER ─────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 50;
+  background: var(--panel);
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center;
+  padding: 14px 16px; gap: 12px;
+  box-shadow: 0 1px 8px #0000000a;
+}
+.topbar-title {
+  flex: 1; font-size: 20px; font-weight: 900;
+  color: var(--text); letter-spacing: -0.5px;
+}
+.topbar-title span { color: var(--blue); }
+.menu-btn {
+  width: 42px; height: 42px; border: none; background: none;
+  cursor: pointer; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 5px;
+  border-radius: 10px; transition: background .15s;
+}
+.menu-btn:hover { background: var(--bg); }
+.menu-btn span {
+  display: block; width: 22px; height: 2.5px;
+  background: var(--text); border-radius: 2px;
+  transition: all .25s;
+}
 
-  main {
-    width: 100%;
-    max-width: 500px;
-    padding: 0 16px 32px;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-  }
+/* ─── DRAWER ─────────────────────────────── */
+.drawer-overlay {
+  position: fixed; inset: 0; background: #0006;
+  z-index: 90; opacity: 0; pointer-events: none;
+  transition: opacity .25s;
+}
+.drawer-overlay.open { opacity: 1; pointer-events: all; }
 
-  .viewfinder-wrap {
-    position: relative;
-    background: #000;
-    border-radius: 16px;
-    overflow: hidden;
-    aspect-ratio: 4/3;
-    box-shadow: 0 4px 24px #0002;
-  }
-  video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
+.drawer {
+  position: fixed; top: 0; right: -280px; bottom: 0;
+  width: 270px; background: var(--panel);
+  z-index: 100; transition: right .25s cubic-bezier(.4,0,.2,1);
+  display: flex; flex-direction: column;
+  box-shadow: -4px 0 24px #0002;
+}
+.drawer.open { right: 0; }
 
-  .scan-zone {
-    position: absolute;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    width: 78%; height: 30%;
-    pointer-events: none;
-  }
-  .scan-zone::before, .scan-zone::after,
-  .scan-zone .corner-br, .scan-zone .corner-bl {
-    content: '';
-    position: absolute;
-    width: 22px; height: 22px;
-    border-color: #fff;
-    border-style: solid;
-  }
-  .scan-zone::before { top: 0; left: 0; border-width: 3px 0 0 3px; border-radius: 3px 0 0 0; }
-  .scan-zone::after  { top: 0; right: 0; border-width: 3px 3px 0 0; border-radius: 0 3px 0 0; }
-  .scan-zone .corner-br { bottom: 0; right: 0; border-width: 0 3px 3px 0; border-radius: 0 0 3px 0; }
-  .scan-zone .corner-bl { bottom: 0; left: 0; border-width: 0 0 3px 3px; border-radius: 0 0 0 3px; }
+.drawer-header {
+  padding: 20px 20px 16px;
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.drawer-logo { font-size: 18px; font-weight: 900; }
+.drawer-logo span { color: var(--blue); }
+.drawer-close {
+  width: 36px; height: 36px; border: none; background: var(--bg);
+  border-radius: 8px; cursor: pointer; font-size: 18px; color: var(--muted);
+  transition: all .15s;
+}
+.drawer-close:hover { background: var(--border); }
 
-  .scan-line {
-    position: absolute;
-    left: 3px; right: 3px;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, #fff, transparent);
-    animation: scanline 2s linear infinite;
-    opacity: 0;
-  }
-  .scanning .scan-line { opacity: 1; }
-  @keyframes scanline {
-    0%   { top: 4px; }
-    100% { top: calc(100% - 4px); }
-  }
+.drawer-nav { flex: 1; padding: 12px 12px; }
 
-  .vf-status {
-    position: absolute;
-    bottom: 12px;
-    left: 0; right: 0;
-    text-align: center;
-    font-size: 13px;
-    font-weight: 600;
-    color: #fff;
-    text-shadow: 0 1px 4px #0006;
-    letter-spacing: 0.3px;
-  }
-  .vf-status.error { color: #ff6b6b; }
+.drawer-item {
+  display: flex; align-items: center; gap: 14px;
+  padding: 14px 16px; border-radius: 12px;
+  cursor: pointer; transition: all .15s;
+  margin-bottom: 4px; border: none; background: none;
+  width: 100%; text-align: left; font-family: var(--f);
+}
+.drawer-item:hover { background: var(--bg); }
+.drawer-item.active { background: var(--blue-light); }
+.drawer-item.active .di-label { color: var(--blue); }
+.drawer-item.active .di-icon { background: var(--blue); }
+.di-icon {
+  width: 42px; height: 42px; border-radius: 10px;
+  background: var(--bg); display: flex; align-items: center;
+  justify-content: center; font-size: 20px; flex-shrink: 0;
+  transition: background .15s;
+}
+.di-text { flex: 1; }
+.di-label { font-size: 15px; font-weight: 700; color: var(--text); }
+.di-sub   { font-size: 12px; color: var(--muted); margin-top: 1px; }
 
-  .btn-capture {
-    width: 100%;
-    padding: 18px;
-    font-family: var(--font);
-    font-size: 18px;
-    font-weight: 700;
-    background: var(--blue);
-    border: none;
-    color: #fff;
-    border-radius: 14px;
-    cursor: pointer;
-    transition: all 0.15s;
-    box-shadow: 0 4px 16px #1a6dff33;
-  }
-  .btn-capture:hover  { background: #1558d6; }
-  .btn-capture:active { transform: scale(0.98); }
-  .btn-capture:disabled { opacity: 0.45; cursor: not-allowed; transform: none; }
-  .btn-capture .spinner {
-    display: none;
-    width: 20px; height: 20px;
-    border: 3px solid #ffffff55;
-    border-top-color: #fff;
-    border-radius: 50%;
-    animation: spin 0.7s linear infinite;
-    margin: 0 auto;
-  }
-  .btn-capture.loading .label   { display: none; }
-  .btn-capture.loading .spinner { display: block; }
-  @keyframes spin { to { transform: rotate(360deg); } }
+/* ─── PAGES ─────────────────────────────── */
+.page { display: none; max-width: 500px; margin: 0 auto; padding: 16px; }
+.page.active { display: block; }
 
-  .manual-row {
-    display: flex;
-    gap: 10px;
-  }
-  .manual-row input {
-    flex: 1;
-    padding: 15px 16px;
-    font-family: var(--font);
-    font-size: 17px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    background: var(--panel);
-    border: 2px solid var(--border);
-    color: var(--text);
-    border-radius: 12px;
-    outline: none;
-    transition: border-color 0.15s;
-  }
-  .manual-row input:focus { border-color: var(--blue); }
-  .manual-row input::placeholder { color: #b0b8c4; text-transform: none; letter-spacing: 0; font-weight: 400; }
-  .manual-row button {
-    padding: 15px 20px;
-    font-family: var(--font);
-    font-size: 16px;
-    font-weight: 700;
-    background: var(--panel);
-    border: 2px solid var(--border);
-    color: var(--text);
-    border-radius: 12px;
-    cursor: pointer;
-    transition: all 0.15s;
-    white-space: nowrap;
-  }
-  .manual-row button:hover { border-color: var(--blue); color: var(--blue); }
+/* ─── SCANNER (main) ─────────────────────── */
+.viewfinder {
+  position: relative; background: #000;
+  border-radius: 16px; overflow: hidden;
+  aspect-ratio: 4/3; margin-bottom: 12px;
+  box-shadow: 0 4px 20px #0002;
+}
+.viewfinder video { width:100%;height:100%;object-fit:cover;display:block; }
 
-  .result-panel {
-    background: var(--panel);
-    border: 2px solid var(--border);
-    border-radius: 16px;
-    overflow: hidden;
-    display: none;
-    box-shadow: 0 2px 12px #0001;
-  }
-  .result-panel.visible { display: block; }
+.scan-zone {
+  position: absolute; top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  width:76%;height:28%;pointer-events:none;
+}
+.sz-corner {
+  position:absolute;width:20px;height:20px;
+  border-color:#fff;border-style:solid;
+}
+.sz-corner.tl{top:0;left:0;border-width:3px 0 0 3px;border-radius:4px 0 0 0;}
+.sz-corner.tr{top:0;right:0;border-width:3px 3px 0 0;border-radius:0 4px 0 0;}
+.sz-corner.br{bottom:0;right:0;border-width:0 3px 3px 0;border-radius:0 0 4px 0;}
+.sz-corner.bl{bottom:0;left:0;border-width:0 0 3px 3px;border-radius:0 0 0 4px;}
+.sz-line {
+  position:absolute;left:3px;right:3px;height:2px;
+  background:linear-gradient(90deg,transparent,#fff,transparent);
+  animation:sl 2s linear infinite;opacity:0;
+}
+.scanning .sz-line{opacity:1;}
+@keyframes sl{0%{top:3px}100%{top:calc(100% - 3px)}}
+.vf-status {
+  position:absolute;bottom:10px;left:0;right:0;text-align:center;
+  font-size:13px;font-weight:600;color:#fff;text-shadow:0 1px 6px #0008;
+}
 
-  .result-header {
-    padding: 14px 18px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    border-bottom: 2px solid var(--border);
-  }
-  .status-dot {
-    width: 10px; height: 10px;
-    border-radius: 50%;
-    background: var(--green);
-    flex-shrink: 0;
-  }
-  .status-dot.approx { background: var(--amber); }
-  .status-dot.error  { background: var(--red); }
-  .status-label {
-    font-size: 14px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    color: var(--green);
-  }
-  .status-label.approx { color: var(--amber); }
-  .status-label.error  { color: var(--red); }
+.scan-btn {
+  width:100%;padding:18px;font-family:var(--f);font-size:18px;font-weight:800;
+  background:var(--blue);color:#fff;border:none;border-radius:14px;cursor:pointer;
+  box-shadow:0 4px 16px #1a6dff33;transition:all .12s;margin-bottom:10px;
+}
+.scan-btn:active{transform:scale(.97);}
+.scan-btn:disabled{opacity:.4;cursor:not-allowed;transform:none;}
+.scan-btn .sp{
+  display:none;width:18px;height:18px;
+  border:3px solid #fff4;border-top-color:#fff;
+  border-radius:50%;animation:spin .7s linear infinite;margin:0 auto;
+}
+.scan-btn.loading .lbl{display:none;}.scan-btn.loading .sp{display:block;}
+@keyframes spin{to{transform:rotate(360deg)}}
 
-  .found-card { padding: 18px; }
-  .found-code {
-    font-size: 36px;
-    font-weight: 800;
-    color: var(--blue);
-    letter-spacing: 1px;
-    line-height: 1;
-    margin-bottom: 14px;
-  }
-  .found-grid {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 8px 16px;
-  }
-  .found-grid .lbl {
-    font-size: 12px;
-    font-weight: 700;
-    color: var(--muted);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    padding-top: 2px;
-  }
-  .found-grid .val {
-    font-size: 18px;
-    font-weight: 700;
-    color: var(--text);
-  }
+.manual-row{display:flex;gap:10px;margin-bottom:12px;}
+.manual-row input{
+  flex:1;padding:14px 16px;font-family:var(--f);font-size:16px;font-weight:600;
+  text-transform:uppercase;letter-spacing:1px;
+  background:var(--panel);border:2px solid var(--border);
+  color:var(--text);border-radius:12px;outline:none;transition:border-color .15s;
+}
+.manual-row input:focus{border-color:var(--blue);}
+.manual-row input::placeholder{text-transform:none;letter-spacing:0;font-weight:400;color:#aab;}
+.manual-row button{
+  padding:14px 18px;font-family:var(--f);font-size:15px;font-weight:700;
+  background:var(--panel);border:2px solid var(--border);color:var(--text);
+  border-radius:12px;cursor:pointer;transition:all .15s;
+}
+.manual-row button:hover{border-color:var(--blue);color:var(--blue);}
 
-  .equiv-section {
-    border-top: 2px solid var(--border);
-    padding: 16px 18px;
-  }
-  .equiv-title {
-    font-size: 13px;
-    font-weight: 700;
-    color: var(--muted);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    margin-bottom: 12px;
-  }
-  .equiv-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 8px;
-  }
-  .equiv-chip {
-    background: var(--bg);
-    border: 2px solid var(--border);
-    border-radius: 10px;
-    padding: 10px 14px;
-    cursor: pointer;
-    transition: all 0.15s;
-  }
-  .equiv-chip:hover { border-color: var(--blue); background: var(--blue-dim); }
-  .equiv-chip.active { border-color: var(--blue); background: var(--blue-dim); }
-  .equiv-chip.active .chip-code { color: var(--blue); }
-  .chip-code {
-    font-size: 15px;
-    font-weight: 700;
-    color: var(--text);
-    letter-spacing: 0.5px;
-  }
-  .chip-marca {
-    font-size: 12px;
-    font-weight: 500;
-    color: var(--muted);
-    margin-top: 2px;
-  }
+/* resultado */
+.result-card{
+  background:var(--panel);border:2px solid var(--border);
+  border-radius:16px;overflow:hidden;display:none;
+}
+.result-card.show{display:block;}
+.rc-head{
+  padding:12px 16px;display:flex;align-items:center;gap:8px;
+  border-bottom:2px solid var(--border);
+}
+.rc-dot{width:9px;height:9px;border-radius:50%;background:var(--green);flex-shrink:0;}
+.rc-dot.ap{background:var(--amber);}.rc-dot.er{background:var(--red);}
+.rc-lbl{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--green);}
+.rc-lbl.ap{color:var(--amber);}.rc-lbl.er{color:var(--red);}
+.rc-body{padding:16px;}
+.rc-code{font-size:34px;font-weight:900;color:var(--blue);letter-spacing:1px;line-height:1;margin-bottom:12px;}
+.rc-grid{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;}
+.rc-fl{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;padding-top:3px;}
+.rc-fv{font-size:17px;font-weight:700;}
+.equiv-section{border-top:2px solid var(--border);padding:14px 16px;}
+.equiv-title{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px;}
+.equiv-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;}
+.eq-chip{
+  background:var(--bg);border:2px solid var(--border);border-radius:9px;
+  padding:8px 12px;cursor:pointer;transition:all .15s;
+}
+.eq-chip:hover,.eq-chip.on{border-color:var(--blue);background:var(--blue-light);}
+.eq-chip.on .eq-code{color:var(--blue);}
+.eq-code{font-size:14px;font-weight:700;letter-spacing:.5px;}
+.eq-marca{font-size:11px;color:var(--muted);margin-top:1px;}
+.rc-nf{padding:18px 16px;font-size:15px;color:var(--muted);line-height:1.6;}
 
-  .not-found {
-    padding: 20px 18px;
-    font-size: 16px;
-    color: var(--muted);
-    line-height: 1.6;
-  }
+/* ─── VEHÍCULO ───────────────────────────── */
+.section-title{font-size:20px;font-weight:800;margin-bottom:4px;}
+.section-sub{font-size:14px;color:var(--muted);margin-bottom:16px;}
 
-  /* INVENTARIO */
-  .inv-search-row {
-    display: flex;
-    gap: 10px;
-  }
-  .inv-search-row input {
-    flex: 1;
-    padding: 15px 16px;
-    font-family: var(--font);
-    font-size: 17px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    background: var(--panel);
-    border: 2px solid var(--border);
-    color: var(--text);
-    border-radius: 12px;
-    outline: none;
-    transition: border-color 0.15s;
-  }
-  .inv-search-row input:focus { border-color: var(--blue); }
-  .inv-search-row input::placeholder { color: #b0b8c4; text-transform: none; letter-spacing: 0; font-weight: 400; }
-  .inv-search-row button {
-    padding: 15px 18px;
-    font-family: var(--font);
-    font-size: 15px;
-    font-weight: 700;
-    background: var(--blue);
-    border: none;
-    color: #fff;
-    border-radius: 12px;
-    cursor: pointer;
-    transition: all 0.15s;
-    white-space: nowrap;
-  }
-  .inv-search-row button:active { transform: scale(0.97); }
+.veh-select{
+  width:100%;padding:15px 16px;font-family:var(--f);font-size:16px;font-weight:600;
+  background:var(--panel);border:2px solid var(--border);color:var(--text);
+  border-radius:12px;outline:none;appearance:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2.5'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 14px center;
+  cursor:pointer;transition:border-color .15s;margin-bottom:12px;
+}
+.veh-select:focus{border-color:var(--blue);}
+.tipo-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;}
+.tipo-btn{
+  padding:13px 10px;font-family:var(--f);font-size:14px;font-weight:700;
+  background:var(--panel);border:2px solid var(--border);color:var(--text);
+  border-radius:10px;cursor:pointer;transition:all .15s;text-align:center;
+}
+.tipo-btn:hover{border-color:var(--blue);color:var(--blue);}
+.tipo-btn.on{background:var(--blue);color:#fff;border-color:var(--blue);}
+.veh-result{
+  background:var(--panel);border:2px solid var(--border);
+  border-radius:14px;overflow:hidden;display:none;
+}
+.veh-result.show{display:block;}
+.vr-top{
+  padding:12px 16px;border-bottom:2px solid var(--border);
+  display:flex;justify-content:space-between;align-items:center;
+}
+.vr-tipo{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;}
+.vr-veh{font-size:17px;font-weight:800;}
+.vr-count{font-size:12px;font-weight:700;color:var(--blue);background:var(--blue-light);padding:4px 10px;border-radius:20px;}
+.vr-group{border-bottom:1px solid var(--border);}
+.vr-group:last-child{border-bottom:none;}
+.vr-ghdr{
+  padding:10px 16px;font-size:11px;font-weight:700;color:var(--muted);
+  text-transform:uppercase;letter-spacing:.5px;background:#f8fafc;
+  display:flex;justify-content:space-between;
+}
+.vr-gn{font-size:11px;background:var(--border);padding:2px 7px;border-radius:10px;}
+.vr-codes{padding:10px 16px;display:grid;grid-template-columns:1fr 1fr;gap:6px;}
+.vr-chip{
+  background:var(--bg);border:2px solid var(--border);border-radius:8px;
+  padding:8px 12px;cursor:pointer;transition:all .15s;
+}
+.vr-chip:hover{border-color:var(--blue);background:var(--blue-light);}
+.vr-chip-code{font-size:14px;font-weight:700;}
+.vr-chip-marca{font-size:11px;color:var(--muted);margin-top:1px;}
 
-  .inv-confirm-card {
-    background: var(--panel);
-    border: 2px solid var(--border);
-    border-radius: 16px;
-    overflow: hidden;
-    display: none;
-  }
-  .inv-confirm-card.visible { display: block; }
+/* ─── MOVIMIENTOS ────────────────────────── */
+.mov-viewfinder{
+  position:relative;background:#000;border-radius:16px;overflow:hidden;
+  aspect-ratio:4/3;margin-bottom:12px;box-shadow:0 4px 20px #0002;
+}
+.mov-viewfinder video{width:100%;height:100%;object-fit:cover;display:block;}
 
-  .inv-card-top {
-    padding: 16px 18px;
-    border-bottom: 2px solid var(--border);
-  }
-  .inv-card-tipo {
-    font-size: 13px;
-    font-weight: 700;
-    color: var(--muted);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    margin-bottom: 4px;
-  }
-  .inv-card-vehiculo {
-    font-size: 20px;
-    font-weight: 800;
-    color: var(--text);
-  }
-  .inv-card-codigo {
-    font-size: 14px;
-    color: var(--muted);
-    margin-top: 2px;
-  }
+.mov-found-card{
+  background:var(--panel);border:2px solid var(--blue);
+  border-radius:16px;overflow:hidden;display:none;margin-bottom:4px;
+}
+.mov-found-card.show{display:block;}
+.mfc-top{padding:14px 16px;border-bottom:2px solid var(--border);}
+.mfc-tipo{font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:2px;}
+.mfc-veh{font-size:22px;font-weight:900;}
+.mfc-cod{font-size:13px;color:var(--muted);margin-top:2px;}
 
-  .inv-stock-section {
-    padding: 20px 18px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 16px;
-  }
-  .inv-stock-label {
-    font-size: 13px;
-    font-weight: 700;
-    color: var(--muted);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-  }
-  .inv-stock-number {
-    font-size: 52px;
-    font-weight: 800;
-    color: var(--text);
-    line-height: 1;
-    min-width: 80px;
-    text-align: center;
-  }
-  .inv-stock-number.low { color: var(--amber); }
-  .inv-stock-number.zero { color: var(--red); }
+.stock-display{
+  display:flex;align-items:center;gap:16px;
+  padding:18px 16px;border-bottom:2px solid var(--border);
+}
+.stock-num{font-size:68px;font-weight:900;line-height:1;min-width:90px;text-align:center;}
+.stock-num.zero{color:var(--red);}
+.stock-num.low{color:var(--amber);}
+.stock-num.ok{color:var(--green);}
+.stock-num-lbl{font-size:13px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;}
 
-  .inv-btns {
-    display: flex;
-    gap: 10px;
-    padding: 0 18px 18px;
-  }
-  .inv-btn {
-    flex: 1;
-    padding: 18px;
-    font-family: var(--font);
-    font-size: 28px;
-    font-weight: 800;
-    border: none;
-    border-radius: 12px;
-    cursor: pointer;
-    transition: all 0.12s;
-  }
-  .inv-btn:active { transform: scale(0.95); }
-  .inv-btn-minus { background: #fff0f0; color: var(--red); border: 2px solid #fcc; }
-  .inv-btn-plus  { background: #f0fff5; color: var(--green); border: 2px solid #b2f0cb; }
-  .inv-btn-minus:hover { background: #ffe0e0; }
-  .inv-btn-plus:hover  { background: #dcfce9; }
+.qty-row{
+  display:flex;align-items:center;gap:14px;
+  padding:14px 16px;border-bottom:2px solid var(--border);
+}
+.qty-lbl{font-size:15px;font-weight:700;flex-shrink:0;}
+.qty-ctrl{display:flex;align-items:center;border:2px solid var(--border);border-radius:12px;overflow:hidden;}
+.qty-btn{
+  width:46px;height:46px;border:none;background:var(--bg);
+  font-size:24px;font-weight:700;cursor:pointer;color:var(--text);transition:background .1s;
+}
+.qty-btn:active{background:var(--border);}
+.qty-inp{
+  width:56px;text-align:center;font-size:22px;font-weight:800;
+  border:none;border-left:2px solid var(--border);border-right:2px solid var(--border);
+  outline:none;font-family:var(--f);color:var(--text);background:var(--panel);padding:8px 0;
+}
 
-  .inv-saving {
-    text-align: center;
-    padding: 10px;
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--muted);
-    display: none;
-  }
-  .inv-saving.visible { display: block; }
+.mov-btns{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:14px 16px;}
+.mov-btn{
+  padding:22px 10px;border:none;border-radius:14px;cursor:pointer;
+  font-family:var(--f);font-weight:900;font-size:22px;
+  transition:all .12s;display:flex;flex-direction:column;align-items:center;gap:5px;
+}
+.mov-btn:active{transform:scale(.95);}
+.mov-btn-sub{font-size:13px;font-weight:600;opacity:.75;}
+.btn-ing{background:var(--green-light);color:var(--green);border:2px solid #86efac;}
+.btn-ing:hover{background:#bbf7d0;}
+.btn-sal{background:var(--red-light);color:var(--red);border:2px solid #fca5a5;}
+.btn-sal:hover{background:#fecaca;}
 
-  /* LISTA DE STOCK */
-  .inv-list-panel {
-    background: var(--panel);
-    border: 2px solid var(--border);
-    border-radius: 16px;
-    overflow: hidden;
-  }
-  .inv-list-header {
-    padding: 14px 18px;
-    border-bottom: 2px solid var(--border);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .inv-list-title {
-    font-size: 15px;
-    font-weight: 800;
-    color: var(--text);
-  }
-  .inv-refresh-btn {
-    padding: 6px 12px;
-    font-family: var(--font);
-    font-size: 12px;
-    font-weight: 700;
-    background: var(--bg);
-    border: 2px solid var(--border);
-    border-radius: 8px;
-    cursor: pointer;
-    color: var(--muted);
-    transition: all 0.15s;
-  }
-  .inv-refresh-btn:hover { border-color: var(--blue); color: var(--blue); }
+.mov-saving{text-align:center;padding:10px;font-size:14px;font-weight:600;color:var(--muted);display:none;}
+.mov-saving.show{display:block;}
 
-  .inv-list-item {
-    padding: 14px 18px;
-    border-bottom: 1px solid var(--border);
-    display: flex;
-    align-items: center;
-    gap: 14px;
-  }
-  .inv-list-item:last-child { border-bottom: none; }
-  .inv-item-info { flex: 1; min-width: 0; }
-  .inv-item-tipo {
-    font-size: 11px;
-    font-weight: 700;
-    color: var(--muted);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-  }
-  .inv-item-vehiculo {
-    font-size: 16px;
-    font-weight: 700;
-    color: var(--text);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  .inv-item-stock {
-    font-size: 28px;
-    font-weight: 800;
-    color: var(--text);
-    min-width: 48px;
-    text-align: right;
-  }
-  .inv-item-stock.low  { color: var(--amber); }
-  .inv-item-stock.zero { color: var(--red); }
-  .inv-empty {
-    padding: 30px 18px;
-    text-align: center;
-    color: var(--muted);
-    font-size: 15px;
-  }
+/* ─── STOCK ──────────────────────────────── */
+.stock-veh-select{
+  width:100%;padding:15px 16px;font-family:var(--f);font-size:16px;font-weight:600;
+  background:var(--panel);border:2px solid var(--border);color:var(--text);
+  border-radius:12px;outline:none;appearance:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2.5'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 14px center;
+  cursor:pointer;transition:border-color .15s;margin-bottom:14px;
+}
+.stock-veh-select:focus{border-color:var(--blue);}
 
-  /* TABS */
-  .tabs {
-    display: flex;
-    background: var(--panel);
-    border: 2px solid var(--border);
-    border-radius: 14px;
-    padding: 4px;
-    gap: 4px;
-  }
-  .tab-btn {
-    flex: 1;
-    padding: 11px 8px;
-    font-family: var(--font);
-    font-size: 14px;
-    font-weight: 700;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    background: transparent;
-    color: var(--muted);
-    transition: all 0.15s;
-  }
-  .tab-btn.active {
-    background: var(--blue);
-    color: #fff;
-    box-shadow: 0 2px 8px #1a6dff33;
-  }
-
-  .tab-panel { display: none; }
-  .tab-panel.active { display: flex; flex-direction: column; gap: 14px; }
-
-  /* VEHICLE SEARCH */
-  .vehicle-select {
-    width: 100%;
-    padding: 15px 16px;
-    font-family: var(--font);
-    font-size: 16px;
-    font-weight: 600;
-    background: var(--panel);
-    border: 2px solid var(--border);
-    color: var(--text);
-    border-radius: 12px;
-    outline: none;
-    appearance: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 14px center;
-    cursor: pointer;
-    transition: border-color 0.15s;
-  }
-  .vehicle-select:focus { border-color: var(--blue); }
-
-  .filter-type-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 8px;
-  }
-  .filter-type-btn {
-    padding: 12px 10px;
-    font-family: var(--font);
-    font-size: 13px;
-    font-weight: 700;
-    background: var(--panel);
-    border: 2px solid var(--border);
-    color: var(--text);
-    border-radius: 10px;
-    cursor: pointer;
-    transition: all 0.15s;
-    text-align: center;
-  }
-  .filter-type-btn:hover { border-color: var(--blue); color: var(--blue); }
-  .filter-type-btn.active { background: var(--blue); color: #fff; border-color: var(--blue); }
-
-  /* VEHICLE RESULTS */
-  .vehicle-result-panel {
-    background: var(--panel);
-    border: 2px solid var(--border);
-    border-radius: 16px;
-    overflow: hidden;
-    display: none;
-  }
-  .vehicle-result-panel.visible { display: block; }
-
-  .vr-header {
-    padding: 14px 18px;
-    border-bottom: 2px solid var(--border);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .vr-title {
-    font-size: 15px;
-    font-weight: 700;
-    color: var(--text);
-  }
-  .vr-subtitle {
-    font-size: 12px;
-    color: var(--muted);
-    margin-top: 2px;
-  }
-  .vr-count {
-    font-size: 13px;
-    font-weight: 700;
-    color: var(--blue);
-    background: var(--blue-dim);
-    padding: 4px 10px;
-    border-radius: 20px;
-  }
-
-  .vr-group {
-    border-bottom: 1px solid var(--border);
-  }
-  .vr-group:last-child { border-bottom: none; }
-  .vr-group-header {
-    padding: 12px 18px;
-    font-size: 12px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    color: var(--muted);
-    background: #f8f9fb;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .vr-group-count {
-    font-size: 11px;
-    background: var(--border);
-    padding: 2px 7px;
-    border-radius: 10px;
-    color: var(--muted);
-  }
-  .vr-codes {
-    padding: 12px 18px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 6px;
-  }
-  .vr-code-chip {
-    background: var(--bg);
-    border: 2px solid var(--border);
-    border-radius: 8px;
-    padding: 8px 12px;
-    cursor: pointer;
-    transition: all 0.15s;
-  }
-  .vr-code-chip:hover { border-color: var(--blue); background: var(--blue-dim); }
-  .vr-code-chip .vc-code {
-    font-size: 14px;
-    font-weight: 700;
-    color: var(--text);
-  }
-  .vr-code-chip .vc-marca {
-    font-size: 11px;
-    color: var(--muted);
-    margin-top: 1px;
-  }
+.stock-list{background:var(--panel);border:2px solid var(--border);border-radius:16px;overflow:hidden;}
+.sl-hdr{
+  padding:14px 16px;border-bottom:2px solid var(--border);
+  display:flex;justify-content:space-between;align-items:center;
+}
+.sl-hdr-title{font-size:16px;font-weight:800;}
+.sl-refresh{
+  padding:7px 12px;font-family:var(--f);font-size:12px;font-weight:700;
+  background:var(--bg);border:2px solid var(--border);border-radius:8px;
+  cursor:pointer;color:var(--muted);transition:all .15s;
+}
+.sl-refresh:hover{border-color:var(--blue);color:var(--blue);}
+.sl-item{
+  padding:14px 16px;border-bottom:1px solid var(--border);
+  display:flex;align-items:center;gap:12px;
+}
+.sl-item:last-child{border-bottom:none;}
+.sl-info{flex:1;min-width:0;}
+.sl-tipo{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;}
+.sl-veh{font-size:16px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.sl-n{font-size:30px;font-weight:900;min-width:48px;text-align:right;}
+.sl-n.zero{color:var(--red);}.sl-n.low{color:var(--amber);}.sl-n.ok{color:var(--green);}
+.sl-empty{padding:28px;text-align:center;font-size:15px;color:var(--muted);}
 </style>
 </head>
 <body>
 
-<header>
-  <h1>Filter<span>Scan</span></h1>
-  <span class="badge">PRO</span>
-</header>
+<!-- ══════ TOPBAR ══════ -->
+<div class="topbar">
+  <div class="topbar-title">Filter<span>Scan</span></div>
+  <button class="menu-btn" id="menuBtn" onclick="toggleDrawer()">
+    <span></span><span></span><span></span>
+  </button>
+</div>
 
-<main>
-
-  <!-- TABS -->
-  <div class="tabs">
-    <button class="tab-btn active" onclick="switchTab('scanner')">📷 Escanear</button>
-    <button class="tab-btn" onclick="switchTab('vehiculo')">🚛 Vehículo</button>
-    <button class="tab-btn" onclick="switchTab('inventario')">📦 Stock</button>
+<!-- ══════ DRAWER ══════ -->
+<div class="drawer-overlay" id="overlay" onclick="closeDrawer()"></div>
+<div class="drawer" id="drawer">
+  <div class="drawer-header">
+    <div class="drawer-logo">Filter<span>Scan</span></div>
+    <button class="drawer-close" onclick="closeDrawer()">✕</button>
   </div>
-
-  <!-- TAB: SCANNER -->
-  <div class="tab-panel active" id="tab-scanner">
-
-    <div class="viewfinder-wrap" id="viewfinder">
-      <video id="video" autoplay playsinline muted></video>
-      <div class="scan-zone">
-        <div class="corner-br"></div>
-        <div class="corner-bl"></div>
-        <div class="scan-line"></div>
+  <div class="drawer-nav">
+    <button class="drawer-item" id="di-vehiculo" onclick="goPage('vehiculo')">
+      <div class="di-icon">🚛</div>
+      <div class="di-text">
+        <div class="di-label">Buscar por vehículo</div>
+        <div class="di-sub">Ver filtros por modelo</div>
       </div>
-      <div class="vf-status" id="vfStatus">Iniciando cámara...</div>
-    </div>
-
-    <button class="btn-capture" id="btnCaptura" onclick="capturar()" disabled>
-      <span class="label">⬡ Escanear código</span>
-      <span class="spinner"></span>
     </button>
+    <button class="drawer-item" id="di-movimientos" onclick="goPage('movimientos')">
+      <div class="di-icon">📋</div>
+      <div class="di-text">
+        <div class="di-label">Movimientos</div>
+        <div class="di-sub">Ingresos y salidas</div>
+      </div>
+    </button>
+    <button class="drawer-item" id="di-stock" onclick="goPage('stock')">
+      <div class="di-icon">📦</div>
+      <div class="di-text">
+        <div class="di-label">Stock por camión</div>
+        <div class="di-sub">Ver existencias</div>
+      </div>
+    </button>
+  </div>
+</div>
 
-    <div class="manual-row">
-      <input id="manual" type="text" placeholder="Código manual (ej: H601/4)" autocomplete="off">
-      <button onclick="buscarManual()">BUSCAR</button>
+<!-- ══════ PÁGINA: SCANNER ══════ -->
+<div class="page active" id="page-scanner">
+
+  <div style="height:12px"></div>
+
+  <div class="viewfinder">
+    <video id="video" autoplay playsinline muted></video>
+    <div id="scanZone" class="scan-zone">
+      <div class="sz-corner tl"></div><div class="sz-corner tr"></div>
+      <div class="sz-corner br"></div><div class="sz-corner bl"></div>
+      <div class="sz-line"></div>
     </div>
-
-    <div class="result-panel" id="resultado"></div>
-
+    <div class="vf-status" id="vfStatus">Iniciando cámara...</div>
   </div>
 
-  <!-- TAB: POR VEHÍCULO -->
-  <div class="tab-panel" id="tab-vehiculo">
+  <button class="scan-btn" id="btnCaptura" onclick="capturar()" disabled>
+    <span class="lbl">📷 Escanear código</span>
+    <span class="sp"></span>
+  </button>
 
-    <select class="vehicle-select" id="vehicleSelect" onchange="onVehicleChange()">
-      <option value="">— Seleccioná el vehículo —</option>
-    </select>
-
-    <div id="filterTypeSection" style="display:none">
-      <div class="filter-type-grid" id="filterTypeGrid"></div>
-    </div>
-
-    <div class="vehicle-result-panel" id="vehicleResult"></div>
-
+  <div class="manual-row">
+    <input id="manual" type="text" placeholder="Código manual..." autocomplete="off">
+    <button onclick="buscarManual()">BUSCAR</button>
   </div>
 
-  <!-- TAB: INVENTARIO -->
-  <div class="tab-panel" id="tab-inventario">
+  <div class="result-card" id="resultado"></div>
+  <div style="height:20px"></div>
 
-    <!-- Buscar/escanear código para modificar stock -->
-    <div class="inv-search-row">
-      <input id="invManual" type="text" placeholder="Código del filtro..." autocomplete="off">
-      <button onclick="invBuscarManual()">BUSCAR</button>
-    </div>
+</div>
 
-    <!-- Tarjeta de confirmación + botones +/- -->
-    <div class="inv-confirm-card" id="invCard">
-      <div class="inv-card-top">
-        <div class="inv-card-tipo" id="invCardTipo"></div>
-        <div class="inv-card-vehiculo" id="invCardVehiculo"></div>
-        <div class="inv-card-codigo" id="invCardCodigo"></div>
-      </div>
-      <div class="inv-stock-section">
-        <div>
-          <div class="inv-stock-label">Stock actual</div>
-        </div>
-        <div class="inv-stock-number" id="invStockNum">—</div>
-      </div>
-      <div class="inv-btns">
-        <button class="inv-btn inv-btn-minus" onclick="invModificar(-1)">− Retirar</button>
-        <button class="inv-btn inv-btn-plus"  onclick="invModificar(+1)">+ Ingresar</button>
-      </div>
-      <div class="inv-saving" id="invSaving">Guardando en Google Sheets...</div>
-    </div>
+<!-- ══════ PÁGINA: VEHÍCULO ══════ -->
+<div class="page" id="page-vehiculo">
+  <div style="height:12px"></div>
+  <div class="section-title">Buscar por vehículo</div>
+  <div class="section-sub">Seleccioná el modelo para ver sus filtros</div>
 
-    <!-- Lista de todo el stock -->
-    <div class="inv-list-panel">
-      <div class="inv-list-header">
-        <span class="inv-list-title">📋 Stock actual</span>
-        <button class="inv-refresh-btn" onclick="invCargarLista()">↻ Actualizar</button>
-      </div>
-      <div id="invListBody"><div class="inv-empty">Cargando...</div></div>
-    </div>
+  <select class="veh-select" id="vehicleSelect" onchange="onVehicleChange()">
+    <option value="">— Seleccioná el vehículo —</option>
+  </select>
 
+  <div id="tipoSection" style="display:none;margin-bottom:12px;">
+    <div style="font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px;">Tipo de filtro</div>
+    <div class="tipo-grid" id="tipoGrid"></div>
   </div>
 
-</main>
+  <div class="veh-result" id="vehResult"></div>
+  <div style="height:20px"></div>
+</div>
+
+<!-- ══════ PÁGINA: MOVIMIENTOS ══════ -->
+<div class="page" id="page-movimientos">
+  <div style="height:12px"></div>
+  <div class="section-title">Movimientos</div>
+  <div class="section-sub" style="margin-bottom:14px">Escaneá o ingresá el código</div>
+
+  <div class="mov-viewfinder">
+    <video id="video2" autoplay playsinline muted></video>
+    <div id="scanZone2" class="scan-zone">
+      <div class="sz-corner tl"></div><div class="sz-corner tr"></div>
+      <div class="sz-corner br"></div><div class="sz-corner bl"></div>
+      <div class="sz-line"></div>
+    </div>
+    <div class="vf-status" id="vfStatus2">Cámara...</div>
+  </div>
+
+  <button class="scan-btn" id="btnMov" onclick="capturarMov()" disabled style="margin-bottom:10px;">
+    <span class="lbl">📷 Escanear</span>
+    <span class="sp"></span>
+  </button>
+
+  <div class="manual-row" style="margin-bottom:12px;">
+    <input id="movInput" type="text" placeholder="Código manual..." autocomplete="off">
+    <button onclick="movBuscarManual()">BUSCAR</button>
+  </div>
+
+  <!-- Tarjeta filtro encontrado -->
+  <div class="mov-found-card" id="movCard">
+    <div class="mfc-top">
+      <div class="mfc-tipo" id="mcTipo"></div>
+      <div class="mfc-veh"  id="mcVeh"></div>
+      <div class="mfc-cod"  id="mcCod"></div>
+    </div>
+
+    <div class="stock-display">
+      <div><div class="stock-num-lbl">Stock actual</div></div>
+      <div class="stock-num" id="movStockNum">—</div>
+    </div>
+
+    <div class="qty-row">
+      <span class="qty-lbl">Cantidad</span>
+      <div class="qty-ctrl">
+        <button class="qty-btn" onclick="qtyChange(-1)">−</button>
+        <input class="qty-inp" id="qtyVal" type="number" value="1" min="1" max="999">
+        <button class="qty-btn" onclick="qtyChange(+1)">+</button>
+      </div>
+    </div>
+
+    <div class="mov-btns">
+      <button class="mov-btn btn-ing" onclick="registrarMov(+1)">
+        ↑ INGRESO
+        <span class="mov-btn-sub">Suma al stock</span>
+      </button>
+      <button class="mov-btn btn-sal" onclick="registrarMov(-1)">
+        ↓ SALIDA
+        <span class="mov-btn-sub">Resta del stock</span>
+      </button>
+    </div>
+    <div class="mov-saving" id="movSaving"></div>
+  </div>
+
+  <div style="height:20px"></div>
+</div>
+
+<!-- ══════ PÁGINA: STOCK ══════ -->
+<div class="page" id="page-stock">
+  <div style="height:12px"></div>
+  <div class="section-title">Stock por camión</div>
+  <div class="section-sub">Filtrá por modelo para ver existencias</div>
+
+  <select class="stock-veh-select" id="stockVehSelect" onchange="stockFiltrar()">
+    <option value="">— Todos los vehículos —</option>
+  </select>
+
+  <div class="stock-list">
+    <div class="sl-hdr">
+      <span class="sl-hdr-title">📋 Existencias</span>
+      <button class="sl-refresh" onclick="stockCargarLista()">↻ Actualizar</button>
+    </div>
+    <div id="stockListBody"><div class="sl-empty">Cargando...</div></div>
+  </div>
+  <div style="height:20px"></div>
+</div>
 
 <script>
-const video    = document.getElementById("video");
-const vfStatus = document.getElementById("vfStatus");
-const btnCap   = document.getElementById("btnCaptura");
-const scanZone = document.querySelector(".scan-zone");
-let DB = {};
+// ══ CONFIG ══
+const SHEET_URL = "https://script.google.com/macros/s/AKfycbztNJtQ2QKdFZ2qn5fwXAkkpQL822uVhXLBGYjNE2JRwJcNnu6k4TB9c7X2G2cRWFuqEA/exec";
 
-// ─── CARGAR DB ────────────────────────────────────────────────
+// ══ ESTADO ══
+let DB = {};
+let movGrupoActual = null;
+let allStockItems  = [];
+
+// ══ DB ══
 fetch("database.json")
   .then(r => r.json())
-  .then(d => { DB = d; console.log("DB cargada:", Object.keys(DB).length, "registros"); poblarVehiculos(); })
-  .catch(() => console.error("No se pudo cargar database.json"));
+  .then(d => {
+    DB = d;
+    poblarSelectores();
+    stockCargarLista();
+  })
+  .catch(() => console.error("Error cargando database.json"));
 
-// ─── CÁMARA ──────────────────────────────────────────────────
-navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } })
-  .then(stream => {
-    video.srcObject = stream;
-    vfStatus.textContent = "Listo — Apuntar al código";
+// ══ DRAWER ══
+function toggleDrawer() {
+  document.getElementById('drawer').classList.toggle('open');
+  document.getElementById('overlay').classList.toggle('open');
+}
+function closeDrawer() {
+  document.getElementById('drawer').classList.remove('open');
+  document.getElementById('overlay').classList.remove('open');
+}
+
+// ══ NAVEGACIÓN ══
+function goPage(name) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.drawer-item').forEach(b => b.classList.remove('active'));
+  document.getElementById('page-' + name).classList.add('active');
+  const di = document.getElementById('di-' + name);
+  if (di) di.classList.add('active');
+  closeDrawer();
+  window.scrollTo(0, 0);
+}
+
+// ══ CÁMARA SCANNER ══
+const video     = document.getElementById('video');
+const vfStatus  = document.getElementById('vfStatus');
+const btnCap    = document.getElementById('btnCaptura');
+const scanZone  = document.getElementById('scanZone');
+
+navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } })
+  .then(s => {
+    video.srcObject = s;
+    vfStatus.textContent = 'Apuntar al código del filtro';
     btnCap.disabled = false;
   })
-  .catch(() => {
-    vfStatus.textContent = "Error al acceder a la cámara";
-    vfStatus.classList.add("error");
-  });
+  .catch(() => { vfStatus.textContent = 'Sin acceso a cámara'; });
 
-// ─── CAPTURA Y PROCESADO ─────────────────────────────────────
 function capturar() {
-  const vw = video.videoWidth  || 640;
-  const vh = video.videoHeight || 480;
-
-  // Mandamos el frame completo: Claude encuentra el codigo solo
-  const canvas = document.createElement("canvas");
-  canvas.width  = vw;
-  canvas.height = vh;
-  const ctx = canvas.getContext("2d");
-  ctx.drawImage(video, 0, 0);
-
-  const base64 = canvas.toDataURL("image/jpeg", 0.85).split(",")[1];
-
-  setLoading(true);
-  scanZone.classList.add("scanning");
-
-  leerConClaude(base64);
+  const c = document.createElement('canvas');
+  c.width = video.videoWidth||640; c.height = video.videoHeight||480;
+  c.getContext('2d').drawImage(video,0,0);
+  const b64 = c.toDataURL('image/jpeg',.85).split(',')[1];
+  setScanLoading(true);
+  leerClaude(b64, 'scanner');
 }
 
-// ─── CLAUDE VISION (vía proxy Netlify) ───────────────────────
-async function leerConClaude(base64) {
+function setScanLoading(on) {
+  btnCap.disabled = on;
+  btnCap.classList.toggle('loading', on);
+  vfStatus.textContent = on ? 'Analizando...' : 'Apuntar al código del filtro';
+  if (on) scanZone.classList.add('scanning');
+  else    scanZone.classList.remove('scanning');
+}
+
+// ══ CÁMARA MOVIMIENTOS ══
+const video2    = document.getElementById('video2');
+const vfStatus2 = document.getElementById('vfStatus2');
+const btnMov    = document.getElementById('btnMov');
+const scanZone2 = document.getElementById('scanZone2');
+
+navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } })
+  .then(s => {
+    video2.srcObject = s;
+    vfStatus2.textContent = 'Apuntar al código';
+    btnMov.disabled = false;
+  })
+  .catch(() => { vfStatus2.textContent = 'Sin acceso a cámara'; });
+
+function capturarMov() {
+  const c = document.createElement('canvas');
+  c.width = video2.videoWidth||640; c.height = video2.videoHeight||480;
+  c.getContext('2d').drawImage(video2,0,0);
+  const b64 = c.toDataURL('image/jpeg',.85).split(',')[1];
+  setMovLoading(true);
+  leerClaude(b64, 'movimientos');
+}
+
+function setMovLoading(on) {
+  btnMov.disabled = on;
+  btnMov.classList.toggle('loading', on);
+  vfStatus2.textContent = on ? 'Analizando...' : 'Apuntar al código';
+  if (on) scanZone2.classList.add('scanning');
+  else    scanZone2.classList.remove('scanning');
+}
+
+// ══ CLAUDE API ══
+async function leerClaude(b64, destino) {
   try {
-    // Llamamos a NUESTRA función serverless, no directo a Anthropic.
-    // La API key nunca sale del servidor.
-    const response = await fetch("/.netlify/functions/claude", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ imageBase64: base64 })
+    const res = await fetch('/.netlify/functions/claude', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ imageBase64: b64 })
     });
-
-    const data = await response.json();
-
+    const data = await res.json();
     if (data.error) throw new Error(data.error);
-
-    const codigoRaw = data.codigo || "NO_DETECTADO";
-    const codigo = codigoRaw.toUpperCase().replace(/\s+/g, "");
-
-    console.log("Claude detectó:", codigo);
-    buscarInteligente(codigo);
-
-  } catch (e) {
-    console.error("Error Claude API:", e);
-    mostrarError("Error: " + e.message + "\nRevisa los logs en Netlify o usá búsqueda manual.");
+    const codigo = (data.codigo||'NO_DETECTADO').toUpperCase().replace(/\s+/g,'');
+    if (destino === 'scanner')      buscarInteligente(codigo, 'scanner');
+    else if (destino === 'movimientos') movCargarFiltro(codigo);
+  } catch(e) {
+    if (destino === 'scanner') mostrarError('Error: ' + e.message);
   } finally {
-    setLoading(false);
-    scanZone.classList.remove("scanning");
+    if (destino === 'scanner')      setScanLoading(false);
+    else if (destino === 'movimientos') setMovLoading(false);
   }
 }
 
-// ─── BÚSQUEDA ────────────────────────────────────────────────
-function buscarInteligente(codigo) {
-  if (!codigo || codigo === "NO_DETECTADO") {
-    mostrarError("No se detectó ningún código en la imagen.\nIntentá de nuevo con mejor iluminación.");
-    return;
+// ══ BÚSQUEDA ══
+function buscarEnDB(codigo) {
+  let key = codigo.toUpperCase();
+  if (DB[key]) return { key, data: DB[key] };
+  const norm = key.replace(/[\s\-]/g,'');
+  if (DB[norm]) return { key: norm, data: DB[norm] };
+  let best = null, bestD = Infinity;
+  const umbral = Math.max(2, Math.floor(key.length * .25));
+  for (const k in DB) {
+    const d = lev(key, k);
+    if (d < bestD) { bestD = d; best = k; }
   }
+  if (bestD <= umbral && best) return { key: best, data: DB[best], aprox: true, original: codigo };
+  return null;
+}
 
-  // Buscar exacto
-  if (DB[codigo]) {
-    return mostrar(codigo, DB[codigo], false);
+function buscarInteligente(codigo, destino) {
+  if (!codigo || codigo === 'NO_DETECTADO') {
+    mostrarError('No se detectó ningún código. Intentá de nuevo.'); return;
   }
-
-  // Buscar sin espacios / variantes
-  const normalizado = codigo.replace(/[\s\-]/g, "");
-  if (DB[normalizado]) {
-    return mostrar(normalizado, DB[normalizado], false);
-  }
-
-  // Fuzzy por distancia Levenshtein
-  let mejor = null;
-  let mejorDist = Infinity;
-
-  for (const key in DB) {
-    const d = levenshtein(codigo, key);
-    if (d < mejorDist) { mejorDist = d; mejor = key; }
-  }
-
-  const umbral = Math.max(2, Math.floor(codigo.length * 0.25));
-
-  if (mejorDist <= umbral && mejor) {
-    mostrar(mejor, DB[mejor], true, codigo);
-  } else {
-    mostrarError(`Código no encontrado en la base de datos.\nDetectado: ${codigo}`);
-  }
+  const found = buscarEnDB(codigo);
+  if (!found) { mostrarError('Código no encontrado: ' + codigo); return; }
+  mostrarResultado(found.key, found.data, found.aprox, found.original || codigo);
 }
 
 function buscarManual() {
-  const codigo = document.getElementById("manual").value.trim().toUpperCase();
-  if (!codigo) return;
-  buscarInteligente(codigo);
+  const c = document.getElementById('manual').value.trim().toUpperCase();
+  if (c) buscarInteligente(c, 'scanner');
 }
+document.getElementById('manual').addEventListener('keydown', e => { if(e.key==='Enter') buscarManual(); });
 
-// Enter en input
-document.getElementById("manual").addEventListener("keydown", e => {
-  if (e.key === "Enter") buscarManual();
-});
-
-// ─── RENDER RESULTADO ────────────────────────────────────────
-function mostrar(codigo, data, aproximado = false, detectado = "") {
-  const panel = document.getElementById("resultado");
-
-  const statusClass = aproximado ? "approx" : "";
-  const statusLabel = aproximado
-    ? `Coincidencia aproximada${detectado ? ` (detectado: ${detectado})` : ""}`
-    : "Código encontrado";
-
-  // Equivalencias vienen directo de la DB
-  const equivs = data.equivalencias || [];
-
-  const chipsHTML = equivs.length > 0 ? `
+// ══ RESULTADO SCANNER ══
+function mostrarResultado(codigo, data, aprox, detectado) {
+  const panel = document.getElementById('resultado');
+  const modelos = Array.isArray(data.modelos) ? data.modelos.join(' / ') : (data.modelos||'—');
+  const equivs  = data.equivalencias || [];
+  const equivHTML = equivs.length ? `
     <div class="equiv-section">
-      <div class="equiv-title">Equivalencias · ${equivs.length} código${equivs.length !== 1 ? "s" : ""}</div>
+      <div class="equiv-title">Equivalencias · ${equivs.length} código${equivs.length!==1?'s':''}</div>
       <div class="equiv-grid">
-        ${equivs.map(e => `
-          <div class="equiv-chip" onclick="resaltarChip(this, '${e.codigo.toUpperCase()}')">
-            <div class="chip-code">${e.codigo.toUpperCase()}</div>
-            <div class="chip-marca">${e.marca}</div>
-          </div>
-        `).join("")}
+        ${equivs.map(e=>`
+          <div class="eq-chip" onclick="chipClick(this,'${e.codigo.toUpperCase()}')">
+            <div class="eq-code">${e.codigo.toUpperCase()}</div>
+            <div class="eq-marca">${e.marca}</div>
+          </div>`).join('')}
       </div>
-    </div>
-  ` : "";
-
-  // Modelos: puede ser array
-  const modelos = Array.isArray(data.modelos) ? data.modelos.join(" / ") : (data.modelos || "—");
-
+    </div>` : '';
   panel.innerHTML = `
-    <div class="result-header">
-      <div class="status-dot ${statusClass}"></div>
-      <span class="status-label ${statusClass}">${statusLabel}</span>
+    <div class="rc-head">
+      <div class="rc-dot${aprox?' ap':''}"></div>
+      <span class="rc-lbl${aprox?' ap':''}">${aprox?`Aprox. (${detectado})`:'Código encontrado'}</span>
     </div>
-    <div class="found-card">
-      <div class="found-code">${codigo}</div>
-      <div class="found-grid">
-        <span class="lbl">Marca</span>    <span class="val">${data.marca}</span>
-        <span class="lbl">Tipo</span>     <span class="val">${data.tipo}</span>
-        <span class="lbl">Vehículo</span> <span class="val">${modelos}</span>
+    <div class="rc-body">
+      <div class="rc-code">${codigo}</div>
+      <div class="rc-grid">
+        <span class="rc-fl">Marca</span>    <span class="rc-fv">${data.marca}</span>
+        <span class="rc-fl">Tipo</span>     <span class="rc-fv">${data.tipo}</span>
+        <span class="rc-fl">Vehículo</span> <span class="rc-fv">${modelos}</span>
       </div>
     </div>
-    ${chipsHTML}
-  `;
-
-  panel.classList.add("visible");
-  panel.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    ${equivHTML}`;
+  panel.classList.add('show');
+  panel.scrollIntoView({ behavior:'smooth', block:'nearest' });
 }
 
 function mostrarError(msg) {
-  const panel = document.getElementById("resultado");
+  const panel = document.getElementById('resultado');
   panel.innerHTML = `
-    <div class="result-header">
-      <div class="status-dot error"></div>
-      <span class="status-label error">Sin resultado</span>
-    </div>
-    <div class="not-found">${msg.replace(/\n/g, "<br>")}</div>
-  `;
-  panel.classList.add("visible");
+    <div class="rc-head"><div class="rc-dot er"></div><span class="rc-lbl er">Sin resultado</span></div>
+    <div class="rc-nf">${msg.replace(/\n/g,'<br>')}</div>`;
+  panel.classList.add('show');
 }
 
-function resaltarChip(el, codigo) {
-  document.querySelectorAll(".equiv-chip").forEach(c => c.classList.remove("active"));
-  el.classList.add("active");
-  document.getElementById("manual").value = codigo;
+function chipClick(el, codigo) {
+  document.querySelectorAll('.eq-chip').forEach(c=>c.classList.remove('on'));
+  el.classList.add('on');
+  document.getElementById('manual').value = codigo;
 }
 
-// ─── TABS ────────────────────────────────────────────────────
-function switchTab(tab) {
-  const tabs = ['scanner', 'vehiculo', 'inventario'];
-  document.querySelectorAll('.tab-btn').forEach((b, i) => {
-    b.classList.toggle('active', tabs[i] === tab);
-  });
-  tabs.forEach(t => {
-    document.getElementById('tab-' + t).classList.toggle('active', t === tab);
-  });
-  if (tab === 'inventario') invCargarLista();
-}
+// ══ VEHÍCULO ══
+function poblarSelectores() {
+  const set = new Set();
+  for (const k in DB) (DB[k].modelos||[]).forEach(m => set.add(m));
+  const opts = [...set].sort();
 
-// ─── BÚSQUEDA POR VEHÍCULO ────────────────────────────────────
-function poblarVehiculos() {
-  // Extraer lista única de modelos de la DB
-  const modelosSet = new Set();
-  for (const key in DB) {
-    const modelos = DB[key].modelos || [];
-    modelos.forEach(m => modelosSet.add(m));
-  }
-  const sorted = [...modelosSet].sort();
-  const sel = document.getElementById('vehicleSelect');
-  sorted.forEach(m => {
-    const opt = document.createElement('option');
-    opt.value = m;
-    opt.textContent = m;
-    sel.appendChild(opt);
+  [document.getElementById('vehicleSelect'),
+   document.getElementById('stockVehSelect')].forEach(sel => {
+    opts.forEach(m => {
+      const o = document.createElement('option');
+      o.value = m; o.textContent = m; sel.appendChild(o);
+    });
   });
 }
 
 function onVehicleChange() {
   const modelo = document.getElementById('vehicleSelect').value;
-  const section = document.getElementById('filterTypeSection');
-  const grid = document.getElementById('filterTypeGrid');
-  const resultPanel = document.getElementById('vehicleResult');
-
-  resultPanel.classList.remove('visible');
-  resultPanel.innerHTML = '';
-
-  if (!modelo) {
-    section.style.display = 'none';
-    return;
-  }
-
-  // Encontrar todos los tipos de filtro para este modelo
-  const tiposSet = new Set();
-  for (const key in DB) {
-    if ((DB[key].modelos || []).includes(modelo)) {
-      tiposSet.add(DB[key].tipo);
-    }
-  }
-
-  const tipos = [...tiposSet].sort();
-  grid.innerHTML = tipos.map(t => `
-    <button class="filter-type-btn" onclick="mostrarFiltrosPorTipo('${modelo}', '${t}', this)">
-      ${t}
-    </button>
-  `).join('');
-
-  section.style.display = 'block';
+  const sec = document.getElementById('tipoSection');
+  const grid = document.getElementById('tipoGrid');
+  const res  = document.getElementById('vehResult');
+  res.classList.remove('show'); res.innerHTML = '';
+  if (!modelo) { sec.style.display='none'; return; }
+  const tipos = new Set();
+  for (const k in DB) if ((DB[k].modelos||[]).includes(modelo)) tipos.add(DB[k].tipo);
+  grid.innerHTML = [...tipos].sort().map(t=>`
+    <button class="tipo-btn" onclick="mostrarTipo('${modelo}','${t}',this)">${t}</button>`).join('');
+  sec.style.display = 'block';
 }
 
-function mostrarFiltrosPorTipo(modelo, tipo, btnEl) {
-  // Marcar botón activo
-  document.querySelectorAll('.filter-type-btn').forEach(b => b.classList.remove('active'));
-  btnEl.classList.add('active');
-
-  // Buscar todos los códigos de ese tipo para ese modelo
+function mostrarTipo(modelo, tipo, btn) {
+  document.querySelectorAll('.tipo-btn').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
   const codigos = [];
-  for (const key in DB) {
-    const d = DB[key];
-    if ((d.modelos || []).includes(modelo) && d.tipo === tipo) {
-      codigos.push({ codigo: key, marca: d.marca });
-    }
+  for (const k in DB) {
+    const d = DB[k];
+    if ((d.modelos||[]).includes(modelo) && d.tipo===tipo) codigos.push({codigo:k, marca:d.marca});
   }
-
-  const panel = document.getElementById('vehicleResult');
-
-  if (codigos.length === 0) {
-    panel.innerHTML = `<div class="not-found">No hay filtros cargados para este tipo.</div>`;
-    panel.classList.add('visible');
-    return;
+  const panel = document.getElementById('vehResult');
+  if (!codigos.length) {
+    panel.innerHTML='<div class="sl-empty">Sin filtros.</div>';
+    panel.classList.add('show'); return;
   }
-
-  // Agrupar por marca
-  const porMarca = {};
-  codigos.forEach(c => {
-    const m = c.marca || 'Otras';
-    if (!porMarca[m]) porMarca[m] = [];
-    porMarca[m].push(c);
-  });
-
-  const totalCodigos = codigos.length;
-  const gruposHTML = Object.entries(porMarca).sort((a,b) => a[0].localeCompare(b[0])).map(([marca, items]) => `
-    <div class="vr-group">
-      <div class="vr-group-header">
-        ${marca}
-        <span class="vr-group-count">${items.length}</span>
-      </div>
-      <div class="vr-codes">
-        ${items.map(c => `
-          <div class="vr-code-chip" onclick="verDetalle('${c.codigo}')">
-            <div class="vc-code">${c.codigo}</div>
-            <div class="vc-marca">${c.marca}</div>
-          </div>
-        `).join('')}
-      </div>
-    </div>
-  `).join('');
-
+  const pm = {};
+  codigos.forEach(c=>{const m=c.marca||'Otras';if(!pm[m])pm[m]=[];pm[m].push(c);});
   panel.innerHTML = `
-    <div class="vr-header">
-      <div>
-        <div class="vr-title">${tipo}</div>
-        <div class="vr-subtitle">${modelo}</div>
-      </div>
-      <span class="vr-count">${totalCodigos} códigos</span>
+    <div class="vr-top">
+      <div><div class="vr-tipo">${tipo}</div><div class="vr-veh">${modelo}</div></div>
+      <span class="vr-count">${codigos.length} códigos</span>
     </div>
-    ${gruposHTML}
-  `;
-  panel.classList.add('visible');
-  panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    ${Object.entries(pm).sort((a,b)=>a[0].localeCompare(b[0])).map(([marca,items])=>`
+      <div class="vr-group">
+        <div class="vr-ghdr">${marca}<span class="vr-gn">${items.length}</span></div>
+        <div class="vr-codes">
+          ${items.map(c=>`
+            <div class="vr-chip" onclick="irAScanner('${c.codigo}')">
+              <div class="vr-chip-code">${c.codigo}</div>
+              <div class="vr-chip-marca">${c.marca}</div>
+            </div>`).join('')}
+        </div>
+      </div>`).join('')}`;
+  panel.classList.add('show');
+  panel.scrollIntoView({ behavior:'smooth', block:'nearest' });
 }
 
-function verDetalle(codigo) {
-  // Cambiar a tab scanner y mostrar el resultado
-  switchTab('scanner');
-  const data = DB[codigo.toUpperCase()];
-  if (data) mostrar(codigo.toUpperCase(), data, false);
+function irAScanner(codigo) {
+  goPage('scanner');
+  const found = buscarEnDB(codigo);
+  if (found) mostrarResultado(found.key, found.data, found.aprox, found.original||codigo);
 }
 
-// ─── INVENTARIO ──────────────────────────────────────────────
-// URL del Google Apps Script — reemplazá con la tuya
-const SHEET_URL = "https://script.google.com/macros/s/AKfycby3pMP4OhIIfZEhtWi9hakLvRPmhBqaweTCnmDiINVIiodo5VGYZuob1XIy37wVhddHbQ/exec";
-
-let invGrupoActual = null; // { grupoId, tipo, modelos, codigos }
-
-// Construye un ID de grupo: "ACEITE__FORD CARGO 1933"
-function getGrupoId(tipo, modelos) {
-  return (tipo + "__" + [...modelos].sort().join("|")).toUpperCase();
+// ══ MOVIMIENTOS ══
+function movBuscarManual() {
+  const c = document.getElementById('movInput').value.trim().toUpperCase();
+  if (c) movCargarFiltro(c);
 }
+document.getElementById('movInput').addEventListener('keydown', e => { if(e.key==='Enter') movBuscarManual(); });
 
-// Dado un código, encuentra su grupo en la DB
-function invEncontrarGrupo(codigo) {
-  codigo = codigo.toUpperCase().trim();
-  const data = DB[codigo];
-  if (!data) return null;
-  return {
-    grupoId:  getGrupoId(data.tipo, data.modelos),
-    tipo:     data.tipo,
-    modelos:  data.modelos,
-    codigos:  [codigo, ...(data.equivalencias || []).map(e => e.codigo.toUpperCase())]
+async function movCargarFiltro(codigo) {
+  const found = buscarEnDB(codigo);
+  if (!found) { alert('Código no encontrado: ' + codigo); return; }
+  const data    = found.data;
+  const modelos = Array.isArray(data.modelos) ? data.modelos.join(' / ') : (data.modelos||'—');
+  document.getElementById('mcTipo').textContent = data.tipo;
+  document.getElementById('mcVeh').textContent  = modelos;
+  document.getElementById('mcCod').textContent  = 'Código: ' + found.key;
+
+  const grupoId = getGrupoId(data.tipo, data.modelos);
+  movGrupoActual = {
+    grupoId, tipo: data.tipo, modelos,
+    codigos: [found.key, ...(data.equivalencias||[]).map(e=>e.codigo.toUpperCase())].slice(0,8).join(', ')
   };
+
+  document.getElementById('movCard').classList.add('show');
+  document.getElementById('movStockNum').textContent = '...';
+  document.getElementById('movStockNum').className = 'stock-num';
+
+  try {
+    const stock = await apiGetStock(grupoId);
+    actualizarStockNum(stock, 'movStockNum');
+  } catch(e) { document.getElementById('movStockNum').textContent = '?'; }
+
+  document.getElementById('movCard').scrollIntoView({ behavior:'smooth', block:'nearest' });
 }
 
-// Busca manual en tab inventario
-function invBuscarManual() {
-  const codigo = document.getElementById('invManual').value.trim().toUpperCase();
-  if (!codigo) return;
-  const grupo = invEncontrarGrupo(codigo);
-  if (!grupo) {
-    alert("Código no encontrado en la base de datos.");
+function qtyChange(d) {
+  const inp = document.getElementById('qtyVal');
+  inp.value = Math.max(1, (parseInt(inp.value)||1) + d);
+}
+
+async function registrarMov(dir) {
+  if (!movGrupoActual) return;
+  const qty   = parseInt(document.getElementById('qtyVal').value)||1;
+  const delta = dir * qty;
+  const saving = document.getElementById('movSaving');
+  saving.textContent = 'Guardando...'; saving.classList.add('show');
+  try {
+    const nuevo = await apiUpdate(movGrupoActual, delta);
+    actualizarStockNum(nuevo, 'movStockNum');
+    saving.textContent = dir>0 ? `✅ Ingresados ${qty} — Stock: ${nuevo}` : `✅ Retirados ${qty} — Stock: ${nuevo}`;
+    document.getElementById('qtyVal').value = 1;
+    setTimeout(() => saving.classList.remove('show'), 2500);
+    stockCargarLista();
+  } catch(e) {
+    saving.textContent = '❌ Error al guardar.';
+    setTimeout(() => saving.classList.remove('show'), 3000);
+  }
+}
+
+function actualizarStockNum(n, id) {
+  const el = document.getElementById(id);
+  el.textContent = n;
+  el.className = 'stock-num ' + (n===0?'zero':n<=2?'low':'ok');
+}
+
+// ══ STOCK ══
+function stockFiltrar() {
+  const modelo = document.getElementById('stockVehSelect').value;
+  const items = modelo
+    ? allStockItems.filter(i => i.modelos.includes(modelo))
+    : allStockItems;
+  renderStockList(items);
+}
+
+async function stockCargarLista() {
+  const body = document.getElementById('stockListBody');
+  if (!SHEET_URL || SHEET_URL.includes('TU_URL')) {
+    body.innerHTML = '<div class="sl-empty">Configurá Google Sheets para ver el stock.</div>';
     return;
   }
-  invMostrarTarjeta(grupo, codigo);
-}
-
-// Enter en input inventario
-document.getElementById('invManual').addEventListener('keydown', e => {
-  if (e.key === 'Enter') invBuscarManual();
-});
-
-// Muestra la tarjeta con stock actual
-async function invMostrarTarjeta(grupo, codigoEscaneado) {
-  invGrupoActual = grupo;
-
-  document.getElementById('invCardTipo').textContent     = grupo.tipo;
-  document.getElementById('invCardVehiculo').textContent = grupo.modelos.join(" / ");
-  document.getElementById('invCardCodigo').textContent   = "Escaneado: " + codigoEscaneado;
-
-  const card = document.getElementById('invCard');
-  card.classList.add('visible');
-
-  // Obtener stock actual del sheet
-  const stockNum = document.getElementById('invStockNum');
-  stockNum.textContent = "...";
-  stockNum.className = 'inv-stock-number';
-
+  body.innerHTML = '<div class="sl-empty">Cargando...</div>';
   try {
-    const stock = await invGetStock(grupo.grupoId);
-    invActualizarNumero(stock);
+    const res = await fetch(SHEET_URL + '?accion=lista');
+    const d = await res.json();
+    allStockItems = (d.items||[]).sort((a,b)=>a.stock-b.stock||a.modelos.localeCompare(b.modelos));
+    stockFiltrar();
   } catch(e) {
-    stockNum.textContent = "?";
-  }
-
-  card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-}
-
-function invActualizarNumero(stock) {
-  const el = document.getElementById('invStockNum');
-  el.textContent = stock;
-  el.className = 'inv-stock-number' + (stock === 0 ? ' zero' : stock <= 2 ? ' low' : '');
-}
-
-// Modifica stock (+1 o -1)
-async function invModificar(delta) {
-  if (!invGrupoActual) return;
-
-  const saving = document.getElementById('invSaving');
-  saving.classList.add('visible');
-
-  try {
-    const nuevoStock = await invUpdateStock(invGrupoActual, delta);
-    invActualizarNumero(nuevoStock);
-    saving.textContent = delta > 0 ? "✅ Ingresado correctamente" : "✅ Retirado correctamente";
-    setTimeout(() => {
-      saving.classList.remove('visible');
-      saving.textContent = "Guardando en Google Sheets...";
-    }, 2000);
-  } catch(e) {
-    saving.textContent = "❌ Error al guardar. Revisá la conexión.";
-    setTimeout(() => saving.classList.remove('visible'), 3000);
+    body.innerHTML = '<div class="sl-empty">Error al cargar.</div>';
   }
 }
 
-// GET stock de un grupo
-async function invGetStock(grupoId) {
-  const url = SHEET_URL + "?accion=get&grupoId=" + encodeURIComponent(grupoId);
-  const res = await fetch(url);
-  const data = await res.json();
-  return data.stock || 0;
+function renderStockList(items) {
+  const body = document.getElementById('stockListBody');
+  if (!items.length) { body.innerHTML='<div class="sl-empty">Sin datos para mostrar.</div>'; return; }
+  body.innerHTML = items.map(item => {
+    const cls = item.stock===0?'zero':item.stock<=2?'low':'ok';
+    return `<div class="sl-item">
+      <div class="sl-info">
+        <div class="sl-tipo">${item.tipo}</div>
+        <div class="sl-veh">${item.modelos}</div>
+      </div>
+      <div class="sl-n ${cls}">${item.stock}</div>
+    </div>`;
+  }).join('');
 }
 
-// UPDATE stock
-async function invUpdateStock(grupo, delta) {
+// ══ GOOGLE SHEETS API ══
+function getGrupoId(tipo, modelos) {
+  return (tipo + '__' + [...(Array.isArray(modelos)?modelos:[modelos])].sort().join('|')).toUpperCase();
+}
+
+async function apiGetStock(grupoId) {
+  if (!SHEET_URL || SHEET_URL.includes('TU_URL')) return 0;
+  const res = await fetch(SHEET_URL + '?accion=get&grupoId=' + encodeURIComponent(grupoId));
+  return (await res.json()).stock || 0;
+}
+
+async function apiUpdate(grupo, delta) {
+  if (!SHEET_URL || SHEET_URL.includes('TU_URL')) {
+    const cur = parseInt(document.getElementById('movStockNum').textContent)||0;
+    return Math.max(0, cur + delta);
+  }
   const res = await fetch(SHEET_URL, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      accion:   "update",
-      grupoId:  grupo.grupoId,
-      tipo:     grupo.tipo,
-      modelos:  grupo.modelos.join(" / "),
-      codigos:  grupo.codigos.slice(0, 8).join(", "),
-      delta:    delta
-    })
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ accion:'update', ...grupo, delta })
   });
-  const data = await res.json();
-  return data.nuevoStock;
+  return (await res.json()).nuevoStock;
 }
 
-// Carga lista completa de stock
-async function invCargarLista() {
-  const body = document.getElementById('invListBody');
-  body.innerHTML = '<div class="inv-empty">Cargando...</div>';
-
-  try {
-    const url = SHEET_URL + "?accion=lista";
-    const res = await fetch(url);
-    const data = await res.json();
-    const items = data.items || [];
-
-    if (!items.length) {
-      body.innerHTML = '<div class="inv-empty">No hay stock cargado todavía.</div>';
-      return;
-    }
-
-    // Ordenar: stock 0 primero (urgente), luego por vehículo
-    items.sort((a, b) => a.stock - b.stock || a.modelos.localeCompare(b.modelos));
-
-    body.innerHTML = items.map(item => {
-      const cls = item.stock === 0 ? 'zero' : item.stock <= 2 ? 'low' : '';
-      return `
-        <div class="inv-list-item">
-          <div class="inv-item-info">
-            <div class="inv-item-tipo">${item.tipo}</div>
-            <div class="inv-item-vehiculo">${item.modelos}</div>
-          </div>
-          <div class="inv-item-stock ${cls}">${item.stock}</div>
-        </div>
-      `;
-    }).join('');
-  } catch(e) {
-    body.innerHTML = '<div class="inv-empty">Error al cargar. Verificá la conexión.</div>';
-  }
-}
-
-// ─── UTILS ───────────────────────────────────────────────────
-function setLoading(on) {
-  btnCap.disabled = on;
-  btnCap.classList.toggle("loading", on);
-  vfStatus.textContent = on ? "Analizando con IA..." : "Listo — Apuntar al código";
-}
-
-function levenshtein(a, b) {
-  const m = a.length, n = b.length;
-  const dp = Array.from({ length: m + 1 }, (_, i) => [i]);
-  for (let j = 0; j <= n; j++) dp[0][j] = j;
-  for (let i = 1; i <= m; i++)
-    for (let j = 1; j <= n; j++)
-      dp[i][j] = a[i-1] === b[j-1]
-        ? dp[i-1][j-1]
-        : 1 + Math.min(dp[i-1][j-1], dp[i][j-1], dp[i-1][j]);
+// ══ UTILS ══
+function lev(a, b) {
+  const m=a.length,n=b.length;
+  const dp=Array.from({length:m+1},(_,i)=>[i]);
+  for(let j=0;j<=n;j++)dp[0][j]=j;
+  for(let i=1;i<=m;i++)for(let j=1;j<=n;j++)
+    dp[i][j]=a[i-1]===b[j-1]?dp[i-1][j-1]:1+Math.min(dp[i-1][j-1],dp[i][j-1],dp[i-1][j]);
   return dp[m][n];
 }
 </script>
