@@ -256,13 +256,37 @@ body { font-family: var(--f); background: var(--bg); color: var(--text); min-hei
 .sl-n{font-size:28px;font-weight:900;min-width:46px;text-align:right;}
 .sl-n.zero{color:var(--red);}.sl-n.low{color:var(--amber);}.sl-n.ok{color:var(--green);}
 .sl-empty{padding:28px;text-align:center;font-size:15px;color:var(--muted);}
+.tipo-stock-row{padding:24px 20px;display:flex;align-items:center;justify-content:space-between;background:var(--panel);}
+.tipo-stock-label{font-size:14px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;}
+.tipo-stock-num{font-size:72px;font-weight:900;line-height:1;color:var(--text);}
+.tipo-stock-num.zero{color:var(--red);}.tipo-stock-num.low{color:var(--amber);}.tipo-stock-num.ok{color:var(--green);}
+.tipo-stock-footer{padding:12px 20px 16px;font-size:13px;color:var(--muted);border-top:1px solid var(--border);}
+.home-btn{padding:8px 14px;font-family:var(--f);font-size:14px;font-weight:700;background:var(--bg);border:2px solid var(--border);color:var(--text);border-radius:10px;cursor:pointer;transition:all .15s;white-space:nowrap;}
+.home-btn:hover{border-color:var(--blue);color:var(--blue);}
+.tipo-stock-row {
+  padding: 24px 20px; display: flex; align-items: center;
+  justify-content: space-between; background: var(--panel);
+}
+.tipo-stock-label { font-size: 14px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .5px; }
+.tipo-stock-num { font-size: 72px; font-weight: 900; line-height: 1; color: var(--text); }
+.tipo-stock-num.zero{color:var(--red);} .tipo-stock-num.low{color:var(--amber);} .tipo-stock-num.ok{color:var(--green);}
+.tipo-stock-footer { padding: 12px 20px 16px; font-size: 13px; color: var(--muted); border-top: 1px solid var(--border); }
+.home-btn {
+  padding: 8px 14px; font-family: var(--f); font-size: 14px; font-weight: 700;
+  background: var(--bg); border: 2px solid var(--border); color: var(--text);
+  border-radius: 10px; cursor: pointer; transition: all .15s; white-space: nowrap;
+}
+.home-btn:hover { border-color: var(--blue); color: var(--blue); }
 </style>
 </head>
 <body>
 
 <!-- TOPBAR -->
 <div class="topbar">
-  <div class="topbar-title">Filter<span>Scan</span></div>
+  <button class="home-btn" id="homeBtn" onclick="goPage('scanner')" style="display:none">
+    ← Inicio
+  </button>
+  <div class="topbar-title" style="flex:1">Filter<span>Scan</span></div>
   <button class="menu-btn" onclick="toggleDrawer()">
     <span></span><span></span><span></span>
   </button>
@@ -390,6 +414,8 @@ function goPage(name) {
   document.getElementById('page-' + name).classList.add('active');
   const di = document.getElementById('di-' + name);
   if (di) di.classList.add('active');
+  // mostrar botón home solo cuando no estás en scanner
+  document.getElementById('homeBtn').style.display = name === 'scanner' ? 'none' : 'block';
   closeDrawer();
   window.scrollTo(0, 0);
 }
@@ -611,34 +637,44 @@ async function mostrarTipo(modelo, tipo, btn) {
   document.querySelectorAll('.tipo-btn').forEach(b=>b.classList.remove('on'));
   btn.classList.add('on');
 
-  const codigos = [];
+  // Obtener el grupoId para este tipo+modelo (es uno solo, stock compartido entre equivalencias)
+  // Tomamos el primer código del grupo para obtener el grupoId real
+  let grupoId = null;
   for (const k in DB) {
     const d = DB[k];
-    if ((d.modelos||[]).includes(modelo) && d.tipo===tipo) codigos.push({ codigo:k, marca:d.marca });
+    if ((d.modelos||[]).includes(modelo) && d.tipo===tipo) {
+      grupoId = getGrupoId(tipo, d.modelos);
+      break;
+    }
   }
 
   const table = document.getElementById('codesTable');
-  table.innerHTML = `<div class="ct-head"><span class="ct-title">${tipo} · ${modelo}</span><span class="ct-count">${codigos.length} códigos</span></div>
-    ${codigos.map(c=>`
-      <div class="ct-row" onclick="irAScanner('${c.codigo}')">
-        <div class="ct-info">
-          <div class="ct-code">${c.codigo}</div>
-          <div class="ct-marca">${c.marca}</div>
-        </div>
-        <div class="ct-stock" id="cts-${c.codigo}">...</div>
-      </div>`).join('')}`;
+  table.innerHTML = `
+    <div class="ct-head">
+      <span class="ct-title">${tipo}</span>
+      <span class="ct-count">${modelo}</span>
+    </div>
+    <div class="tipo-stock-row">
+      <div class="tipo-stock-label">Unidades en stock</div>
+      <div class="tipo-stock-num" id="tipoStockNum">...</div>
+    </div>
+    <div class="tipo-stock-footer">
+      Incluye todas las marcas equivalentes
+    </div>`;
   table.classList.add('show');
   table.scrollIntoView({ behavior:'smooth', block:'nearest' });
 
-  // Cargar stock de cada código
-  for (const c of codigos) {
-    const grupoId = getGrupoId(tipo, DB[c.codigo]?.modelos || [modelo]);
+  // Cargar stock total del grupo
+  if (grupoId) {
     try {
       const stock = await apiGetStock(grupoId);
-      const el = document.getElementById('cts-' + c.codigo);
-      if (el) { el.textContent=stock; el.className='ct-stock '+(stock===0?'zero':stock<=2?'low':'ok'); }
+      const el = document.getElementById('tipoStockNum');
+      if (el) {
+        el.textContent = stock;
+        el.className = 'tipo-stock-num ' + (stock===0?'zero':stock<=2?'low':'ok');
+      }
     } catch(e) {
-      const el = document.getElementById('cts-' + c.codigo);
+      const el = document.getElementById('tipoStockNum');
       if (el) el.textContent = '?';
     }
   }
