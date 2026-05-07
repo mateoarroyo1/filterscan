@@ -637,16 +637,29 @@ async function mostrarTipo(modelo, tipo, btn) {
   document.querySelectorAll('.tipo-btn').forEach(b=>b.classList.remove('on'));
   btn.classList.add('on');
 
-  // Obtener el grupoId para este tipo+modelo (es uno solo, stock compartido entre equivalencias)
-  // Tomamos el primer código del grupo para obtener el grupoId real
-  let grupoId = null;
+  // Juntar todos los códigos del grupo
+  const codigos = [];
   for (const k in DB) {
     const d = DB[k];
-    if ((d.modelos||[]).includes(modelo) && d.tipo===tipo) {
-      grupoId = getGrupoId(tipo, d.modelos);
-      break;
-    }
+    if ((d.modelos||[]).includes(modelo) && d.tipo===tipo)
+      codigos.push({ codigo:k, marca:d.marca });
   }
+
+  // Equivalencias colapsables HTML
+  const equivHTML = codigos.length ? `
+    <button class="equiv-toggle" id="vehEquivToggle" onclick="toggleVehEquiv()" style="width:100%;padding:13px 16px;display:flex;align-items:center;justify-content:space-between;border:none;background:none;border-top:2px solid var(--border);cursor:pointer;font-family:var(--f);font-size:13px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;">
+      Ver equivalencias (${codigos.length})
+      <span id="vehEquivArr" style="transition:transform .2s;font-size:16px;">▾</span>
+    </button>
+    <div id="vehEquivBody" style="display:none;padding:0 16px 14px;">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;padding-top:10px;">
+        ${codigos.map(c=>`
+          <div class="eq-chip" onclick="irAScanner('${c.codigo}')">
+            <div class="eq-code">${c.codigo}</div>
+            <div class="eq-marca">${c.marca}</div>
+          </div>`).join('')}
+      </div>
+    </div>` : '';
 
   const table = document.getElementById('codesTable');
   table.innerHTML = `
@@ -658,26 +671,41 @@ async function mostrarTipo(modelo, tipo, btn) {
       <div class="tipo-stock-label">Unidades en stock</div>
       <div class="tipo-stock-num" id="tipoStockNum">...</div>
     </div>
-    <div class="tipo-stock-footer">
-      Incluye todas las marcas equivalentes
-    </div>`;
+    <div class="tipo-stock-footer">Incluye todas las marcas equivalentes</div>
+    ${equivHTML}`;
   table.classList.add('show');
   table.scrollIntoView({ behavior:'smooth', block:'nearest' });
 
-  // Cargar stock total del grupo
-  if (grupoId) {
-    try {
-      const stock = await apiGetStock(grupoId);
-      const el = document.getElementById('tipoStockNum');
-      if (el) {
-        el.textContent = stock;
-        el.className = 'tipo-stock-num ' + (stock===0?'zero':stock<=2?'low':'ok');
-      }
-    } catch(e) {
-      const el = document.getElementById('tipoStockNum');
-      if (el) el.textContent = '?';
+  // Buscar stock: primero en allStock (más confiable), si no llamar a la API
+  const stockItem = allStock.find(item =>
+    item.tipo.toUpperCase() === tipo.toUpperCase() &&
+    item.modelos.toUpperCase().includes(modelo.toUpperCase())
+  );
+
+  const el = document.getElementById('tipoStockNum');
+  if (stockItem !== undefined) {
+    const stock = stockItem.stock;
+    if (el) { el.textContent=stock; el.className='tipo-stock-num '+(stock===0?'zero':stock<=2?'low':'ok'); }
+  } else {
+    // No está en allStock todavía, consultar API directo
+    if (codigos.length) {
+      const grupoId = getGrupoId(tipo, DB[codigos[0].codigo]?.modelos || [modelo]);
+      try {
+        const stock = await apiGetStock(grupoId);
+        if (el) { el.textContent=stock; el.className='tipo-stock-num '+(stock===0?'zero':stock<=2?'low':'ok'); }
+      } catch(e) { if(el) el.textContent='?'; }
+    } else {
+      if(el) { el.textContent='0'; el.className='tipo-stock-num zero'; }
     }
   }
+}
+
+function toggleVehEquiv() {
+  const body = document.getElementById('vehEquivBody');
+  const arr  = document.getElementById('vehEquivArr');
+  const open = body.style.display === 'block';
+  body.style.display = open ? 'none' : 'block';
+  arr.style.transform = open ? '' : 'rotate(180deg)';
 }
 
 function irAScanner(codigo) {
