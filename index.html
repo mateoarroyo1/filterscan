@@ -256,6 +256,23 @@ body { font-family: var(--f); background: var(--bg); color: var(--text); min-hei
 .sl-n{font-size:28px;font-weight:900;min-width:46px;text-align:right;}
 .sl-n.zero{color:var(--red);}.sl-n.low{color:var(--amber);}.sl-n.ok{color:var(--green);}
 .sl-empty{padding:28px;text-align:center;font-size:15px;color:var(--muted);}
+.unknown-card{background:var(--panel);border:2px solid var(--border);border-radius:16px;overflow:hidden;display:none;}
+.unknown-card.show{display:block;}
+.unk-head{padding:14px 16px;background:#fff8f0;border-bottom:2px solid #ffe4c4;display:flex;align-items:center;gap:10px;}
+.unk-head-icon{font-size:22px;}
+.unk-head-title{font-size:14px;font-weight:800;color:#92400e;}
+.unk-head-sub{font-size:12px;color:#b45309;margin-top:1px;}
+.unk-code{font-size:30px;font-weight:900;color:var(--text);padding:16px 16px 8px;letter-spacing:1px;}
+.unk-label{font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;padding:0 16px 10px;}
+.tipo-chips{display:flex;flex-wrap:wrap;gap:8px;padding:0 16px 16px;}
+.tipo-chip{padding:10px 16px;border:2px solid var(--border);border-radius:10px;font-family:var(--f);font-size:14px;font-weight:700;background:var(--bg);color:var(--text);cursor:pointer;transition:all .15s;}
+.tipo-chip:hover{border-color:var(--blue);color:var(--blue);}
+.tipo-chip.on{background:var(--blue);color:#fff;border-color:var(--blue);}
+.unk-add-btn{width:calc(100% - 32px);margin:0 16px 16px;padding:16px;font-family:var(--f);font-size:16px;font-weight:800;background:var(--blue);color:#fff;border:none;border-radius:12px;cursor:pointer;transition:all .12s;display:none;}
+.unk-add-btn.show{display:block;}
+.unk-add-btn:active{transform:scale(.97);}
+.unk-feedback{text-align:center;padding:0 16px 14px;font-size:14px;font-weight:600;color:var(--muted);display:none;}
+.unk-feedback.show{display:block;}
 .tipo-stock-row{padding:24px 20px;display:flex;align-items:center;justify-content:space-between;background:var(--panel);}
 .tipo-stock-label{font-size:14px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;}
 .tipo-stock-num{font-size:72px;font-weight:900;line-height:1;color:var(--text);}
@@ -342,6 +359,32 @@ body { font-family: var(--f); background: var(--bg); color: var(--text); min-hei
   </div>
 
   <div class="result-card" id="resultado"></div>
+
+  <!-- Código desconocido -->
+  <div class="unknown-card" id="unknownCard">
+    <div class="unk-head">
+      <span class="unk-head-icon">🔍</span>
+      <div>
+        <div class="unk-head-title">Código no encontrado en la base</div>
+        <div class="unk-head-sub">Podés clasificarlo y agregarlo al stock</div>
+      </div>
+    </div>
+    <div class="unk-code" id="unkCode">—</div>
+    <div class="unk-label">¿Qué tipo de filtro es?</div>
+    <div class="tipo-chips">
+      <button class="tipo-chip" onclick="unkSelTipo(this,'Aceite')">🛢 Aceite</button>
+      <button class="tipo-chip" onclick="unkSelTipo(this,'Combustible')">⛽ Combustible</button>
+      <button class="tipo-chip" onclick="unkSelTipo(this,'Aire primario')">💨 Aire primario</button>
+      <button class="tipo-chip" onclick="unkSelTipo(this,'Aire secundario')">💨 Aire secundario</button>
+      <button class="tipo-chip" onclick="unkSelTipo(this,'Hidráulico')">🔧 Hidráulico</button>
+      <button class="tipo-chip" onclick="unkSelTipo(this,'Dirección hidráulica')">🔧 Dirección</button>
+      <button class="tipo-chip" onclick="unkSelTipo(this,'Secador de aire')">💧 Secador</button>
+      <button class="tipo-chip" onclick="unkSelTipo(this,'Otro')">📦 Otro</button>
+    </div>
+    <button class="unk-add-btn" id="unkAddBtn" onclick="unkAgregar()">+ Agregar al stock</button>
+    <div class="unk-feedback" id="unkFeedback"></div>
+  </div>
+
   <div style="height:24px"></div>
 </div>
 
@@ -473,7 +516,7 @@ function buscarEnDB(codigo) {
 function buscarInteligente(codigo) {
   if (!codigo || codigo === 'NO_DETECTADO') { mostrarError('No se detectó ningún código. Intentá de nuevo.'); return; }
   const f = buscarEnDB(codigo);
-  if (!f) { mostrarError('Código no encontrado: ' + codigo); return; }
+  if (!f) { mostrarDesconocido(codigo); return; }
   mostrarResultado(f.key, f.data, f.aprox, f.orig||codigo);
 }
 
@@ -485,6 +528,7 @@ document.getElementById('manual').addEventListener('keydown', e => { if(e.key===
 
 // ── RESULTADO SCANNER ──
 async function mostrarResultado(codigo, data, aprox, detectado) {
+  document.getElementById('unknownCard').classList.remove('show');
   const panel  = document.getElementById('resultado');
   const modelos = Array.isArray(data.modelos) ? data.modelos.join(' / ') : (data.modelos||'—');
   const equivs  = data.equivalencias || [];
@@ -757,6 +801,108 @@ async function apiGetStock(grupoId) {
 async function apiUpdate(grupo, delta) {
   const res = await fetch(SHEET_URL, { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({accion:'update',...grupo,delta}) });
   return (await res.json()).nuevoStock;
+}
+
+// ── CÓDIGO DESCONOCIDO ──
+let unkCodigo = null;
+let unkTipo   = null;
+
+function mostrarDesconocido(codigo) {
+  unkCodigo = codigo;
+  unkTipo   = null;
+  document.getElementById('unkCode').textContent = codigo;
+  document.querySelectorAll('.tipo-chip').forEach(c => c.classList.remove('on'));
+  document.getElementById('unkAddBtn').classList.remove('show');
+  document.getElementById('unkFeedback').classList.remove('show');
+  document.getElementById('unknownCard').classList.add('show');
+  document.getElementById('resultado').classList.remove('show');
+  document.getElementById('unknownCard').scrollIntoView({ behavior:'smooth', block:'nearest' });
+}
+
+function unkSelTipo(btn, tipo) {
+  document.querySelectorAll('.tipo-chip').forEach(c => c.classList.remove('on'));
+  btn.classList.add('on');
+  unkTipo = tipo;
+  document.getElementById('unkAddBtn').classList.add('show');
+}
+
+async function unkAgregar() {
+  if (!unkCodigo || !unkTipo) return;
+  const fb  = document.getElementById('unkFeedback');
+  const btn = document.getElementById('unkAddBtn');
+  btn.textContent = 'Guardando...';
+  fb.classList.remove('show');
+
+  const grupo = {
+    grupoId:  (unkTipo + '__SIN_DETERMINAR').toUpperCase(),
+    tipo:     unkTipo,
+    modelos:  'Sin determinar',
+    codigos:  unkCodigo,
+    delta:    1
+  };
+
+  try {
+    const nuevo = await apiUpdate(grupo, 1);
+    fb.textContent = '✅ Agregado al stock — ' + unkTipo + ' · Sin determinar · Stock: ' + nuevo;
+    fb.classList.add('show');
+    btn.textContent = '+ Agregar al stock';
+    btn.classList.remove('show');
+    loadStock();
+  } catch(e) {
+    fb.textContent = '❌ Error al guardar.';
+    fb.classList.add('show');
+    btn.textContent = '+ Agregar al stock';
+  }
+}
+
+// ── CÓDIGO DESCONOCIDO ──
+let unkCodigo = null;
+let unkTipo   = null;
+
+function mostrarDesconocido(codigo) {
+  unkCodigo = codigo;
+  unkTipo   = null;
+  document.getElementById('unkCode').textContent = codigo;
+  document.querySelectorAll('.tipo-chip').forEach(c => c.classList.remove('on'));
+  document.getElementById('unkAddBtn').classList.remove('show');
+  document.getElementById('unkFeedback').classList.remove('show');
+  document.getElementById('unknownCard').classList.add('show');
+  document.getElementById('resultado').classList.remove('show');
+  document.getElementById('unknownCard').scrollIntoView({ behavior:'smooth', block:'nearest' });
+}
+
+function unkSelTipo(btn, tipo) {
+  document.querySelectorAll('.tipo-chip').forEach(c => c.classList.remove('on'));
+  btn.classList.add('on');
+  unkTipo = tipo;
+  document.getElementById('unkAddBtn').classList.add('show');
+}
+
+async function unkAgregar() {
+  if (!unkCodigo || !unkTipo) return;
+  const fb  = document.getElementById('unkFeedback');
+  const btn = document.getElementById('unkAddBtn');
+  btn.textContent = 'Guardando...';
+  fb.classList.remove('show');
+  const grupo = {
+    grupoId: (unkTipo + '__SIN_DETERMINAR').toUpperCase(),
+    tipo:    unkTipo,
+    modelos: 'Sin determinar',
+    codigos: unkCodigo,
+    delta:   1
+  };
+  try {
+    const nuevo = await apiUpdate(grupo, 1);
+    fb.textContent = '✅ Agregado — ' + unkTipo + ' · Sin determinar · Stock: ' + nuevo;
+    fb.classList.add('show');
+    btn.textContent = '+ Agregar al stock';
+    btn.classList.remove('show');
+    loadStock();
+  } catch(e) {
+    fb.textContent = '❌ Error al guardar.';
+    fb.classList.add('show');
+    btn.textContent = '+ Agregar al stock';
+  }
 }
 
 // ── UTILS ──
