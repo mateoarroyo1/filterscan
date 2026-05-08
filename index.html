@@ -803,57 +803,6 @@ async function apiUpdate(grupo, delta) {
   return (await res.json()).nuevoStock;
 }
 
-// ── CÓDIGO DESCONOCIDO ──
-let unkCodigo = null;
-let unkTipo   = null;
-
-function mostrarDesconocido(codigo) {
-  unkCodigo = codigo;
-  unkTipo   = null;
-  document.getElementById('unkCode').textContent = codigo;
-  document.querySelectorAll('.tipo-chip').forEach(c => c.classList.remove('on'));
-  document.getElementById('unkAddBtn').classList.remove('show');
-  document.getElementById('unkFeedback').classList.remove('show');
-  document.getElementById('unknownCard').classList.add('show');
-  document.getElementById('resultado').classList.remove('show');
-  document.getElementById('unknownCard').scrollIntoView({ behavior:'smooth', block:'nearest' });
-}
-
-function unkSelTipo(btn, tipo) {
-  document.querySelectorAll('.tipo-chip').forEach(c => c.classList.remove('on'));
-  btn.classList.add('on');
-  unkTipo = tipo;
-  document.getElementById('unkAddBtn').classList.add('show');
-}
-
-async function unkAgregar() {
-  if (!unkCodigo || !unkTipo) return;
-  const fb  = document.getElementById('unkFeedback');
-  const btn = document.getElementById('unkAddBtn');
-  btn.textContent = 'Guardando...';
-  fb.classList.remove('show');
-
-  const grupo = {
-    grupoId:  (unkTipo + '__SIN_DETERMINAR').toUpperCase(),
-    tipo:     unkTipo,
-    modelos:  'Sin determinar',
-    codigos:  unkCodigo,
-    delta:    1
-  };
-
-  try {
-    const nuevo = await apiUpdate(grupo, 1);
-    fb.textContent = '✅ Agregado al stock — ' + unkTipo + ' · Sin determinar · Stock: ' + nuevo;
-    fb.classList.add('show');
-    btn.textContent = '+ Agregar al stock';
-    btn.classList.remove('show');
-    loadStock();
-  } catch(e) {
-    fb.textContent = '❌ Error al guardar.';
-    fb.classList.add('show');
-    btn.textContent = '+ Agregar al stock';
-  }
-}
 
 // ── CÓDIGO DESCONOCIDO ──
 let unkCodigo = null;
