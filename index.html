@@ -57,11 +57,11 @@ body { font-family: var(--f); background: var(--bg); color: var(--text); min-hei
 .drawer-hdr {
   padding: 20px 20px 16px; border-bottom: 2px solid var(--border);
   display: flex; align-items: center; justify-content: space-between;
-  background: #111;
+  background: var(--orange);
 }
 .drawer-logo { font-size: 16px; font-weight: 900; color: #fff; letter-spacing: 1px; text-transform: uppercase; }
 .drawer-logo span { color: var(--orange); }
-.drawer-close { width: 36px; height: 36px; border: none; background: #2a2a2a; border-radius: 6px; cursor: pointer; font-size: 16px; color: #fff; }
+.drawer-close { width: 36px; height: 36px; border: none; background: rgba(255,255,255,0.2); border-radius: 6px; cursor: pointer; font-size: 16px; color: #fff; }
 .drawer-nav { flex: 1; padding: 12px; background: var(--panel); }
 .d-item {
   display: flex; align-items: center; gap: 14px; padding: 16px;
@@ -149,7 +149,7 @@ body { font-family: var(--f); background: var(--bg); color: var(--text); min-hei
 .rc-fv { font-size: 18px; font-weight: 800; }
 .rc-stock-row {
   display: flex; align-items: center; justify-content: space-between;
-  background: #111; border-radius: 8px; padding: 14px 16px;
+  background: #1e1e1e; border-radius: 8px; padding: 14px 16px; border-left: 4px solid var(--orange);
 }
 .rc-stock-label { font-size: 11px; font-weight: 800; color: #aaa; text-transform: uppercase; letter-spacing: 1px; }
 .rc-stock-num { font-size: 52px; font-weight: 900; line-height: 1; color: #fff; }
@@ -212,8 +212,8 @@ body { font-family: var(--f); background: var(--bg); color: var(--text); min-hei
 .tipo-btn.on{background:var(--orange);color:#fff;border-color:var(--orange);}
 .codes-table { background: var(--panel); border: 2px solid var(--border); border-radius: 10px; overflow: hidden; display: none; }
 .codes-table.show{display:block;}
-.ct-head { padding: 12px 16px; border-bottom: 2px solid var(--border); display: flex; justify-content: space-between; align-items: center; background: #111; }
-.ct-title{font-size:12px;font-weight:800;color:#fff;text-transform:uppercase;letter-spacing:1px;}
+.ct-head { padding: 12px 16px; border-bottom: 2px solid var(--border); display: flex; justify-content: space-between; align-items: center; background: var(--orange); }
+.ct-title{font-size:12px;font-weight:800;color:#fff;text-transform:uppercase;letter-spacing:1px;opacity:.9;}
 .ct-count{font-size:12px;font-weight:800;color:#111;background:var(--orange);padding:3px 10px;border-radius:4px;}
 .ct-row { padding: 14px 16px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 12px; cursor: pointer; transition: background .12s; }
 .ct-row:last-child{border-bottom:none;}
@@ -224,7 +224,7 @@ body { font-family: var(--f); background: var(--bg); color: var(--text); min-hei
 .ct-stock{font-size:28px;font-weight:900;min-width:44px;text-align:right;}
 .ct-stock.zero{color:var(--red);}.ct-stock.low{color:var(--amber);}.ct-stock.ok{color:var(--green);}
 .stock-list{background:var(--panel);border:2px solid var(--border);border-radius:10px;overflow:hidden;}
-.sl-hdr{padding:14px 16px;border-bottom:2px solid var(--border);display:flex;justify-content:space-between;align-items:center;background:#111;}
+.sl-hdr{padding:14px 16px;border-bottom:2px solid var(--border);display:flex;justify-content:space-between;align-items:center;background:var(--orange);}
 .sl-hdr-title{font-size:14px;font-weight:900;text-transform:uppercase;letter-spacing:1px;color:#fff;}
 .sl-refresh{padding:7px 14px;font-family:var(--f);font-size:12px;font-weight:800;background:transparent;border:2px solid #555;border-radius:6px;cursor:pointer;color:#fff;transition:all .15s;text-transform:uppercase;letter-spacing:.5px;}
 .sl-refresh:hover{border-color:var(--orange);color:var(--orange);}
@@ -238,7 +238,7 @@ body { font-family: var(--f); background: var(--bg); color: var(--text); min-hei
 .sl-empty{padding:28px;text-align:center;font-size:15px;color:var(--muted);font-weight:600;}
 .unknown-card{background:var(--panel);border:2px solid var(--border);border-radius:10px;overflow:hidden;display:none;border-left:4px solid var(--amber);}
 .unknown-card.show{display:block;}
-.unk-head{padding:14px 16px;background:#111;display:flex;align-items:center;gap:10px;}
+.unk-head{padding:14px 16px;background:#e85e00;display:flex;align-items:center;gap:10px;}
 .unk-head-icon{font-size:22px;}
 .unk-head-title{font-size:13px;font-weight:800;color:#fff;text-transform:uppercase;letter-spacing:.5px;}
 .unk-head-sub{font-size:11px;color:#aaa;margin-top:2px;font-weight:600;}
@@ -253,13 +253,35 @@ body { font-family: var(--f); background: var(--bg); color: var(--text); min-hei
 .unk-add-btn:active{transform:scale(.97);}
 .unk-feedback{text-align:center;padding:0 16px 14px;font-size:14px;font-weight:700;color:var(--muted);display:none;}
 .unk-feedback.show{display:block;}
-.tipo-stock-row{padding:24px 20px;display:flex;align-items:center;justify-content:space-between;background:#111;}
+.tipo-stock-row{padding:24px 20px;display:flex;align-items:center;justify-content:space-between;background:#1e1e1e;border-radius:8px;}
 .tipo-stock-label{font-size:11px;font-weight:800;color:#aaa;text-transform:uppercase;letter-spacing:1px;}
 .tipo-stock-num{font-size:72px;font-weight:900;line-height:1;color:#fff;}
 .tipo-stock-num.zero{color:#ff6b6b;} .tipo-stock-num.low{color:#ffb347;} .tipo-stock-num.ok{color:#5dde7a;}
 .tipo-stock-footer{padding:12px 20px 16px;font-size:13px;color:var(--muted);border-top:1px solid var(--border);font-weight:600;}
 .home-btn{padding:8px 14px;font-family:var(--f);font-size:13px;font-weight:800;background:var(--bg);border:2px solid var(--border);color:var(--text);border-radius:8px;cursor:pointer;transition:all .15s;white-space:nowrap;text-transform:uppercase;letter-spacing:.5px;}
 .home-btn:hover{border-color:var(--orange);color:var(--orange);}
+
+/* HISTORIAL */
+.hist-list{background:var(--panel);border:2px solid var(--border);border-radius:10px;overflow:hidden;}
+.hist-hdr{padding:14px 16px;border-bottom:2px solid var(--border);display:flex;justify-content:space-between;align-items:center;background:var(--orange);}
+.hist-hdr-title{font-size:14px;font-weight:900;text-transform:uppercase;letter-spacing:1px;color:#fff;}
+.hist-refresh{padding:7px 14px;font-family:var(--f);font-size:12px;font-weight:800;background:transparent;border:2px solid rgba(255,255,255,.5);border-radius:6px;cursor:pointer;color:#fff;transition:all .15s;text-transform:uppercase;}
+.hist-refresh:hover{border-color:#fff;background:rgba(255,255,255,.15);}
+.hist-item{padding:14px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px;}
+.hist-item:last-child{border-bottom:none;}
+.hist-badge{padding:5px 10px;border-radius:5px;font-size:12px;font-weight:900;text-transform:uppercase;letter-spacing:.5px;flex-shrink:0;min-width:70px;text-align:center;}
+.hist-badge.ing{background:var(--green-light);color:var(--green);}
+.hist-badge.sal{background:var(--red-light);color:var(--red);}
+.hist-info{flex:1;min-width:0;}
+.hist-tipo{font-size:10px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:1px;}
+.hist-veh{font-size:15px;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.hist-cod{font-size:12px;color:var(--muted);font-weight:600;margin-top:1px;}
+.hist-right{text-align:right;flex-shrink:0;}
+.hist-cant{font-size:24px;font-weight:900;}
+.hist-cant.ing{color:var(--green);}
+.hist-cant.sal{color:var(--red);}
+.hist-fecha{font-size:11px;color:var(--muted);margin-top:2px;font-weight:600;}
+.hist-stock-after{font-size:11px;color:var(--muted);margin-top:1px;}
 </style>
 </head>
 <body>
@@ -295,6 +317,13 @@ body { font-family: var(--f); background: var(--bg); color: var(--text); min-hei
       <div>
         <div class="d-label">Stock general</div>
         <div class="d-sub">Ver todas las existencias</div>
+      </div>
+    </button>
+    <button class="d-item" id="di-historial" onclick="goPage('historial')">
+      <div class="d-icon">📋</div>
+      <div>
+        <div class="d-label">Historial</div>
+        <div class="d-sub">Movimientos registrados</div>
       </div>
     </button>
   </div>
@@ -770,6 +799,36 @@ async function apiUpdate(grupo, delta) {
 }
 
 
+// ── HISTORIAL ──
+async function histCargar() {
+  const body = document.getElementById('histBody');
+  body.innerHTML = '<div class="sl-empty">Cargando...</div>';
+  try {
+    const res = await fetch(SHEET_URL + '?accion=historial&limite=60');
+    const d   = await res.json();
+    const movs = d.movimientos || [];
+    if (!movs.length) { body.innerHTML='<div class="sl-empty">Sin movimientos registrados todavía.</div>'; return; }
+    body.innerHTML = movs.map(m => {
+      const esIng = m.movimiento === 'INGRESO';
+      return `<div class="hist-item">
+        <div class="hist-badge ${esIng?'ing':'sal'}">${m.movimiento}</div>
+        <div class="hist-info">
+          <div class="hist-tipo">${m.tipo}</div>
+          <div class="hist-veh">${m.modelos}</div>
+          <div class="hist-cod">${m.codigo}</div>
+        </div>
+        <div class="hist-right">
+          <div class="hist-cant ${esIng?'ing':'sal'}">${esIng?'+':'-'}${m.cantidad}</div>
+          <div class="hist-fecha">${m.fecha} ${m.hora}</div>
+          <div class="hist-stock-after">Stock: ${m.stockDespues}</div>
+        </div>
+      </div>`;
+    }).join('');
+  } catch(e) {
+    body.innerHTML = '<div class="sl-empty">Error al cargar historial.</div>';
+  }
+}
+
 // ── CÓDIGO DESCONOCIDO ──
 let unkCodigo = null;
 let unkTipo   = null;
@@ -829,5 +888,23 @@ function lev(a,b) {
   return dp[m][n];
 }
 </script>
+<!-- PAGE: HISTORIAL -->
+<div class="page" id="page-historial">
+  <div style="height:12px"></div>
+  <div class="sec-title">Historial</div>
+  <div class="sec-sub">Últimos movimientos registrados</div>
+
+  <div class="hist-list">
+    <div class="hist-hdr">
+      <span class="hist-hdr-title">📋 Movimientos</span>
+      <button class="hist-refresh" onclick="histCargar()">↻ Actualizar</button>
+    </div>
+    <div id="histBody"><div class="sl-empty">Cargando...</div></div>
+  </div>
+  <div style="height:24px"></div>
+</div>
+
+
+
 </body>
 </html>
