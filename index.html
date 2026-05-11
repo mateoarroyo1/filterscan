@@ -496,15 +496,57 @@ async function leerClaude(b64) {
 }
 
 // ── BÚSQUEDA ──
+// Nueva DB: keys = "TIPO__MODELO", cada grupo tiene .codigos array
 function buscarEnDB(codigo) {
-  let key = codigo.toUpperCase();
-  if (DB[key]) return { key, data: DB[key] };
-  const norm = key.replace(/[\s\-]/g,'');
-  if (DB[norm]) return { key: norm, data: DB[norm] };
+  const needle = codigo.toUpperCase().replace(/[\s\-]/g,'');
+
+  // Buscar exacto en todos los grupos
+  for (const gkey in DB) {
+    const grupo = DB[gkey];
+    const found = grupo.codigos.find(c => c.codigo.toUpperCase().replace(/[\s\-]/g,'') === needle);
+    if (found) {
+      // Devolver en formato compatible con el resto del código
+      return {
+        key: found.codigo.toUpperCase(),
+        data: {
+          marca:        found.marca,
+          tipo:         grupo.tipo,
+          modelos:      grupo.modelos,
+          equivalencias: grupo.codigos
+            .filter(c => c.codigo.toUpperCase() !== found.codigo.toUpperCase())
+            .map(c => ({ marca: c.marca, codigo: c.codigo }))
+        }
+      };
+    }
+  }
+
+  // Fuzzy: buscar el código más parecido en todos los grupos
   let best = null, bestD = Infinity;
-  const umbral = Math.max(2, Math.floor(key.length * .25));
-  for (const k in DB) { const d = lev(key,k); if (d < bestD) { bestD=d; best=k; } }
-  if (bestD <= umbral && best) return { key:best, data:DB[best], aprox:true, orig:codigo };
+  const umbral = Math.max(2, Math.floor(needle.length * .25));
+  for (const gkey in DB) {
+    const grupo = DB[gkey];
+    for (const c of grupo.codigos) {
+      const cn = c.codigo.toUpperCase().replace(/[\s\-]/g,'');
+      const d  = lev(needle, cn);
+      if (d < bestD) {
+        bestD = d;
+        best = {
+          key:  c.codigo.toUpperCase(),
+          data: {
+            marca:        c.marca,
+            tipo:         grupo.tipo,
+            modelos:      grupo.modelos,
+            equivalencias: grupo.codigos
+              .filter(cx => cx.codigo.toUpperCase() !== c.codigo.toUpperCase())
+              .map(cx => ({ marca: cx.marca, codigo: cx.codigo }))
+          },
+          aprox: true,
+          orig:  codigo
+        };
+      }
+    }
+  }
+  if (bestD <= umbral && best) return best;
   return null;
 }
 
@@ -676,12 +718,14 @@ async function mostrarTipo(modelo, tipo, btn) {
   document.querySelectorAll('.tipo-btn').forEach(b=>b.classList.remove('on'));
   btn.classList.add('on');
 
-  // Juntar todos los códigos del grupo
+  // Buscar el grupo directamente por tipo+modelo
   const codigos = [];
-  for (const k in DB) {
-    const d = DB[k];
-    if ((d.modelos||[]).includes(modelo) && d.tipo===tipo)
-      codigos.push({ codigo:k, marca:d.marca });
+  for (const gkey in DB) {
+    const g = DB[gkey];
+    if (g.tipo === tipo && (g.modelos||[]).includes(modelo)) {
+      for (const c of g.codigos) codigos.push({ codigo: c.codigo, marca: c.marca });
+      break; // solo un grupo por tipo+modelo
+    }
   }
 
   // Equivalencias colapsables HTML
@@ -728,7 +772,7 @@ async function mostrarTipo(modelo, tipo, btn) {
   } else {
     // No está en allStock todavía, consultar API directo
     if (codigos.length) {
-      const grupoId = getGrupoId(tipo, DB[codigos[0].codigo]?.modelos || [modelo]);
+      const grupoId = getGrupoId(tipo, [modelo]);
       try {
         const stock = await apiGetStock(grupoId);
         if (el) { el.textContent=stock; el.className='tipo-stock-num '+(stock===0?'zero':stock<=2?'low':'ok'); }
@@ -871,7 +915,7 @@ async function unkAgregar() {
     fb.classList.add('show');
     btn.textContent = '+ Agregar al stock';
     btn.classList.remove('show');
-    loadStock();
+    stockCargarLista();
   } catch(e) {
     fb.textContent = '❌ Error al guardar.';
     fb.classList.add('show');
