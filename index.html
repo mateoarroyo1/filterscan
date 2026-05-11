@@ -500,23 +500,33 @@ async function leerClaude(b64) {
 function buscarEnDB(codigo) {
   const needle = codigo.toUpperCase().replace(/[\s\-]/g,'');
 
-  // Buscar exacto en todos los grupos
+  // Buscar en todos los grupos — juntar modelos si el código aparece en varios
+  const hits = [];
   for (const gkey in DB) {
     const grupo = DB[gkey];
     const found = grupo.codigos.find(c => c.codigo.toUpperCase().replace(/[\s\-]/g,'') === needle);
-    if (found) {
-      return {
-        key: found.codigo.toUpperCase(),
-        data: {
-          marca:        found.marca,
-          tipo:         grupo.tipo,
-          modelos:      grupo.modelos,
-          equivalencias: grupo.codigos
-            .filter(c => c.codigo.toUpperCase() !== found.codigo.toUpperCase())
-            .map(c => ({ marca: c.marca, codigo: c.codigo }))
-        }
-      };
+    if (found) hits.push({ found, grupo });
+  }
+  if (hits.length > 0) {
+    const todosModelos = hits.flatMap(h => h.grupo.modelos);
+    const base = hits[0];
+    // Equivalencias: unir todos los grupos, sin duplicados, sin el código buscado
+    const equivMap = new Map();
+    for (const h of hits) {
+      for (const c of h.grupo.codigos) {
+        const cu = c.codigo.toUpperCase();
+        if (cu !== base.found.codigo.toUpperCase()) equivMap.set(cu, c);
+      }
     }
+    return {
+      key: base.found.codigo.toUpperCase(),
+      data: {
+        marca:        base.found.marca,
+        tipo:         base.grupo.tipo,
+        modelos:      todosModelos,
+        equivalencias: [...equivMap.values()]
+      }
+    };
   }
 
   // Fuzzy: buscar el código más parecido en todos los grupos
