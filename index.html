@@ -601,23 +601,10 @@ async function mostrarResultado(codigo, data, aprox, detectado) {
       </div>
     </div>` : '';
 
-  panel.innerHTML = `
-    <div class="rc-head">
-      <div class="rc-dot${aprox?' ap':''}"></div>
-      <span class="rc-lbl${aprox?' ap':''}">${aprox?`Coincidencia aprox. (${detectado})`:'Código encontrado'}</span>
-    </div>
-    <div class="rc-main">
-      <div class="rc-code">${codigo}</div>
-      <div class="rc-grid">
-        <span class="rc-fl">Marca</span>    <span class="rc-fv">${data.marca}</span>
-        <span class="rc-fl">Tipo</span>     <span class="rc-fv">${data.tipo}</span>
-        <span class="rc-fl">Vehículo</span> <span class="rc-fv">${modelos}</span>
-      </div>
-      <div class="rc-stock-row">
-        <div class="rc-stock-label">Stock actual</div>
-        <div class="rc-stock-num" id="rcStockNum">...</div>
-      </div>
-    </div>
+  const movHTML = aprox ? `
+    <div style="padding:12px 16px;background:#fff8f0;border-top:2px solid #ffe4c4;">
+      <div style="font-size:13px;font-weight:700;color:#92400e;">⚠ Coincidencia aproximada — verificá el código antes de registrar movimientos</div>
+    </div>` : `
     <div class="rc-mov">
       <div class="qty-row">
         <span class="qty-lbl">Cantidad</span>
@@ -632,7 +619,28 @@ async function mostrarResultado(codigo, data, aprox, detectado) {
         <button class="mov-btn btn-sal" onclick="registrarMov(-1)">↓ SALIDA<span class="mov-btn-sub">Resta del stock</span></button>
       </div>
       <div class="mov-feedback" id="movFeedback"></div>
+    </div>`;
+
+  if (aprox) currentGrupo = null; // bloquear movimientos en aprox
+
+  panel.innerHTML = `
+    <div class="rc-head">
+      <div class="rc-dot${aprox?' ap':''}"></div>
+      <span class="rc-lbl${aprox?' ap':''}">${aprox?`Coincidencia aprox. detectado: ${detectado}`:'Código encontrado'}</span>
     </div>
+    <div class="rc-main">
+      <div class="rc-code">${codigo}</div>
+      <div class="rc-grid">
+        <span class="rc-fl">Marca</span>    <span class="rc-fv">${data.marca}</span>
+        <span class="rc-fl">Tipo</span>     <span class="rc-fv">${data.tipo}</span>
+        <span class="rc-fl">Vehículo</span> <span class="rc-fv">${modelos}</span>
+      </div>
+      <div class="rc-stock-row">
+        <div class="rc-stock-label">Stock actual</div>
+        <div class="rc-stock-num" id="rcStockNum">...</div>
+      </div>
+    </div>
+    ${movHTML}
     ${equivHTML}`;
 
   panel.classList.add('show');
@@ -809,7 +817,9 @@ function irAScanner(codigo) {
 // ── STOCK GENERAL ──
 function stockFiltrar() {
   const modelo = document.getElementById('stockVehSel').value;
-  const items  = modelo ? allStock.filter(i=>i.modelos.includes(modelo)) : allStock;
+  const items  = modelo
+    ? allStock.filter(i => i.modelos && i.modelos.trim().toUpperCase().includes(modelo.trim().toUpperCase()))
+    : allStock;
   renderStock(items);
 }
 
@@ -821,15 +831,19 @@ async function stockCargarLista() {
   try {
     const res = await fetch(SHEET_URL + '?accion=lista');
     const d   = await res.json();
-    allStock  = (d.items||[]).sort((a,b)=>a.stock-b.stock||a.modelos.localeCompare(b.modelos));
+    allStock  = (d.items||[])
+      .filter(i => i.tipo && i.modelos && i.tipo.trim() && i.modelos.trim())
+      .sort((a,b)=>a.stock-b.stock||a.modelos.localeCompare(b.modelos));
     stockFiltrar();
   } catch(e) { body.innerHTML = '<div class="sl-empty">Error al cargar.</div>'; }
 }
 
 function renderStock(items) {
   const body = document.getElementById('stockBody');
-  if (!items.length) { body.innerHTML='<div class="sl-empty">Sin datos.</div>'; return; }
-  body.innerHTML = items.map(i => {
+  // Filtrar items con tipo y modelos válidos
+  const validos = items.filter(i => i.tipo && i.modelos && i.tipo.trim() && i.modelos.trim());
+  if (!validos.length) { body.innerHTML='<div class="sl-empty">Sin datos.</div>'; return; }
+  body.innerHTML = validos.map(i => {
     const cls = i.stock===0?'zero':i.stock<=2?'low':'ok';
     return `<div class="sl-item">
       <div class="sl-info"><div class="sl-tipo">${i.tipo}</div><div class="sl-veh">${i.modelos}</div></div>
