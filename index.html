@@ -817,9 +817,24 @@ function irAScanner(codigo) {
 // ── STOCK GENERAL ──
 function stockFiltrar() {
   const modelo = document.getElementById('stockVehSel').value;
-  const items  = modelo
-    ? allStock.filter(i => i.modelos && i.modelos.trim().toUpperCase().includes(modelo.trim().toUpperCase()))
-    : allStock;
+  if (!modelo) {
+    // Sin filtro: mostrar solo los que tienen stock
+    renderStock(allStock);
+    return;
+  }
+  // Con vehículo seleccionado: mostrar TODOS los tipos del vehículo, stock 0 si no hay
+  const tipos = new Set();
+  for (const k in DB) {
+    if ((DB[k].modelos||[]).includes(modelo)) tipos.add(DB[k].tipo);
+  }
+  const items = [...tipos].sort().map(tipo => {
+    const found = allStock.find(i =>
+      i.tipo && i.modelos &&
+      i.tipo.trim().toUpperCase() === tipo.toUpperCase() &&
+      i.modelos.trim().toUpperCase().includes(modelo.toUpperCase())
+    );
+    return { tipo, modelos: modelo, stock: found ? found.stock : 0 };
+  });
   renderStock(items);
 }
 
@@ -901,15 +916,8 @@ let unkCodigo = null;
 let unkTipo   = null;
 
 function mostrarDesconocido(codigo) {
-  unkCodigo = codigo;
-  unkTipo   = null;
-  document.getElementById('unkCode').textContent = codigo;
-  document.querySelectorAll('.tipo-chip').forEach(c => c.classList.remove('on'));
-  document.getElementById('unkAddBtn').classList.remove('show');
-  document.getElementById('unkFeedback').classList.remove('show');
-  document.getElementById('unknownCard').classList.add('show');
-  document.getElementById('resultado').classList.remove('show');
-  document.getElementById('unknownCard').scrollIntoView({ behavior:'smooth', block:'nearest' });
+  document.getElementById('unknownCard').classList.remove('show');
+  mostrarError('Código no encontrado en la base de datos: ' + codigo);
 }
 
 function unkSelTipo(btn, tipo) {
