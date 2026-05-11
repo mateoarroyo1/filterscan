@@ -505,7 +505,6 @@ function buscarEnDB(codigo) {
     const grupo = DB[gkey];
     const found = grupo.codigos.find(c => c.codigo.toUpperCase().replace(/[\s\-]/g,'') === needle);
     if (found) {
-      // Devolver en formato compatible con el resto del código
       return {
         key: found.codigo.toUpperCase(),
         data: {
