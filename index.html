@@ -3,908 +3,873 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>Inventra</title>
+<title>FilterScan</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg: #f2f2f2;
-  --panel: #ffffff;
-  --border: #e0e0e0;
-  --orange: #FF6B00;
-  --orange-light: #FFF0E6;
-  --orange-border: #FFB380;
-  --green: #1a7a3c;
-  --green-light: #e6f7ed;
-  --red: #c0392b;
-  --red-light: #fdecea;
-  --amber: #c07a00;
-  --amber-light: #fef6e0;
-  --text: #111111;
-  --muted: #777777;
+  --bg: #f0f2f5;
+  --panel: #fff;
+  --border: #e2e8f0;
+  --blue: #1a6dff;
+  --blue-light: #e8f0ff;
+  --green: #16a34a;
+  --green-light: #dcfce7;
+  --red: #dc2626;
+  --red-light: #fee2e2;
+  --amber: #d97706;
+  --amber-light: #fef3c7;
+  --text: #0f172a;
+  --muted: #64748b;
+  --nav-h: 68px;
   --f: 'Inter', sans-serif;
 }
+
 * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-body { font-family: var(--f); background: var(--bg); color: var(--text); min-height: 100vh; }
 
-/* TOPBAR */
-.topbar {
-  position: sticky; top: 0; z-index: 50;
-  background: var(--panel); border-bottom: 3px solid var(--orange);
-  display: flex; align-items: center; padding: 12px 16px; gap: 12px;
-  box-shadow: 0 2px 12px #00000012;
+body {
+  font-family: var(--f);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  overflow-x: hidden;
 }
-.topbar-title { flex: 1; font-size: 20px; font-weight: 900; letter-spacing: -0.5px; }
-.topbar-title span { color: var(--orange); }
-.menu-btn {
-  width: 44px; height: 44px; border: 1.5px solid var(--border); background: var(--bg);
-  cursor: pointer; display: flex; flex-direction: column;
-  align-items: center; justify-content: center; gap: 5px;
-  border-radius: 8px; transition: background .15s;
-}
-.menu-btn:hover { background: #e8e8e8; }
-.menu-btn span { display: block; width: 20px; height: 2.5px; background: var(--text); border-radius: 2px; }
 
-/* DRAWER */
-.overlay { position: fixed; inset: 0; background: #0007; z-index: 90; opacity: 0; pointer-events: none; transition: opacity .25s; }
-.overlay.open { opacity: 1; pointer-events: all; }
-.drawer {
-  position: fixed; top: 0; right: -280px; bottom: 0; width: 270px;
-  background: var(--panel); z-index: 100; transition: right .25s cubic-bezier(.4,0,.2,1);
-  display: flex; flex-direction: column; box-shadow: -4px 0 32px #00000022;
-  border-left: 3px solid var(--orange);
+/* ── PAGES ── */
+.page {
+  display: none;
+  flex-direction: column;
+  min-height: calc(100vh - var(--nav-h));
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 16px 16px calc(var(--nav-h) + 16px);
 }
-.drawer.open { right: 0; }
-.drawer-hdr {
-  padding: 20px 20px 16px; border-bottom: 2px solid var(--border);
-  display: flex; align-items: center; justify-content: space-between;
-  background: var(--orange);
-}
-.drawer-logo { font-size: 16px; font-weight: 900; color: #fff; letter-spacing: 1px; text-transform: uppercase; }
-.drawer-logo span { color: var(--orange); }
-.drawer-close { width: 36px; height: 36px; border: none; background: rgba(255,255,255,0.2); border-radius: 6px; cursor: pointer; font-size: 16px; color: #fff; }
-.drawer-nav { flex: 1; padding: 12px; background: var(--panel); }
-.d-item {
-  display: flex; align-items: center; gap: 14px; padding: 16px;
-  border-radius: 8px; cursor: pointer; transition: all .15s;
-  margin-bottom: 6px; border: 2px solid transparent; background: var(--bg);
-  width: 100%; text-align: left; font-family: var(--f);
-}
-.d-item:hover { border-color: var(--orange); }
-.d-item.active { border-color: var(--orange); background: var(--orange-light); }
-.d-item.active .d-label { color: var(--orange); }
-.d-item.active .d-icon { background: var(--orange); }
-.d-icon { width: 44px; height: 44px; border-radius: 8px; background: #ddd; display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; }
-.d-label { font-size: 16px; font-weight: 800; color: var(--text); }
-.d-sub   { font-size: 12px; color: var(--muted); margin-top: 2px; }
+.page.active { display: flex; }
 
-/* PAGES */
-.page { display: none; max-width: 500px; margin: 0 auto; padding: 16px; }
-.page.active { display: block; }
+/* ── BOTTOM NAV ── */
+.nav {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  height: var(--nav-h);
+  background: var(--panel);
+  border-top: 1px solid var(--border);
+  display: flex;
+  z-index: 100;
+  box-shadow: 0 -4px 20px #0000000d;
+}
+.nav-btn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 8px 4px;
+  color: var(--muted);
+  transition: color 0.15s;
+  font-family: var(--f);
+}
+.nav-btn.active { color: var(--blue); }
+.nav-icon { font-size: 22px; line-height: 1; }
+.nav-label { font-size: 11px; font-weight: 600; letter-spacing: 0.3px; }
 
-/* SCANNER */
-.viewfinder {
-  position: relative; background: #000; border-radius: 10px;
-  overflow: hidden; aspect-ratio: 4/3; margin-bottom: 12px;
-  box-shadow: 0 4px 20px #00000033; border: 2px solid #222;
+/* ── SCANNER PAGE ── */
+.scanner-viewfinder {
+  position: relative;
+  background: #000;
+  border-radius: 20px;
+  overflow: hidden;
+  aspect-ratio: 3/4;
+  flex-shrink: 0;
+  box-shadow: 0 8px 32px #0003;
 }
-.viewfinder video { width: 100%; height: 100%; object-fit: cover; display: block; }
-.sz {
-  position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
-  width: 76%; height: 28%; pointer-events: none;
+.scanner-viewfinder video {
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
 }
-.szc { position: absolute; width: 22px; height: 22px; border-color: var(--orange); border-style: solid; }
-.szc.tl{top:0;left:0;border-width:3px 0 0 3px;}
-.szc.tr{top:0;right:0;border-width:3px 3px 0 0;}
-.szc.br{bottom:0;right:0;border-width:0 3px 3px 0;}
-.szc.bl{bottom:0;left:0;border-width:0 0 3px 3px;}
-.szl {
-  position: absolute; left: 3px; right: 3px; height: 2px;
-  background: linear-gradient(90deg,transparent,var(--orange),transparent);
-  animation: sl 2s linear infinite; opacity: 0;
+.scan-zone {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 75%; height: 22%;
+  pointer-events: none;
 }
-.scanning .szl { opacity: 1; }
-@keyframes sl { 0%{top:3px} 100%{top:calc(100% - 3px)} }
-.vf-st { position: absolute; bottom: 10px; left: 0; right: 0; text-align: center; font-size: 13px; font-weight: 700; color: #fff; text-shadow: 0 1px 6px #000a; letter-spacing: .5px; text-transform: uppercase; }
+.scan-zone::before, .scan-zone::after,
+.scan-zone .c1, .scan-zone .c2 {
+  content: '';
+  position: absolute;
+  width: 24px; height: 24px;
+  border-color: #fff;
+  border-style: solid;
+}
+.scan-zone::before { top:0;left:0; border-width:3px 0 0 3px; border-radius:4px 0 0 0; }
+.scan-zone::after  { top:0;right:0; border-width:3px 3px 0 0; border-radius:0 4px 0 0; }
+.scan-zone .c1     { bottom:0;right:0; border-width:0 3px 3px 0; border-radius:0 0 4px 0; }
+.scan-zone .c2     { bottom:0;left:0; border-width:0 0 3px 3px; border-radius:0 0 0 4px; }
+.scan-line {
+  position: absolute; left:3px; right:3px; height:2px;
+  background: linear-gradient(90deg,transparent,#fff,transparent);
+  animation: sl 2s linear infinite; opacity:0;
+}
+.scanning .scan-line { opacity:1; }
+@keyframes sl { 0%{top:4px} 100%{top:calc(100% - 4px)} }
+
+.scan-status {
+  position: absolute; bottom:14px; left:0; right:0;
+  text-align: center; font-size:13px; font-weight:600;
+  color:#fff; text-shadow:0 1px 6px #0008;
+}
+.scan-status.err { color:#ff8080; }
 
 .scan-btn {
-  width: 100%; padding: 20px; font-family: var(--f); font-size: 18px; font-weight: 900;
-  background: var(--orange); color: #fff; border: none; border-radius: 8px; cursor: pointer;
-  box-shadow: 0 4px 16px #FF6B0040; transition: all .12s; margin-bottom: 10px;
-  text-transform: uppercase; letter-spacing: 1px;
+  width: 100%; padding: 20px;
+  font-family: var(--f); font-size: 19px; font-weight: 800;
+  background: var(--blue); color: #fff;
+  border: none; border-radius: 16px; cursor: pointer;
+  box-shadow: 0 4px 20px #1a6dff44;
+  transition: all 0.12s; flex-shrink: 0;
 }
-.scan-btn:active { transform: scale(.97); background: #e05a00; }
-.scan-btn:disabled { opacity: .35; cursor: not-allowed; transform: none; }
-.scan-btn .sp { display:none; width:20px;height:20px;border:3px solid #fff4;border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;margin:0 auto; }
-.scan-btn.loading .lbl{display:none;} .scan-btn.loading .sp{display:block;}
-@keyframes spin{to{transform:rotate(360deg)}}
+.scan-btn:active { transform: scale(0.97); }
+.scan-btn:disabled { opacity:.4; cursor:not-allowed; transform:none; }
+.scan-btn .sp {
+  display:none; width:18px; height:18px;
+  border:3px solid #fff4; border-top-color:#fff;
+  border-radius:50%; animation:spin .7s linear infinite; margin:0 auto;
+}
+.scan-btn.loading .lbl { display:none; }
+.scan-btn.loading .sp  { display:block; }
+@keyframes spin { to{transform:rotate(360deg)} }
 
-.manual-row { display: flex; gap: 10px; margin-bottom: 14px; }
+.manual-row {
+  display: flex; gap: 10px; flex-shrink: 0;
+}
 .manual-row input {
-  flex: 1; padding: 15px 16px; font-family: var(--f); font-size: 17px; font-weight: 700;
-  text-transform: uppercase; letter-spacing: 1px;
-  background: var(--panel); border: 2px solid var(--border); color: var(--text);
-  border-radius: 8px; outline: none; transition: border-color .15s;
+  flex:1; padding:14px 16px;
+  font-family:var(--f); font-size:16px; font-weight:600;
+  text-transform:uppercase; letter-spacing:1px;
+  background:var(--panel); border:2px solid var(--border);
+  color:var(--text); border-radius:12px; outline:none;
+  transition:border-color .15s;
 }
-.manual-row input:focus { border-color: var(--orange); }
-.manual-row input::placeholder { text-transform: none; letter-spacing: 0; font-weight: 400; color: #bbb; }
+.manual-row input:focus { border-color:var(--blue); }
+.manual-row input::placeholder { text-transform:none; letter-spacing:0; font-weight:400; color:#aab; }
 .manual-row button {
-  padding: 15px 20px; font-family: var(--f); font-size: 15px; font-weight: 800;
-  background: #111; border: 2px solid #111; color: #fff;
-  border-radius: 8px; cursor: pointer; transition: all .15s; text-transform: uppercase; letter-spacing: 1px;
+  padding:14px 18px; font-family:var(--f); font-size:15px; font-weight:700;
+  background:var(--panel); border:2px solid var(--border);
+  color:var(--text); border-radius:12px; cursor:pointer;
+  transition:all .15s; white-space:nowrap;
 }
-.manual-row button:hover { background: var(--orange); border-color: var(--orange); }
+.manual-row button:hover { border-color:var(--blue); color:var(--blue); }
 
-/* RESULT CARD */
-.result-card { background: var(--panel); border: 2px solid var(--border); border-radius: 10px; overflow: hidden; display: none; border-left: 4px solid var(--orange); }
-.result-card.show { display: block; }
-.rc-head { padding: 12px 16px; display: flex; align-items: center; gap: 8px; border-bottom: 2px solid var(--border); background: #fafafa; }
-.rc-dot { width: 10px; height: 10px; border-radius: 2px; background: var(--green); flex-shrink: 0; }
-.rc-dot.ap{background:var(--amber);} .rc-dot.er{background:var(--red);}
-.rc-lbl { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: var(--green); }
-.rc-lbl.ap{color:var(--amber);} .rc-lbl.er{color:var(--red);}
-.rc-main { padding: 16px; }
-.rc-code { font-size: 36px; font-weight: 900; color: var(--orange); letter-spacing: 1px; line-height: 1; margin-bottom: 14px; }
-.rc-grid { display: grid; grid-template-columns: auto 1fr; gap: 8px 14px; margin-bottom: 14px; }
-.rc-fl { font-size: 10px; font-weight: 800; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; padding-top: 3px; }
-.rc-fv { font-size: 18px; font-weight: 800; }
-.rc-stock-row {
-  display: flex; align-items: center; justify-content: space-between;
-  background: #1e1e1e; border-radius: 8px; padding: 14px 16px; border-left: 4px solid var(--orange);
+/* resultado scanner */
+.result-card {
+  background:var(--panel); border:2px solid var(--border);
+  border-radius:16px; overflow:hidden; display:none; flex-shrink:0;
 }
-.rc-stock-label { font-size: 11px; font-weight: 800; color: #aaa; text-transform: uppercase; letter-spacing: 1px; }
-.rc-stock-num { font-size: 52px; font-weight: 900; line-height: 1; color: #fff; }
-.rc-stock-num.zero{color:#ff6b6b;} .rc-stock-num.low{color:#ffb347;} .rc-stock-num.ok{color:#5dde7a;}
-.rc-mov { border-top: 2px solid var(--border); padding: 14px 16px; }
-.qty-row { display: flex; align-items: center; gap: 14px; margin-bottom: 12px; }
-.qty-lbl { font-size: 14px; font-weight: 800; text-transform: uppercase; letter-spacing: .5px; flex-shrink: 0; color: var(--muted); }
-.qty-ctrl { display: flex; align-items: center; border: 2px solid var(--border); border-radius: 8px; overflow: hidden; }
-.qty-btn { width: 46px; height: 46px; border: none; background: var(--bg); font-size: 24px; font-weight: 900; cursor: pointer; color: var(--text); }
-.qty-btn:active { background: var(--border); }
-.qty-inp { width: 56px; text-align: center; font-size: 22px; font-weight: 900; border: none; border-left: 2px solid var(--border); border-right: 2px solid var(--border); outline: none; font-family: var(--f); color: var(--text); background: var(--panel); padding: 8px 0; }
-.mov-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-.mov-btn { padding: 20px 10px; border: none; border-radius: 8px; cursor: pointer; font-family: var(--f); font-weight: 900; font-size: 18px; transition: all .12s; display: flex; flex-direction: column; align-items: center; gap: 5px; text-transform: uppercase; letter-spacing: .5px; }
-.mov-btn:active{transform:scale(.95);}
-.mov-btn-sub{font-size:11px;font-weight:700;opacity:.8;text-transform:uppercase;letter-spacing:.5px;}
-.btn-ing{background:var(--green-light);color:var(--green);border:2px solid #86efac;}
-.btn-ing:hover{background:#c6f0d6;}
-.btn-sal{background:var(--red-light);color:var(--red);border:2px solid #fca5a5;}
-.btn-sal:hover{background:#fad5d0;}
-.mov-feedback{text-align:center;padding:8px;font-size:14px;font-weight:700;color:var(--muted);display:none;}
-.mov-feedback.show{display:block;}
-.equiv-toggle {
-  width: 100%; padding: 14px 16px; display: flex; align-items: center; justify-content: space-between;
-  border: none; background: #fafafa; border-top: 2px solid var(--border); cursor: pointer;
-  font-family: var(--f); font-size: 11px; font-weight: 800; color: var(--muted);
-  text-transform: uppercase; letter-spacing: 1px; transition: background .15s;
+.result-card.show { display:block; }
+.rc-header {
+  padding:12px 16px; display:flex; align-items:center; gap:8px;
+  border-bottom:2px solid var(--border);
 }
-.equiv-toggle:hover{background:#f0f0f0;}
-.equiv-toggle .arr{transition:transform .2s;font-size:16px;}
-.equiv-toggle.open .arr{transform:rotate(180deg);}
-.equiv-body{display:none;padding:0 16px 14px;}
-.equiv-body.open{display:block;}
-.equiv-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;}
-.eq-chip{background:var(--bg);border:2px solid var(--border);border-radius:6px;padding:9px 12px;cursor:pointer;transition:all .15s;}
-.eq-chip:hover,.eq-chip.on{border-color:var(--orange);background:var(--orange-light);}
-.eq-chip.on .eq-code{color:var(--orange);}
-.eq-code{font-size:14px;font-weight:800;letter-spacing:.5px;}
-.eq-marca{font-size:11px;color:var(--muted);margin-top:2px;font-weight:600;}
-.rc-nf{padding:18px 16px;font-size:15px;color:var(--muted);line-height:1.6;}
+.rc-dot { width:9px;height:9px;border-radius:50%;background:var(--green);flex-shrink:0; }
+.rc-dot.approx{background:var(--amber);} .rc-dot.err{background:var(--red);}
+.rc-label { font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--green); }
+.rc-label.approx{color:var(--amber);} .rc-label.err{color:var(--red);}
+.rc-body { padding:16px; }
+.rc-code { font-size:34px;font-weight:900;color:var(--blue);letter-spacing:1px;line-height:1;margin-bottom:12px; }
+.rc-grid { display:grid;grid-template-columns:auto 1fr;gap:6px 14px; }
+.rc-lbl { font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;padding-top:3px; }
+.rc-val { font-size:17px;font-weight:700; }
+.rc-equiv { border-top:2px solid var(--border);padding:14px 16px; }
+.rc-equiv-title { font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px; }
+.equiv-grid { display:grid;grid-template-columns:1fr 1fr;gap:6px; }
+.equiv-chip {
+  background:var(--bg); border:2px solid var(--border); border-radius:9px;
+  padding:8px 12px; cursor:pointer; transition:all .15s;
+}
+.equiv-chip:hover,.equiv-chip.active { border-color:var(--blue); background:var(--blue-light); }
+.equiv-chip.active .ec-code { color:var(--blue); }
+.ec-code { font-size:14px;font-weight:700;letter-spacing:.5px; }
+.ec-marca { font-size:11px;color:var(--muted);margin-top:1px; }
+.rc-notfound { padding:18px 16px;font-size:15px;color:var(--muted);line-height:1.6; }
 
-/* VEHICULO + STOCK */
-.sec-title { font-size: 22px; font-weight: 900; margin-bottom: 2px; margin-top: 4px; text-transform: uppercase; letter-spacing: .5px; }
-.sec-sub   { font-size: 13px; color: var(--muted); margin-bottom: 16px; font-weight: 600; }
-.veh-select, .stock-veh-select {
-  width: 100%; padding: 15px 16px; font-family: var(--f); font-size: 16px; font-weight: 700;
-  background: var(--panel); border: 2px solid var(--border); color: var(--text);
-  border-radius: 8px; outline: none; appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23777' stroke-width='2.5'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
-  background-repeat: no-repeat; background-position: right 14px center;
-  cursor: pointer; transition: border-color .15s; margin-bottom: 12px;
+/* ── VEHICULO PAGE ── */
+.page-title { font-size:20px;font-weight:800;color:var(--text);margin-bottom:4px; }
+.page-sub   { font-size:14px;color:var(--muted);margin-bottom:16px; }
+
+.veh-select {
+  width:100%; padding:15px 16px;
+  font-family:var(--f); font-size:16px; font-weight:600;
+  background:var(--panel); border:2px solid var(--border);
+  color:var(--text); border-radius:12px; outline:none;
+  appearance:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2.5'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat:no-repeat; background-position:right 14px center;
+  cursor:pointer; transition:border-color .15s; margin-bottom:12px;
 }
-.veh-select:focus,.stock-veh-select:focus{border-color:var(--orange);}
-.tipo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 14px; }
+.veh-select:focus { border-color:var(--blue); }
+
+.tipo-grid { display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px; }
 .tipo-btn {
-  padding: 14px 10px; font-family: var(--f); font-size: 14px; font-weight: 800;
-  background: var(--panel); border: 2px solid var(--border); color: var(--text);
-  border-radius: 8px; cursor: pointer; transition: all .15s; text-align: center; text-transform: uppercase; letter-spacing: .3px;
+  padding:13px 10px; font-family:var(--f); font-size:14px; font-weight:700;
+  background:var(--panel); border:2px solid var(--border); color:var(--text);
+  border-radius:10px; cursor:pointer; transition:all .15s; text-align:center;
 }
-.tipo-btn:hover{border-color:var(--orange);color:var(--orange);}
-.tipo-btn.on{background:var(--orange);color:#fff;border-color:var(--orange);}
-.codes-table { background: var(--panel); border: 2px solid var(--border); border-radius: 10px; overflow: hidden; display: none; }
-.codes-table.show{display:block;}
-.ct-head { padding: 12px 16px; border-bottom: 2px solid var(--border); display: flex; justify-content: space-between; align-items: center; background: var(--orange); }
-.ct-title{font-size:12px;font-weight:800;color:#fff;text-transform:uppercase;letter-spacing:1px;opacity:.9;}
-.ct-count{font-size:12px;font-weight:800;color:#111;background:var(--orange);padding:3px 10px;border-radius:4px;}
-.ct-row { padding: 14px 16px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 12px; cursor: pointer; transition: background .12s; }
-.ct-row:last-child{border-bottom:none;}
-.ct-row:hover{background:var(--orange-light);}
-.ct-info{flex:1;}
-.ct-code{font-size:17px;font-weight:900;letter-spacing:.5px;}
-.ct-marca{font-size:12px;color:var(--muted);font-weight:600;margin-top:2px;}
-.ct-stock{font-size:28px;font-weight:900;min-width:44px;text-align:right;}
-.ct-stock.zero{color:var(--red);}.ct-stock.low{color:var(--amber);}.ct-stock.ok{color:var(--green);}
-.stock-list{background:var(--panel);border:2px solid var(--border);border-radius:10px;overflow:hidden;}
-.sl-hdr{padding:14px 16px;border-bottom:2px solid var(--border);display:flex;justify-content:space-between;align-items:center;background:var(--orange);}
-.sl-hdr-title{font-size:14px;font-weight:900;text-transform:uppercase;letter-spacing:1px;color:#fff;}
-.sl-refresh{padding:7px 14px;font-family:var(--f);font-size:12px;font-weight:800;background:transparent;border:2px solid #555;border-radius:6px;cursor:pointer;color:#fff;transition:all .15s;text-transform:uppercase;letter-spacing:.5px;}
-.sl-refresh:hover{border-color:var(--orange);color:var(--orange);}
-.sl-item{padding:14px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px;}
-.sl-item:last-child{border-bottom:none;}
-.sl-info{flex:1;min-width:0;}
-.sl-tipo{font-size:10px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:1px;}
-.sl-veh{font-size:17px;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.sl-n{font-size:32px;font-weight:900;min-width:46px;text-align:right;}
-.sl-n.zero{color:var(--red);}.sl-n.low{color:var(--amber);}.sl-n.ok{color:var(--green);}
-.sl-empty{padding:28px;text-align:center;font-size:15px;color:var(--muted);font-weight:600;}
-.unknown-card{background:var(--panel);border:2px solid var(--border);border-radius:10px;overflow:hidden;display:none;border-left:4px solid var(--amber);}
-.unknown-card.show{display:block;}
-.unk-head{padding:14px 16px;background:#e85e00;display:flex;align-items:center;gap:10px;}
-.unk-head-icon{font-size:22px;}
-.unk-head-title{font-size:13px;font-weight:800;color:#fff;text-transform:uppercase;letter-spacing:.5px;}
-.unk-head-sub{font-size:11px;color:#aaa;margin-top:2px;font-weight:600;}
-.unk-code{font-size:32px;font-weight:900;color:var(--text);padding:16px 16px 8px;letter-spacing:1px;}
-.unk-label{font-size:10px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:1px;padding:0 16px 10px;}
-.tipo-chips{display:flex;flex-wrap:wrap;gap:8px;padding:0 16px 16px;}
-.tipo-chip{padding:10px 16px;border:2px solid var(--border);border-radius:6px;font-family:var(--f);font-size:13px;font-weight:800;background:var(--bg);color:var(--text);cursor:pointer;transition:all .15s;text-transform:uppercase;letter-spacing:.3px;}
-.tipo-chip:hover{border-color:var(--orange);color:var(--orange);}
-.tipo-chip.on{background:var(--orange);color:#fff;border-color:var(--orange);}
-.unk-add-btn{width:calc(100% - 32px);margin:0 16px 16px;padding:16px;font-family:var(--f);font-size:16px;font-weight:900;background:var(--orange);color:#fff;border:none;border-radius:8px;cursor:pointer;transition:all .12s;display:none;text-transform:uppercase;letter-spacing:1px;}
-.unk-add-btn.show{display:block;}
-.unk-add-btn:active{transform:scale(.97);}
-.unk-feedback{text-align:center;padding:0 16px 14px;font-size:14px;font-weight:700;color:var(--muted);display:none;}
-.unk-feedback.show{display:block;}
-.tipo-stock-row{padding:24px 20px;display:flex;align-items:center;justify-content:space-between;background:#1e1e1e;border-radius:8px;}
-.tipo-stock-label{font-size:11px;font-weight:800;color:#aaa;text-transform:uppercase;letter-spacing:1px;}
-.tipo-stock-num{font-size:72px;font-weight:900;line-height:1;color:#fff;}
-.tipo-stock-num.zero{color:#ff6b6b;} .tipo-stock-num.low{color:#ffb347;} .tipo-stock-num.ok{color:#5dde7a;}
-.tipo-stock-footer{padding:12px 20px 16px;font-size:13px;color:var(--muted);border-top:1px solid var(--border);font-weight:600;}
-.home-btn{padding:8px 14px;font-family:var(--f);font-size:13px;font-weight:800;background:var(--bg);border:2px solid var(--border);color:var(--text);border-radius:8px;cursor:pointer;transition:all .15s;white-space:nowrap;text-transform:uppercase;letter-spacing:.5px;}
-.home-btn:hover{border-color:var(--orange);color:var(--orange);}
+.tipo-btn:hover { border-color:var(--blue); color:var(--blue); }
+.tipo-btn.active { background:var(--blue);color:#fff;border-color:var(--blue); }
 
-/* HISTORIAL */
-.hist-list{background:var(--panel);border:2px solid var(--border);border-radius:10px;overflow:hidden;}
-.hist-hdr{padding:14px 16px;border-bottom:2px solid var(--border);display:flex;justify-content:space-between;align-items:center;background:var(--orange);}
-.hist-hdr-title{font-size:14px;font-weight:900;text-transform:uppercase;letter-spacing:1px;color:#fff;}
-.hist-refresh{padding:7px 14px;font-family:var(--f);font-size:12px;font-weight:800;background:transparent;border:2px solid rgba(255,255,255,.5);border-radius:6px;cursor:pointer;color:#fff;transition:all .15s;text-transform:uppercase;}
-.hist-refresh:hover{border-color:#fff;background:rgba(255,255,255,.15);}
-.hist-item{padding:14px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px;}
-.hist-item:last-child{border-bottom:none;}
-.hist-badge{padding:5px 10px;border-radius:5px;font-size:12px;font-weight:900;text-transform:uppercase;letter-spacing:.5px;flex-shrink:0;min-width:70px;text-align:center;}
-.hist-badge.ing{background:var(--green-light);color:var(--green);}
-.hist-badge.sal{background:var(--red-light);color:var(--red);}
-.hist-info{flex:1;min-width:0;}
-.hist-tipo{font-size:10px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:1px;}
-.hist-veh{font-size:15px;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.hist-cod{font-size:12px;color:var(--muted);font-weight:600;margin-top:1px;}
-.hist-right{text-align:right;flex-shrink:0;}
-.hist-cant{font-size:24px;font-weight:900;}
-.hist-cant.ing{color:var(--green);}
-.hist-cant.sal{color:var(--red);}
-.hist-fecha{font-size:11px;color:var(--muted);margin-top:2px;font-weight:600;}
-.hist-stock-after{font-size:11px;color:var(--muted);margin-top:1px;}
+.veh-result {
+  background:var(--panel); border:2px solid var(--border); border-radius:14px;
+  overflow:hidden; display:none;
+}
+.veh-result.show { display:block; }
+.vr-top {
+  padding:12px 16px; border-bottom:2px solid var(--border);
+  display:flex; justify-content:space-between; align-items:center;
+}
+.vr-info-tipo { font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px; }
+.vr-info-veh  { font-size:17px;font-weight:800; }
+.vr-count { font-size:12px;font-weight:700;color:var(--blue);background:var(--blue-light);padding:4px 10px;border-radius:20px; }
+.vr-group { border-bottom:1px solid var(--border); }
+.vr-group:last-child { border-bottom:none; }
+.vr-group-hdr {
+  padding:10px 16px; font-size:11px;font-weight:700;color:var(--muted);
+  text-transform:uppercase;letter-spacing:.5px;background:#f8fafc;
+  display:flex;justify-content:space-between;align-items:center;
+}
+.vr-group-n { font-size:11px;background:var(--border);padding:2px 7px;border-radius:10px; }
+.vr-codes { padding:10px 16px;display:grid;grid-template-columns:1fr 1fr;gap:6px; }
+.vr-chip {
+  background:var(--bg); border:2px solid var(--border); border-radius:8px;
+  padding:8px 12px; cursor:pointer; transition:all .15s;
+}
+.vr-chip:hover { border-color:var(--blue);background:var(--blue-light); }
+.vr-chip-code { font-size:14px;font-weight:700; }
+.vr-chip-marca { font-size:11px;color:var(--muted);margin-top:1px; }
+
+/* ── STOCK PAGE ── */
+.stock-section-title {
+  font-size:13px; font-weight:700; color:var(--muted);
+  text-transform:uppercase; letter-spacing:.5px; margin-bottom:10px;
+}
+
+/* Tarjeta de filtro encontrado */
+.stock-found-card {
+  background:var(--panel); border:2px solid var(--blue);
+  border-radius:16px; overflow:hidden; display:none; margin-bottom:4px;
+}
+.stock-found-card.show { display:block; }
+.sfc-top { padding:14px 16px; border-bottom:2px solid var(--border); }
+.sfc-tipo    { font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:2px; }
+.sfc-veh     { font-size:20px;font-weight:800; }
+.sfc-codigo  { font-size:13px;color:var(--muted);margin-top:2px; }
+
+/* Stock actual grande */
+.stock-display {
+  display:flex; align-items:center; justify-content:center;
+  padding:20px 16px; gap:20px; border-bottom:2px solid var(--border);
+}
+.stock-num {
+  font-size:72px; font-weight:900; line-height:1;
+  color:var(--text); min-width:100px; text-align:center;
+}
+.stock-num.zero { color:var(--red); }
+.stock-num.low  { color:var(--amber); }
+.stock-num.ok   { color:var(--green); }
+.stock-num-label { font-size:13px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px; }
+
+/* Cantidad */
+.qty-row {
+  display:flex; align-items:center; gap:12px;
+  padding:14px 16px; border-bottom:2px solid var(--border);
+}
+.qty-label { font-size:14px;font-weight:700;color:var(--muted);flex-shrink:0; }
+.qty-ctrl { display:flex;align-items:center;gap:0;border:2px solid var(--border);border-radius:12px;overflow:hidden; }
+.qty-btn {
+  width:44px; height:44px; border:none; background:var(--bg);
+  font-size:22px; font-weight:700; cursor:pointer; color:var(--text);
+  transition:background .1s; flex-shrink:0;
+}
+.qty-btn:active { background:var(--border); }
+.qty-val {
+  width:52px; text-align:center; font-size:20px; font-weight:800;
+  border:none; border-left:2px solid var(--border); border-right:2px solid var(--border);
+  outline:none; font-family:var(--f); color:var(--text); background:var(--panel);
+  padding:8px 0;
+}
+
+/* Botones INGRESO / SALIDA */
+.mov-btns {
+  display:grid; grid-template-columns:1fr 1fr; gap:10px;
+  padding:14px 16px;
+}
+.mov-btn {
+  padding:20px 10px; border:none; border-radius:14px; cursor:pointer;
+  font-family:var(--f); font-weight:900; font-size:20px;
+  transition:all .12s; display:flex; flex-direction:column;
+  align-items:center; gap:4px;
+}
+.mov-btn:active { transform:scale(0.96); }
+.mov-btn-sub { font-size:12px; font-weight:600; opacity:.7; }
+.btn-ingreso { background:var(--green-light); color:var(--green); border:2px solid #86efac; }
+.btn-ingreso:hover { background:#bbf7d0; }
+.btn-salida  { background:var(--red-light);   color:var(--red);   border:2px solid #fca5a5; }
+.btn-salida:hover  { background:#fecaca; }
+
+.stock-saving {
+  text-align:center; padding:10px; font-size:14px; font-weight:600;
+  color:var(--muted); display:none;
+}
+.stock-saving.show { display:block; }
+
+/* Búsqueda de stock */
+.stock-search-row {
+  display:flex; gap:10px; margin-bottom:16px;
+}
+.stock-search-row input {
+  flex:1; padding:15px 16px; font-family:var(--f); font-size:17px; font-weight:600;
+  text-transform:uppercase; letter-spacing:1px;
+  background:var(--panel); border:2px solid var(--border);
+  color:var(--text); border-radius:12px; outline:none; transition:border-color .15s;
+}
+.stock-search-row input:focus { border-color:var(--blue); }
+.stock-search-row input::placeholder { text-transform:none;letter-spacing:0;font-weight:400;color:#aab; }
+.stock-search-row button {
+  padding:15px 18px; font-family:var(--f); font-size:15px; font-weight:700;
+  background:var(--blue); border:none; color:#fff;
+  border-radius:12px; cursor:pointer; transition:all .15s;
+}
+.stock-search-row button:active { transform:scale(0.97); }
+
+/* Lista de stock */
+.stock-list-card {
+  background:var(--panel); border:2px solid var(--border);
+  border-radius:16px; overflow:hidden;
+}
+.slc-header {
+  padding:14px 16px; border-bottom:2px solid var(--border);
+  display:flex; justify-content:space-between; align-items:center;
+}
+.slc-title { font-size:16px;font-weight:800; }
+.slc-refresh {
+  padding:7px 12px; font-family:var(--f); font-size:12px; font-weight:700;
+  background:var(--bg); border:2px solid var(--border); border-radius:8px;
+  cursor:pointer; color:var(--muted); transition:all .15s;
+}
+.slc-refresh:hover { border-color:var(--blue);color:var(--blue); }
+
+.sl-item {
+  padding:14px 16px; border-bottom:1px solid var(--border);
+  display:flex; align-items:center; gap:14px;
+}
+.sl-item:last-child { border-bottom:none; }
+.sl-info { flex:1; min-width:0; }
+.sl-tipo { font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px; }
+.sl-veh  { font-size:16px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis; }
+.sl-stock { font-size:30px;font-weight:900;min-width:50px;text-align:right; }
+.sl-stock.zero  { color:var(--red); }
+.sl-stock.low   { color:var(--amber); }
+.sl-stock.ok    { color:var(--green); }
+
+.sl-empty { padding:30px;text-align:center;font-size:15px;color:var(--muted); }
 </style>
 </head>
 <body>
 
-<!-- TOPBAR -->
-<div class="topbar">
-  <button class="home-btn" id="homeBtn" onclick="goPage('scanner')" style="display:none">
-    ← Inicio
-  </button>
-  <img src="https://i.imgur.com/y5K03NS.png" style="height:48px;object-fit:contain;object-position:left;margin-right:auto;">
-  <button class="menu-btn" onclick="toggleDrawer()">
-    <span></span><span></span><span></span>
-  </button>
-</div>
-
-<!-- DRAWER -->
-<div class="overlay" id="overlay" onclick="closeDrawer()"></div>
-<div class="drawer" id="drawer">
-  <div class="drawer-hdr">
-    <img src="https://i.imgur.com/y5K03NS.png" style="height:34px;object-fit:contain;filter:brightness(10);">
-    <button class="drawer-close" onclick="closeDrawer()">✕</button>
-  </div>
-  <div class="drawer-nav">
-    <button class="d-item" id="di-vehiculo" onclick="goPage('vehiculo')">
-      <div class="d-icon">🚛</div>
-      <div>
-        <div class="d-label">Buscar por camión</div>
-        <div class="d-sub">Filtros y stock por modelo</div>
-      </div>
-    </button>
-    <button class="d-item" id="di-stock" onclick="goPage('stock')">
-      <div class="d-icon">📦</div>
-      <div>
-        <div class="d-label">Stock general</div>
-        <div class="d-sub">Ver todas las existencias</div>
-      </div>
-    </button>
-    <button class="d-item" id="di-historial" onclick="goPage('historial')">
-      <div class="d-icon">📋</div>
-      <div>
-        <div class="d-label">Historial</div>
-        <div class="d-sub">Movimientos registrados</div>
-      </div>
-    </button>
-  </div>
-</div>
-
-<!-- PAGE: SCANNER -->
+<!-- ══════════════════ PÁGINA: SCANNER ══════════════════ -->
 <div class="page active" id="page-scanner">
-  <div style="height:12px"></div>
 
-  <div class="viewfinder">
+  <div class="scanner-viewfinder">
     <video id="video" autoplay playsinline muted></video>
-    <div id="sz" class="sz">
-      <div class="szc tl"></div><div class="szc tr"></div>
-      <div class="szc br"></div><div class="szc bl"></div>
-      <div class="szl"></div>
+    <div class="scan-zone">
+      <div class="c1"></div><div class="c2"></div>
+      <div class="scan-line"></div>
     </div>
-    <div class="vf-st" id="vfSt">Iniciando cámara...</div>
+    <div class="scan-status" id="scanStatus">Iniciando cámara...</div>
   </div>
 
-  <button class="scan-btn" id="btnCap" onclick="capturar()" disabled>
+  <div style="height:14px;flex-shrink:0"></div>
+
+  <button class="scan-btn" id="btnCaptura" onclick="capturar()" disabled>
     <span class="lbl">📷 Escanear código</span>
     <span class="sp"></span>
   </button>
+
+  <div style="height:10px;flex-shrink:0"></div>
 
   <div class="manual-row">
     <input id="manual" type="text" placeholder="Código manual..." autocomplete="off">
     <button onclick="buscarManual()">BUSCAR</button>
   </div>
 
+  <div style="height:10px;flex-shrink:0"></div>
+
   <div class="result-card" id="resultado"></div>
 
-  <!-- Código desconocido -->
-  <div class="unknown-card" id="unknownCard">
-    <div class="unk-head">
-      <span class="unk-head-icon">🔍</span>
-      <div>
-        <div class="unk-head-title">Código no encontrado en la base</div>
-        <div class="unk-head-sub">Podés clasificarlo y agregarlo al stock</div>
-      </div>
-    </div>
-    <div class="unk-code" id="unkCode">—</div>
-    <div class="unk-label">¿Qué tipo de filtro es?</div>
-    <div class="tipo-chips">
-      <button class="tipo-chip" onclick="unkSelTipo(this,'Aceite')">🛢 Aceite</button>
-      <button class="tipo-chip" onclick="unkSelTipo(this,'Combustible')">⛽ Combustible</button>
-      <button class="tipo-chip" onclick="unkSelTipo(this,'Aire primario')">💨 Aire primario</button>
-      <button class="tipo-chip" onclick="unkSelTipo(this,'Aire secundario')">💨 Aire secundario</button>
-      <button class="tipo-chip" onclick="unkSelTipo(this,'Hidráulico')">🔧 Hidráulico</button>
-      <button class="tipo-chip" onclick="unkSelTipo(this,'Dirección hidráulica')">🔧 Dirección</button>
-      <button class="tipo-chip" onclick="unkSelTipo(this,'Secador de aire')">💧 Secador</button>
-      <button class="tipo-chip" onclick="unkSelTipo(this,'Otro')">📦 Otro</button>
-    </div>
-    <button class="unk-add-btn" id="unkAddBtn" onclick="unkAgregar()">+ Agregar al stock</button>
-    <div class="unk-feedback" id="unkFeedback"></div>
-  </div>
-
-  <div style="height:24px"></div>
 </div>
 
-<!-- PAGE: VEHÍCULO -->
+<!-- ══════════════════ PÁGINA: VEHÍCULO ══════════════════ -->
 <div class="page" id="page-vehiculo">
-  <div style="height:12px"></div>
-  <div class="sec-title">Buscar por camión</div>
-  <div class="sec-sub">Seleccioná el modelo para ver sus filtros y stock</div>
+
+  <div class="page-title">Buscar por vehículo</div>
+  <div class="page-sub">Seleccioná el modelo para ver todos sus filtros</div>
 
   <select class="veh-select" id="vehicleSelect" onchange="onVehicleChange()">
     <option value="">— Seleccioná el vehículo —</option>
   </select>
 
   <div id="tipoSection" style="display:none">
-    <div style="font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px;">Tipo de filtro</div>
+    <div class="stock-section-title" style="margin-bottom:10px">Tipo de filtro</div>
     <div class="tipo-grid" id="tipoGrid"></div>
   </div>
 
-  <div class="codes-table" id="codesTable"></div>
-  <div style="height:24px"></div>
+  <div class="veh-result" id="vehResult"></div>
+
 </div>
 
-<!-- PAGE: STOCK -->
+<!-- ══════════════════ PÁGINA: STOCK ══════════════════ -->
 <div class="page" id="page-stock">
-  <div style="height:12px"></div>
-  <div class="sec-title">Stock general</div>
-  <div class="sec-sub">Filtrá por vehículo o mirá todo</div>
 
-  <select class="stock-veh-select" id="stockVehSel" onchange="stockFiltrar()">
-    <option value="">— Todos los vehículos —</option>
-  </select>
+  <div class="page-title">Movimientos de stock</div>
+  <div class="page-sub" style="margin-bottom:16px">Escaneá o ingresá el código del filtro</div>
 
-  <div class="stock-list">
-    <div class="sl-hdr">
-      <span class="sl-hdr-title">📋 Existencias</span>
-      <button class="sl-refresh" onclick="stockCargarLista()">↻ Actualizar</button>
-    </div>
-    <div id="stockBody"><div class="sl-empty">Cargando...</div></div>
+  <!-- Buscar filtro -->
+  <div class="stock-search-row">
+    <input id="stockInput" type="text" placeholder="Código del filtro..." autocomplete="off">
+    <button onclick="stockBuscar()">BUSCAR</button>
   </div>
-  <div style="height:24px"></div>
+
+  <!-- Tarjeta del filtro encontrado -->
+  <div class="stock-found-card" id="stockCard">
+    <div class="sfc-top">
+      <div class="sfc-tipo"  id="scTipo"></div>
+      <div class="sfc-veh"   id="scVeh"></div>
+      <div class="sfc-codigo" id="scCodigo"></div>
+    </div>
+
+    <!-- Stock actual grande -->
+    <div class="stock-display">
+      <div>
+        <div class="stock-num-label">Stock actual</div>
+      </div>
+      <div class="stock-num" id="stockNum">—</div>
+    </div>
+
+    <!-- Cantidad -->
+    <div class="qty-row">
+      <span class="qty-label">Cantidad</span>
+      <div class="qty-ctrl">
+        <button class="qty-btn" onclick="qtyChange(-1)">−</button>
+        <input class="qty-val" id="qtyVal" type="number" value="1" min="1" max="999">
+        <button class="qty-btn" onclick="qtyChange(+1)">+</button>
+      </div>
+    </div>
+
+    <!-- INGRESO / SALIDA -->
+    <div class="mov-btns">
+      <button class="mov-btn btn-ingreso" onclick="stockMover(+1)">
+        ↑ INGRESO
+        <span class="mov-btn-sub">Sumar al stock</span>
+      </button>
+      <button class="mov-btn btn-salida" onclick="stockMover(-1)">
+        ↓ SALIDA
+        <span class="mov-btn-sub">Restar del stock</span>
+      </button>
+    </div>
+
+    <div class="stock-saving" id="stockSaving"></div>
+  </div>
+
+  <div style="height:16px;flex-shrink:0"></div>
+
+  <!-- Lista de todo el stock -->
+  <div class="stock-list-card">
+    <div class="slc-header">
+      <span class="slc-title">📋 Stock total</span>
+      <button class="slc-refresh" onclick="stockCargarLista()">↻ Actualizar</button>
+    </div>
+    <div id="stockListBody"><div class="sl-empty">Cargando...</div></div>
+  </div>
+
 </div>
+
+<!-- ══════════════════ BOTTOM NAV ══════════════════ -->
+<nav class="nav">
+  <button class="nav-btn active" id="nav-scanner" onclick="goPage('scanner')">
+    <span class="nav-icon">📷</span>
+    <span class="nav-label">Escanear</span>
+  </button>
+  <button class="nav-btn" id="nav-vehiculo" onclick="goPage('vehiculo')">
+    <span class="nav-icon">🚛</span>
+    <span class="nav-label">Vehículo</span>
+  </button>
+  <button class="nav-btn" id="nav-stock" onclick="goPage('stock')">
+    <span class="nav-icon">📦</span>
+    <span class="nav-label">Stock</span>
+  </button>
+</nav>
 
 <script>
-const SHEET_URL = "/.netlify/functions/sheets";
+// ══ CONFIG ══
+const SHEET_URL = "TU_URL_APPS_SCRIPT_AQUI";
 
+// ══ ESTADO ══
 let DB = {};
-let allStock = [];
-let currentGrupo = null; // grupo activo en el scanner
+let stockGrupoActual = null;
 
-// ── DB ──
+// ══ DB ══
 fetch("database.json")
   .then(r => r.json())
-  .then(d => { DB = d; poblarSelectores(); stockCargarLista(); })
-  .catch(() => console.error("Error DB"));
+  .then(d => {
+    DB = d;
+    poblarVehiculos();
+    stockCargarLista();
+  })
+  .catch(() => console.error("No se pudo cargar database.json"));
 
-// ── DRAWER ──
-function toggleDrawer() {
-  document.getElementById('drawer').classList.toggle('open');
-  document.getElementById('overlay').classList.toggle('open');
-}
-function closeDrawer() {
-  document.getElementById('drawer').classList.remove('open');
-  document.getElementById('overlay').classList.remove('open');
-}
-
-// ── NAV ──
+// ══ NAVEGACIÓN ══
 function goPage(name) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.d-item').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
   document.getElementById('page-' + name).classList.add('active');
-  const di = document.getElementById('di-' + name);
-  if (di) di.classList.add('active');
-  // mostrar botón home solo cuando no estás en scanner
-  document.getElementById('homeBtn').style.display = name === 'scanner' ? 'none' : 'block';
-  closeDrawer();
+  document.getElementById('nav-' + name).classList.add('active');
   window.scrollTo(0, 0);
 }
 
-// ── CÁMARA ──
-const video  = document.getElementById('video');
-const vfSt   = document.getElementById('vfSt');
-const btnCap = document.getElementById('btnCap');
-const sz     = document.getElementById('sz');
+// ══ CÁMARA ══
+const video    = document.getElementById('video');
+const scanStatus = document.getElementById('scanStatus');
+const btnCap   = document.getElementById('btnCaptura');
+const scanZone = document.querySelector('.scan-zone');
 
 navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } })
-  .then(s => { video.srcObject = s; vfSt.textContent = 'Apuntar al código del filtro'; btnCap.disabled = false; })
-  .catch(() => { vfSt.textContent = 'Sin acceso a cámara'; });
+  .then(s => {
+    video.srcObject = s;
+    scanStatus.textContent = 'Apuntar al código del filtro';
+    btnCap.disabled = false;
+  })
+  .catch(() => {
+    scanStatus.textContent = 'Error al acceder a la cámara';
+    scanStatus.classList.add('err');
+  });
 
+// ══ CAPTURA ══
 function capturar() {
-  const c = document.createElement('canvas');
-  c.width = video.videoWidth||640; c.height = video.videoHeight||480;
-  c.getContext('2d').drawImage(video, 0, 0);
-  const b64 = c.toDataURL('image/jpeg', .85).split(',')[1];
-  setScanLoading(true);
-  leerClaude(b64);
+  const canvas = document.createElement('canvas');
+  canvas.width  = video.videoWidth  || 640;
+  canvas.height = video.videoHeight || 480;
+  canvas.getContext('2d').drawImage(video, 0, 0);
+  const b64 = canvas.toDataURL('image/jpeg', 0.85).split(',')[1];
+  setLoading(true);
+  scanZone.classList.add('scanning');
+  leerConClaude(b64);
 }
 
-function setScanLoading(on) {
-  btnCap.disabled = on;
-  btnCap.classList.toggle('loading', on);
-  vfSt.textContent = on ? 'Analizando...' : 'Apuntar al código del filtro';
-  sz.classList.toggle('scanning', on);
-}
-
-async function leerClaude(b64) {
+async function leerConClaude(b64) {
   try {
-    const res  = await fetch('/.netlify/functions/claude', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ imageBase64: b64 }) });
+    const res = await fetch('/.netlify/functions/claude', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ imageBase64: b64 })
+    });
     const data = await res.json();
     if (data.error) throw new Error(data.error);
-    const codigo = (data.codigo||'NO_DETECTADO').toUpperCase().replace(/\s+/g,'');
+    const codigo = (data.codigo || 'NO_DETECTADO').toUpperCase().replace(/\s+/g, '');
     buscarInteligente(codigo);
-  } catch(e) { mostrarError('Error: ' + e.message); }
-  finally    { setScanLoading(false); }
+  } catch(e) {
+    mostrarError('Error: ' + e.message);
+  } finally {
+    setLoading(false);
+    scanZone.classList.remove('scanning');
+  }
 }
 
-// ── BÚSQUEDA ──
-function buscarEnDB(codigo) {
-  let key = codigo.toUpperCase();
-  if (DB[key]) return { key, data: DB[key] };
-  const norm = key.replace(/[\s\-]/g,'');
-  if (DB[norm]) return { key: norm, data: DB[norm] };
-  let best = null, bestD = Infinity;
-  const umbral = Math.max(2, Math.floor(key.length * .25));
-  for (const k in DB) { const d = lev(key,k); if (d < bestD) { bestD=d; best=k; } }
-  if (bestD <= umbral && best) return { key:best, data:DB[best], aprox:true, orig:codigo };
-  return null;
+function setLoading(on) {
+  btnCap.disabled = on;
+  btnCap.classList.toggle('loading', on);
+  scanStatus.textContent = on ? 'Analizando...' : 'Apuntar al código del filtro';
 }
 
-function buscarInteligente(codigo) {
-  if (!codigo || codigo === 'NO_DETECTADO') { mostrarError('No se detectó ningún código. Intentá de nuevo.'); return; }
-  const f = buscarEnDB(codigo);
-  if (!f) { mostrarDesconocido(codigo); return; }
-  mostrarResultado(f.key, f.data, f.aprox, f.orig||codigo);
+// ══ BÚSQUEDA ══
+function buscarInteligente(codigo, destino = 'scanner') {
+  if (!codigo || codigo === 'NO_DETECTADO') {
+    if (destino === 'scanner') mostrarError('No se detectó ningún código.\nMejorá la iluminación e intentá de nuevo.');
+    return null;
+  }
+  let key = codigo;
+  if (!DB[key]) key = codigo.replace(/[\s\-]/g, '');
+  if (!DB[key]) {
+    let best = null, bestD = Infinity;
+    const umbral = Math.max(2, Math.floor(codigo.length * 0.25));
+    for (const k in DB) {
+      const d = lev(codigo, k);
+      if (d < bestD) { bestD = d; best = k; }
+    }
+    if (bestD <= umbral) key = best;
+    else key = null;
+  }
+  if (!key) {
+    if (destino === 'scanner') mostrarError('Código no encontrado: ' + codigo);
+    return null;
+  }
+  const data = DB[key];
+  const aproximado = key !== codigo;
+  if (destino === 'scanner') mostrarResultado(key, data, aproximado, codigo);
+  return { key, data };
 }
 
 function buscarManual() {
   const c = document.getElementById('manual').value.trim().toUpperCase();
-  if (c) buscarInteligente(c);
+  if (c) buscarInteligente(c, 'scanner');
 }
 document.getElementById('manual').addEventListener('keydown', e => { if(e.key==='Enter') buscarManual(); });
 
-// ── RESULTADO SCANNER ──
-async function mostrarResultado(codigo, data, aprox, detectado) {
-  document.getElementById('unknownCard').classList.remove('show');
-  const panel  = document.getElementById('resultado');
-  const modelos = Array.isArray(data.modelos) ? data.modelos.join(' / ') : (data.modelos||'—');
+// ══ RENDER RESULTADO SCANNER ══
+function mostrarResultado(codigo, data, aprox, detectado) {
+  const panel = document.getElementById('resultado');
+  const modelos = Array.isArray(data.modelos) ? data.modelos.join(' / ') : (data.modelos || '—');
   const equivs  = data.equivalencias || [];
-  const grupoId = getGrupoId(data.tipo, data.modelos);
 
-  currentGrupo = {
-    grupoId, tipo: data.tipo, modelos,
-    codigos: [codigo, ...equivs.map(e=>e.codigo.toUpperCase())].slice(0,8).join(', ')
-  };
-
-  // Equivalencias colapsables
   const equivHTML = equivs.length ? `
-    <button class="equiv-toggle" id="equivToggle" onclick="toggleEquiv()">
-      Equivalencias (${equivs.length})
-      <span class="arr">▾</span>
-    </button>
-    <div class="equiv-body" id="equivBody">
-      <div class="equiv-grid" style="padding-top:10px;">
+    <div class="rc-equiv">
+      <div class="rc-equiv-title">Equivalencias · ${equivs.length} código${equivs.length!==1?'s':''}</div>
+      <div class="equiv-grid">
         ${equivs.map(e=>`
-          <div class="eq-chip" onclick="chipClick(this,'${e.codigo.toUpperCase()}')">
-            <div class="eq-code">${e.codigo.toUpperCase()}</div>
-            <div class="eq-marca">${e.marca}</div>
+          <div class="equiv-chip" onclick="chipClick(this,'${e.codigo.toUpperCase()}')">
+            <div class="ec-code">${e.codigo.toUpperCase()}</div>
+            <div class="ec-marca">${e.marca}</div>
           </div>`).join('')}
       </div>
     </div>` : '';
 
   panel.innerHTML = `
-    <div class="rc-head">
-      <div class="rc-dot${aprox?' ap':''}"></div>
-      <span class="rc-lbl${aprox?' ap':''}">${aprox?`Coincidencia aprox. (${detectado})`:'Código encontrado'}</span>
+    <div class="rc-header">
+      <div class="rc-dot${aprox?' approx':''}"></div>
+      <span class="rc-label${aprox?' approx':''}">${aprox?`Coincidencia aprox. (${detectado})`:'Código encontrado'}</span>
     </div>
-    <div class="rc-main">
+    <div class="rc-body">
       <div class="rc-code">${codigo}</div>
       <div class="rc-grid">
-        <span class="rc-fl">Marca</span>    <span class="rc-fv">${data.marca}</span>
-        <span class="rc-fl">Tipo</span>     <span class="rc-fv">${data.tipo}</span>
-        <span class="rc-fl">Vehículo</span> <span class="rc-fv">${modelos}</span>
+        <span class="rc-lbl">Marca</span>    <span class="rc-val">${data.marca}</span>
+        <span class="rc-lbl">Tipo</span>     <span class="rc-val">${data.tipo}</span>
+        <span class="rc-lbl">Vehículo</span> <span class="rc-val">${modelos}</span>
       </div>
-      <div class="rc-stock-row">
-        <div class="rc-stock-label">Stock actual</div>
-        <div class="rc-stock-num" id="rcStockNum">...</div>
-      </div>
-    </div>
-    <div class="rc-mov">
-      <div class="qty-row">
-        <span class="qty-lbl">Cantidad</span>
-        <div class="qty-ctrl">
-          <button class="qty-btn" onclick="qtyChange(-1)">−</button>
-          <input class="qty-inp" id="qtyVal" type="number" value="1" min="1" max="999">
-          <button class="qty-btn" onclick="qtyChange(+1)">+</button>
-        </div>
-      </div>
-      <div class="mov-btns">
-        <button class="mov-btn btn-ing" onclick="registrarMov(+1)">↑ INGRESO<span class="mov-btn-sub">Suma al stock</span></button>
-        <button class="mov-btn btn-sal" onclick="registrarMov(-1)">↓ SALIDA<span class="mov-btn-sub">Resta del stock</span></button>
-      </div>
-      <div class="mov-feedback" id="movFeedback"></div>
     </div>
     ${equivHTML}`;
-
   panel.classList.add('show');
   panel.scrollIntoView({ behavior:'smooth', block:'nearest' });
-
-  // Cargar stock async
-  try {
-    const stock = await apiGetStock(grupoId);
-    actualizarRcStock(stock);
-  } catch(e) { document.getElementById('rcStockNum').textContent = '?'; }
 }
 
 function mostrarError(msg) {
   const panel = document.getElementById('resultado');
   panel.innerHTML = `
-    <div class="rc-head"><div class="rc-dot er"></div><span class="rc-lbl er">Sin resultado</span></div>
-    <div class="rc-nf">${msg.replace(/\n/g,'<br>')}</div>`;
+    <div class="rc-header"><div class="rc-dot err"></div><span class="rc-label err">Sin resultado</span></div>
+    <div class="rc-notfound">${msg.replace(/\n/g,'<br>')}</div>`;
   panel.classList.add('show');
-  currentGrupo = null;
-}
-
-function actualizarRcStock(n) {
-  const el = document.getElementById('rcStockNum');
-  if (!el) return;
-  el.textContent = n;
-  el.className = 'rc-stock-num ' + (n===0?'zero':n<=2?'low':'ok');
-}
-
-function toggleEquiv() {
-  const btn  = document.getElementById('equivToggle');
-  const body = document.getElementById('equivBody');
-  btn.classList.toggle('open');
-  body.classList.toggle('open');
 }
 
 function chipClick(el, codigo) {
-  document.querySelectorAll('.eq-chip').forEach(c=>c.classList.remove('on'));
-  el.classList.add('on');
+  document.querySelectorAll('.equiv-chip').forEach(c=>c.classList.remove('active'));
+  el.classList.add('active');
   document.getElementById('manual').value = codigo;
 }
 
-// ── MOVIMIENTOS ──
-function qtyChange(d) {
-  const inp = document.getElementById('qtyVal');
-  if (inp) inp.value = Math.max(1, (parseInt(inp.value)||1) + d);
-}
-
-async function registrarMov(dir) {
-  if (!currentGrupo) return;
-  const qty    = parseInt(document.getElementById('qtyVal').value)||1;
-  const delta  = dir * qty;
-  const fb     = document.getElementById('movFeedback');
-  fb.textContent = 'Guardando...'; fb.classList.add('show');
-  try {
-    const nuevo = await apiUpdate(currentGrupo, delta);
-    actualizarRcStock(nuevo);
-    fb.textContent = dir>0 ? `✅ Ingresados ${qty} — Stock: ${nuevo}` : `✅ Retirados ${qty} — Stock: ${nuevo}`;
-    document.getElementById('qtyVal').value = 1;
-    setTimeout(() => fb.classList.remove('show'), 2500);
-    stockCargarLista();
-  } catch(e) {
-    fb.textContent = '❌ Error al guardar.';
-    setTimeout(() => fb.classList.remove('show'), 3000);
-  }
-}
-
-// ── VEHÍCULO ──
-function poblarSelectores() {
+// ══ VEHÍCULO ══
+function poblarVehiculos() {
   const set = new Set();
   for (const k in DB) (DB[k].modelos||[]).forEach(m => set.add(m));
-  const opts = [...set].sort();
-  ['vehicleSelect','stockVehSel'].forEach(id => {
-    const sel = document.getElementById(id);
-    opts.forEach(m => { const o=document.createElement('option'); o.value=m; o.textContent=m; sel.appendChild(o); });
+  const sel = document.getElementById('vehicleSelect');
+  [...set].sort().forEach(m => {
+    const o = document.createElement('option');
+    o.value = m; o.textContent = m; sel.appendChild(o);
   });
 }
 
 function onVehicleChange() {
   const modelo = document.getElementById('vehicleSelect').value;
-  const sec    = document.getElementById('tipoSection');
-  const grid   = document.getElementById('tipoGrid');
-  const table  = document.getElementById('codesTable');
-  table.classList.remove('show'); table.innerHTML = '';
+  const sec = document.getElementById('tipoSection');
+  const grid = document.getElementById('tipoGrid');
+  const res  = document.getElementById('vehResult');
+  res.classList.remove('show'); res.innerHTML = '';
   if (!modelo) { sec.style.display='none'; return; }
   const tipos = new Set();
   for (const k in DB) if ((DB[k].modelos||[]).includes(modelo)) tipos.add(DB[k].tipo);
-  grid.innerHTML = [...tipos].sort().map(t=>`<button class="tipo-btn" onclick="mostrarTipo('${modelo}','${t}',this)">${t}</button>`).join('');
+  grid.innerHTML = [...tipos].sort().map(t=>`
+    <button class="tipo-btn" onclick="mostrarTipo('${modelo}','${t}',this)">${t}</button>`).join('');
   sec.style.display = 'block';
 }
 
-async function mostrarTipo(modelo, tipo, btn) {
-  document.querySelectorAll('.tipo-btn').forEach(b=>b.classList.remove('on'));
-  btn.classList.add('on');
-
-  // Juntar todos los códigos del grupo
+function mostrarTipo(modelo, tipo, btn) {
+  document.querySelectorAll('.tipo-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
   const codigos = [];
   for (const k in DB) {
     const d = DB[k];
-    if ((d.modelos||[]).includes(modelo) && d.tipo===tipo)
-      codigos.push({ codigo:k, marca:d.marca });
+    if ((d.modelos||[]).includes(modelo) && d.tipo===tipo) codigos.push({codigo:k, marca:d.marca});
   }
-
-  // Equivalencias colapsables HTML
-  const equivHTML = codigos.length ? `
-    <button class="equiv-toggle" id="vehEquivToggle" onclick="toggleVehEquiv()" style="width:100%;padding:13px 16px;display:flex;align-items:center;justify-content:space-between;border:none;background:none;border-top:2px solid var(--border);cursor:pointer;font-family:var(--f);font-size:13px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;">
-      Ver equivalencias (${codigos.length})
-      <span id="vehEquivArr" style="transition:transform .2s;font-size:16px;">▾</span>
-    </button>
-    <div id="vehEquivBody" style="display:none;padding:0 16px 14px;">
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;padding-top:10px;">
-        ${codigos.map(c=>`
-          <div class="eq-chip" onclick="irAScanner('${c.codigo}')">
-            <div class="eq-code">${c.codigo}</div>
-            <div class="eq-marca">${c.marca}</div>
-          </div>`).join('')}
-      </div>
-    </div>` : '';
-
-  const table = document.getElementById('codesTable');
-  table.innerHTML = `
-    <div class="ct-head">
-      <span class="ct-title">${tipo}</span>
-      <span class="ct-count">${modelo}</span>
-    </div>
-    <div class="tipo-stock-row">
-      <div class="tipo-stock-label">Unidades en stock</div>
-      <div class="tipo-stock-num" id="tipoStockNum">...</div>
-    </div>
-    <div class="tipo-stock-footer">Incluye todas las marcas equivalentes</div>
-    ${equivHTML}`;
-  table.classList.add('show');
-  table.scrollIntoView({ behavior:'smooth', block:'nearest' });
-
-  // Buscar stock: primero en allStock (más confiable), si no llamar a la API
-  const stockItem = allStock.find(item =>
-    item.tipo.toUpperCase() === tipo.toUpperCase() &&
-    item.modelos.toUpperCase().includes(modelo.toUpperCase())
-  );
-
-  const el = document.getElementById('tipoStockNum');
-  if (stockItem !== undefined) {
-    const stock = stockItem.stock;
-    if (el) { el.textContent=stock; el.className='tipo-stock-num '+(stock===0?'zero':stock<=2?'low':'ok'); }
-  } else {
-    // No está en allStock todavía, consultar API directo
-    if (codigos.length) {
-      const grupoId = getGrupoId(tipo, DB[codigos[0].codigo]?.modelos || [modelo]);
-      try {
-        const stock = await apiGetStock(grupoId);
-        if (el) { el.textContent=stock; el.className='tipo-stock-num '+(stock===0?'zero':stock<=2?'low':'ok'); }
-      } catch(e) { if(el) el.textContent='?'; }
-    } else {
-      if(el) { el.textContent='0'; el.className='tipo-stock-num zero'; }
-    }
+  const panel = document.getElementById('vehResult');
+  if (!codigos.length) {
+    panel.innerHTML = `<div class="sl-empty">Sin filtros para este tipo.</div>`;
+    panel.classList.add('show'); return;
   }
+  const porMarca = {};
+  codigos.forEach(c => { const m=c.marca||'Otras'; if(!porMarca[m])porMarca[m]=[]; porMarca[m].push(c); });
+  panel.innerHTML = `
+    <div class="vr-top">
+      <div><div class="vr-info-tipo">${tipo}</div><div class="vr-info-veh">${modelo}</div></div>
+      <span class="vr-count">${codigos.length} códigos</span>
+    </div>
+    ${Object.entries(porMarca).sort((a,b)=>a[0].localeCompare(b[0])).map(([marca,items])=>`
+      <div class="vr-group">
+        <div class="vr-group-hdr">${marca}<span class="vr-group-n">${items.length}</span></div>
+        <div class="vr-codes">
+          ${items.map(c=>`
+            <div class="vr-chip" onclick="verEnScanner('${c.codigo}')">
+              <div class="vr-chip-code">${c.codigo}</div>
+              <div class="vr-chip-marca">${c.marca}</div>
+            </div>`).join('')}
+        </div>
+      </div>`).join('')}`;
+  panel.classList.add('show');
+  panel.scrollIntoView({ behavior:'smooth', block:'nearest' });
 }
 
-function toggleVehEquiv() {
-  const body = document.getElementById('vehEquivBody');
-  const arr  = document.getElementById('vehEquivArr');
-  const open = body.style.display === 'block';
-  body.style.display = open ? 'none' : 'block';
-  arr.style.transform = open ? '' : 'rotate(180deg)';
-}
-
-function irAScanner(codigo) {
+function verEnScanner(codigo) {
   goPage('scanner');
-  const f = buscarEnDB(codigo);
-  if (f) mostrarResultado(f.key, f.data, f.aprox, f.orig||codigo);
+  const found = buscarInteligente(codigo, 'scanner');
 }
 
-// ── STOCK GENERAL ──
-function stockFiltrar() {
-  const modelo = document.getElementById('stockVehSel').value;
-  const items  = modelo ? allStock.filter(i=>i.modelos.includes(modelo)) : allStock;
-  renderStock(items);
+// ══ STOCK ══
+function stockBuscar() {
+  const codigo = document.getElementById('stockInput').value.trim().toUpperCase();
+  if (!codigo) return;
+  const found = buscarInteligente(codigo, 'stock');
+  if (!found) { alert('Código no encontrado en la base de datos.'); return; }
+  stockMostrarTarjeta(found.key, found.data, codigo);
+}
+document.getElementById('stockInput').addEventListener('keydown', e => { if(e.key==='Enter') stockBuscar(); });
+
+async function stockMostrarTarjeta(codigo, data, codigoEscaneado) {
+  const modelos = Array.isArray(data.modelos) ? data.modelos.join(' / ') : (data.modelos || '—');
+  document.getElementById('scTipo').textContent   = data.tipo;
+  document.getElementById('scVeh').textContent    = modelos;
+  document.getElementById('scCodigo').textContent = 'Código: ' + codigoEscaneado;
+
+  const grupoId = stockGetGrupoId(data.tipo, data.modelos);
+  stockGrupoActual = {
+    grupoId, tipo: data.tipo,
+    modelos: modelos,
+    codigos: [codigo, ...(data.equivalencias||[]).map(e=>e.codigo.toUpperCase())].slice(0,8).join(', ')
+  };
+
+  const card = document.getElementById('stockCard');
+  card.classList.add('show');
+  document.getElementById('stockNum').textContent = '...';
+  document.getElementById('stockNum').className = 'stock-num';
+
+  try {
+    const stock = await stockGetStock(grupoId);
+    stockActualizarNum(stock);
+  } catch(e) {
+    document.getElementById('stockNum').textContent = '?';
+  }
+  card.scrollIntoView({ behavior:'smooth', block:'nearest' });
+}
+
+function stockActualizarNum(n) {
+  const el = document.getElementById('stockNum');
+  el.textContent = n;
+  el.className = 'stock-num ' + (n===0 ? 'zero' : n<=2 ? 'low' : 'ok');
+}
+
+function qtyChange(d) {
+  const inp = document.getElementById('qtyVal');
+  inp.value = Math.max(1, (parseInt(inp.value)||1) + d);
+}
+
+async function stockMover(direccion) {
+  if (!stockGrupoActual) return;
+  const qty = parseInt(document.getElementById('qtyVal').value) || 1;
+  const delta = direccion * qty;
+  const saving = document.getElementById('stockSaving');
+  saving.textContent = 'Guardando...';
+  saving.classList.add('show');
+  try {
+    const nuevoStock = await stockUpdate(stockGrupoActual, delta);
+    stockActualizarNum(nuevoStock);
+    saving.textContent = direccion > 0 ? `✅ Ingresados ${qty} — Stock: ${nuevoStock}` : `✅ Retirados ${qty} — Stock: ${nuevoStock}`;
+    document.getElementById('qtyVal').value = 1;
+    setTimeout(() => saving.classList.remove('show'), 2500);
+    stockCargarLista();
+  } catch(e) {
+    saving.textContent = '❌ Error al guardar.';
+    setTimeout(() => saving.classList.remove('show'), 3000);
+  }
+}
+
+function stockGetGrupoId(tipo, modelos) {
+  return (tipo + '__' + [...(Array.isArray(modelos)?modelos:[modelos])].sort().join('|')).toUpperCase();
+}
+
+async function stockGetStock(grupoId) {
+  if (!SHEET_URL || SHEET_URL.includes('TU_URL')) return 0;
+  const res = await fetch(SHEET_URL + '?accion=get&grupoId=' + encodeURIComponent(grupoId));
+  const d = await res.json();
+  return d.stock || 0;
+}
+
+async function stockUpdate(grupo, delta) {
+  if (!SHEET_URL || SHEET_URL.includes('TU_URL')) {
+    const cur = parseInt(document.getElementById('stockNum').textContent) || 0;
+    return Math.max(0, cur + delta);
+  }
+  const res = await fetch(SHEET_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ accion:'update', ...grupo, delta })
+  });
+  const d = await res.json();
+  return d.nuevoStock;
 }
 
 async function stockCargarLista() {
-  const body = document.getElementById('stockBody');
+  const body = document.getElementById('stockListBody');
   if (!SHEET_URL || SHEET_URL.includes('TU_URL')) {
-    body.innerHTML = '<div class="sl-empty">Configurá Google Sheets para ver el stock.</div>'; return;
+    body.innerHTML = '<div class="sl-empty">Configurá el Google Sheets para ver el stock aquí.</div>';
+    return;
   }
-  try {
-    const res = await fetch(SHEET_URL + '?accion=lista');
-    const d   = await res.json();
-    allStock  = (d.items||[]).sort((a,b)=>a.stock-b.stock||a.modelos.localeCompare(b.modelos));
-    stockFiltrar();
-  } catch(e) { body.innerHTML = '<div class="sl-empty">Error al cargar.</div>'; }
-}
-
-function renderStock(items) {
-  const body = document.getElementById('stockBody');
-  if (!items.length) { body.innerHTML='<div class="sl-empty">Sin datos.</div>'; return; }
-  body.innerHTML = items.map(i => {
-    const cls = i.stock===0?'zero':i.stock<=2?'low':'ok';
-    return `<div class="sl-item">
-      <div class="sl-info"><div class="sl-tipo">${i.tipo}</div><div class="sl-veh">${i.modelos}</div></div>
-      <div class="sl-n ${cls}">${i.stock}</div>
-    </div>`;
-  }).join('');
-}
-
-// ── SHEETS API ──
-function getGrupoId(tipo, modelos) {
-  return (tipo+'__'+[...(Array.isArray(modelos)?modelos:[modelos])].sort().join('|')).toUpperCase();
-}
-async function apiGetStock(grupoId) {
-  const res = await fetch(SHEET_URL+'?accion=get&grupoId='+encodeURIComponent(grupoId));
-  return (await res.json()).stock||0;
-}
-async function apiUpdate(grupo, delta) {
-  const res = await fetch(SHEET_URL, { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({accion:'update',...grupo,delta}) });
-  return (await res.json()).nuevoStock;
-}
-
-
-// ── HISTORIAL ──
-async function histCargar() {
-  const body = document.getElementById('histBody');
   body.innerHTML = '<div class="sl-empty">Cargando...</div>';
   try {
-    const res = await fetch(SHEET_URL + '?accion=historial&limite=60');
-    const d   = await res.json();
-    const movs = d.movimientos || [];
-    if (!movs.length) { body.innerHTML='<div class="sl-empty">Sin movimientos registrados todavía.</div>'; return; }
-    body.innerHTML = movs.map(m => {
-      const esIng = m.movimiento === 'INGRESO';
-      return `<div class="hist-item">
-        <div class="hist-badge ${esIng?'ing':'sal'}">${m.movimiento}</div>
-        <div class="hist-info">
-          <div class="hist-tipo">${m.tipo}</div>
-          <div class="hist-veh">${m.modelos}</div>
-          <div class="hist-cod">${m.codigo}</div>
+    const res = await fetch(SHEET_URL + '?accion=lista');
+    const d = await res.json();
+    const items = (d.items||[]).sort((a,b)=>a.stock-b.stock||a.modelos.localeCompare(b.modelos));
+    if (!items.length) { body.innerHTML='<div class="sl-empty">No hay stock cargado todavía.</div>'; return; }
+    body.innerHTML = items.map(item => {
+      const cls = item.stock===0?'zero':item.stock<=2?'low':'ok';
+      return `<div class="sl-item">
+        <div class="sl-info">
+          <div class="sl-tipo">${item.tipo}</div>
+          <div class="sl-veh">${item.modelos}</div>
         </div>
-        <div class="hist-right">
-          <div class="hist-cant ${esIng?'ing':'sal'}">${esIng?'+':'-'}${m.cantidad}</div>
-          <div class="hist-fecha">${m.fecha} ${m.hora}</div>
-          <div class="hist-stock-after">Stock: ${m.stockDespues}</div>
-        </div>
+        <div class="sl-stock ${cls}">${item.stock}</div>
       </div>`;
     }).join('');
   } catch(e) {
-    body.innerHTML = '<div class="sl-empty">Error al cargar historial.</div>';
+    body.innerHTML = '<div class="sl-empty">Error al cargar.</div>';
   }
 }
 
-// ── CÓDIGO DESCONOCIDO ──
-let unkCodigo = null;
-let unkTipo   = null;
-
-function mostrarDesconocido(codigo) {
-  unkCodigo = codigo;
-  unkTipo   = null;
-  document.getElementById('unkCode').textContent = codigo;
-  document.querySelectorAll('.tipo-chip').forEach(c => c.classList.remove('on'));
-  document.getElementById('unkAddBtn').classList.remove('show');
-  document.getElementById('unkFeedback').classList.remove('show');
-  document.getElementById('unknownCard').classList.add('show');
-  document.getElementById('resultado').classList.remove('show');
-  document.getElementById('unknownCard').scrollIntoView({ behavior:'smooth', block:'nearest' });
-}
-
-function unkSelTipo(btn, tipo) {
-  document.querySelectorAll('.tipo-chip').forEach(c => c.classList.remove('on'));
-  btn.classList.add('on');
-  unkTipo = tipo;
-  document.getElementById('unkAddBtn').classList.add('show');
-}
-
-async function unkAgregar() {
-  if (!unkCodigo || !unkTipo) return;
-  const fb  = document.getElementById('unkFeedback');
-  const btn = document.getElementById('unkAddBtn');
-  btn.textContent = 'Guardando...';
-  fb.classList.remove('show');
-  const grupo = {
-    grupoId: (unkTipo + '__SIN_DETERMINAR').toUpperCase(),
-    tipo:    unkTipo,
-    modelos: 'Sin determinar',
-    codigos: unkCodigo,
-    delta:   1
-  };
-  try {
-    const nuevo = await apiUpdate(grupo, 1);
-    fb.textContent = '✅ Agregado — ' + unkTipo + ' · Sin determinar · Stock: ' + nuevo;
-    fb.classList.add('show');
-    btn.textContent = '+ Agregar al stock';
-    btn.classList.remove('show');
-    loadStock();
-  } catch(e) {
-    fb.textContent = '❌ Error al guardar.';
-    fb.classList.add('show');
-    btn.textContent = '+ Agregar al stock';
-  }
-}
-
-// ── UTILS ──
-function lev(a,b) {
-  const m=a.length,n=b.length,dp=Array.from({length:m+1},(_,i)=>[i]);
+// ══ UTILS ══
+function lev(a, b) {
+  const m=a.length,n=b.length;
+  const dp=Array.from({length:m+1},(_,i)=>[i]);
   for(let j=0;j<=n;j++)dp[0][j]=j;
   for(let i=1;i<=m;i++)for(let j=1;j<=n;j++)
     dp[i][j]=a[i-1]===b[j-1]?dp[i-1][j-1]:1+Math.min(dp[i-1][j-1],dp[i][j-1],dp[i-1][j]);
   return dp[m][n];
 }
 </script>
-<!-- PAGE: HISTORIAL -->
-<div class="page" id="page-historial">
-  <div style="height:12px"></div>
-  <div class="sec-title">Historial</div>
-  <div class="sec-sub">Últimos movimientos registrados</div>
-
-  <div class="hist-list">
-    <div class="hist-hdr">
-      <span class="hist-hdr-title">📋 Movimientos</span>
-      <button class="hist-refresh" onclick="histCargar()">↻ Actualizar</button>
-    </div>
-    <div id="histBody"><div class="sl-empty">Cargando...</div></div>
-  </div>
-  <div style="height:24px"></div>
-</div>
-
-
-
 </body>
 </html>
