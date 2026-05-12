@@ -745,21 +745,49 @@ async function mostrarTipo(modelo, tipo, btn) {
     }
   }
 
-  // Equivalencias colapsables HTML
-  const equivHTML = codigos.length ? `
+  // Marcas principales con logo
+  const LOGOS = {
+    'DONALDSON':  'https://i.imgur.com/SF5bsdy.png',
+    'MANN':       'https://i.imgur.com/lJwH1UM.jpeg',
+    'MANN FILTER':'https://i.imgur.com/lJwH1UM.jpeg',
+    'BALDWIN':    'https://i.imgur.com/kmy7xmC.png',
+    'FRAM':       'https://i.imgur.com/XgZp781.png',
+    'FLEETGUARD': 'https://i.imgur.com/nbdBux5.png',
+  };
+
+  const principales = codigos.filter(c => LOGOS[c.marca.toUpperCase()]);
+  const resto       = codigos.filter(c => !LOGOS[c.marca.toUpperCase()]);
+
+  const principalesHTML = principales.length ? `
+    <div style="padding:12px 16px 4px;border-top:2px solid var(--border);">
+      <div style="font-size:10px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;">Marcas principales</div>
+      ${principales.map(c => `
+        <div onclick="irAScanner('${c.codigo}')" style="display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--border);cursor:pointer;">
+          <img src="${LOGOS[c.marca.toUpperCase()]}" style="height:28px;width:80px;object-fit:contain;object-position:left;flex-shrink:0;">
+          <div style="flex:1;">
+            <div style="font-size:15px;font-weight:800;letter-spacing:.5px;">${c.codigo}</div>
+            <div style="font-size:11px;color:var(--muted);margin-top:1px;">${c.marca}</div>
+          </div>
+          <div style="font-size:12px;color:var(--muted);">›</div>
+        </div>`).join('')}
+    </div>` : '';
+
+  const restoHTML = resto.length ? `
     <button class="equiv-toggle" id="vehEquivToggle" onclick="toggleVehEquiv()" style="width:100%;padding:13px 16px;display:flex;align-items:center;justify-content:space-between;border:none;background:none;border-top:2px solid var(--border);cursor:pointer;font-family:var(--f);font-size:13px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;">
-      Ver equivalencias (${codigos.length})
+      Más equivalencias (${resto.length})
       <span id="vehEquivArr" style="transition:transform .2s;font-size:16px;">▾</span>
     </button>
     <div id="vehEquivBody" style="display:none;padding:0 16px 14px;">
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;padding-top:10px;">
-        ${codigos.map(c=>`
+        ${resto.map(c=>`
           <div class="eq-chip" onclick="irAScanner('${c.codigo}')">
             <div class="eq-code">${c.codigo}</div>
             <div class="eq-marca">${c.marca}</div>
           </div>`).join('')}
       </div>
     </div>` : '';
+
+  const equivHTML = principalesHTML + restoHTML;
 
   const table = document.getElementById('codesTable');
   table.innerHTML = `
@@ -860,8 +888,14 @@ function renderStock(items) {
   if (!validos.length) { body.innerHTML='<div class="sl-empty">Sin datos.</div>'; return; }
   body.innerHTML = validos.map(i => {
     const cls = i.stock===0?'zero':i.stock<=2?'low':'ok';
+    // Si hay vehículo filtrado, no mostrar el nombre (ya se sabe cuál es)
+    const modeloSel = document.getElementById('stockVehSel').value;
+    const showVeh = !modeloSel;
     return `<div class="sl-item">
-      <div class="sl-info"><div class="sl-tipo">${i.tipo}</div><div class="sl-veh">${i.modelos}</div></div>
+      <div class="sl-info">
+        <div class="sl-tipo">${i.tipo}</div>
+        ${showVeh ? `<div class="sl-veh">${i.modelos}</div>` : ''}
+      </div>
       <div class="sl-n ${cls}">${i.stock}</div>
     </div>`;
   }).join('');
