@@ -529,33 +529,40 @@ function buscarEnDB(codigo) {
     };
   }
 
-  // Fuzzy: buscar el código más parecido en todos los grupos
-  let best = null, bestD = Infinity;
-  const umbral = Math.max(2, Math.floor(needle.length * .25));
+  // Fuzzy: solo si la parte ANTES de / o - coincide exactamente
+  // Ej: W1992/2 ~ W1992/3 → OK | W920 ~ W925 → NO
+  function baseCode(c) {
+    return c.split(/[\/\-]/)[0].toUpperCase().trim();
+  }
+  const needleBase = baseCode(codigo);
+
+  let best = null;
   for (const gkey in DB) {
     const grupo = DB[gkey];
     for (const c of grupo.codigos) {
-      const cn = c.codigo.toUpperCase().replace(/[\s\-]/g,'');
-      const d  = lev(needle, cn);
-      if (d < bestD) {
-        bestD = d;
+      const cn = c.codigo.toUpperCase();
+      const cnBase = baseCode(cn);
+      // Solo aprox si la base (antes de / o -) coincide exactamente
+      if (cnBase === needleBase && cn !== needle) {
         best = {
-          key:  c.codigo.toUpperCase(),
+          key:  cn,
           data: {
             marca:        c.marca,
             tipo:         grupo.tipo,
             modelos:      grupo.modelos,
             equivalencias: grupo.codigos
-              .filter(cx => cx.codigo.toUpperCase() !== c.codigo.toUpperCase())
+              .filter(cx => cx.codigo.toUpperCase() !== cn)
               .map(cx => ({ marca: cx.marca, codigo: cx.codigo }))
           },
           aprox: true,
           orig:  codigo
         };
+        break;
       }
     }
+    if (best) break;
   }
-  if (bestD <= umbral && best) return best;
+  if (best) return best;
   return null;
 }
 
