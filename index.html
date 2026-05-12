@@ -926,17 +926,32 @@ async function histCargar() {
     if (!movs.length) { body.innerHTML='<div class="sl-empty">Sin movimientos registrados todavía.</div>'; return; }
     body.innerHTML = movs.map(m => {
       const esIng = m.movimiento === 'INGRESO';
+      // Limpiar fecha/hora — puede venir como ISO string o dd/MM/yyyy
+      let fechaStr = m.fecha || '';
+      let horaStr  = m.hora  || '';
+      // Si viene como timestamp ISO, convertir
+      if (fechaStr.includes('T') || fechaStr.includes('-05') || fechaStr.length > 15) {
+        try {
+          const d = new Date(fechaStr);
+          if (!isNaN(d)) {
+            fechaStr = d.toLocaleDateString('es-AR', {day:'2-digit',month:'2-digit',year:'numeric'});
+            horaStr  = d.toLocaleTimeString('es-AR', {hour:'2-digit',minute:'2-digit'});
+          }
+        } catch(e) {}
+      }
+      // Truncar vehículo largo
+      const veh = (m.modelos||'').length > 20 ? (m.modelos||'').substring(0,18)+'…' : (m.modelos||'');
       return `<div class="hist-item">
-        <div class="hist-badge ${esIng?'ing':'sal'}">${m.movimiento}</div>
+        <div class="hist-badge ${esIng?'ing':'sal'}">${esIng?'IN':'OUT'}</div>
         <div class="hist-info">
-          <div class="hist-tipo">${m.tipo}</div>
-          <div class="hist-veh">${m.modelos}</div>
-          <div class="hist-cod">${m.codigo}</div>
+          <div class="hist-tipo">${m.tipo||''}</div>
+          <div class="hist-veh">${veh}</div>
+          <div class="hist-cod">${m.codigo||''}</div>
         </div>
         <div class="hist-right">
-          <div class="hist-cant ${esIng?'ing':'sal'}">${esIng?'+':'-'}${m.cantidad}</div>
-          <div class="hist-fecha">${m.fecha} ${m.hora}</div>
-          <div class="hist-stock-after">Stock: ${m.stockDespues}</div>
+          <div class="hist-cant ${esIng?'ing':'sal'}">${esIng?'+':'-'}${m.cantidad||1}</div>
+          <div class="hist-fecha">${fechaStr} ${horaStr}</div>
+          <div class="hist-stock-after">Stock: ${m.stockDespues||0}</div>
         </div>
       </div>`;
     }).join('');
