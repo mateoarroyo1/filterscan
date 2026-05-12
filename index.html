@@ -55,13 +55,13 @@ body { font-family: var(--f); background: var(--bg); color: var(--text); min-hei
 }
 .drawer.open { right: 0; }
 .drawer-hdr {
-  padding: 20px 20px 16px; border-bottom: 2px solid var(--border);
+  padding: 14px 16px; border-bottom: 1px solid var(--border);
   display: flex; align-items: center; justify-content: space-between;
-  background: var(--orange);
+  background: var(--panel);
 }
-.drawer-logo { font-size: 16px; font-weight: 900; color: #fff; letter-spacing: 1px; text-transform: uppercase; }
+.drawer-logo { font-size: 16px; font-weight: 900; color: var(--text); letter-spacing: 1px; text-transform: uppercase; }
 .drawer-logo span { color: var(--orange); }
-.drawer-close { width: 36px; height: 36px; border: none; background: rgba(255,255,255,0.2); border-radius: 6px; cursor: pointer; font-size: 16px; color: #fff; }
+.drawer-close { width: 34px; height: 34px; border: none; background: var(--bg); border-radius: 6px; cursor: pointer; font-size: 16px; color: var(--muted); }
 .drawer-nav { flex: 1; padding: 12px; background: var(--panel); }
 .d-item {
   display: flex; align-items: center; gap: 14px; padding: 16px;
@@ -301,7 +301,7 @@ body { font-family: var(--f); background: var(--bg); color: var(--text); min-hei
 <div class="overlay" id="overlay" onclick="closeDrawer()"></div>
 <div class="drawer" id="drawer">
   <div class="drawer-hdr">
-    <img src="https://i.imgur.com/y5K03NS.png" style="height:34px;object-fit:contain;filter:brightness(10);">
+    <img src="https://i.imgur.com/y5K03NS.png" style="height:30px;object-fit:contain;">
     <button class="drawer-close" onclick="closeDrawer()">✕</button>
   </div>
   <div class="drawer-nav">
