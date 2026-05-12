@@ -926,21 +926,21 @@ async function histCargar() {
     if (!movs.length) { body.innerHTML='<div class="sl-empty">Sin movimientos registrados todavía.</div>'; return; }
     body.innerHTML = movs.map(m => {
       const esIng = m.movimiento === 'INGRESO';
-      // Limpiar fecha/hora — puede venir como ISO string o dd/MM/yyyy
-      let fechaStr = m.fecha || '';
-      let horaStr  = m.hora  || '';
-      // Si viene como timestamp ISO, convertir
-      if (fechaStr.includes('T') || fechaStr.includes('-05') || fechaStr.length > 15) {
-        try {
-          const d = new Date(fechaStr);
-          if (!isNaN(d)) {
-            fechaStr = d.toLocaleDateString('es-AR', {day:'2-digit',month:'2-digit',year:'numeric'});
-            horaStr  = d.toLocaleTimeString('es-AR', {hour:'2-digit',minute:'2-digit'});
-          }
-        } catch(e) {}
-      }
-      // Truncar vehículo largo
-      const veh = (m.modelos||'').length > 20 ? (m.modelos||'').substring(0,18)+'…' : (m.modelos||'');
+      // Fecha: tomar de m.fecha (ISO date)
+      let fechaStr = '';
+      let horaStr  = '';
+      try {
+        if (m.fecha) {
+          const df = new Date(m.fecha);
+          if (!isNaN(df)) fechaStr = df.toLocaleDateString('es-AR', {day:'2-digit',month:'2-digit',year:'numeric'});
+        }
+        // Hora: viene como "1899-12-30T15:15:48.000Z" — extraer solo HH:MM
+        if (m.hora) {
+          const dh = new Date(m.hora);
+          if (!isNaN(dh)) horaStr = dh.toISOString().substring(11,16);
+        }
+      } catch(e) {}
+      const veh = (m.modelos||'').length > 22 ? (m.modelos||'').substring(0,20)+'…' : (m.modelos||'');
       return `<div class="hist-item">
         <div class="hist-badge ${esIng?'ing':'sal'}">${esIng?'IN':'OUT'}</div>
         <div class="hist-info">
