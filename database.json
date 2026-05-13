@@ -6451,7 +6451,11 @@
       },
       {
         "marca": "MANN",
-        "codigo": "WK10002/1"
+        "codigo": "WK10002"
+      },
+      {
+        "marca": "WIX",
+        "codigo": "WF10259"
       },
       {
         "marca": "WEGA",
@@ -7939,7 +7943,11 @@
       },
       {
         "marca": "MANN",
-        "codigo": "WK10002/1x"
+        "codigo": "WK10002"
+      },
+      {
+        "marca": "WIX",
+        "codigo": "WF10259"
       },
       {
         "marca": "VOX",
@@ -17300,6 +17308,2342 @@
       {
         "marca": "MOTORCRAFT",
         "codigo": "GAMJ19N619AA"
+      }
+    ]
+  },
+  "COMBUSTIBLE CON TRAMPA__FORD CARGO 1722": {
+    "tipo": "Combustible con trampa",
+    "modelos": [
+      "FORD CARGO 1722"
+    ],
+    "codigos": [
+      {
+        "marca": "Agrale",
+        "codigo": "6008006040007"
+      },
+      {
+        "marca": "Japanparts",
+        "codigo": "FCBR85S"
+      },
+      {
+        "marca": "Seineca Antigo",
+        "codigo": "SEI2654"
+      },
+      {
+        "marca": "Volkswagen",
+        "codigo": "2R0201511"
+      },
+      {
+        "marca": "Bosch",
+        "codigo": "986450729"
+      },
+      {
+        "marca": "KSPG",
+        "codigo": "50013871"
+      },
+      {
+        "marca": "Sogefi Pro / Fram",
+        "codigo": "FP6302"
+      },
+      {
+        "marca": "Volkswagen",
+        "codigo": "2R0127177"
+      },
+      {
+        "marca": "Delkraft",
+        "codigo": "DSA518/1"
+      },
+      {
+        "marca": "Mann",
+        "codigo": "WK950/14"
+      },
+      {
+        "marca": "Tecfil",
+        "codigo": "PSD970/1"
+      },
+      {
+        "marca": "Volkswagen",
+        "codigo": "2RO127177"
+      },
+      {
+        "marca": "Delphi",
+        "codigo": "EFS110"
+      },
+      {
+        "marca": "Master Parts",
+        "codigo": "MM100351"
+      },
+      {
+        "marca": "TRP",
+        "codigo": "915025"
+      },
+      {
+        "marca": "Vox",
+        "codigo": "FBS970/1"
+      },
+      {
+        "marca": "Donaldson",
+        "codigo": "P550897"
+      },
+      {
+        "marca": "MWM",
+        "codigo": "60"
+      },
+      {
+        "marca": "Turbo Filtros",
+        "codigo": "TBC970"
+      },
+      {
+        "marca": "Vox Antigo",
+        "codigo": "FBS2627"
+      },
+      {
+        "marca": "Fam",
+        "codigo": "FSD590/1"
+      },
+      {
+        "marca": "Purolator",
+        "codigo": "F1080"
+      },
+      {
+        "marca": "Unifilter",
+        "codigo": "UR28A"
+      },
+      {
+        "marca": "Wega",
+        "codigo": "FCD2215"
+      },
+      {
+        "marca": "Fram",
+        "codigo": "PS10606"
+      },
+      {
+        "marca": "Racor",
+        "codigo": "228RS30M"
+      },
+      {
+        "marca": "Unifilter",
+        "codigo": "R28AHP"
+      },
+      {
+        "marca": "WIX",
+        "codigo": "WF36315"
+      },
+      {
+        "marca": "Hengst",
+        "codigo": "H357WK"
+      },
+      {
+        "marca": "Racor",
+        "codigo": "R28A30"
+      },
+      {
+        "marca": "Volkswagen",
+        "codigo": "FBS970/1"
+      },
+      {
+        "marca": "Yanmar",
+        "codigo": "2RO127177"
+      },
+      {
+        "marca": "Inpeca",
+        "codigo": "SSB0510"
+      }
+    ]
+  },
+  "COMBUSTIBLE__FORD CARGO 1722": {
+    "tipo": "Combustible",
+    "modelos": [
+      "FORD CARGO 1722"
+    ],
+    "codigos": [
+      {
+        "marca": "Agrale",
+        "codigo": "7006010000000"
+      },
+      {
+        "marca": "Famel",
+        "codigo": "FCS50"
+      },
+      {
+        "marca": "Mahle",
+        "codigo": "K6"
+      },
+      {
+        "marca": "Atlas-Copco",
+        "codigo": "97210337"
+      },
+      {
+        "marca": "Fiat",
+        "codigo": "61674455"
+      },
+      {
+        "marca": "Mahle",
+        "codigo": "KC6D"
+      },
+      {
+        "marca": "Atlas-Copco",
+        "codigo": "11624300"
+      },
+      {
+        "marca": "Fiat",
+        "codigo": "61144392"
+      },
+      {
+        "marca": "Mann",
+        "codigo": "WK724"
+      },
+      {
+        "marca": "Atlas-Copco",
+        "codigo": "1160243"
+      },
+      {
+        "marca": "Fiat",
+        "codigo": "61142397"
+      },
+      {
+        "marca": "Mann",
+        "codigo": "WK731"
+      },
+      {
+        "marca": "Atlas-Copco",
+        "codigo": "1160243"
+      },
+      {
+        "marca": "Fiat",
+        "codigo": "61142392"
+      },
+      {
+        "marca": "Master Parts",
+        "codigo": "MM100321"
+      },
+      {
+        "marca": "B M W",
+        "codigo": "13321332756"
+      },
+      {
+        "marca": "Fiat Iveco",
+        "codigo": "1907640"
+      },
+      {
+        "marca": "Maxion",
+        "codigo": "2871513M2"
+      },
+      {
+        "marca": "Bosch",
+        "codigo": "986450731"
+      },
+      {
+        "marca": "Filtran",
+        "codigo": "106073/1"
+      },
+      {
+        "marca": "Maxion",
+        "codigo": "286634M1"
+      },
+      {
+        "marca": "Bosch",
+        "codigo": "1457434068"
+      },
+      {
+        "marca": "Fleetguard",
+        "codigo": "FF6018FR"
+      },
+      {
+        "marca": "Maxion",
+        "codigo": "2871513M1"
+      },
+      {
+        "marca": "Bosch",
+        "codigo": "1457434057"
+      },
+      {
+        "marca": "Fleetguard",
+        "codigo": "FF5018"
+      },
+      {
+        "marca": "Maxion",
+        "codigo": "2862361M1"
+      },
+      {
+        "marca": "Bosch",
+        "codigo": "1457434062"
+      },
+      {
+        "marca": "Fleetguard",
+        "codigo": "FF5284"
+      },
+      {
+        "marca": "Maxion",
+        "codigo": "2862361"
+      },
+      {
+        "marca": "Bosch",
+        "codigo": "1457434050"
+      },
+      {
+        "marca": "Ford",
+        "codigo": "E5HN9N277A"
+      },
+      {
+        "marca": "MWM",
+        "codigo": "MASTER0051"
+      },
+      {
+        "marca": "Bosch",
+        "codigo": "1457434073"
+      },
+      {
+        "marca": "Ford",
+        "codigo": "5004780"
+      },
+      {
+        "marca": "MWM",
+        "codigo": "605412000000"
+      },
+      {
+        "marca": "Bosch",
+        "codigo": "1457434180"
+      },
+      {
+        "marca": "Ford",
+        "codigo": "E5HN9N327AA"
+      },
+      {
+        "marca": "MWM",
+        "codigo": "605412000000"
+      },
+      {
+        "marca": "Bosch",
+        "codigo": "9455160352"
+      },
+      {
+        "marca": "Ford",
+        "codigo": "6106753"
+      },
+      {
+        "marca": "Napa",
+        "codigo": "3358"
+      },
+      {
+        "marca": "Bosch",
+        "codigo": "9451080190"
+      },
+      {
+        "marca": "Ford",
+        "codigo": "BF8T9155DA"
+      },
+      {
+        "marca": "Original Filter",
+        "codigo": "OFC1003B"
+      },
+      {
+        "marca": "Bosch",
+        "codigo": "1457434072"
+      },
+      {
+        "marca": "Fram",
+        "codigo": "P9368"
+      },
+      {
+        "marca": "Parker",
+        "codigo": "RC330"
+      },
+      {
+        "marca": "Bosch",
+        "codigo": "9455080100"
+      },
+      {
+        "marca": "Fram",
+        "codigo": "P4182"
+      },
+      {
+        "marca": "Purolator",
+        "codigo": "PC42"
+      },
+      {
+        "marca": "Bosch",
+        "codigo": "986450731"
+      },
+      {
+        "marca": "Hengst",
+        "codigo": "H60WK01"
+      },
+      {
+        "marca": "Purolator",
+        "codigo": "PF3125"
+      },
+      {
+        "marca": "Case",
+        "codigo": "A077470"
+      },
+      {
+        "marca": "Hengst",
+        "codigo": "H60WK09"
+      },
+      {
+        "marca": "Purolator",
+        "codigo": "PER336F"
+      },
+      {
+        "marca": "CAV",
+        "codigo": "7111/494SCANIA"
+      },
+      {
+        "marca": "Hidrafil",
+        "codigo": "560003"
+      },
+      {
+        "marca": "Purolator",
+        "codigo": "F1064"
+      },
+      {
+        "marca": "CAV",
+        "codigo": "494SCANIA"
+      },
+      {
+        "marca": "IHC",
+        "codigo": "3032750"
+      },
+      {
+        "marca": "Renault",
+        "codigo": "6005000788"
+      },
+      {
+        "marca": "Controil",
+        "codigo": "CHFF00006"
+      },
+      {
+        "marca": "IHC",
+        "codigo": "3032750R1"
+      },
+      {
+        "marca": "Renault",
+        "codigo": "7701015820"
+      },
+      {
+        "marca": "CVRD",
+        "codigo": "6295125590"
+      },
+      {
+        "marca": "Ingersoll Rand",
+        "codigo": "35292366"
+      },
+      {
+        "marca": "Renault",
+        "codigo": "7701015830"
+      },
+      {
+        "marca": "CVRD",
+        "codigo": "6295008280"
+      },
+      {
+        "marca": "Inpeca",
+        "codigo": "SC0730"
+      },
+      {
+        "marca": "Renault",
+        "codigo": "5000806336"
+      },
+      {
+        "marca": "Delkraft",
+        "codigo": "DSC702"
+      },
+      {
+        "marca": "Inpeca",
+        "codigo": "SCB0730"
+      },
+      {
+        "marca": "Roma",
+        "codigo": "CBOS970"
+      },
+      {
+        "marca": "Delphi",
+        "codigo": "HDF762"
+      },
+      {
+        "marca": "Inpeca",
+        "codigo": "SB0730"
+      },
+      {
+        "marca": "Roma",
+        "codigo": "CBOS970/2"
+      },
+      {
+        "marca": "Deutz",
+        "codigo": "1174423"
+      },
+      {
+        "marca": "Irlemp",
+        "codigo": "PERI330"
+      },
+      {
+        "marca": "Scania",
+        "codigo": "524762"
+      },
+      {
+        "marca": "Donaldson",
+        "codigo": "FFP550934"
+      },
+      {
+        "marca": "Iveco",
+        "codigo": "1907640"
+      },
+      {
+        "marca": "Seineca Antigo",
+        "codigo": "SEI2617"
+      },
+      {
+        "marca": "Donaldson",
+        "codigo": "P550943"
+      },
+      {
+        "marca": "Iveco",
+        "codigo": "1930953"
+      },
+      {
+        "marca": "Sogefi Pro/Fram",
+        "codigo": "FT6227"
+      },
+      {
+        "marca": "Donaldson",
+        "codigo": "P172657"
+      },
+      {
+        "marca": "Knecht",
+        "codigo": "KC6"
+      },
+      {
+        "marca": "Tecfil",
+        "codigo": "PSC73/1"
+      },
+      {
+        "marca": "Donaldson",
+        "codigo": "P779451"
+      },
+      {
+        "marca": "Kraulinat",
+        "codigo": "F157"
+      },
+      {
+        "marca": "Top Parts",
+        "codigo": "130020"
+      },
+      {
+        "marca": "Donaldson",
+        "codigo": "P172653"
+      },
+      {
+        "marca": "KS",
+        "codigo": "002FS"
+      },
+      {
+        "marca": "Turbo Filtros",
+        "codigo": "TBC731"
+      },
+      {
+        "marca": "Donaldson",
+        "codigo": "P779379"
+      },
+      {
+        "marca": "KSPG",
+        "codigo": "50013002"
+      },
+      {
+        "marca": "Unifilter",
+        "codigo": "USC330"
+      },
+      {
+        "marca": "Dynapac",
+        "codigo": "747884"
+      },
+      {
+        "marca": "Liebherr",
+        "codigo": "7001261"
+      },
+      {
+        "marca": "Volvo",
+        "codigo": "6889135"
+      },
+      {
+        "marca": "Dynapac",
+        "codigo": "747384"
+      },
+      {
+        "marca": "Liebherr",
+        "codigo": "5502896"
+      },
+      {
+        "marca": "Vox",
+        "codigo": "FBD73/1"
+      },
+      {
+        "marca": "Dynapac",
+        "codigo": "747760"
+      },
+      {
+        "marca": "Liebherr",
+        "codigo": "5106169"
+      },
+      {
+        "marca": "Vox Antigo",
+        "codigo": "FBD3411"
+      },
+      {
+        "marca": "Ercif",
+        "codigo": "R343"
+      },
+      {
+        "marca": "Luber Finer",
+        "codigo": "FP585F"
+      },
+      {
+        "marca": "Wega",
+        "codigo": "FCD2046"
+      },
+      {
+        "marca": "F Cross",
+        "codigo": "F66"
+      },
+      {
+        "marca": "Lucas",
+        "codigo": "HDF762"
+      },
+      {
+        "marca": "WIX",
+        "codigo": "WF33195"
+      },
+      {
+        "marca": "Fam",
+        "codigo": "FC052"
+      },
+      {
+        "marca": "Mahle",
+        "codigo": "KC113"
+      },
+      {
+        "marca": "ZF",
+        "codigo": "70131208"
+      },
+      {
+        "marca": "Fleetguard",
+        "codigo": "FF5033"
+      }
+    ]
+  },
+  "REFRIGERANTE__FORD CARGO 1722": {
+    "tipo": "Refrigerante",
+    "modelos": [
+      "FORD CARGO 1722"
+    ],
+    "codigos": [
+      {
+        "marca": "AMERICAN MOTORS",
+        "codigo": "SFC2072"
+      },
+      {
+        "marca": "FLEETGUARD",
+        "codigo": "WF2088"
+      },
+      {
+        "marca": "NEOPART",
+        "codigo": "DONP554018"
+      },
+      {
+        "marca": "ASAS",
+        "codigo": "SP488"
+      },
+      {
+        "marca": "FLEETGUARD",
+        "codigo": "WF2093"
+      },
+      {
+        "marca": "NEOPLAN",
+        "codigo": "DONP554072"
+      },
+      {
+        "marca": "ATLAS COPCO",
+        "codigo": "2900512200"
+      },
+      {
+        "marca": "FLEETGUARD",
+        "codigo": "WF2172"
+      },
+      {
+        "marca": "NEW HOLLAND",
+        "codigo": "71101917"
+      },
+      {
+        "marca": "ATLAS COPCO",
+        "codigo": "2900535400"
+      },
+      {
+        "marca": "FODEN",
+        "codigo": "Y05774210"
+      },
+      {
+        "marca": "NEW HOLLAND",
+        "codigo": "83957719"
+      },
+      {
+        "marca": "BALDWIN FILTERS",
+        "codigo": "BW5072"
+      },
+      {
+        "marca": "FORD",
+        "codigo": "9576P554072"
+      },
+      {
+        "marca": "NEW HOLLAND",
+        "codigo": "47450682"
+      },
+      {
+        "marca": "BERGERAT MONNOYEUR",
+        "codigo": "E6743"
+      },
+      {
+        "marca": "FORD",
+        "codigo": "E7HT8A424BA"
+      },
+      {
+        "marca": "NEW HOLLAND",
+        "codigo": "E7HT8A424BA"
+      },
+      {
+        "marca": "BIG A",
+        "codigo": "96025"
+      },
+      {
+        "marca": "FORD",
+        "codigo": "E7HZ8A424A"
+      },
+      {
+        "marca": "NEW HOLLAND",
+        "codigo": "E8NN8A424BB"
+      },
+      {
+        "marca": "BLOUNT",
+        "codigo": "30003074"
+      },
+      {
+        "marca": "FORD",
+        "codigo": "E8NN8A424BB"
+      },
+      {
+        "marca": "NEW HOLLAND",
+        "codigo": "V104040"
+      },
+      {
+        "marca": "Bosch",
+        "codigo": "986450581"
+      },
+      {
+        "marca": "FORD",
+        "codigo": "E8NN8A424CA"
+      },
+      {
+        "marca": "ONAN-MOTORES",
+        "codigo": "1333538"
+      },
+      {
+        "marca": "CASE/CASE IH",
+        "codigo": "E7HT8A424BA"
+      },
+      {
+        "marca": "FORD",
+        "codigo": "V104040"
+      },
+      {
+        "marca": "ORENSTEIN & KOPPEL",
+        "codigo": "104409"
+      },
+      {
+        "marca": "CASE/CASE IH",
+        "codigo": "E8NN8A424BB"
+      },
+      {
+        "marca": "FRAM",
+        "codigo": "PR3909"
+      },
+      {
+        "marca": "Original Filter",
+        "codigo": "OFW7500B"
+      },
+      {
+        "marca": "CASE/CASE IH",
+        "codigo": "V104040"
+      },
+      {
+        "marca": "FRAM",
+        "codigo": "PR3414"
+      },
+      {
+        "marca": "PARKER",
+        "codigo": "RA2072"
+      },
+      {
+        "marca": "CATERPILLAR",
+        "codigo": "3I1289"
+      },
+      {
+        "marca": "FREIGHTLINER",
+        "codigo": "DNP554018"
+      },
+      {
+        "marca": "PERRY",
+        "codigo": "PFC12"
+      },
+      {
+        "marca": "CATERPILLAR",
+        "codigo": "1112371"
+      },
+      {
+        "marca": "FREIGHTLINER",
+        "codigo": "DNP554072"
+      },
+      {
+        "marca": "PERRY",
+        "codigo": "PFC12A"
+      },
+      {
+        "marca": "CATERPILLAR",
+        "codigo": "3I1287"
+      },
+      {
+        "marca": "FURUKAWA",
+        "codigo": "1257937H1"
+      },
+      {
+        "marca": "PUROLATOR",
+        "codigo": "PW4453"
+      },
+      {
+        "marca": "CATERPILLAR",
+        "codigo": "3I1289"
+      },
+      {
+        "marca": "GUD",
+        "codigo": "Z242"
+      },
+      {
+        "marca": "PUROLATOR",
+        "codigo": "W54452"
+      },
+      {
+        "marca": "CATERPILLAR",
+        "codigo": "9N3718"
+      },
+      {
+        "marca": "HENGST",
+        "codigo": "H33WF"
+      },
+      {
+        "marca": "Purolator",
+        "codigo": "W1002"
+      },
+      {
+        "marca": "CATERPILLAR",
+        "codigo": "9Y4526"
+      },
+      {
+        "marca": "FURUKAWA",
+        "codigo": "H29WF"
+      },
+      {
+        "marca": "RAMA",
+        "codigo": "RAR18002"
+      },
+      {
+        "marca": "CHAMP",
+        "codigo": "LFW4018"
+      },
+      {
+        "marca": "HITACHI",
+        "codigo": "1257937H1"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "LO1753"
+      },
+      {
+        "marca": "CHAMP",
+        "codigo": "PW4018"
+      },
+      {
+        "marca": "IACOVOU",
+        "codigo": "9N3718"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "524761"
+      },
+      {
+        "marca": "CLARK",
+        "codigo": "949418"
+      },
+      {
+        "marca": "INPECA",
+        "codigo": "SAB0192"
+      },
+      {
+        "marca": "Sogefi Pro / Fram",
+        "codigo": "FT5459"
+      },
+      {
+        "marca": "CROSLAND",
+        "codigo": "7701"
+      },
+      {
+        "marca": "IRLEMP",
+        "codigo": "PW2072"
+      },
+      {
+        "marca": "SOPARIS",
+        "codigo": "CANP167"
+      },
+      {
+        "marca": "CUMMINS",
+        "codigo": "3100305"
+      },
+      {
+        "marca": "JOHN DEERE",
+        "codigo": "AR87113"
+      },
+      {
+        "marca": "TECFIL",
+        "codigo": "PSA761"
+      },
+      {
+        "marca": "CUMMINS",
+        "codigo": "3318201"
+      },
+      {
+        "marca": "JOHN DEERE",
+        "codigo": "AR89380"
+      },
+      {
+        "marca": "TEREX",
+        "codigo": "104409"
+      },
+      {
+        "marca": "CUMMINS",
+        "codigo": "299086"
+      },
+      {
+        "marca": "KENWORTH",
+        "codigo": "KW2018"
+      },
+      {
+        "marca": "TFMC",
+        "codigo": "L00792"
+      },
+      {
+        "marca": "CUMMINS",
+        "codigo": "WF2054"
+      },
+      {
+        "marca": "KENWORTH",
+        "codigo": "KW2052"
+      },
+      {
+        "marca": "Turbo Filtros",
+        "codigo": "TBA761"
+      },
+      {
+        "marca": "DETROIT DIESEL",
+        "codigo": "23508425"
+      },
+      {
+        "marca": "KNECHT",
+        "codigo": "B457C1"
+      },
+      {
+        "marca": "UNIFILTER",
+        "codigo": "USW2072"
+      },
+      {
+        "marca": "DMT CORPORATION",
+        "codigo": "531207"
+      },
+      {
+        "marca": "KOMATSU",
+        "codigo": "6004111010"
+      },
+      {
+        "marca": "UNITED CENTRAL IND SUPP",
+        "codigo": "688820"
+      },
+      {
+        "marca": "DONALDSON",
+        "codigo": "P552072"
+      },
+      {
+        "marca": "KOMATSU",
+        "codigo": "6004111140"
+      },
+      {
+        "marca": "UNITED CENTRAL IND SUPP",
+        "codigo": "688828"
+      },
+      {
+        "marca": "DONALDSON",
+        "codigo": "P554072"
+      },
+      {
+        "marca": "KOMATSU",
+        "codigo": "6004111190"
+      },
+      {
+        "marca": "UNIVERSAL COACH PARTS",
+        "codigo": "T061041"
+      },
+      {
+        "marca": "DONALDSON",
+        "codigo": "P554074"
+      },
+      {
+        "marca": "KOMATSU",
+        "codigo": "6004111191"
+      },
+      {
+        "marca": "VMC",
+        "codigo": "WF554072"
+      },
+      {
+        "marca": "DRESSER",
+        "codigo": "1257937H1"
+      },
+      {
+        "marca": "KOMATSU",
+        "codigo": "6004111561"
+      },
+      {
+        "marca": "VME",
+        "codigo": "12967020"
+      },
+      {
+        "marca": "EIMCO",
+        "codigo": "69016597"
+      },
+      {
+        "marca": "KOMATSU",
+        "codigo": "6134618110"
+      },
+      {
+        "marca": "VOLKSWAGEN",
+        "codigo": "75206484"
+      },
+      {
+        "marca": "EIMCO",
+        "codigo": "C2A9N3718"
+      },
+      {
+        "marca": "KOMATSU",
+        "codigo": "6742013970"
+      },
+      {
+        "marca": "VOLVO",
+        "codigo": "129670204"
+      },
+      {
+        "marca": "EUCLID",
+        "codigo": "12967020"
+      },
+      {
+        "marca": "KOMATSU",
+        "codigo": "1257937H1"
+      },
+      {
+        "marca": "VOLVO",
+        "codigo": "12967020"
+      },
+      {
+        "marca": "EXMAN",
+        "codigo": "SFC2072"
+      },
+      {
+        "marca": "KORODY COLYER",
+        "codigo": "FBW5138"
+      },
+      {
+        "marca": "VOLVO",
+        "codigo": "3130939"
+      },
+      {
+        "marca": "FIAT",
+        "codigo": "83957719"
+      },
+      {
+        "marca": "LIEBHERR",
+        "codigo": "7381493"
+      },
+      {
+        "marca": "VOX",
+        "codigo": "FBA3416"
+      },
+      {
+        "marca": "FIAT",
+        "codigo": "E7HT8A424BA"
+      },
+      {
+        "marca": "LINK BELT",
+        "codigo": "C6H0280"
+      },
+      {
+        "marca": "VOX",
+        "codigo": "FBA761"
+      },
+      {
+        "marca": "FIAT",
+        "codigo": "E8NN8A424BB"
+      },
+      {
+        "marca": "LUBER-FINER",
+        "codigo": "LFW4072"
+      },
+      {
+        "marca": "WALGAHN-MOTORENTECHN",
+        "codigo": "811411"
+      },
+      {
+        "marca": "FIAT",
+        "codigo": "V104040"
+      },
+      {
+        "marca": "MAHLE",
+        "codigo": "WFC3"
+      },
+      {
+        "marca": "WALGAHN-MOTORENTECHN",
+        "codigo": "811413"
+      },
+      {
+        "marca": "FIL",
+        "codigo": "ZP545"
+      },
+      {
+        "marca": "MANN",
+        "codigo": "WA956"
+      },
+      {
+        "marca": "WEGA",
+        "codigo": "WA300"
+      },
+      {
+        "marca": "FILTROS TURBO",
+        "codigo": "TBA761"
+      },
+      {
+        "marca": "MANN&HUMMEL",
+        "codigo": "WA923"
+      },
+      {
+        "marca": "WHITE",
+        "codigo": "207015001"
+      },
+      {
+        "marca": "FLEETGUARD",
+        "codigo": "WF2052"
+      },
+      {
+        "marca": "MITSUBISHI",
+        "codigo": "ME065322"
+      },
+      {
+        "marca": "WHITE",
+        "codigo": "207015004"
+      },
+      {
+        "marca": "FLEETGUARD",
+        "codigo": "WF2072"
+      },
+      {
+        "marca": "ORIGINAL FILTER",
+        "codigo": "OFW7200B"
+      },
+      {
+        "marca": "BOSCH",
+        "codigo": "986450581"
+      }
+    ]
+  },
+  "ACEITE__FORD CARGO 1722": {
+    "tipo": "Aceite",
+    "modelos": [
+      "FORD CARGO 1722"
+    ],
+    "codigos": [
+      {
+        "marca": "AC DELCO",
+        "codigo": "PF1217"
+      },
+      {
+        "marca": "HITACHI",
+        "codigo": "L4228688"
+      },
+      {
+        "marca": "AGCO",
+        "codigo": "711049"
+      },
+      {
+        "marca": "HYSTER",
+        "codigo": "1476559"
+      },
+      {
+        "marca": "AGCO",
+        "codigo": "72501533"
+      },
+      {
+        "marca": "HYUNDAI",
+        "codigo": "11E170130."
+      },
+      {
+        "marca": "AMERICAN MOTORS CORP",
+        "codigo": "SFO3001"
+      },
+      {
+        "marca": "HYUNDAI",
+        "codigo": "11NA70110"
+      },
+      {
+        "marca": "AMSOIL",
+        "codigo": "SDF74"
+      },
+      {
+        "marca": "IMPERIAL",
+        "codigo": "04LF3000"
+      },
+      {
+        "marca": "AMW",
+        "codigo": "4962810"
+      },
+      {
+        "marca": "INGERSOLL RAND",
+        "codigo": "22177737"
+      },
+      {
+        "marca": "ATLAS COPCO",
+        "codigo": "1310032243"
+      },
+      {
+        "marca": "INGERSOLL RAND",
+        "codigo": "35378546"
+      },
+      {
+        "marca": "ATLAS COPCO",
+        "codigo": "2653161527"
+      },
+      {
+        "marca": "INGERSOLL RAND",
+        "codigo": "53161527"
+      },
+      {
+        "marca": "ATLAS COPCO",
+        "codigo": "5580006641"
+      },
+      {
+        "marca": "INGERSOLL RAND",
+        "codigo": "57165763"
+      },
+      {
+        "marca": "ATLAS COPCO",
+        "codigo": "9772040030"
+      },
+      {
+        "marca": "INGERSOLL RAND",
+        "codigo": "57752990"
+      },
+      {
+        "marca": "AUSTOFT",
+        "codigo": "180654"
+      },
+      {
+        "marca": "INPECA",
+        "codigo": "SLB0425"
+      },
+      {
+        "marca": "AWD",
+        "codigo": "A4027536"
+      },
+      {
+        "marca": "INTERNACIONAL",
+        "codigo": "1294153H1"
+      },
+      {
+        "marca": "BALDWIN",
+        "codigo": "BD103"
+      },
+      {
+        "marca": "IRLEMP",
+        "codigo": "PERI332"
+      },
+      {
+        "marca": "BERGERAT MONNOYEUR",
+        "codigo": "E6726"
+      },
+      {
+        "marca": "JAPANPARTS",
+        "codigo": "FOBR33S"
+      },
+      {
+        "marca": "BIG A",
+        "codigo": "91500"
+      },
+      {
+        "marca": "JCB",
+        "codigo": "2910550"
+      },
+      {
+        "marca": "BIG A",
+        "codigo": "92748"
+      },
+      {
+        "marca": "JCB",
+        "codigo": "2910965"
+      },
+      {
+        "marca": "BIG A",
+        "codigo": "92748MP"
+      },
+      {
+        "marca": "JCB",
+        "codigo": "02910550A"
+      },
+      {
+        "marca": "BIG A",
+        "codigo": "92748XD"
+      },
+      {
+        "marca": "JCB",
+        "codigo": "2910550A"
+      },
+      {
+        "marca": "BLOUNT",
+        "codigo": "10027047"
+      },
+      {
+        "marca": "JOHN DEERE",
+        "codigo": "AT193242"
+      },
+      {
+        "marca": "BMC",
+        "codigo": "9P909707"
+      },
+      {
+        "marca": "JOHN DEERE",
+        "codigo": "PMLF9009"
+      },
+      {
+        "marca": "BOMAG",
+        "codigo": "31701002"
+      },
+      {
+        "marca": "JOHN DEERE",
+        "codigo": "RE44647"
+      },
+      {
+        "marca": "BOMBARDEIRO",
+        "codigo": "921214022"
+      },
+      {
+        "marca": "KAWASAKI",
+        "codigo": "YE3318853"
+      },
+      {
+        "marca": "BOSCH",
+        "codigo": "F000KP1084"
+      },
+      {
+        "marca": "KAWASAKI",
+        "codigo": "YELF3000"
+      },
+      {
+        "marca": "BOSCH",
+        "codigo": "0986B01011"
+      },
+      {
+        "marca": "KOBELCO",
+        "codigo": "YN50VU0001D5"
+      },
+      {
+        "marca": "BOSCH",
+        "codigo": "9455081024"
+      },
+      {
+        "marca": "KOMATSU",
+        "codigo": "76817573"
+      },
+      {
+        "marca": "BOSCH-REXROTH",
+        "codigo": "0986AF0039"
+      },
+      {
+        "marca": "KOMATSU",
+        "codigo": "6742012430"
+      },
+      {
+        "marca": "BOSCH-REXROTH",
+        "codigo": "JC039"
+      },
+      {
+        "marca": "KOMATSU",
+        "codigo": "6742014120"
+      },
+      {
+        "marca": "BRANCO",
+        "codigo": "303506517"
+      },
+      {
+        "marca": "KOMATSU",
+        "codigo": "6742014540"
+      },
+      {
+        "marca": "BUHLER VERSÁTIL",
+        "codigo": "86029144"
+      },
+      {
+        "marca": "KOMATSU",
+        "codigo": "1294153H1"
+      },
+      {
+        "marca": "CAMPEÃO ESTRADA",
+        "codigo": "54429"
+      },
+      {
+        "marca": "KOMATSU",
+        "codigo": "1294153H91"
+      },
+      {
+        "marca": "CASE",
+        "codigo": "J919562"
+      },
+      {
+        "marca": "KOMATSU",
+        "codigo": "1295224H1"
+      },
+      {
+        "marca": "CASE / CASE IH",
+        "codigo": "84465096"
+      },
+      {
+        "marca": "KOMATSU",
+        "codigo": "21M0111510"
+      },
+      {
+        "marca": "CASE / CASE IH",
+        "codigo": "84485647"
+      },
+      {
+        "marca": "KOMATSU",
+        "codigo": "CU3318853"
+      },
+      {
+        "marca": "CASE / CASE IH",
+        "codigo": "8900126397"
+      },
+      {
+        "marca": "KOMATSU",
+        "codigo": "CU3825970"
+      },
+      {
+        "marca": "CASE / CASE IH",
+        "codigo": "007101T1"
+      },
+      {
+        "marca": "KOMATSU",
+        "codigo": "CULF3000"
+      },
+      {
+        "marca": "CASE / CASE IH",
+        "codigo": "3621379M1"
+      },
+      {
+        "marca": "KOMATSU",
+        "codigo": "CULF9009"
+      },
+      {
+        "marca": "CASE / CASE IH",
+        "codigo": "366700A1"
+      },
+      {
+        "marca": "KORODY COLYER",
+        "codigo": "FBD103"
+      },
+      {
+        "marca": "CASE / CASE IH",
+        "codigo": "441703A1"
+      },
+      {
+        "marca": "KRALINATOR",
+        "codigo": "6D300U"
+      },
+      {
+        "marca": "CASE / CASE IH",
+        "codigo": "907101T1"
+      },
+      {
+        "marca": "KSPG",
+        "codigo": "50013337"
+      },
+      {
+        "marca": "CASE / CASE IH",
+        "codigo": "B2750548"
+      },
+      {
+        "marca": "LAGARTA",
+        "codigo": "10027047"
+      },
+      {
+        "marca": "CASE / CASE IH",
+        "codigo": "E8HZ6731A"
+      },
+      {
+        "marca": "LAGARTA",
+        "codigo": "2266551"
+      },
+      {
+        "marca": "CASE / CASE IH",
+        "codigo": "LF3000"
+      },
+      {
+        "marca": "LAGARTA",
+        "codigo": "30003073"
+      },
+      {
+        "marca": "CEDARÁPIDES",
+        "codigo": "459300000000"
+      },
+      {
+        "marca": "LAGARTA",
+        "codigo": "3I1265"
+      },
+      {
+        "marca": "CHINA LOCAL",
+        "codigo": "JLX350A"
+      },
+      {
+        "marca": "LEYLAND-DAF (LDV)",
+        "codigo": "C3318853"
+      },
+      {
+        "marca": "CHINA LOCAL",
+        "codigo": "VO1801"
+      },
+      {
+        "marca": "LIEBHERR",
+        "codigo": "5608835"
+      },
+      {
+        "marca": "CHINA LOCAL",
+        "codigo": "VO1807"
+      },
+      {
+        "marca": "LINK BELT",
+        "codigo": "3H1831"
+      },
+      {
+        "marca": "COMO ... COMO",
+        "codigo": "SP577"
+      },
+      {
+        "marca": "LIUGONG",
+        "codigo": "53C0053"
+      },
+      {
+        "marca": "CÔMODA",
+        "codigo": "1290006H1"
+      },
+      {
+        "marca": "LOESING",
+        "codigo": "25081"
+      },
+      {
+        "marca": "COOPERS",
+        "codigo": "LSF5065"
+      },
+      {
+        "marca": "LUBERFINER",
+        "codigo": "LFP3000"
+      },
+      {
+        "marca": "CROSLAND",
+        "codigo": "2135"
+      },
+      {
+        "marca": "MACK",
+        "codigo": "2191P553000"
+      },
+      {
+        "marca": "CUMMINS",
+        "codigo": "3318853"
+      },
+      {
+        "marca": "MAHLE",
+        "codigo": "OC541"
+      },
+      {
+        "marca": "CUMMINS",
+        "codigo": "3318853"
+      },
+      {
+        "marca": "MAHLE",
+        "codigo": "OC304"
+      },
+      {
+        "marca": "CUMMINS",
+        "codigo": "3401544"
+      },
+      {
+        "marca": "MANITOWOC",
+        "codigo": "4136530"
+      },
+      {
+        "marca": "CUMMINS",
+        "codigo": "3825970"
+      },
+      {
+        "marca": "MANN",
+        "codigo": "WP12300"
+      },
+      {
+        "marca": "CUMMINS",
+        "codigo": "TECXLF75000"
+      },
+      {
+        "marca": "MASSEY FERGUSON",
+        "codigo": "1077749M1"
+      },
+      {
+        "marca": "CUMMINS",
+        "codigo": "XLF7000"
+      },
+      {
+        "marca": "MASSEY FERGUSON",
+        "codigo": "72501533"
+      },
+      {
+        "marca": "CUMMINS",
+        "codigo": "XLF75000"
+      },
+      {
+        "marca": "MASSEY FERGUSON",
+        "codigo": "72516560"
+      },
+      {
+        "marca": "DAEWOO",
+        "codigo": "247190148"
+      },
+      {
+        "marca": "MASTER PARTS",
+        "codigo": "MM100033"
+      },
+      {
+        "marca": "DAEWOO",
+        "codigo": "47400023"
+      },
+      {
+        "marca": "MCCORMICK",
+        "codigo": "707154A1"
+      },
+      {
+        "marca": "DAEWOO",
+        "codigo": "65055105023"
+      },
+      {
+        "marca": "MI-JACK",
+        "codigo": "23160167"
+      },
+      {
+        "marca": "DAF",
+        "codigo": "1288430"
+      },
+      {
+        "marca": "MISTURADOR AVANÇADO",
+        "codigo": "15067"
+      },
+      {
+        "marca": "DELKRAFT",
+        "codigo": "DL217"
+      },
+      {
+        "marca": "NAPA",
+        "codigo": "1748"
+      },
+      {
+        "marca": "DELPHI",
+        "codigo": "EFL724"
+      },
+      {
+        "marca": "NEOPART",
+        "codigo": "DONP553000"
+      },
+      {
+        "marca": "DESEMPENHO MARINHO",
+        "codigo": "MPL5929"
+      },
+      {
+        "marca": "NOVA HOLANDA",
+        "codigo": "441703A1"
+      },
+      {
+        "marca": "DEZZI",
+        "codigo": "350030"
+      },
+      {
+        "marca": "ÔNIBUS SOLARIS",
+        "codigo": "120390054"
+      },
+      {
+        "marca": "DMT CORPORATION",
+        "codigo": "531107"
+      },
+      {
+        "marca": "ORENSTEIN & KOPPEL",
+        "codigo": "1487676"
+      },
+      {
+        "marca": "DONALDSON",
+        "codigo": "P553000"
+      },
+      {
+        "marca": "PACCAR",
+        "codigo": "1500871"
+      },
+      {
+        "marca": "DONALDSON",
+        "codigo": "P172512"
+      },
+      {
+        "marca": "PARKER",
+        "codigo": "RL332"
+      },
+      {
+        "marca": "DONALDSON",
+        "codigo": "DBL7300"
+      },
+      {
+        "marca": "PARTMO",
+        "codigo": "A3000SP"
+      },
+      {
+        "marca": "DONSSON",
+        "codigo": "GS141"
+      },
+      {
+        "marca": "PEÇAS AMERICANAS",
+        "codigo": "92748"
+      },
+      {
+        "marca": "DOOSAN",
+        "codigo": "65055105023"
+      },
+      {
+        "marca": "PREVOST CAR",
+        "codigo": "19500489"
+      },
+      {
+        "marca": "DYNAPAC",
+        "codigo": "902039"
+      },
+      {
+        "marca": "PUROLATOR",
+        "codigo": "6935219"
+      },
+      {
+        "marca": "EM UM",
+        "codigo": "1220828"
+      },
+      {
+        "marca": "PUROLATOR",
+        "codigo": "L54519"
+      },
+      {
+        "marca": "ENGEAGRO",
+        "codigo": "180654"
+      },
+      {
+        "marca": "PUROLATOR",
+        "codigo": "L56019"
+      },
+      {
+        "marca": "ENMTP CPG",
+        "codigo": "5608835"
+      },
+      {
+        "marca": "PUROLATOR",
+        "codigo": "PER4519"
+      },
+      {
+        "marca": "EQUIP AG CHEM",
+        "codigo": "711049"
+      },
+      {
+        "marca": "REYTOR",
+        "codigo": "RL3000"
+      },
+      {
+        "marca": "EQUIP AG CHEM",
+        "codigo": "AG711049"
+      },
+      {
+        "marca": "ROMA",
+        "codigo": "LUS8853"
+      },
+      {
+        "marca": "ERF (ERF)",
+        "codigo": "1355360"
+      },
+      {
+        "marca": "SAKURA",
+        "codigo": "C5706"
+      },
+      {
+        "marca": "EUCLIDES",
+        "codigo": "E12969457"
+      },
+      {
+        "marca": "SAMSUNG",
+        "codigo": "11712405"
+      },
+      {
+        "marca": "EXMAN",
+        "codigo": "SFO3001"
+      },
+      {
+        "marca": "SANY",
+        "codigo": "B222100000063"
+      },
+      {
+        "marca": "FAM",
+        "codigo": "FL853"
+      },
+      {
+        "marca": "SDMO",
+        "codigo": "330560035"
+      },
+      {
+        "marca": "FAMEL",
+        "codigo": "F230"
+      },
+      {
+        "marca": "SISU",
+        "codigo": "1216400541"
+      },
+      {
+        "marca": "FIAT",
+        "codigo": "71497005"
+      },
+      {
+        "marca": "SISU",
+        "codigo": "1216400561"
+      },
+      {
+        "marca": "FIAT",
+        "codigo": "75285999"
+      },
+      {
+        "marca": "SISU",
+        "codigo": "1216400591"
+      },
+      {
+        "marca": "FIAT",
+        "codigo": "76194691"
+      },
+      {
+        "marca": "STEIGER",
+        "codigo": "907101T1"
+      },
+      {
+        "marca": "FIAT",
+        "codigo": "E8HZ6731A"
+      },
+      {
+        "marca": "SULLAIR",
+        "codigo": "88291001891"
+      },
+      {
+        "marca": "FIL",
+        "codigo": "ZP51"
+      },
+      {
+        "marca": "TADANO",
+        "codigo": "36361551500"
+      },
+      {
+        "marca": "FLEETGUARD",
+        "codigo": "LF3000"
+      },
+      {
+        "marca": "TATA",
+        "codigo": "220018000000"
+      },
+      {
+        "marca": "FLEETGUARD",
+        "codigo": "LF3639"
+      },
+      {
+        "marca": "TAYLOR",
+        "codigo": "4026996"
+      },
+      {
+        "marca": "FORD",
+        "codigo": "3318853"
+      },
+      {
+        "marca": "TECFIL",
+        "codigo": "PSL300"
+      },
+      {
+        "marca": "FORD",
+        "codigo": "3825970"
+      },
+      {
+        "marca": "TELCO",
+        "codigo": "3401544"
+      },
+      {
+        "marca": "FORD",
+        "codigo": "9576P553000"
+      },
+      {
+        "marca": "TEREX",
+        "codigo": "15266844"
+      },
+      {
+        "marca": "FORD",
+        "codigo": "BG2X6731CA"
+      },
+      {
+        "marca": "TEXACO",
+        "codigo": "HDO7"
+      },
+      {
+        "marca": "FORD",
+        "codigo": "E8HZ6731A"
+      },
+      {
+        "marca": "TIMBERJACK",
+        "codigo": "D300TJ"
+      },
+      {
+        "marca": "FORD",
+        "codigo": "E9PJ6714AA"
+      },
+      {
+        "marca": "TORQUIP",
+        "codigo": "75285999"
+      },
+      {
+        "marca": "FORD",
+        "codigo": "F8HZ6731A"
+      },
+      {
+        "marca": "TRP",
+        "codigo": "915021"
+      },
+      {
+        "marca": "FORD",
+        "codigo": "TJG15561"
+      },
+      {
+        "marca": "UFI",
+        "codigo": "2341100"
+      },
+      {
+        "marca": "FOTON",
+        "codigo": "D1700240"
+      },
+      {
+        "marca": "UNIFILTER",
+        "codigo": "USL3000"
+      },
+      {
+        "marca": "FOTON",
+        "codigo": "C3401544A0571A"
+      },
+      {
+        "marca": "UNIFILTER",
+        "codigo": "USL300"
+      },
+      {
+        "marca": "FRAM",
+        "codigo": "HPH6349"
+      },
+      {
+        "marca": "UNITED CENTRAL IND SUPP",
+        "codigo": "688744"
+      },
+      {
+        "marca": "FRAM",
+        "codigo": "HPH6349A"
+      },
+      {
+        "marca": "UNIVERSAL COACH PARTS",
+        "codigo": "T081044"
+      },
+      {
+        "marca": "FRANING",
+        "codigo": "HCX3000"
+      },
+      {
+        "marca": "VERSÁTIL",
+        "codigo": "9703112"
+      },
+      {
+        "marca": "FREIGHTLINER",
+        "codigo": "DNP553000"
+      },
+      {
+        "marca": "VMC",
+        "codigo": "LF553000"
+      },
+      {
+        "marca": "FURUKAWA",
+        "codigo": "1290006H1"
+      },
+      {
+        "marca": "VME",
+        "codigo": "12969457"
+      },
+      {
+        "marca": "FURUKAWA",
+        "codigo": "1294153H91"
+      },
+      {
+        "marca": "VOLKSWAGEN",
+        "codigo": "TJG115561"
+      },
+      {
+        "marca": "FURUKAWA",
+        "codigo": "3381644H1"
+      },
+      {
+        "marca": "VOLVO",
+        "codigo": "54429"
+      },
+      {
+        "marca": "GENERAC",
+        "codigo": "22222"
+      },
+      {
+        "marca": "VOLVO",
+        "codigo": "3130934"
+      },
+      {
+        "marca": "GONHER",
+        "codigo": "GP3000"
+      },
+      {
+        "marca": "VOLVO",
+        "codigo": "12969457"
+      },
+      {
+        "marca": "GREYFRIARS",
+        "codigo": "9038S"
+      },
+      {
+        "marca": "VOLVO",
+        "codigo": "991218853"
+      },
+      {
+        "marca": "GUD",
+        "codigo": "Z239"
+      },
+      {
+        "marca": "VOLVO",
+        "codigo": "M12969457"
+      },
+      {
+        "marca": "HAVAM",
+        "codigo": "15162"
+      },
+      {
+        "marca": "VOLVO",
+        "codigo": "V1113896"
+      },
+      {
+        "marca": "HENGST",
+        "codigo": "H300W03"
+      },
+      {
+        "marca": "VOX",
+        "codigo": "LB300"
+      },
+      {
+        "marca": "HESTAIR DENNIS",
+        "codigo": "ZZ11068"
+      },
+      {
+        "marca": "VOX ANTIGO",
+        "codigo": "LB2622"
+      },
+      {
+        "marca": "HIGHPOWEREQUIPMENT",
+        "codigo": "LF3000"
+      },
+      {
+        "marca": "WALGAHN-MOTORENTECHN",
+        "codigo": "811385"
+      },
+      {
+        "marca": "HITACHI",
+        "codigo": "4228688"
+      },
+      {
+        "marca": "WEGA",
+        "codigo": "WO710"
+      },
+      {
+        "marca": "HITACHI",
+        "codigo": "4470720"
+      },
+      {
+        "marca": "WIRTGEN",
+        "codigo": "195743"
+      },
+      {
+        "marca": "HITACHI",
+        "codigo": "42286881"
+      },
+      {
+        "marca": "WIX",
+        "codigo": "W51748"
+      },
+      {
+        "marca": "HITACHI",
+        "codigo": "71497005"
+      },
+      {
+        "marca": "WIX",
+        "codigo": "51748"
+      },
+      {
+        "marca": "HITACHI",
+        "codigo": "76194691"
+      },
+      {
+        "marca": "XANGAI DIESEL",
+        "codigo": "D1700240"
+      },
+      {
+        "marca": "HITACHI",
+        "codigo": "E0A000080"
+      },
+      {
+        "marca": "ZF",
+        "codigo": "70131270"
+      },
+      {
+        "marca": "HITACHI",
+        "codigo": "E12969457"
+      },
+      {
+        "marca": "TURBO FILTROS",
+        "codigo": "TB30000"
+      }
+    ]
+  },
+  "COMBUSTIBLE CON TRAMPA 2__FORD CARGO 1722": {
+    "tipo": "Combustible con trampa 2",
+    "modelos": [
+      "FORD CARGO 1722"
+    ],
+    "codigos": [
+      {
+        "marca": "ALLIANCE",
+        "codigo": "A38447770150097"
+      },
+      {
+        "marca": "MAHLE",
+        "codigo": "KC126"
+      },
+      {
+        "marca": "BOSCH",
+        "codigo": "986450727"
+      },
+      {
+        "marca": "MAHLE",
+        "codigo": "KC126/1"
+      },
+      {
+        "marca": "DELKRAFT",
+        "codigo": "DSA514/1"
+      },
+      {
+        "marca": "MANN",
+        "codigo": "WK1050/1"
+      },
+      {
+        "marca": "DELPHI",
+        "codigo": "EFS108"
+      },
+      {
+        "marca": "MASTER PARTS",
+        "codigo": "MM100349"
+      },
+      {
+        "marca": "DONALDSON",
+        "codigo": "P502461"
+      },
+      {
+        "marca": "MERCEDES BENZ",
+        "codigo": "4570920001"
+      },
+      {
+        "marca": "FAM",
+        "codigo": "FSD580/1"
+      },
+      {
+        "marca": "MERCEDES BENZ",
+        "codigo": "A9584770015"
+      },
+      {
+        "marca": "FIAT IVECO",
+        "codigo": "7147274"
+      },
+      {
+        "marca": "MERCEDES BENZ",
+        "codigo": "A4570920001KZ"
+      },
+      {
+        "marca": "FIAT IVECO",
+        "codigo": "503100412"
+      },
+      {
+        "marca": "PUROLATOR",
+        "codigo": "F1085"
+      },
+      {
+        "marca": "FIAT IVECO",
+        "codigo": "7147701"
+      },
+      {
+        "marca": "PUROLATOR",
+        "codigo": "F1086"
+      },
+      {
+        "marca": "FRAM",
+        "codigo": "PS10610"
+      },
+      {
+        "marca": "PUROLATOR",
+        "codigo": "F1076"
+      },
+      {
+        "marca": "FRAM",
+        "codigo": "PS9026"
+      },
+      {
+        "marca": "RACOR",
+        "codigo": "R9030MB"
+      },
+      {
+        "marca": "FRAM",
+        "codigo": "PS9027"
+      },
+      {
+        "marca": "RACOR",
+        "codigo": "49030MB"
+      },
+      {
+        "marca": "FRAM",
+        "codigo": "PS9026"
+      },
+      {
+        "marca": "RACOR",
+        "codigo": "R12030M"
+      },
+      {
+        "marca": "FRAM",
+        "codigo": "PS9027"
+      },
+      {
+        "marca": "RACOR",
+        "codigo": "R12010MB"
+      },
+      {
+        "marca": "FRAM",
+        "codigo": "PS10037"
+      },
+      {
+        "marca": "SOGEFI PRO/FRAM",
+        "codigo": "FP6305"
+      },
+      {
+        "marca": "GONHER",
+        "codigo": "GPP1060"
+      },
+      {
+        "marca": "TECFIL",
+        "codigo": "PSD480/1"
+      },
+      {
+        "marca": "HENGST",
+        "codigo": "H7118WK10"
+      },
+      {
+        "marca": "TRP",
+        "codigo": "915023"
+      },
+      {
+        "marca": "INPECA",
+        "codigo": "SSB0480"
+      },
+      {
+        "marca": "TURBO FILTROS",
+        "codigo": "TBC480"
+      },
+      {
+        "marca": "IRLEMP",
+        "codigo": "R9030MB"
+      },
+      {
+        "marca": "UNIFILTER",
+        "codigo": "RK90MB"
+      },
+      {
+        "marca": "JAPANPARTS",
+        "codigo": "FCBR83S"
+      },
+      {
+        "marca": "VOX",
+        "codigo": "FBS480/1"
+      },
+      {
+        "marca": "KS",
+        "codigo": "473FS"
+      },
+      {
+        "marca": "VOX ANTIGO",
+        "codigo": "FBS3034"
+      },
+      {
+        "marca": "KSPG",
+        "codigo": "50013473"
+      },
+      {
+        "marca": "WEGA",
+        "codigo": "FCD2214"
+      },
+      {
+        "marca": "MAHLE",
+        "codigo": "KC647/1"
+      },
+      {
+        "marca": "WIX",
+        "codigo": "WF10288"
+      },
+      {
+        "marca": "MAHLE",
+        "codigo": "KC647/1 Plus"
+      },
+      {
+        "marca": "WIX",
+        "codigo": "WF10305"
+      },
+      {
+        "marca": "MAHLE",
+        "codigo": "KC125/1"
       }
     ]
   }
