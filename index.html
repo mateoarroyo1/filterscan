@@ -461,8 +461,10 @@ function goPage(name) {
   document.getElementById('page-' + name).classList.add('active');
   const di = document.getElementById('di-' + name);
   if (di) di.classList.add('active');
-  // mostrar botón home solo cuando no estás en scanner
   document.getElementById('homeBtn').style.display = name === 'scanner' ? 'none' : 'block';
+  // Limpiar resultado al cambiar de página
+  document.getElementById('resultado').classList.remove('show');
+  document.getElementById('unknownCard').classList.remove('show');
   closeDrawer();
   window.scrollTo(0, 0);
 }
