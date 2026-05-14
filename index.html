@@ -308,7 +308,7 @@ body { font-family: var(--f); background: var(--bg); color: var(--text); min-hei
     <button class="d-item" id="di-vehiculo" onclick="goPage('vehiculo')">
       <div class="d-icon">🚛</div>
       <div>
-        <div class="d-label">Buscar por camión</div>
+        <div class="d-label">Buscar por modelo</div>
         <div class="d-sub">Filtros y stock por modelo</div>
       </div>
     </button>
@@ -386,7 +386,7 @@ body { font-family: var(--f); background: var(--bg); color: var(--text); min-hei
 <!-- PAGE: VEHÍCULO -->
 <div class="page" id="page-vehiculo">
   <div style="height:12px"></div>
-  <div class="sec-title">Buscar por camión</div>
+  <div class="sec-title">Buscar por modelo</div>
   <div class="sec-sub">Seleccioná el modelo para ver sus filtros y stock</div>
 
   <select class="veh-select" id="vehicleSelect" onchange="onVehicleChange()">
@@ -464,9 +464,32 @@ const vfSt   = document.getElementById('vfSt');
 const btnCap = document.getElementById('btnCap');
 const sz     = document.getElementById('sz');
 
-navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } })
-  .then(s => { video.srcObject = s; vfSt.textContent = 'Apuntar al código del filtro'; btnCap.disabled = false; })
-  .catch(() => { vfSt.textContent = 'Sin acceso a cámara'; });
+function iniciarCamara() {
+  // Detener stream anterior si existe
+  if (video.srcObject) {
+    video.srcObject.getTracks().forEach(t => t.stop());
+    video.srcObject = null;
+  }
+  navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } })
+    .then(s => {
+      video.srcObject = s;
+      vfSt.textContent = 'Apuntar al código del filtro';
+      btnCap.disabled = false;
+    })
+    .catch(() => { vfSt.textContent = 'Sin acceso a cámara'; btnCap.disabled = true; });
+}
+
+iniciarCamara();
+
+// Reiniciar cámara cuando la página vuelve a ser visible
+document.addEventListener('visibilitychange', () => {
+  if (!document.hidden) iniciarCamara();
+});
+
+// Reiniciar cuando vuelve el foco a la ventana (útil en PWA/app)
+window.addEventListener('focus', () => {
+  if (video.readyState === 0 || !video.srcObject) iniciarCamara();
+});
 
 function capturar() {
   const c = document.createElement('canvas');
@@ -498,13 +521,13 @@ async function leerClaude(b64) {
 // ── BÚSQUEDA ──
 // Nueva DB: keys = "TIPO__MODELO", cada grupo tiene .codigos array
 function buscarEnDB(codigo) {
-  const needle = codigo.toUpperCase().replace(/[\s\-]/g,'');
+  const needle = codigo.toUpperCase().replace(/[\s\-\/]/g,'');
 
   // Buscar en todos los grupos — juntar modelos si el código aparece en varios
   const hits = [];
   for (const gkey in DB) {
     const grupo = DB[gkey];
-    const found = grupo.codigos.find(c => c.codigo.toUpperCase().replace(/[\s\-]/g,'') === needle);
+    const found = grupo.codigos.find(c => c.codigo.toUpperCase().replace(/[\s\-\/]/g,'') === needle);
     if (found) hits.push({ found, grupo });
   }
   if (hits.length > 0) {
@@ -532,7 +555,8 @@ function buscarEnDB(codigo) {
   // Fuzzy: solo si la parte ANTES de / o - coincide exactamente
   // Ej: W1992/2 ~ W1992/3 → OK | W920 ~ W925 → NO
   function baseCode(c) {
-    return c.split(/[\/\-]/)[0].toUpperCase().trim();
+    // Remove spaces and get part before / or -
+    return c.replace(/\s/g,'').split(/[\/\-]/)[0].toUpperCase();
   }
   const needleBase = baseCode(codigo);
 
