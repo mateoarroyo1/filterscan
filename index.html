@@ -695,7 +695,7 @@ async function mostrarResultado(codigo, data, aprox, detectado) {
       </div>
       <div class="mov-btns">
         <button class="mov-btn btn-ing" onclick="registrarMov(+1)">↑ INGRESO<span class="mov-btn-sub">Suma al stock</span></button>
-        <button class="mov-btn btn-sal" onclick="registrarMov(-1)">↓ SALIDA<span class="mov-btn-sub">Resta del stock</span></button>
+        <button class="mov-btn btn-sal" onclick="abrirModalSalida()">↓ SALIDA<span class="mov-btn-sub">Resta del stock</span></button>
       </div>
       <div class="mov-feedback" id="movFeedback"></div>
     </div>`;
@@ -1087,6 +1087,189 @@ async function unkAgregar() {
   }
 }
 
+// ── MODAL SALIDA ──
+function abrirModalSalida() {
+  if (!currentGrupo) return;
+  // Poblar select con modelos de la DB
+  const sel = document.getElementById('salidaVehSel');
+  // Clear except first option
+  while (sel.options.length > 1) sel.remove(1);
+  const set = new Set();
+  for (const k in DB) (DB[k].modelos||[]).forEach(m => set.add(m));
+  [...set].sort().forEach(m => {
+    const o = document.createElement('option');
+    o.value = m; o.textContent = m; sel.appendChild(o);
+  });
+  // Add "Otro" option
+  const oOtro = document.createElement('option');
+  oOtro.value = '__otro'; oOtro.textContent = 'Otro (escribir)...';
+  sel.appendChild(oOtro);
+
+  document.getElementById('salidaVehInput').style.display = 'none';
+  document.getElementById('salidaVehInput').value = '';
+  document.getElementById('salidaOverlay').classList.add('open');
+}
+
+function salidaOnSelect() {
+  const val = document.getElementById('salidaVehSel').value;
+  const inp = document.getElementById('salidaVehInput');
+  if (val === '__otro') {
+    inp.style.display = 'block';
+    inp.focus();
+  } else {
+    inp.style.display = 'none';
+    inp.value = '';
+  }
+}
+
+function cerrarModalSalida() {
+  document.getElementById('salidaOverlay').classList.remove('open');
+}
+
+async function confirmarSalida() {
+  const sel = document.getElementById('salidaVehSel').value;
+  const inp = document.getElementById('salidaVehInput').value.trim();
+  const vehiculoDestino = sel === '__otro' ? inp : sel;
+
+  if (!vehiculoDestino) {
+    document.getElementById('salidaVehSel').style.borderColor = 'var(--red)';
+    setTimeout(() => document.getElementById('salidaVehSel').style.borderColor = '', 1500);
+    return;
+  }
+
+  cerrarModalSalida();
+
+  const qty   = parseInt(document.getElementById('qtyVal').value)||1;
+  const fb    = document.getElementById('movFeedback');
+  fb.textContent = 'Guardando...'; fb.classList.add('show');
+
+  try {
+    // Pasar el vehículo destino al grupo para el historial
+    const grupoConDestino = { ...currentGrupo, vehiculoDestino };
+    const nuevo = await apiUpdate(grupoConDestino, -qty);
+    actualizarRcStock(nuevo);
+    fb.textContent = `✅ Salida ${qty} → ${vehiculoDestino} — Stock: ${nuevo}`;
+    document.getElementById('qtyVal').value = 1;
+    setTimeout(() => fb.classList.remove('show'), 3000);
+    stockCargarLista();
+  } catch(e) {
+    fb.textContent = '❌ Error al guardar.';
+    setTimeout(() => fb.classList.remove('show'), 3000);
+  }
+}
+
+// ── MODAL SALIDA ──
+function abrirModalSalida() {
+  if (!currentGrupo) return;
+  const sel = document.getElementById('salidaVehSel');
+  while (sel.options.length > 1) sel.remove(1);
+  const set = new Set();
+  for (const k in DB) (DB[k].modelos||[]).forEach(m => set.add(m));
+  [...set].sort().forEach(m => {
+    const o = document.createElement('option');
+    o.value = m; o.textContent = m; sel.appendChild(o);
+  });
+  const oOtro = document.createElement('option');
+  oOtro.value = '__otro'; oOtro.textContent = 'Otro (escribir)...';
+  sel.appendChild(oOtro);
+  document.getElementById('salidaVehInput').style.display = 'none';
+  document.getElementById('salidaVehInput').value = '';
+  document.getElementById('salidaOverlay').classList.add('open');
+}
+
+function salidaOnSelect() {
+  const val = document.getElementById('salidaVehSel').value;
+  const inp = document.getElementById('salidaVehInput');
+  inp.style.display = val === '__otro' ? 'block' : 'none';
+  if (val === '__otro') inp.focus();
+  else inp.value = '';
+}
+
+function cerrarModalSalida() {
+  document.getElementById('salidaOverlay').classList.remove('open');
+}
+
+async function confirmarSalida() {
+  const sel = document.getElementById('salidaVehSel').value;
+  const inp = document.getElementById('salidaVehInput').value.trim();
+  const destino = sel === '__otro' ? inp : sel;
+  if (!destino) {
+    document.getElementById('salidaVehSel').style.borderColor = 'var(--red)';
+    setTimeout(() => document.getElementById('salidaVehSel').style.borderColor = '', 1500);
+    return;
+  }
+  cerrarModalSalida();
+  const qty = parseInt(document.getElementById('qtyVal').value)||1;
+  const fb  = document.getElementById('movFeedback');
+  fb.textContent = 'Guardando...'; fb.classList.add('show');
+  try {
+    const grupoConDestino = { ...currentGrupo, vehiculoDestino: destino };
+    const nuevo = await apiUpdate(grupoConDestino, -qty);
+    actualizarRcStock(nuevo);
+    fb.textContent = `✅ Salida ${qty} → ${destino} — Stock: ${nuevo}`;
+    document.getElementById('qtyVal').value = 1;
+    setTimeout(() => fb.classList.remove('show'), 3000);
+    stockCargarLista();
+  } catch(e) {
+    fb.textContent = '❌ Error al guardar.';
+    setTimeout(() => fb.classList.remove('show'), 3000);
+  }
+}
+
+// ── MODAL SALIDA ──
+function abrirModalSalida() {
+  if (!currentGrupo) return;
+  const sel = document.getElementById('salidaVehSel');
+  while (sel.options.length > 1) sel.remove(1);
+  const set = new Set();
+  for (const k in DB) (DB[k].modelos||[]).forEach(m => set.add(m));
+  [...set].sort().forEach(m => {
+    const o = document.createElement('option');
+    o.value = m; o.textContent = m; sel.appendChild(o);
+  });
+  const oOtro = document.createElement('option');
+  oOtro.value = '__otro'; oOtro.textContent = 'Otro (escribir)...';
+  sel.appendChild(oOtro);
+  document.getElementById('salidaVehInput').style.display = 'none';
+  document.getElementById('salidaVehInput').value = '';
+  document.getElementById('salidaOverlay').classList.add('open');
+}
+function salidaOnSelect() {
+  const val = document.getElementById('salidaVehSel').value;
+  const inp = document.getElementById('salidaVehInput');
+  inp.style.display = val === '__otro' ? 'block' : 'none';
+  if (val === '__otro') inp.focus(); else inp.value = '';
+}
+function cerrarModalSalida() {
+  document.getElementById('salidaOverlay').classList.remove('open');
+}
+async function confirmarSalida() {
+  const sel = document.getElementById('salidaVehSel').value;
+  const inp = document.getElementById('salidaVehInput').value.trim();
+  const destino = sel === '__otro' ? inp : sel;
+  if (!destino) {
+    document.getElementById('salidaVehSel').style.borderColor = 'var(--red)';
+    setTimeout(() => document.getElementById('salidaVehSel').style.borderColor = '', 1500);
+    return;
+  }
+  cerrarModalSalida();
+  const qty = parseInt(document.getElementById('qtyVal').value)||1;
+  const fb  = document.getElementById('movFeedback');
+  fb.textContent = 'Guardando...'; fb.classList.add('show');
+  try {
+    const grupoConDestino = { ...currentGrupo, vehiculoDestino: destino };
+    const nuevo = await apiUpdate(grupoConDestino, -qty);
+    actualizarRcStock(nuevo);
+    fb.textContent = `✅ Salida ${qty} → ${destino} — Stock: ${nuevo}`;
+    document.getElementById('qtyVal').value = 1;
+    setTimeout(() => fb.classList.remove('show'), 3000);
+    stockCargarLista();
+  } catch(e) {
+    fb.textContent = '❌ Error al guardar.';
+    setTimeout(() => fb.classList.remove('show'), 3000);
+  }
+}
+
 // ── UTILS ──
 function lev(a,b) {
   const m=a.length,n=b.length,dp=Array.from({length:m+1},(_,i)=>[i]);
@@ -1113,6 +1296,40 @@ function lev(a,b) {
 </div>
 
 
+
+<!-- MODAL SALIDA -->
+<div class="salida-modal-overlay" id="salidaOverlay">
+  <div class="salida-modal">
+    <div class="salida-modal-handle"></div>
+    <div class="salida-modal-title">¿A qué vehículo va?</div>
+    <div class="salida-modal-sub">Seleccioná o escribí el modelo destino</div>
+    <select id="salidaVehSel" onchange="salidaOnSelect()">
+      <option value="">— Seleccioná el vehículo —</option>
+    </select>
+    <input id="salidaVehInput" type="text" placeholder="O escribí el modelo..." autocomplete="off" style="display:none;">
+    <div class="salida-modal-btns">
+      <button class="salida-modal-cancel" onclick="cerrarModalSalida()">Cancelar</button>
+      <button class="salida-modal-ok" id="salidaOkBtn" onclick="confirmarSalida()">Confirmar salida</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL SALIDA -->
+<div class="salida-modal-overlay" id="salidaOverlay">
+  <div class="salida-modal">
+    <div class="salida-modal-handle"></div>
+    <div class="salida-modal-title">¿A qué vehículo va?</div>
+    <div class="salida-modal-sub">Seleccioná o escribí el modelo destino</div>
+    <select id="salidaVehSel" onchange="salidaOnSelect()">
+      <option value="">— Seleccioná el vehículo —</option>
+    </select>
+    <input id="salidaVehInput" type="text" placeholder="O escribí el modelo..." autocomplete="off" style="display:none;">
+    <div class="salida-modal-btns">
+      <button class="salida-modal-cancel" onclick="cerrarModalSalida()">Cancelar</button>
+      <button class="salida-modal-ok" onclick="confirmarSalida()">Confirmar salida</button>
+    </div>
+  </div>
+</div>
 
 </body>
 </html>
