@@ -178,6 +178,8 @@ body { font-family: var(--f); background: var(--bg); color: var(--text); min-hei
 .btn-sal:hover{background:#fad5d0;}
 .mov-feedback{text-align:center;padding:8px;font-size:14px;font-weight:700;color:var(--muted);display:none;}
 .mov-feedback.show{display:block;}
+.salida-modal-overlay{position:fixed;inset:0;background:#00000055;z-index:200;display:none;align-items:flex-end;justify-content:center;}
+.salida-modal-overlay.open{display:flex;}
 .equiv-toggle {
   width: 100%; padding: 14px 16px; display: flex; align-items: center; justify-content: space-between;
   border: none; background: #fafafa; border-top: 2px solid var(--border); cursor: pointer;
@@ -1315,21 +1317,6 @@ function lev(a,b) {
 </div>
 
 <!-- MODAL SALIDA -->
-<div class="salida-modal-overlay" id="salidaOverlay">
-  <div class="salida-modal">
-    <div class="salida-modal-handle"></div>
-    <div class="salida-modal-title">¿A qué vehículo va?</div>
-    <div class="salida-modal-sub">Seleccioná o escribí el modelo destino</div>
-    <select id="salidaVehSel" onchange="salidaOnSelect()">
-      <option value="">— Seleccioná el vehículo —</option>
-    </select>
-    <input id="salidaVehInput" type="text" placeholder="O escribí el modelo..." autocomplete="off" style="display:none;">
-    <div class="salida-modal-btns">
-      <button class="salida-modal-cancel" onclick="cerrarModalSalida()">Cancelar</button>
-      <button class="salida-modal-ok" onclick="confirmarSalida()">Confirmar salida</button>
-    </div>
-  </div>
-</div>
 
 </body>
 </html>
