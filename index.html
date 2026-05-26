@@ -180,6 +180,17 @@ body { font-family: var(--f); background: var(--bg); color: var(--text); min-hei
 .mov-feedback.show{display:block;}
 .salida-modal-overlay{position:fixed;inset:0;background:#00000055;z-index:200;display:none;align-items:flex-end;justify-content:center;}
 .salida-modal-overlay.open{display:flex;}
+.salida-modal{background:var(--panel);border-radius:20px 20px 0 0;width:100%;max-width:500px;padding-bottom:24px;}
+.salida-modal-handle{width:36px;height:4px;background:var(--border);border-radius:2px;margin:12px auto 16px;}
+.salida-modal-title{font-size:19px;font-weight:900;padding:0 20px 4px;color:var(--text);}
+.salida-modal-sub{font-size:13px;color:var(--muted);padding:0 20px 16px;font-weight:500;}
+.salida-modal input{display:block;width:calc(100% - 40px);margin:0 20px 16px;padding:15px 16px;font-family:var(--f);font-size:17px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;background:var(--bg);border:2px solid var(--border);color:var(--text);border-radius:10px;outline:none;transition:border-color .15s;}
+.salida-modal input:focus{border-color:var(--orange);}
+.salida-modal input::placeholder{text-transform:none;letter-spacing:0;font-weight:400;color:#bbb;}
+.salida-modal-btns{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 20px;}
+.salida-modal-cancel{padding:15px;font-family:var(--f);font-size:15px;font-weight:700;background:var(--bg);border:2px solid var(--border);color:var(--muted);border-radius:10px;cursor:pointer;}
+.salida-modal-ok{padding:15px;font-family:var(--f);font-size:15px;font-weight:800;background:var(--red);border:none;color:#fff;border-radius:10px;cursor:pointer;}
+.salida-modal-ok:active{opacity:.85;}
 .equiv-toggle {
   width: 100%; padding: 14px 16px; display: flex; align-items: center; justify-content: space-between;
   border: none; background: #fafafa; border-top: 2px solid var(--border); cursor: pointer;
@@ -1196,7 +1207,7 @@ function lev(a,b) {
     <div class="salida-modal-handle"></div>
     <div class="salida-modal-title">¿A qué vehículo va?</div>
     <div class="salida-modal-sub">Escribí el modelo destino</div>
-    <input id="salidaVehInput" type="text" placeholder="Ej: Ford Cargo 1933..." autocomplete="off">
+    <input id="salidaVehInput" type="text" placeholder="Escribí el vehículo..." autocomplete="off">
     <div class="salida-modal-btns">
       <button class="salida-modal-cancel" onclick="cerrarModalSalida()">Cancelar</button>
       <button class="salida-modal-ok" onclick="confirmarSalida()">Confirmar salida</button>
