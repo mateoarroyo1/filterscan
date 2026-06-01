@@ -547,35 +547,24 @@ async function leerClaude(b64) {
 }
 
 // ── BÚSQUEDA ──
-// Dado un código, devuelve todos los grupos de la DB que lo contienen (exact match)
-function gruposConCodigo(codigoNorm) {
-  const result = [];
-  for (const gkey in DB) {
-    const grupo = DB[gkey];
-    const found = grupo.codigos.find(c => c.codigo.toUpperCase().replace(/[\s\-\/]/g,'') === codigoNorm);
-    if (found) result.push({ found, grupo });
-  }
-  return result;
-}
-
-// Cierre transitivo: dado un conjunto de códigos semilla, expande hasta no encontrar más equivalencias nuevas.
-// Devuelve { codigosNorm: Set, grupos: [], marcaMap: Map }
-function expandirEquivalencias(semillaNorm) {
-  const visitados = new Set([semillaNorm]);  // códigos normalizados ya procesados
-  const cola = [semillaNorm];
-  const gruposTotal = [];
-  const marcaMap = new Map(); // codigoNorm → { marca, codigo (original) }
+// Expansión transitiva limitada al mismo tipo de filtro
+function expandirPorTipo(needleNorm, tipoFiltro) {
+  const visitados = new Set([needleNorm]);
+  const cola = [needleNorm];
+  const grupos = [];
+  const marcaMap = new Map();
 
   while (cola.length > 0) {
     const actual = cola.shift();
-    const hits = gruposConCodigo(actual);
-    for (const h of hits) {
-      // registrar grupo si no está ya
-      if (!gruposTotal.find(g => g.grupo === h.grupo)) gruposTotal.push(h);
-      // guardar marca del código actual
-      if (!marcaMap.has(actual)) marcaMap.set(actual, { marca: h.found.marca, codigo: h.found.codigo });
-      // expandir: todos los códigos de este grupo que no hayan sido visitados
-      for (const c of h.grupo.codigos) {
+    for (const gkey in DB) {
+      const grupo = DB[gkey];
+      // Solo cruzar grupos del mismo tipo
+      if (grupo.tipo !== tipoFiltro) continue;
+      const found = grupo.codigos.find(c => c.codigo.toUpperCase().replace(/[\s\-\/]/g,'') === actual);
+      if (!found) continue;
+      if (!grupos.find(g => g.grupo === grupo)) grupos.push({ found, grupo });
+      if (!marcaMap.has(actual)) marcaMap.set(actual, { marca: found.marca, codigo: found.codigo });
+      for (const c of grupo.codigos) {
         const cn = c.codigo.toUpperCase().replace(/[\s\-\/]/g,'');
         if (!visitados.has(cn)) {
           visitados.add(cn);
@@ -585,39 +574,42 @@ function expandirEquivalencias(semillaNorm) {
       }
     }
   }
-  return { codigosNorm: visitados, grupos: gruposTotal, marcaMap };
+  return { grupos, marcaMap };
 }
 
 function buscarEnDB(codigo) {
   const needle = codigo.toUpperCase().replace(/[\s\-\/]/g,'');
 
-  // Buscar si el código existe exactamente en la DB
-  const hitsDirectos = gruposConCodigo(needle);
+  // Buscar hits directos para determinar el tipo
+  const hitsDirectos = [];
+  for (const gkey in DB) {
+    const grupo = DB[gkey];
+    const found = grupo.codigos.find(c => c.codigo.toUpperCase().replace(/[\s\-\/]/g,'') === needle);
+    if (found) hitsDirectos.push({ found, grupo });
+  }
 
   if (hitsDirectos.length > 0) {
-    // Expandir transitivamente
-    const { codigosNorm, grupos, marcaMap } = expandirEquivalencias(needle);
+    const base = hitsDirectos[0];
+    const tipoFiltro = base.grupo.tipo;
+
+    // Expansión transitiva solo dentro del mismo tipo
+    const { grupos } = expandirPorTipo(needle, tipoFiltro);
 
     const todosModelos = [...new Set(grupos.flatMap(h => h.grupo.modelos))];
-    const base = hitsDirectos[0];
-
-    // Equivalencias: todos los códigos encontrados excepto el buscado, en orden original de DB
     const equivMap = new Map();
     for (const h of grupos) {
       for (const c of h.grupo.codigos) {
-        const cu = c.codigo.toUpperCase().replace(/[\s\-\/]/g,'');
-        if (cu !== needle) {
-          const key = c.codigo.toUpperCase();
-          if (!equivMap.has(key)) equivMap.set(key, c);
+        const cu = c.codigo.toUpperCase();
+        if (cu.replace(/[\s\-\/]/g,'') !== needle && !equivMap.has(cu)) {
+          equivMap.set(cu, c);
         }
       }
     }
-
     return {
       key: base.found.codigo.toUpperCase(),
       data: {
         marca:         base.found.marca,
-        tipo:          base.grupo.tipo,
+        tipo:          tipoFiltro,
         modelos:       todosModelos,
         equivalencias: [...equivMap.values()]
       }
@@ -625,7 +617,6 @@ function buscarEnDB(codigo) {
   }
 
   // Fuzzy: solo si la parte ANTES de / o - coincide exactamente
-  // Ej: W1992/2 ~ W1992/3 → OK | W920 ~ W925 → NO
   function baseCode(c) {
     return c.replace(/\s/g,'').split(/[\/\-]/)[0].toUpperCase();
   }
@@ -644,25 +635,22 @@ function buscarEnDB(codigo) {
     }
   }
   if (aproxHits.length > 0) {
-    // También expandir transitivamente en el caso fuzzy
-    const semilla = aproxHits[0].cn.replace(/[\s\-\/]/g,'');
-    const { grupos, marcaMap } = expandirEquivalencias(semilla);
-    const todosModelos = [...new Set(grupos.flatMap(h => h.grupo.modelos))];
     const base = aproxHits[0];
+    const tipoFiltro = base.grupo.tipo;
+    const { grupos } = expandirPorTipo(base.cn.replace(/[\s\-\/]/g,''), tipoFiltro);
+    const todosModelos = [...new Set(grupos.flatMap(h => h.grupo.modelos))];
     const equivMap = new Map();
     for (const h of grupos) {
       for (const c of h.grupo.codigos) {
         const cu = c.codigo.toUpperCase();
-        if (cu !== base.cn) {
-          if (!equivMap.has(cu)) equivMap.set(cu, c);
-        }
+        if (cu !== base.cn && !equivMap.has(cu)) equivMap.set(cu, c);
       }
     }
     return {
       key:  base.cn,
       data: {
         marca:         base.marca,
-        tipo:          base.grupo.tipo,
+        tipo:          tipoFiltro,
         modelos:       todosModelos,
         equivalencias: [...equivMap.values()]
       },
