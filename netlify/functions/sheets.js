@@ -1,7 +1,7 @@
 // netlify/functions/sheets.js
 // Proxy para evitar CORS con Google Apps Script
 
-const SHEET_URL = "https://script.google.com/macros/s/AKfycby6yqT-YhUekkn08rEZDlGivKneBl1eGjJmWwJXWaeNsyB_PbqcL6tIHLnQmfFSQAJorw/exec";
+const SHEET_URL = "https://script.google.com/macros/s/AKfycbz1Jx_mtoy3oqPEsqFJw34-MB7rOE8LOX7zn8jzVtbdiX0NW5Q9tk9gHihU6W-Vr5FB4w/exec";
 
 exports.handler = async function(event) {
 
