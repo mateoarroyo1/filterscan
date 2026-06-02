@@ -556,8 +556,6 @@ function expandirPorTipo(needleNorm, tipoFiltro) {
 
   while (cola.length > 0) {
     const actual = cola.shift();
-    // Ignorar códigos inválidos (puntos usados como relleno)
-    if (!actual || actual === '.' || actual === '..' || actual.length < 3) continue;
     for (const gkey in DB) {
       const grupo = DB[gkey];
       // Solo cruzar grupos del mismo tipo
@@ -568,8 +566,6 @@ function expandirPorTipo(needleNorm, tipoFiltro) {
       if (!marcaMap.has(actual)) marcaMap.set(actual, { marca: found.marca, codigo: found.codigo });
       for (const c of grupo.codigos) {
         const cn = c.codigo.toUpperCase().replace(/[\s\-\/]/g,'');
-        // Ignorar códigos inválidos como relleno
-        if (!cn || cn === '.' || cn === '..' || cn.length < 3) continue;
         if (!visitados.has(cn)) {
           visitados.add(cn);
           cola.push(cn);
@@ -798,11 +794,45 @@ async function mostrarResultado(codigo, data, aprox, detectado) {
 
 function mostrarError(msg) {
   const panel = document.getElementById('resultado');
+  // Extraer el código del mensaje si viene en formato "...código X"
+  const matchCodigo = msg.match(/:\s*([A-Z0-9\-\/\.]+)\s*$/i);
+  const codigoNF = matchCodigo ? matchCodigo[1] : '';
+
   panel.innerHTML = `
     <div class="rc-head"><div class="rc-dot er"></div><span class="rc-lbl er">Sin resultado</span></div>
-    <div class="rc-nf">${msg.replace(/\n/g,'<br>')}</div>`;
+    <div class="rc-nf">${msg.replace(/\n/g,'<br>')}</div>
+    ${codigoNF ? `
+    <div style="padding:16px;">
+      <div style="font-size:13px;color:var(--muted);margin-bottom:10px;">¿No está en la base? Mandalo para investigar y asignarle un modelo.</div>
+      <button id="btnAgregar" onclick="enviarParaInvestigar('${codigoNF}')" style="width:100%;padding:14px;background:var(--orange);color:#fff;border:none;border-radius:10px;font-size:15px;font-weight:800;cursor:pointer;letter-spacing:0.5px;">
+        📋 ENVIAR PARA AGREGAR
+      </button>
+    </div>` : ''}`;
   panel.classList.add('show');
   currentGrupo = null;
+}
+
+async function enviarParaInvestigar(codigo) {
+  const btn = document.getElementById('btnAgregar');
+  if (btn) { btn.disabled = true; btn.textContent = 'Enviando...'; }
+
+  try {
+    const res = await fetch('/.netlify/functions/sheets', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ accion: 'agregar', codigo: codigo.toUpperCase() })
+    });
+    const data = await res.json();
+    if (data.ok) {
+      if (btn) { btn.textContent = '✅ Enviado'; btn.style.background = '#1e7e34'; }
+    } else {
+      if (btn) { btn.disabled = false; btn.textContent = '📋 ENVIAR PARA AGREGAR'; }
+      alert('Error al enviar: ' + (data.error || 'desconocido'));
+    }
+  } catch(e) {
+    if (btn) { btn.disabled = false; btn.textContent = '📋 ENVIAR PARA AGREGAR'; }
+    alert('Error de conexión');
+  }
 }
 
 function actualizarRcStock(n) {
