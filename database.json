@@ -2664,6 +2664,10 @@
       {
         "marca": "Japanparts",
         "codigo": "FOBR85S"
+      },
+      {
+        "marca": "WIX",
+        "codigo": "92095E"
       }
     ]
   },
@@ -6252,6 +6256,10 @@
       {
         "marca": "Japanparts",
         "codigo": "FOBR85S"
+      },
+      {
+        "marca": "WIX",
+        "codigo": "92095E"
       }
     ]
   },
@@ -8008,6 +8016,10 @@
       {
         "marca": "Japanparts",
         "codigo": "FOBR85S"
+      },
+      {
+        "marca": "WIX",
+        "codigo": "92095E"
       }
     ]
   },
@@ -8976,6 +8988,130 @@
       {
         "marca": "MANN",
         "codigo": "CF980"
+      },
+      {
+        "marca": "AGCO",
+        "codigo": "2128537K91"
+      },
+      {
+        "marca": "MANN",
+        "codigo": "CF990/2"
+      },
+      {
+        "marca": "AUTHOMIX",
+        "codigo": "FAR2889"
+      },
+      {
+        "marca": "NEW HOLLAND",
+        "codigo": "86982525"
+      },
+      {
+        "marca": "BALDWIN",
+        "codigo": "RS3545"
+      },
+      {
+        "marca": "NEW HOLLAND",
+        "codigo": "47132346"
+      },
+      {
+        "marca": "CASE",
+        "codigo": "222422A1"
+      },
+      {
+        "marca": "CATERPILLAR",
+        "codigo": "1106331"
+      },
+      {
+        "marca": "PERKINS",
+        "codigo": "26510343"
+      },
+      {
+        "marca": "CATERPILLAR",
+        "codigo": "1318903"
+      },
+      {
+        "marca": "SAKURA",
+        "codigo": "A8621"
+      },
+      {
+        "marca": "CATERPILLAR",
+        "codigo": "26510343"
+      },
+      {
+        "marca": "TECFIL",
+        "codigo": "ASR889"
+      },
+      {
+        "marca": "DONALDSON",
+        "codigo": "P829333"
+      },
+      {
+        "marca": "TURBO FILTROS",
+        "codigo": "TR5590RS"
+      },
+      {
+        "marca": "FIAT ALLIS",
+        "codigo": "1930590"
+      },
+      {
+        "marca": "UFI",
+        "codigo": "2740700"
+      },
+      {
+        "marca": "FLEETGUARD",
+        "codigo": "AF25485"
+      },
+      {
+        "marca": "UNIFILTER",
+        "codigo": "UARS8890F"
+      },
+      {
+        "marca": "FLEETGUARD",
+        "codigo": "AF25558"
+      },
+      {
+        "marca": "VOX",
+        "codigo": "HDS889"
+      },
+      {
+        "marca": "FRAM",
+        "codigo": "CA5741SY"
+      },
+      {
+        "marca": "VOX ANTIGO",
+        "codigo": "HDS5609"
+      },
+      {
+        "marca": "GONHER",
+        "codigo": "GA854R"
+      },
+      {
+        "marca": "WEGA",
+        "codigo": "WAP903/S"
+      },
+      {
+        "marca": "INPECA",
+        "codigo": "SSR5980"
+      },
+      {
+        "marca": "WEGA",
+        "codigo": "WAP903S"
+      },
+      {
+        "marca": "JOHN DEERE",
+        "codigo": "AT171854"
+      },
+      {
+        "marca": "WIX",
+        "codigo": "W46569"
+      },
+      {
+        "marca": "LUBERFINER",
+        "codigo": "LAF4545"
+      },
+      {
+        "marca": "CNH",
+        "codigo": "87682999"
       }
     ]
   },
@@ -13936,14 +14072,14 @@
     ]
   },
   "HABITACULO__CITROEN BERLINGO": {
-    "tipo": "Habitaculo",
+    "tipo": "Habitáculo",
     "modelos": [
       "CITROEN BERLINGO"
     ],
     "codigos": [
       {
-        "marca": "mann",
-        "codigo": "cu2245"
+        "marca": "MANN",
+        "codigo": "CU29003-2"
       }
     ]
   },
@@ -23271,6 +23407,46 @@
       {
         "marca": "KRALINATOR",
         "codigo": "LA1754"
+      },
+      {
+        "marca": "AGCO",
+        "codigo": "2128537K91"
+      },
+      {
+        "marca": "AUTHOMIX",
+        "codigo": "FAR2889"
+      },
+      {
+        "marca": "BALDWIN",
+        "codigo": "RS3545"
+      },
+      {
+        "marca": "TURBO FILTROS",
+        "codigo": "TR5590RS"
+      },
+      {
+        "marca": "FIAT ALLIS",
+        "codigo": "1930590"
+      },
+      {
+        "marca": "UFI",
+        "codigo": "2740700"
+      },
+      {
+        "marca": "FLEETGUARD",
+        "codigo": "AF25558"
+      },
+      {
+        "marca": "WEGA",
+        "codigo": "WAP903/S"
+      },
+      {
+        "marca": "WEGA",
+        "codigo": "WAP903S"
+      },
+      {
+        "marca": "CNH",
+        "codigo": "87682999"
       }
     ]
   },
@@ -28466,6 +28642,10 @@
       {
         "marca": "Japanparts",
         "codigo": "FOBR85S"
+      },
+      {
+        "marca": "WIX",
+        "codigo": "92095E"
       }
     ]
   },
@@ -30882,6 +31062,10 @@
       {
         "marca": "Original Filter",
         "codigo": "OFL0104B"
+      },
+      {
+        "marca": "FRAM",
+        "codigo": "PH2821"
       }
     ]
   },
@@ -36570,6 +36754,10 @@
       {
         "marca": "CATERPILLAR",
         "codigo": "1R-0751"
+      },
+      {
+        "marca": "MANN",
+        "codigo": "WK952/1"
       }
     ]
   },
@@ -39994,6 +40182,10 @@
       {
         "marca": "Japanparts",
         "codigo": "FOBR85S"
+      },
+      {
+        "marca": "WIX",
+        "codigo": "92095E"
       }
     ]
   }
