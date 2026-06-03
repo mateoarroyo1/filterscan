@@ -57,7 +57,17 @@ exports.handler = async function(event) {
             },
             {
               type: "text",
-              text: "Esta imagen es la etiqueta de un filtro automotriz o industrial.\nTu única tarea: encontrar el código alfanumérico del filtro (puede contener letras, números y a veces slash /).\nEjemplos de códigos: H601/4, P550309, FF5488, HF6162, 1457429820, BD7T3K758A, WK954/1X\n\nRESPONDE ÚNICAMENTE con el código del filtro, sin texto extra, sin explicación.\nSi detectás varios candidatos, elegí el más probable (suele ser el más prominente o grande en la etiqueta).\nSi no hay ningún código visible, responde: NO_DETECTADO"
+              text: `Esta imagen es la etiqueta de un filtro automotriz o industrial.
+Tu única tarea: encontrar el código alfanumérico COMPLETO del filtro, incluyendo TODOS sus caracteres: letras, números, slashes (/) y sufijos.
+
+IMPORTANTE — los sufijos son parte del código y NO deben omitirse:
+- SY, SYP, SYU, PU, SP, KIT, X, D, B, F, etc. al final son parte del código
+- Ejemplos correctos: CA9032SY (no CA9032), WK954/1X (no WK954), PH9453PU (no PH9453)
+- Otros ejemplos: H601/4, P550309, FF5488, HF6162, 1457429820, BD7T3K758A
+
+RESPONDE ÚNICAMENTE con el código completo del filtro, sin texto extra, sin explicación.
+Si detectás varios candidatos, elegí el más prominente o grande en la etiqueta.
+Si no hay ningún código visible, responde: NO_DETECTADO`
             }
           ]
         }]
