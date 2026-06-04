@@ -4732,6 +4732,10 @@
       {
         "marca": "Xanfil",
         "codigo": "XS07"
+      },
+      {
+        "marca": "WIX",
+        "codigo": "WA10478"
       }
     ]
   },
@@ -12456,6 +12460,10 @@
       {
         "marca": "Luberfiner",
         "codigo": "LFF5766"
+      },
+      {
+        "marca": "WIX",
+        "codigo": "WF10267"
       }
     ]
   },
@@ -12864,6 +12872,10 @@
       {
         "marca": "Xanfil",
         "codigo": "XS07"
+      },
+      {
+        "marca": "WIX",
+        "codigo": "WA10478"
       }
     ]
   },
@@ -19120,6 +19132,10 @@
       {
         "marca": "WEGA",
         "codigo": "WOE471"
+      },
+      {
+        "marca": "SURE FILTER",
+        "codigo": "SFO 7556E"
       }
     ]
   },
@@ -21088,6 +21104,10 @@
       {
         "marca": "WISMET",
         "codigo": "WFS104469"
+      },
+      {
+        "marca": "WIX",
+        "codigo": "WF10624"
       }
     ]
   },
@@ -24342,6 +24362,10 @@
       {
         "marca": "Kia Motors",
         "codigo": "0K71E23570A"
+      },
+      {
+        "marca": "DARMET",
+        "codigo": "EC-823"
       }
     ]
   },
@@ -25550,6 +25574,10 @@
       {
         "marca": "TURBO FILTROS",
         "codigo": "TBC1015i"
+      },
+      {
+        "marca": "WIX",
+        "codigo": "WF10267"
       }
     ]
   },
@@ -38422,6 +38450,10 @@
       {
         "marca": "Original Filter",
         "codigo": "OFC1527S"
+      },
+      {
+        "marca": "RAMA",
+        "codigo": "R26a"
       }
     ]
   },
@@ -41522,6 +41554,10 @@
       {
         "marca": "WEGA",
         "codigo": "WOH210"
+      },
+      {
+        "marca": "BALDWIN",
+        "codigo": "BT8840MPG"
       }
     ]
   },
