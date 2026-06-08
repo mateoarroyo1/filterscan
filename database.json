@@ -18458,224 +18458,172 @@
     ],
     "codigos": [
       {
-        "marca": "2G",
-        "codigo": "3401000281"
-      },
-      {
-        "marca": "LUBER-FINER",
-        "codigo": "LAF8087"
-      },
-      {
-        "marca": "AGRIKOMP",
-        "codigo": "133000001"
-      },
-      {
-        "marca": "MAHLE",
-        "codigo": "LX712"
-      },
-      {
-        "marca": "AUTOMOTIV",
-        "codigo": "AE1093RS"
-      },
-      {
-        "marca": "MANN&HUMMEL",
-        "codigo": "C301500"
-      },
-      {
-        "marca": "BALDWIN FILTERS",
+        "marca": "BALDWIN",
         "codigo": "RS3726"
       },
       {
-        "marca": "ORIGINAL FILTER",
-        "codigo": "OFA3013R"
-      },
-      {
-        "marca": "BARRA",
-        "codigo": "BPA11141"
-      },
-      {
-        "marca": "PARKER",
-        "codigo": "AFI9282RS"
-      },
-      {
         "marca": "BOSCH",
-        "codigo": "1457432283"
-      },
-      {
-        "marca": "RAMA",
-        "codigo": "RA2532"
-      },
-      {
-        "marca": "BOSCH-REXROTH",
         "codigo": "1457433904"
       },
       {
-        "marca": "RANDON",
-        "codigo": "212009282"
-      },
-      {
-        "marca": "BURKHARDT",
-        "codigo": "100560"
-      },
-      {
-        "marca": "SAAB",
-        "codigo": "1335678"
-      },
-      {
-        "marca": "BURKHARDT",
-        "codigo": "100975"
-      },
-      {
-        "marca": "SAAB",
-        "codigo": "1421021"
+        "marca": "BOSCH",
+        "codigo": "986626760"
       },
       {
         "marca": "CLEAN",
         "codigo": "MA794"
       },
       {
-        "marca": "SCANIA",
-        "codigo": "1335648"
+        "marca": "DAF",
+        "codigo": "1500337"
       },
       {
-        "marca": "COOPERS",
-        "codigo": "AEM2712"
-      },
-      {
-        "marca": "SCANIA",
-        "codigo": "1335678"
-      },
-      {
-        "marca": "COOPERS",
-        "codigo": "AEM2712P778336"
-      },
-      {
-        "marca": "SCANIA",
-        "codigo": "1421021"
-      },
-      {
-        "marca": "DELKRAFT",
-        "codigo": "DR1418"
-      },
-      {
-        "marca": "SCANIA",
-        "codigo": "1421021"
+        "marca": "DAF",
+        "codigo": "1533920"
       },
       {
         "marca": "DONALDSON",
         "codigo": "P778336"
       },
       {
-        "marca": "SCHNELL",
-        "codigo": "1015159"
-      },
-      {
-        "marca": "ENSKEDE HYDRAUL",
-        "codigo": "218336"
-      },
-      {
-        "marca": "SOFIMA",
-        "codigo": "S7358A"
+        "marca": "DONALDSON",
+        "codigo": "P785519"
       },
       {
         "marca": "FAMEL",
         "codigo": "FSR8008"
       },
       {
-        "marca": "SOGEFI PRO/FRAM",
-        "codigo": "FLI6931"
-      },
-      {
         "marca": "FIAAM",
         "codigo": "FLI6931"
       },
       {
-        "marca": "TBFIL",
-        "codigo": "AR1142"
-      },
-      {
-        "marca": "FILTROS TURBO",
-        "codigo": "TR1021"
-      },
-      {
-        "marca": "TEC-FIL",
-        "codigo": "ARS1188"
+        "marca": "FILTREX",
+        "codigo": "AR623"
       },
       {
         "marca": "FLEETGUARD",
         "codigo": "AF25313"
       },
       {
-        "marca": "TURBO FILTRO",
-        "codigo": "TR1021"
-      },
-      {
         "marca": "FRAM",
-        "codigo": "CA9414"
-      },
-      {
-        "marca": "UFI",
-        "codigo": "2735800"
-      },
-      {
-        "marca": "GPC",
-        "codigo": "FC790"
-      },
-      {
-        "marca": "UNIFILTER",
-        "codigo": "UARS7087P"
+        "codigo": "CA5760"
       },
       {
         "marca": "HENGST",
-        "codigo": "E290L"
+        "codigo": "E1033L"
       },
       {
-        "marca": "UNIFILTER",
-        "codigo": "UA7087P"
-      },
-      {
-        "marca": "INPECA",
-        "codigo": "SRS1021"
-      },
-      {
-        "marca": "VMC",
-        "codigo": "AF778336"
-      },
-      {
-        "marca": "INPECA",
-        "codigo": "SRS7099"
-      },
-      {
-        "marca": "VOX",
-        "codigo": "HD1188"
+        "marca": "HIFI FILTER",
+        "codigo": "SA16105"
       },
       {
         "marca": "JCB",
         "codigo": "SC1421021"
       },
       {
-        "marca": "VOX ANTIGO",
-        "codigo": "HD3407"
+        "marca": "LANSS",
+        "codigo": "EF740R"
       },
       {
-        "marca": "KNECHT",
+        "marca": "LUBER FINER",
+        "codigo": "LAF8087"
+      },
+      {
+        "marca": "MAHLE",
         "codigo": "LX712"
+      },
+      {
+        "marca": "MANN",
+        "codigo": "C301500"
+      },
+      {
+        "marca": "MARENO",
+        "codigo": "MR292"
+      },
+      {
+        "marca": "MASTERFILT",
+        "codigo": "AMP210"
+      },
+      {
+        "marca": "OEM",
+        "codigo": "M10014789"
+      },
+      {
+        "marca": "PURFLUX",
+        "codigo": "A3261"
+      },
+      {
+        "marca": "SAKURA",
+        "codigo": "A8656"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "1421042"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "1335648"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "1335678"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "1421021"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "1728817"
+      },
+      {
+        "marca": "SOGEFIPRO",
+        "codigo": "FLI6931"
+      },
+      {
+        "marca": "TECFIL",
+        "codigo": "ARS1188"
+      },
+      {
+        "marca": "TECNECO",
+        "codigo": "AR2063"
+      },
+      {
+        "marca": "TURBO FILTROS",
+        "codigo": "TR1021"
+      },
+      {
+        "marca": "UNIFILTER",
+        "codigo": "UA7087P"
+      },
+      {
+        "marca": "UNIFILTER",
+        "codigo": "UARS7087P"
+      },
+      {
+        "marca": "VMC",
+        "codigo": "AF778336"
+      },
+      {
+        "marca": "VOX",
+        "codigo": "HD1188"
+      },
+      {
+        "marca": "VOX",
+        "codigo": "HD3407"
       },
       {
         "marca": "WEGA",
         "codigo": "WAP359"
       },
       {
-        "marca": "LOESING",
-        "codigo": "20426"
+        "marca": "WIX",
+        "codigo": "W48965BR"
       },
       {
-        "marca": "XANFIL",
-        "codigo": "XL2056"
-      },
-      {
-        "marca": "FRAM",
-        "codigo": "CA5760"
+        "marca": "WIX",
+        "codigo": "WA48965"
       }
     ]
   },
@@ -18686,224 +18634,92 @@
     ],
     "codigos": [
       {
-        "marca": "2G",
-        "codigo": "3401000281"
-      },
-      {
-        "marca": "LUBER-FINER",
-        "codigo": "LAF8087"
-      },
-      {
-        "marca": "AGRIKOMP",
-        "codigo": "133000001"
-      },
-      {
-        "marca": "MAHLE",
-        "codigo": "LX712"
-      },
-      {
-        "marca": "AUTOMOTIV",
-        "codigo": "AE1093RS"
-      },
-      {
-        "marca": "MANN&HUMMEL",
-        "codigo": "C301500"
-      },
-      {
-        "marca": "BALDWIN FILTERS",
-        "codigo": "RS3726"
-      },
-      {
-        "marca": "ORIGINAL FILTER",
-        "codigo": "OFA3013R"
-      },
-      {
-        "marca": "BARRA",
-        "codigo": "BPA11141"
-      },
-      {
-        "marca": "PARKER",
-        "codigo": "AFI9282RS"
+        "marca": "BALDWIN",
+        "codigo": "RS5313"
       },
       {
         "marca": "BOSCH",
-        "codigo": "1457432283"
+        "codigo": "986626768"
       },
       {
-        "marca": "RAMA",
-        "codigo": "RA2532"
+        "marca": "BOSCH",
+        "codigo": "F026400190"
       },
       {
-        "marca": "BOSCH-REXROTH",
-        "codigo": "1457433904"
+        "marca": "DAF",
+        "codigo": "1517405"
       },
       {
-        "marca": "RANDON",
-        "codigo": "212009282"
-      },
-      {
-        "marca": "BURKHARDT",
-        "codigo": "100560"
-      },
-      {
-        "marca": "SAAB",
-        "codigo": "1335678"
-      },
-      {
-        "marca": "BURKHARDT",
-        "codigo": "100975"
-      },
-      {
-        "marca": "SAAB",
-        "codigo": "1421021"
-      },
-      {
-        "marca": "CLEAN",
-        "codigo": "MA794"
-      },
-      {
-        "marca": "SCANIA",
-        "codigo": "1335648"
-      },
-      {
-        "marca": "COOPERS",
-        "codigo": "AEM2712"
-      },
-      {
-        "marca": "SCANIA",
-        "codigo": "1335678"
-      },
-      {
-        "marca": "COOPERS",
-        "codigo": "AEM2712P778336"
-      },
-      {
-        "marca": "SCANIA",
-        "codigo": "1421021"
-      },
-      {
-        "marca": "DELKRAFT",
-        "codigo": "DR1418"
-      },
-      {
-        "marca": "SCANIA",
-        "codigo": "1421021"
+        "marca": "DAF",
+        "codigo": "1533948"
       },
       {
         "marca": "DONALDSON",
-        "codigo": "P778336"
-      },
-      {
-        "marca": "SCHNELL",
-        "codigo": "1015159"
-      },
-      {
-        "marca": "ENSKEDE HYDRAUL",
-        "codigo": "218336"
-      },
-      {
-        "marca": "SOFIMA",
-        "codigo": "S7358A"
-      },
-      {
-        "marca": "FAMEL",
-        "codigo": "FSR8008"
-      },
-      {
-        "marca": "SOGEFI PRO/FRAM",
-        "codigo": "FLI6931"
-      },
-      {
-        "marca": "FIAAM",
-        "codigo": "FLI6931"
-      },
-      {
-        "marca": "TBFIL",
-        "codigo": "AR1142"
-      },
-      {
-        "marca": "FILTROS TURBO",
-        "codigo": "TR1021"
-      },
-      {
-        "marca": "TEC-FIL",
-        "codigo": "ARS1188"
+        "codigo": "P781228"
       },
       {
         "marca": "FLEETGUARD",
-        "codigo": "AF25313"
+        "codigo": "AF25969"
       },
       {
-        "marca": "TURBO FILTRO",
-        "codigo": "TR1021"
-      },
-      {
-        "marca": "FRAM",
-        "codigo": "CA9414"
-      },
-      {
-        "marca": "UFI",
-        "codigo": "2735800"
-      },
-      {
-        "marca": "GPC",
-        "codigo": "FC790"
-      },
-      {
-        "marca": "UNIFILTER",
-        "codigo": "UARS7087P"
+        "marca": "GENERIC",
+        "codigo": "GAF268"
       },
       {
         "marca": "HENGST",
-        "codigo": "E290L"
+        "codigo": "E1033LS"
       },
       {
-        "marca": "UNIFILTER",
-        "codigo": "UA7087P"
-      },
-      {
-        "marca": "INPECA",
-        "codigo": "SRS1021"
-      },
-      {
-        "marca": "VMC",
-        "codigo": "AF778336"
-      },
-      {
-        "marca": "INPECA",
-        "codigo": "SRS7099"
-      },
-      {
-        "marca": "VOX",
-        "codigo": "HD1188"
+        "marca": "HIFI FILTER",
+        "codigo": "SA16296"
       },
       {
         "marca": "JCB",
-        "codigo": "SC1421021"
+        "codigo": "SC1335680"
       },
       {
-        "marca": "VOX ANTIGO",
-        "codigo": "HD3407"
+        "marca": "MAHLE",
+        "codigo": "LXS470"
       },
       {
-        "marca": "KNECHT",
-        "codigo": "LX712"
+        "marca": "MANN",
+        "codigo": "CF1720"
+      },
+      {
+        "marca": "MASTERFILT",
+        "codigo": "AMP380"
+      },
+      {
+        "marca": "OEM",
+        "codigo": "742993647"
+      },
+      {
+        "marca": "PURFLUX",
+        "codigo": "A1442"
+      },
+      {
+        "marca": "SAKURA",
+        "codigo": "A83090"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "1335680"
+      },
+      {
+        "marca": "SOGEFIPRO",
+        "codigo": "FLI9311"
+      },
+      {
+        "marca": "TECFIL",
+        "codigo": "ASR118"
+      },
+      {
+        "marca": "TURBO FILTROS",
+        "codigo": "TR781228"
       },
       {
         "marca": "WEGA",
-        "codigo": "WAP359"
-      },
-      {
-        "marca": "LOESING",
-        "codigo": "20426"
-      },
-      {
-        "marca": "XANFIL",
-        "codigo": "XL2056"
-      },
-      {
-        "marca": "FRAM",
-        "codigo": "CA5760"
+        "codigo": "WAP359S"
       }
     ]
   },
