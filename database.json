@@ -18451,1618 +18451,6 @@
       }
     ]
   },
-  "AIRE PRIMARIO__SCANIA P360/410": {
-    "tipo": "Aire primario",
-    "modelos": [
-      "SCANIA P360/410"
-    ],
-    "codigos": [
-      {
-        "marca": "BALDWIN",
-        "codigo": "RS3726"
-      },
-      {
-        "marca": "BOSCH",
-        "codigo": "1457433904"
-      },
-      {
-        "marca": "BOSCH",
-        "codigo": "986626760"
-      },
-      {
-        "marca": "CLEAN",
-        "codigo": "MA794"
-      },
-      {
-        "marca": "DAF",
-        "codigo": "1500337"
-      },
-      {
-        "marca": "DAF",
-        "codigo": "1533920"
-      },
-      {
-        "marca": "DONALDSON",
-        "codigo": "P778336"
-      },
-      {
-        "marca": "DONALDSON",
-        "codigo": "P785519"
-      },
-      {
-        "marca": "FAMEL",
-        "codigo": "FSR8008"
-      },
-      {
-        "marca": "FIAAM",
-        "codigo": "FLI6931"
-      },
-      {
-        "marca": "FILTREX",
-        "codigo": "AR623"
-      },
-      {
-        "marca": "FLEETGUARD",
-        "codigo": "AF25313"
-      },
-      {
-        "marca": "FRAM",
-        "codigo": "CA5760"
-      },
-      {
-        "marca": "HENGST",
-        "codigo": "E1033L"
-      },
-      {
-        "marca": "HIFI FILTER",
-        "codigo": "SA16105"
-      },
-      {
-        "marca": "JCB",
-        "codigo": "SC1421021"
-      },
-      {
-        "marca": "LANSS",
-        "codigo": "EF740R"
-      },
-      {
-        "marca": "LUBER FINER",
-        "codigo": "LAF8087"
-      },
-      {
-        "marca": "MAHLE",
-        "codigo": "LX712"
-      },
-      {
-        "marca": "MANN",
-        "codigo": "C301500"
-      },
-      {
-        "marca": "MARENO",
-        "codigo": "MR292"
-      },
-      {
-        "marca": "MASTERFILT",
-        "codigo": "AMP210"
-      },
-      {
-        "marca": "OEM",
-        "codigo": "M10014789"
-      },
-      {
-        "marca": "PURFLUX",
-        "codigo": "A3261"
-      },
-      {
-        "marca": "SAKURA",
-        "codigo": "A8656"
-      },
-      {
-        "marca": "SCANIA",
-        "codigo": "1421042"
-      },
-      {
-        "marca": "SCANIA",
-        "codigo": "1335648"
-      },
-      {
-        "marca": "SCANIA",
-        "codigo": "1335678"
-      },
-      {
-        "marca": "SCANIA",
-        "codigo": "1421021"
-      },
-      {
-        "marca": "SCANIA",
-        "codigo": "1728817"
-      },
-      {
-        "marca": "SOGEFIPRO",
-        "codigo": "FLI6931"
-      },
-      {
-        "marca": "TECFIL",
-        "codigo": "ARS1188"
-      },
-      {
-        "marca": "TECNECO",
-        "codigo": "AR2063"
-      },
-      {
-        "marca": "TURBO FILTROS",
-        "codigo": "TR1021"
-      },
-      {
-        "marca": "UNIFILTER",
-        "codigo": "UA7087P"
-      },
-      {
-        "marca": "UNIFILTER",
-        "codigo": "UARS7087P"
-      },
-      {
-        "marca": "VMC",
-        "codigo": "AF778336"
-      },
-      {
-        "marca": "VOX",
-        "codigo": "HD1188"
-      },
-      {
-        "marca": "VOX",
-        "codigo": "HD3407"
-      },
-      {
-        "marca": "WEGA",
-        "codigo": "WAP359"
-      },
-      {
-        "marca": "WIX",
-        "codigo": "W48965BR"
-      },
-      {
-        "marca": "WIX",
-        "codigo": "WA48965"
-      }
-    ]
-  },
-  "AIRE SECUNDARIO__SCANIA P360/410": {
-    "tipo": "Aire secundario",
-    "modelos": [
-      "SCANIA P360/410"
-    ],
-    "codigos": [
-      {
-        "marca": "BALDWIN",
-        "codigo": "RS5313"
-      },
-      {
-        "marca": "BOSCH",
-        "codigo": "986626768"
-      },
-      {
-        "marca": "BOSCH",
-        "codigo": "F026400190"
-      },
-      {
-        "marca": "DAF",
-        "codigo": "1517405"
-      },
-      {
-        "marca": "DAF",
-        "codigo": "1533948"
-      },
-      {
-        "marca": "DONALDSON",
-        "codigo": "P781228"
-      },
-      {
-        "marca": "FLEETGUARD",
-        "codigo": "AF25969"
-      },
-      {
-        "marca": "GENERIC",
-        "codigo": "GAF268"
-      },
-      {
-        "marca": "HENGST",
-        "codigo": "E1033LS"
-      },
-      {
-        "marca": "HIFI FILTER",
-        "codigo": "SA16296"
-      },
-      {
-        "marca": "JCB",
-        "codigo": "SC1335680"
-      },
-      {
-        "marca": "MAHLE",
-        "codigo": "LXS470"
-      },
-      {
-        "marca": "MANN",
-        "codigo": "CF1720"
-      },
-      {
-        "marca": "MASTERFILT",
-        "codigo": "AMP380"
-      },
-      {
-        "marca": "OEM",
-        "codigo": "742993647"
-      },
-      {
-        "marca": "PURFLUX",
-        "codigo": "A1442"
-      },
-      {
-        "marca": "SAKURA",
-        "codigo": "A83090"
-      },
-      {
-        "marca": "SCANIA",
-        "codigo": "1335680"
-      },
-      {
-        "marca": "SOGEFIPRO",
-        "codigo": "FLI9311"
-      },
-      {
-        "marca": "TECFIL",
-        "codigo": "ASR118"
-      },
-      {
-        "marca": "TURBO FILTROS",
-        "codigo": "TR781228"
-      },
-      {
-        "marca": "WEGA",
-        "codigo": "WAP359S"
-      }
-    ]
-  },
-  "HABITÁCULO__SCANIA P360/410": {
-    "tipo": "Habitáculo",
-    "modelos": [
-      "SCANIA P360/410"
-    ],
-    "codigos": [
-      {
-        "marca": "DELPHI",
-        "codigo": "CKF10029"
-      },
-      {
-        "marca": "MICRON AIR",
-        "codigo": "MP9919"
-      },
-      {
-        "marca": "DONALDSON",
-        "codigo": "P753338"
-      },
-      {
-        "marca": "MWM",
-        "codigo": "MM100532"
-      },
-      {
-        "marca": "DONALDSON",
-        "codigo": "P957866"
-      },
-      {
-        "marca": "SCANIA",
-        "codigo": "1913500"
-      },
-      {
-        "marca": "FILTROS BRASIL",
-        "codigo": "FB025010"
-      },
-      {
-        "marca": "SOGEFI PRO/FRAM",
-        "codigo": "PC8289"
-      },
-      {
-        "marca": "FILTROS MIL",
-        "codigo": "FC5004"
-      },
-      {
-        "marca": "TECFIL",
-        "codigo": "ACP177"
-      },
-      {
-        "marca": "FRAM",
-        "codigo": "CF10860"
-      },
-      {
-        "marca": "TURBO FILTROS",
-        "codigo": "TAC4305"
-      },
-      {
-        "marca": "HENGST",
-        "codigo": "E2960LI"
-      },
-      {
-        "marca": "UFI",
-        "codigo": "5328900"
-      },
-      {
-        "marca": "JAPANPARTS",
-        "codigo": "FAASC02"
-      },
-      {
-        "marca": "VOX",
-        "codigo": "FAC177"
-      },
-      {
-        "marca": "M. BENZ",
-        "codigo": "A30083501470097"
-      },
-      {
-        "marca": "WEGA",
-        "codigo": "AKX-4528"
-      },
-      {
-        "marca": "MAHLE",
-        "codigo": "LA702"
-      },
-      {
-        "marca": "WEGA",
-        "codigo": "AKX4528"
-      },
-      {
-        "marca": "MANN",
-        "codigo": "CU37001"
-      }
-    ]
-  },
-  "ACEITE__SCANIA P360/410": {
-    "tipo": "Aceite",
-    "modelos": [
-      "SCANIA P360/410"
-    ],
-    "codigos": [
-      {
-        "marca": "ALCO",
-        "codigo": "MD727"
-      },
-      {
-        "marca": "ORIGINAL FILTER",
-        "codigo": "OFL0541E"
-      },
-      {
-        "marca": "ASAS",
-        "codigo": "AS2515"
-      },
-      {
-        "marca": "PARKER",
-        "codigo": "REL816"
-      },
-      {
-        "marca": "BALDWIN",
-        "codigo": "P7502"
-      },
-      {
-        "marca": "PUROLATOR",
-        "codigo": "L1959"
-      },
-      {
-        "marca": "BOSCH-REXROTH",
-        "codigo": "F026407100"
-      },
-      {
-        "marca": "SAKURA",
-        "codigo": "EO83020"
-      },
-      {
-        "marca": "DELPHI",
-        "codigo": "EFL787"
-      },
-      {
-        "marca": "SCANIA",
-        "codigo": "1742032"
-      },
-      {
-        "marca": "DONALDSON",
-        "codigo": "P953329"
-      },
-      {
-        "marca": "SCANIA",
-        "codigo": "1742037"
-      },
-      {
-        "marca": "FIL FILTER",
-        "codigo": "MLE1578"
-      },
-      {
-        "marca": "SCANIA",
-        "codigo": "2022275"
-      },
-      {
-        "marca": "FLEETGUARD",
-        "codigo": "LF17486"
-      },
-      {
-        "marca": "SCANIA",
-        "codigo": "2037556"
-      },
-      {
-        "marca": "HENGST",
-        "codigo": "E123H01D194"
-      },
-      {
-        "marca": "SCANIA",
-        "codigo": "2625884"
-      },
-      {
-        "marca": "HENGST",
-        "codigo": "E123HD194"
-      },
-      {
-        "marca": "TECFIL",
-        "codigo": "PEL415"
-      },
-      {
-        "marca": "JAPANPARTS",
-        "codigo": "FOBR70S"
-      },
-      {
-        "marca": "TEREX",
-        "codigo": "15504789"
-      },
-      {
-        "marca": "MAHLE",
-        "codigo": "OX562DECO"
-      },
-      {
-        "marca": "TURBO FILTRO",
-        "codigo": "TL30210ECO"
-      },
-      {
-        "marca": "MAHLE",
-        "codigo": "OX1168D"
-      },
-      {
-        "marca": "TURBO FILTRO",
-        "codigo": "TL30210"
-      },
-      {
-        "marca": "MANN",
-        "codigo": "HU1077/1X"
-      },
-      {
-        "marca": "UFI",
-        "codigo": "2518100"
-      },
-      {
-        "marca": "MANN",
-        "codigo": "HU10771X"
-      },
-      {
-        "marca": "VOX",
-        "codigo": "LE415"
-      },
-      {
-        "marca": "MANN",
-        "codigo": "HU10771"
-      },
-      {
-        "marca": "WEGA",
-        "codigo": "WOE471"
-      },
-      {
-        "marca": "SURE FILTER",
-        "codigo": "SFO 7556E"
-      }
-    ]
-  },
-  "COMBUSTIBLE__SCANIA P360/410": {
-    "tipo": "Combustible",
-    "modelos": [
-      "SCANIA P360/410"
-    ],
-    "codigos": [
-      {
-        "marca": "Baldwin",
-        "codigo": "BF970"
-      },
-      {
-        "marca": "Dynapac",
-        "codigo": "1P2299"
-      },
-      {
-        "marca": "Mercedes Benz",
-        "codigo": "3900900052"
-      },
-      {
-        "marca": "Baldwin",
-        "codigo": "BF7632"
-      },
-      {
-        "marca": "Ercif",
-        "codigo": "R320"
-      },
-      {
-        "marca": "Nasa",
-        "codigo": "NS1032"
-      },
-      {
-        "marca": "Barber Greene",
-        "codigo": "1P2299"
-      },
-      {
-        "marca": "F Cross",
-        "codigo": "F36"
-      },
-      {
-        "marca": "Original Filter",
-        "codigo": "OFC1022B"
-      },
-      {
-        "marca": "Bosch",
-        "codigo": "986450718"
-      },
-      {
-        "marca": "Fam",
-        "codigo": "FC299"
-      },
-      {
-        "marca": "Parker",
-        "codigo": "PER-53"
-      },
-      {
-        "marca": "Bosch",
-        "codigo": "9455080010"
-      },
-      {
-        "marca": "Fleetguard",
-        "codigo": "FF105"
-      },
-      {
-        "marca": "Parker",
-        "codigo": "PER53"
-      },
-      {
-        "marca": "Bosch",
-        "codigo": "1457434180"
-      },
-      {
-        "marca": "Fleetguard",
-        "codigo": "FF5137"
-      },
-      {
-        "marca": "Puriar",
-        "codigo": "PC1252"
-      },
-      {
-        "marca": "Bosch",
-        "codigo": "986450718"
-      },
-      {
-        "marca": "Fleetguard",
-        "codigo": "FF5320"
-      },
-      {
-        "marca": "Purolator",
-        "codigo": "F1088"
-      },
-      {
-        "marca": "Caterpillar",
-        "codigo": "1W8633"
-      },
-      {
-        "marca": "Fleetguard",
-        "codigo": "FF185"
-      },
-      {
-        "marca": "Roma",
-        "codigo": "CBOS50"
-      },
-      {
-        "marca": "Caterpillar",
-        "codigo": "6L7440"
-      },
-      {
-        "marca": "Fram",
-        "codigo": "P1104"
-      },
-      {
-        "marca": "Sakura",
-        "codigo": "FC5501"
-      },
-      {
-        "marca": "Caterpillar",
-        "codigo": "1R0711"
-      },
-      {
-        "marca": "Gardner Denver",
-        "codigo": "1P2299"
-      },
-      {
-        "marca": "Sany",
-        "codigo": "B222100000492"
-      },
-      {
-        "marca": "Caterpillar",
-        "codigo": "6N3784"
-      },
-      {
-        "marca": "Gonher",
-        "codigo": "GP110"
-      },
-      {
-        "marca": "Sogefi Pro/Fram",
-        "codigo": "FT4737"
-      },
-      {
-        "marca": "Caterpillar",
-        "codigo": "1P2299"
-      },
-      {
-        "marca": "Hengst",
-        "codigo": "H19WK01"
-      },
-      {
-        "marca": "Tecfil",
-        "codigo": "PSC744"
-      },
-      {
-        "marca": "Caterpillar",
-        "codigo": "2Y8670"
-      },
-      {
-        "marca": "Hidrafil",
-        "codigo": "560004"
-      },
-      {
-        "marca": "Turbo Filtros",
-        "codigo": "TBC440"
-      },
-      {
-        "marca": "Caterpillar",
-        "codigo": "1R0740"
-      },
-      {
-        "marca": "Inpeca",
-        "codigo": "SCB0440"
-      },
-      {
-        "marca": "Tutela",
-        "codigo": "CB208"
-      },
-      {
-        "marca": "Caterpillar",
-        "codigo": "1A3479"
-      },
-      {
-        "marca": "Inpeca",
-        "codigo": "SB0440"
-      },
-      {
-        "marca": "Unifilter",
-        "codigo": "USC53"
-      },
-      {
-        "marca": "Caterpillar",
-        "codigo": "8L9765"
-      },
-      {
-        "marca": "Inpeca",
-        "codigo": "J440E"
-      },
-      {
-        "marca": "Vox",
-        "codigo": "FBD744"
-      },
-      {
-        "marca": "Caterpillar",
-        "codigo": "5A6717"
-      },
-      {
-        "marca": "KS",
-        "codigo": "306FS"
-      },
-      {
-        "marca": "Vox Antigo",
-        "codigo": "FBD4207"
-      },
-      {
-        "marca": "Caterpillar",
-        "codigo": "7S1220"
-      },
-      {
-        "marca": "KSPG",
-        "codigo": "50013306"
-      },
-      {
-        "marca": "Wega",
-        "codigo": "FCD2208"
-      },
-      {
-        "marca": "Caterpillar",
-        "codigo": "1R0750"
-      },
-      {
-        "marca": "Logan",
-        "codigo": "FV320US"
-      },
-      {
-        "marca": "WIX",
-        "codigo": "W33356"
-      },
-      {
-        "marca": "CVRD",
-        "codigo": "6295001250"
-      },
-      {
-        "marca": "Luber Finer",
-        "codigo": "LFP440F"
-      },
-      {
-        "marca": "WIX",
-        "codigo": "W33352"
-      },
-      {
-        "marca": "Delphi",
-        "codigo": "HDF406"
-      },
-      {
-        "marca": "Luberfiner",
-        "codigo": "LFP440F"
-      },
-      {
-        "marca": "WIX",
-        "codigo": "WF10290"
-      },
-      {
-        "marca": "Donaldson",
-        "codigo": "P172665"
-      },
-      {
-        "marca": "Mahle",
-        "codigo": "KC114"
-      },
-      {
-        "marca": "ZF",
-        "codigo": "70131212"
-      },
-      {
-        "marca": "Donaldson",
-        "codigo": "P557440"
-      },
-      {
-        "marca": "Mann",
-        "codigo": "WK950/13"
-      },
-      {
-        "marca": "ZF",
-        "codigo": "70131221"
-      },
-      {
-        "marca": "Dynapac",
-        "codigo": "752047"
-      }
-    ]
-  },
-  "COMBUSTIBLE 2__SCANIA P360/410": {
-    "tipo": "Combustible 2",
-    "modelos": [
-      "SCANIA P360/410"
-    ],
-    "codigos": [
-      {
-        "marca": "ALLIANCE",
-        "codigo": "A30009002510097"
-      },
-      {
-        "marca": "MASTER PARTS",
-        "codigo": "MM100515"
-      },
-      {
-        "marca": "BALDWIN",
-        "codigo": "PF7896"
-      },
-      {
-        "marca": "ORIGINAL FILTER",
-        "codigo": "OFC1311E"
-      },
-      {
-        "marca": "BOSCH",
-        "codigo": "0986BF0250"
-      },
-      {
-        "marca": "PARKER",
-        "codigo": "REC151"
-      },
-      {
-        "marca": "CASE/CASE IH",
-        "codigo": "87696188"
-      },
-      {
-        "marca": "PUROLATOR",
-        "codigo": "F1114"
-      },
-      {
-        "marca": "DELPHI",
-        "codigo": "HDF753"
-      },
-      {
-        "marca": "SAKURA",
-        "codigo": "EF8301"
-      },
-      {
-        "marca": "DIESEL TECHNIC",
-        "codigo": "111122"
-      },
-      {
-        "marca": "SCANIA",
-        "codigo": "1429059"
-      },
-      {
-        "marca": "DONALDSON",
-        "codigo": "P550628"
-      },
-      {
-        "marca": "SCANIA",
-        "codigo": "1446432"
-      },
-      {
-        "marca": "FLEETGUARD",
-        "codigo": "FF5683"
-      },
-      {
-        "marca": "SCANIA",
-        "codigo": "1873018"
-      },
-      {
-        "marca": "HENGST",
-        "codigo": "E57KPD73"
-      },
-      {
-        "marca": "TECFIL",
-        "codigo": "PEC3024"
-      },
-      {
-        "marca": "JAPANPARTS",
-        "codigo": "FCBR53S"
-      },
-      {
-        "marca": "VOX",
-        "codigo": "CE3024"
-      },
-      {
-        "marca": "KNECHT",
-        "codigo": "KX1821D"
-      },
-      {
-        "marca": "WEGA",
-        "codigo": "FCD0951"
-      },
-      {
-        "marca": "KSPG",
-        "codigo": "50014179"
-      },
-      {
-        "marca": "WEGA",
-        "codigo": "FCD951"
-      },
-      {
-        "marca": "MAHLE",
-        "codigo": "KX182/1D"
-      },
-      {
-        "marca": "WIX",
-        "codigo": "WF10304"
-      },
-      {
-        "marca": "MANN",
-        "codigo": "PU941X"
-      }
-    ]
-  },
-  "SECADOR DE AIRE__SCANIA P360/410": {
-    "tipo": "Secador de aire",
-    "modelos": [
-      "SCANIA P360/410"
-    ],
-    "codigos": [
-      {
-        "marca": "Scania",
-        "codigo": "432424101202"
-      }
-    ]
-  },
-  "DIFERENCIAL__SCANIA P360/410": {
-    "tipo": "Diferencial",
-    "modelos": [
-      "SCANIA P360/410"
-    ],
-    "codigos": [
-      {
-        "marca": "BALDWIN FILTERS",
-        "codigo": "BT9318"
-      },
-      {
-        "marca": "RAMA",
-        "codigo": "RT5504"
-      },
-      {
-        "marca": "BOSCH-REXROTH",
-        "codigo": "451103330"
-      },
-      {
-        "marca": "RANDON",
-        "codigo": "215000145"
-      },
-      {
-        "marca": "DONALDSON",
-        "codigo": "P761108"
-      },
-      {
-        "marca": "SCANIA",
-        "codigo": "562816"
-      },
-      {
-        "marca": "FILTROS TURBO",
-        "codigo": "TBH343"
-      },
-      {
-        "marca": "SCANIA",
-        "codigo": "562817"
-      },
-      {
-        "marca": "FLEETGUARD",
-        "codigo": "HF7535"
-      },
-      {
-        "marca": "SCANIA",
-        "codigo": "562818"
-      },
-      {
-        "marca": "FRAM",
-        "codigo": "PH8789"
-      },
-      {
-        "marca": "SCANIA",
-        "codigo": "562820"
-      },
-      {
-        "marca": "FRAM",
-        "codigo": "PH8797A"
-      },
-      {
-        "marca": "SCANIA",
-        "codigo": "1301696"
-      },
-      {
-        "marca": "GT PIECES ET SERVICES",
-        "codigo": "2240112"
-      },
-      {
-        "marca": "SCANIA",
-        "codigo": "1304696"
-      },
-      {
-        "marca": "HENGST",
-        "codigo": "H24W05"
-      },
-      {
-        "marca": "SCANIA",
-        "codigo": "1768402"
-      },
-      {
-        "marca": "INPECA",
-        "codigo": "SHB0424"
-      },
-      {
-        "marca": "SCANIA",
-        "codigo": "2002705"
-      },
-      {
-        "marca": "JAPANPARTS",
-        "codigo": "FOBR108S"
-      },
-      {
-        "marca": "SOGEFI PRO/FRAM",
-        "codigo": "FT5433"
-      },
-      {
-        "marca": "KNECHT",
-        "codigo": "HC113"
-      },
-      {
-        "marca": "TECFIL",
-        "codigo": "PSH173"
-      },
-      {
-        "marca": "KS",
-        "codigo": "50013233"
-      },
-      {
-        "marca": "TECFIL",
-        "codigo": "PSL173"
-      },
-      {
-        "marca": "MAHLE",
-        "codigo": "5006815360"
-      },
-      {
-        "marca": "TODD GT",
-        "codigo": "2241063"
-      },
-      {
-        "marca": "MAHLE",
-        "codigo": "HC96"
-      },
-      {
-        "marca": "UFI",
-        "codigo": "8005900"
-      },
-      {
-        "marca": "MANN",
-        "codigo": "W9023/1"
-      },
-      {
-        "marca": "UNIFILTER",
-        "codigo": "UST343B10"
-      },
-      {
-        "marca": "MANN",
-        "codigo": "W930/14"
-      },
-      {
-        "marca": "VMC",
-        "codigo": "HF761108"
-      },
-      {
-        "marca": "MANN&HUMMEL",
-        "codigo": "W93014"
-      },
-      {
-        "marca": "VOX",
-        "codigo": "HIB3417"
-      },
-      {
-        "marca": "MANN&HUMMEL",
-        "codigo": "W93018"
-      },
-      {
-        "marca": "VOX",
-        "codigo": "HIB173"
-      },
-      {
-        "marca": "PARKER/RACOR",
-        "codigo": "RH34310B"
-      },
-      {
-        "marca": "WEGA",
-        "codigo": "WO762"
-      },
-      {
-        "marca": "PARKER/RACOR",
-        "codigo": "RH34310Q"
-      },
-      {
-        "marca": "ZF-BRASIL",
-        "codigo": "70131306"
-      }
-    ]
-  },
-  "DIRECCIÓN HIDRÁULICA__SCANIA P360/410": {
-    "tipo": "Dirección hidráulica",
-    "modelos": [
-      "SCANIA P360/410"
-    ],
-    "codigos": [
-      {
-        "marca": "B M W",
-        "codigo": "32411120717"
-      },
-      {
-        "marca": "Mahle",
-        "codigo": "HX15"
-      },
-      {
-        "marca": "Baldwin",
-        "codigo": "P106HD"
-      },
-      {
-        "marca": "Mann",
-        "codigo": "H601/10"
-      },
-      {
-        "marca": "Bosch",
-        "codigo": "1457429820"
-      },
-      {
-        "marca": "Mann",
-        "codigo": "H601/4"
-      },
-      {
-        "marca": "Bosch",
-        "codigo": "0986B01652"
-      },
-      {
-        "marca": "Maxion",
-        "codigo": "2889829"
-      },
-      {
-        "marca": "Bosch",
-        "codigo": "9455085000"
-      },
-      {
-        "marca": "Maxion",
-        "codigo": "2889829M91"
-      },
-      {
-        "marca": "Controil",
-        "codigo": "CHFO00009"
-      },
-      {
-        "marca": "Mercedes Benz",
-        "codigo": "1842225"
-      },
-      {
-        "marca": "Delkraft",
-        "codigo": "DHT600"
-      },
-      {
-        "marca": "Mercedes Benz",
-        "codigo": "1842325"
-      },
-      {
-        "marca": "Delphi",
-        "codigo": "EFL043"
-      },
-      {
-        "marca": "Mercedes Benz",
-        "codigo": "4660204"
-      },
-      {
-        "marca": "Donaldson",
-        "codigo": "P550309"
-      },
-      {
-        "marca": "Mercedes Benz",
-        "codigo": "4660604"
-      },
-      {
-        "marca": "Donaldson",
-        "codigo": "P779625"
-      },
-      {
-        "marca": "Mercedes Benz",
-        "codigo": "11842225"
-      },
-      {
-        "marca": "Donaldson",
-        "codigo": "P172890"
-      },
-      {
-        "marca": "Mercedes Benz",
-        "codigo": "A0001842225"
-      },
-      {
-        "marca": "Donaldson",
-        "codigo": "P779624"
-      },
-      {
-        "marca": "Nasa",
-        "codigo": "NH1904"
-      },
-      {
-        "marca": "Donsson",
-        "codigo": "G317"
-      },
-      {
-        "marca": "Original Filter",
-        "codigo": "OF6500E"
-      },
-      {
-        "marca": "Engesa",
-        "codigo": "2680500218"
-      },
-      {
-        "marca": "Original Filter",
-        "codigo": "OFH6500E"
-      },
-      {
-        "marca": "Envemo",
-        "codigo": "BD7F3K758A"
-      },
-      {
-        "marca": "Parker / Racor",
-        "codigo": "RP352"
-      },
-      {
-        "marca": "Envemo",
-        "codigo": "763214102"
-      },
-      {
-        "marca": "Purolator",
-        "codigo": "H1001"
-      },
-      {
-        "marca": "F Cross",
-        "codigo": "FH1020"
-      },
-      {
-        "marca": "Purolator",
-        "codigo": "L1068"
-      },
-      {
-        "marca": "Fam",
-        "codigo": "FH0601"
-      },
-      {
-        "marca": "Purolator",
-        "codigo": "PM5122"
-      },
-      {
-        "marca": "Fiat",
-        "codigo": "2966261"
-      },
-      {
-        "marca": "Purolator",
-        "codigo": "L1068"
-      },
-      {
-        "marca": "Fiat",
-        "codigo": "79850021"
-      },
-      {
-        "marca": "Renault",
-        "codigo": "5000814407"
-      },
-      {
-        "marca": "Fiat",
-        "codigo": "7632141102"
-      },
-      {
-        "marca": "Roma",
-        "codigo": "HD604"
-      },
-      {
-        "marca": "Fiat Iveco",
-        "codigo": "1902137"
-      },
-      {
-        "marca": "Sakura",
-        "codigo": "PO83010"
-      },
-      {
-        "marca": "Filesp",
-        "codigo": "FH1020"
-      },
-      {
-        "marca": "Scania",
-        "codigo": "153468"
-      },
-      {
-        "marca": "Filtran",
-        "codigo": "101HX15"
-      },
-      {
-        "marca": "Scania",
-        "codigo": "1953094"
-      },
-      {
-        "marca": "Fleetguard",
-        "codigo": "HF6162"
-      },
-      {
-        "marca": "Sogefi Pro / Fram",
-        "codigo": "FA4018A"
-      },
-      {
-        "marca": "Fleetguard",
-        "codigo": "LF595"
-      },
-      {
-        "marca": "Steyer",
-        "codigo": "480A470060"
-      },
-      {
-        "marca": "Ford",
-        "codigo": "BD7T3K758A"
-      },
-      {
-        "marca": "Steyer",
-        "codigo": "480A470748"
-      },
-      {
-        "marca": "Ford",
-        "codigo": "7632141102"
-      },
-      {
-        "marca": "Tecfil",
-        "codigo": "PH346"
-      },
-      {
-        "marca": "Ford",
-        "codigo": "T11145397"
-      },
-      {
-        "marca": "Turbo Filtros",
-        "codigo": "TH13200"
-      },
-      {
-        "marca": "Fram",
-        "codigo": "CH803APL"
-      },
-      {
-        "marca": "Tutela",
-        "codigo": "LH326"
-      },
-      {
-        "marca": "Franig",
-        "codigo": "HCP19"
-      },
-      {
-        "marca": "Ufi",
-        "codigo": "2540601"
-      },
-      {
-        "marca": "Gonher",
-        "codigo": "G162H"
-      },
-      {
-        "marca": "Unifilter",
-        "codigo": "UH352P"
-      },
-      {
-        "marca": "Hengst",
-        "codigo": "E10H02"
-      },
-      {
-        "marca": "Valmet",
-        "codigo": "216230"
-      },
-      {
-        "marca": "Hidrafil",
-        "codigo": "500027"
-      },
-      {
-        "marca": "Volkswagen",
-        "codigo": "T11145397"
-      },
-      {
-        "marca": "Inpeca",
-        "codigo": "J300E"
-      },
-      {
-        "marca": "Volkswagen",
-        "codigo": "7632141102"
-      },
-      {
-        "marca": "Inpeca",
-        "codigo": "J601E"
-      },
-      {
-        "marca": "Volvo",
-        "codigo": "349619"
-      },
-      {
-        "marca": "Inpeca",
-        "codigo": "SH0601"
-      },
-      {
-        "marca": "Volvo",
-        "codigo": "7632141102"
-      },
-      {
-        "marca": "Inpeca",
-        "codigo": "SEH0601"
-      },
-      {
-        "marca": "Vox",
-        "codigo": "HIC346"
-      },
-      {
-        "marca": "Irlemp",
-        "codigo": "PI352"
-      },
-      {
-        "marca": "Vox Antigo",
-        "codigo": "HIC5001"
-      },
-      {
-        "marca": "Japanparts",
-        "codigo": "FH346S"
-      },
-      {
-        "marca": "Wega",
-        "codigo": "WE00512"
-      },
-      {
-        "marca": "Komatsu",
-        "codigo": "1083258"
-      },
-      {
-        "marca": "Wega",
-        "codigo": "WEO0512"
-      },
-      {
-        "marca": "KS",
-        "codigo": "044OH"
-      },
-      {
-        "marca": "WIX",
-        "codigo": "W51314"
-      },
-      {
-        "marca": "KSPG",
-        "codigo": "50013044"
-      },
-      {
-        "marca": "WIX",
-        "codigo": "WL10145"
-      },
-      {
-        "marca": "Logan",
-        "codigo": "CH391X"
-      },
-      {
-        "marca": "Worthington",
-        "codigo": "137632144112"
-      },
-      {
-        "marca": "Luberfiner",
-        "codigo": "LH8504"
-      },
-      {
-        "marca": "Worthington",
-        "codigo": "76321411020"
-      },
-      {
-        "marca": "Lucas",
-        "codigo": "EFL043"
-      },
-      {
-        "marca": "ZF",
-        "codigo": "7632141102"
-      },
-      {
-        "marca": "Fleetguard",
-        "codigo": "LF4143"
-      }
-    ]
-  },
-  "COMBUSTIBLE CON TRAMPA__SCANIA P360/410": {
-    "tipo": "Combustible con trampa",
-    "modelos": [
-      "SCANIA P360/410"
-    ],
-    "codigos": [
-      {
-        "marca": "AC DELCO",
-        "codigo": "01FBD010"
-      },
-      {
-        "marca": "MAHLE",
-        "codigo": "KL41"
-      },
-      {
-        "marca": "ALLIANCE",
-        "codigo": "A10047001150097"
-      },
-      {
-        "marca": "MAHLE",
-        "codigo": "KL43"
-      },
-      {
-        "marca": "BOSCH",
-        "codigo": "986450851"
-      },
-      {
-        "marca": "MANN",
-        "codigo": "WK842/3"
-      },
-      {
-        "marca": "CUMMINS",
-        "codigo": "BF9115"
-      },
-      {
-        "marca": "MWM",
-        "codigo": "905400150015"
-      },
-      {
-        "marca": "DELKRAFT",
-        "codigo": "DSC708"
-      },
-      {
-        "marca": "MWM",
-        "codigo": "905400150020"
-      },
-      {
-        "marca": "DELPHI",
-        "codigo": "HDF820"
-      },
-      {
-        "marca": "ORIGINAL FILTER",
-        "codigo": "OFC1507S"
-      },
-      {
-        "marca": "FORD",
-        "codigo": "BF5T9155BA"
-      },
-      {
-        "marca": "PUROLATOR",
-        "codigo": "F1066"
-      },
-      {
-        "marca": "FRAM",
-        "codigo": "P4836"
-      },
-      {
-        "marca": "SOGEFI PRO/FRAM",
-        "codigo": "FP5038"
-      },
-      {
-        "marca": "GM",
-        "codigo": "93349124"
-      },
-      {
-        "marca": "TECFIL",
-        "codigo": "PSC498"
-      },
-      {
-        "marca": "HENGST",
-        "codigo": "H70WK04"
-      },
-      {
-        "marca": "TROLLER",
-        "codigo": "102496"
-      },
-      {
-        "marca": "INPECA",
-        "codigo": "SCB0498"
-      },
-      {
-        "marca": "TURBO FILTRO",
-        "codigo": "TBC498"
-      },
-      {
-        "marca": "JAPANPARTS",
-        "codigo": "FCL02S"
-      },
-      {
-        "marca": "VOX",
-        "codigo": "FBD498"
-      },
-      {
-        "marca": "KS",
-        "codigo": "181FP"
-      },
-      {
-        "marca": "VOX ANTIGO",
-        "codigo": "FBD2231"
-      },
-      {
-        "marca": "KSPG",
-        "codigo": "50013181"
-      },
-      {
-        "marca": "WEGA",
-        "codigo": "FCD2066"
-      },
-      {
-        "marca": "LAND ROVER",
-        "codigo": "WJN10046"
-      },
-      {
-        "marca": "WIX",
-        "codigo": "W33467"
-      },
-      {
-        "marca": "LUCAS",
-        "codigo": "HDF820"
-      },
-      {
-        "marca": "WIX",
-        "codigo": "WF33467"
-      }
-    ]
-  },
   "ACEITE__TOYOTA HILUX": {
     "tipo": "Aceite",
     "modelos": [
@@ -39101,182 +37489,6 @@
       }
     ]
   },
-  "CAJA__SCANIA P360/410": {
-    "tipo": "Caja",
-    "modelos": [
-      "SCANIA P360/410"
-    ],
-    "codigos": [
-      {
-        "marca": "BALDWIN FILTERS",
-        "codigo": "BT9318"
-      },
-      {
-        "marca": "RAMA",
-        "codigo": "RT5504"
-      },
-      {
-        "marca": "BOSCH-REXROTH",
-        "codigo": "451103330"
-      },
-      {
-        "marca": "RANDON",
-        "codigo": "215000145"
-      },
-      {
-        "marca": "DONALDSON",
-        "codigo": "P761108"
-      },
-      {
-        "marca": "SCANIA",
-        "codigo": "562816"
-      },
-      {
-        "marca": "FILTROS TURBO",
-        "codigo": "TBH343"
-      },
-      {
-        "marca": "SCANIA",
-        "codigo": "562817"
-      },
-      {
-        "marca": "FLEETGUARD",
-        "codigo": "HF7535"
-      },
-      {
-        "marca": "SCANIA",
-        "codigo": "562818"
-      },
-      {
-        "marca": "FRAM",
-        "codigo": "PH8789"
-      },
-      {
-        "marca": "SCANIA",
-        "codigo": "562820"
-      },
-      {
-        "marca": "FRAM",
-        "codigo": "PH8797A"
-      },
-      {
-        "marca": "SCANIA",
-        "codigo": "1301696"
-      },
-      {
-        "marca": "GT PIECES ET SERVICES",
-        "codigo": "2240112"
-      },
-      {
-        "marca": "SCANIA",
-        "codigo": "1304696"
-      },
-      {
-        "marca": "HENGST",
-        "codigo": "H24W05"
-      },
-      {
-        "marca": "SCANIA",
-        "codigo": "1768402"
-      },
-      {
-        "marca": "INPECA",
-        "codigo": "SHB0424"
-      },
-      {
-        "marca": "SCANIA",
-        "codigo": "2002705"
-      },
-      {
-        "marca": "JAPANPARTS",
-        "codigo": "FOBR108S"
-      },
-      {
-        "marca": "SOGEFI PRO/FRAM",
-        "codigo": "FT5433"
-      },
-      {
-        "marca": "KNECHT",
-        "codigo": "HC113"
-      },
-      {
-        "marca": "TECFIL",
-        "codigo": "PSH173"
-      },
-      {
-        "marca": "KS",
-        "codigo": "50013233"
-      },
-      {
-        "marca": "TECFIL",
-        "codigo": "PSL173"
-      },
-      {
-        "marca": "MAHLE",
-        "codigo": "5006815360"
-      },
-      {
-        "marca": "TODD GT",
-        "codigo": "2241063"
-      },
-      {
-        "marca": "MAHLE",
-        "codigo": "HC96"
-      },
-      {
-        "marca": "UFI",
-        "codigo": "8005900"
-      },
-      {
-        "marca": "MANN",
-        "codigo": "W9023/1"
-      },
-      {
-        "marca": "UNIFILTER",
-        "codigo": "UST343B10"
-      },
-      {
-        "marca": "MANN",
-        "codigo": "W930/14"
-      },
-      {
-        "marca": "VMC",
-        "codigo": "HF761108"
-      },
-      {
-        "marca": "MANN&HUMMEL",
-        "codigo": "W93014"
-      },
-      {
-        "marca": "VOX",
-        "codigo": "HIB3417"
-      },
-      {
-        "marca": "MANN&HUMMEL",
-        "codigo": "W93018"
-      },
-      {
-        "marca": "VOX",
-        "codigo": "HIB173"
-      },
-      {
-        "marca": "PARKER/RACOR",
-        "codigo": "RH34310B"
-      },
-      {
-        "marca": "WEGA",
-        "codigo": "WO762"
-      },
-      {
-        "marca": "PARKER/RACOR",
-        "codigo": "RH34310Q"
-      },
-      {
-        "marca": "ZF-BRASIL",
-        "codigo": "70131306"
-      }
-    ]
-  },
   "AIRE PRIMARIO__MWM MS 3.9T GEN1/GEN3": {
     "tipo": "Aire primario",
     "modelos": [
@@ -43234,6 +41446,4730 @@
       {
         "marca": "Original Filter",
         "codigo": "OFW7200B"
+      }
+    ]
+  },
+  "AIRE PRIMARIO__SCANIA P360": {
+    "tipo": "Aire primario",
+    "modelos": [
+      "SCANIA P360"
+    ],
+    "codigos": [
+      {
+        "marca": "2G",
+        "codigo": "3401000281"
+      },
+      {
+        "marca": "LUBER-FINER",
+        "codigo": "LAF8087"
+      },
+      {
+        "marca": "AGRIKOMP",
+        "codigo": "133000001"
+      },
+      {
+        "marca": "MAHLE",
+        "codigo": "LX712"
+      },
+      {
+        "marca": "AUTOMOTIV",
+        "codigo": "AE1093RS"
+      },
+      {
+        "marca": "MANN&HUMMEL",
+        "codigo": "C301500"
+      },
+      {
+        "marca": "BALDWIN FILTERS",
+        "codigo": "RS3726"
+      },
+      {
+        "marca": "ORIGINAL FILTER",
+        "codigo": "OFA3013R"
+      },
+      {
+        "marca": "BARRA",
+        "codigo": "BPA11141"
+      },
+      {
+        "marca": "PARKER",
+        "codigo": "AFI9282RS"
+      },
+      {
+        "marca": "BOSCH",
+        "codigo": "1457432283"
+      },
+      {
+        "marca": "RAMA",
+        "codigo": "RA2532"
+      },
+      {
+        "marca": "BOSCH-REXROTH",
+        "codigo": "1457433904"
+      },
+      {
+        "marca": "RANDON",
+        "codigo": "212009282"
+      },
+      {
+        "marca": "BURKHARDT",
+        "codigo": "100560"
+      },
+      {
+        "marca": "SAAB",
+        "codigo": "1335678"
+      },
+      {
+        "marca": "BURKHARDT",
+        "codigo": "100975"
+      },
+      {
+        "marca": "SAAB",
+        "codigo": "1421021"
+      },
+      {
+        "marca": "CLEAN",
+        "codigo": "MA794"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "1335648"
+      },
+      {
+        "marca": "COOPERS",
+        "codigo": "AEM2712"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "1335678"
+      },
+      {
+        "marca": "COOPERS",
+        "codigo": "AEM2712P778336"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "1421021"
+      },
+      {
+        "marca": "DELKRAFT",
+        "codigo": "DR1418"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "1421021"
+      },
+      {
+        "marca": "DONALDSON",
+        "codigo": "P778336"
+      },
+      {
+        "marca": "SCHNELL",
+        "codigo": "1015159"
+      },
+      {
+        "marca": "ENSKEDE HYDRAUL",
+        "codigo": "218336"
+      },
+      {
+        "marca": "SOFIMA",
+        "codigo": "S7358A"
+      },
+      {
+        "marca": "FAMEL",
+        "codigo": "FSR8008"
+      },
+      {
+        "marca": "SOGEFI PRO/FRAM",
+        "codigo": "FLI6931"
+      },
+      {
+        "marca": "FIAAM",
+        "codigo": "FLI6931"
+      },
+      {
+        "marca": "TBFIL",
+        "codigo": "AR1142"
+      },
+      {
+        "marca": "FILTROS TURBO",
+        "codigo": "TR1021"
+      },
+      {
+        "marca": "TEC-FIL",
+        "codigo": "ARS1188"
+      },
+      {
+        "marca": "FLEETGUARD",
+        "codigo": "AF25313"
+      },
+      {
+        "marca": "TURBO FILTRO",
+        "codigo": "TR1021"
+      },
+      {
+        "marca": "FRAM",
+        "codigo": "CA9414"
+      },
+      {
+        "marca": "UFI",
+        "codigo": "2735800"
+      },
+      {
+        "marca": "GPC",
+        "codigo": "FC790"
+      },
+      {
+        "marca": "UNIFILTER",
+        "codigo": "UARS7087P"
+      },
+      {
+        "marca": "HENGST",
+        "codigo": "E290L"
+      },
+      {
+        "marca": "UNIFILTER",
+        "codigo": "UA7087P"
+      },
+      {
+        "marca": "INPECA",
+        "codigo": "SRS1021"
+      },
+      {
+        "marca": "VMC",
+        "codigo": "AF778336"
+      },
+      {
+        "marca": "INPECA",
+        "codigo": "SRS7099"
+      },
+      {
+        "marca": "VOX",
+        "codigo": "HD1188"
+      },
+      {
+        "marca": "JCB",
+        "codigo": "SC1421021"
+      },
+      {
+        "marca": "VOX ANTIGO",
+        "codigo": "HD3407"
+      },
+      {
+        "marca": "KNECHT",
+        "codigo": "LX712"
+      },
+      {
+        "marca": "WEGA",
+        "codigo": "WAP359"
+      },
+      {
+        "marca": "LOESING",
+        "codigo": "20426"
+      },
+      {
+        "marca": "XANFIL",
+        "codigo": "XL2056"
+      },
+      {
+        "marca": "FRAM",
+        "codigo": "CA5760"
+      }
+    ]
+  },
+  "AIRE SECUNDARIO__SCANIA P360": {
+    "tipo": "Aire secundario",
+    "modelos": [
+      "SCANIA P360"
+    ],
+    "codigos": [
+      {
+        "marca": "BALDWIN",
+        "codigo": "RS5313"
+      },
+      {
+        "marca": "SAKURA",
+        "codigo": "A83090"
+      },
+      {
+        "marca": "DONALDSON",
+        "codigo": "P781228"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "1335680"
+      },
+      {
+        "marca": "FLEETGUARD",
+        "codigo": "AF25969"
+      },
+      {
+        "marca": "TECFIL",
+        "codigo": "ASR118"
+      },
+      {
+        "marca": "HENGST",
+        "codigo": "E1033LS"
+      },
+      {
+        "marca": "TURBO FILTROS",
+        "codigo": "TR781228"
+      },
+      {
+        "marca": "JCB",
+        "codigo": "SC1335680"
+      },
+      {
+        "marca": "WEGA",
+        "codigo": "WAP-359/S"
+      },
+      {
+        "marca": "MANN",
+        "codigo": "CF1720"
+      },
+      {
+        "marca": "WEGA",
+        "codigo": "WAP359/S"
+      },
+      {
+        "marca": "ORIGINAL FILTER",
+        "codigo": "OFA3013RS"
+      }
+    ]
+  },
+  "ACEITE__SCANIA P360": {
+    "tipo": "Aceite",
+    "modelos": [
+      "SCANIA P360"
+    ],
+    "codigos": [
+      {
+        "marca": "ALCO",
+        "codigo": "MD727"
+      },
+      {
+        "marca": "MANN",
+        "codigo": "HU10772Z"
+      },
+      {
+        "marca": "ASAS",
+        "codigo": "AS2515"
+      },
+      {
+        "marca": "ORIGINAL FILTER",
+        "codigo": "OFL0541E"
+      },
+      {
+        "marca": "BALDWIN",
+        "codigo": "P7502"
+      },
+      {
+        "marca": "PARKER",
+        "codigo": "REL816"
+      },
+      {
+        "marca": "BOSCH-REXROTH",
+        "codigo": "F026407100"
+      },
+      {
+        "marca": "PUROLATOR",
+        "codigo": "L1959"
+      },
+      {
+        "marca": "DELPHI",
+        "codigo": "EFL787"
+      },
+      {
+        "marca": "SAKURA",
+        "codigo": "EO83020"
+      },
+      {
+        "marca": "DONALDSON",
+        "codigo": "P953329"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "1742032"
+      },
+      {
+        "marca": "FIL FILTER",
+        "codigo": "MLE1578"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "1742037"
+      },
+      {
+        "marca": "FLEETGUARD",
+        "codigo": "LF17486"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "2022275"
+      },
+      {
+        "marca": "HENGST",
+        "codigo": "E123H01D194"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "2037556"
+      },
+      {
+        "marca": "HENGST",
+        "codigo": "E123HD194"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "2625884"
+      },
+      {
+        "marca": "JAPANPARTS",
+        "codigo": "FOBR70S"
+      },
+      {
+        "marca": "TECFIL",
+        "codigo": "PEL415"
+      },
+      {
+        "marca": "MAHLE",
+        "codigo": "OX562DECO"
+      },
+      {
+        "marca": "TEREX",
+        "codigo": "15504789"
+      },
+      {
+        "marca": "MANN",
+        "codigo": "HU1077/1X"
+      },
+      {
+        "marca": "UFI",
+        "codigo": "2518100"
+      },
+      {
+        "marca": "MANN",
+        "codigo": "HU1077/2Z"
+      },
+      {
+        "marca": "VOX",
+        "codigo": "LE415"
+      },
+      {
+        "marca": "MANN",
+        "codigo": "HU10771X"
+      },
+      {
+        "marca": "WEGA",
+        "codigo": "WOE471"
+      }
+    ]
+  },
+  "CAJA__SCANIA P360": {
+    "tipo": "Caja",
+    "modelos": [
+      "SCANIA P360"
+    ],
+    "codigos": [
+      {
+        "marca": "BALDWIN FILTERS",
+        "codigo": "BT9318"
+      },
+      {
+        "marca": "RAMA",
+        "codigo": "RT5504"
+      },
+      {
+        "marca": "BOSCH-REXROTH",
+        "codigo": "451103330"
+      },
+      {
+        "marca": "RANDON",
+        "codigo": "215000145"
+      },
+      {
+        "marca": "DONALDSON",
+        "codigo": "P761108"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "562816"
+      },
+      {
+        "marca": "FILTROS TURBO",
+        "codigo": "TBH343"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "562817"
+      },
+      {
+        "marca": "FLEETGUARD",
+        "codigo": "HF7535"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "562818"
+      },
+      {
+        "marca": "FRAM",
+        "codigo": "PH8789"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "562820"
+      },
+      {
+        "marca": "FRAM",
+        "codigo": "PH8797A"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "1301696"
+      },
+      {
+        "marca": "GT PIECES ET SERVICES",
+        "codigo": "2240112"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "1304696"
+      },
+      {
+        "marca": "HENGST",
+        "codigo": "H24W05"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "1768402"
+      },
+      {
+        "marca": "INPECA",
+        "codigo": "SHB0424"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "2002705"
+      },
+      {
+        "marca": "JAPANPARTS",
+        "codigo": "FOBR108S"
+      },
+      {
+        "marca": "SOGEFI PRO/FRAM",
+        "codigo": "FT5433"
+      },
+      {
+        "marca": "KNECHT",
+        "codigo": "HC113"
+      },
+      {
+        "marca": "TECFIL",
+        "codigo": "PSH173"
+      },
+      {
+        "marca": "KS",
+        "codigo": "50013233"
+      },
+      {
+        "marca": "TECFIL",
+        "codigo": "PSL173"
+      },
+      {
+        "marca": "MAHLE",
+        "codigo": "5006815360"
+      },
+      {
+        "marca": "TODD GT",
+        "codigo": "2241063"
+      },
+      {
+        "marca": "MAHLE",
+        "codigo": "HC96"
+      },
+      {
+        "marca": "UFI",
+        "codigo": "8005900"
+      },
+      {
+        "marca": "MANN",
+        "codigo": "W9023/1"
+      },
+      {
+        "marca": "UNIFILTER",
+        "codigo": "UST343B10"
+      },
+      {
+        "marca": "MANN",
+        "codigo": "W930/14"
+      },
+      {
+        "marca": "VMC",
+        "codigo": "HF761108"
+      },
+      {
+        "marca": "MANN&HUMMEL",
+        "codigo": "W93014"
+      },
+      {
+        "marca": "VOX",
+        "codigo": "HIB3417"
+      },
+      {
+        "marca": "MANN&HUMMEL",
+        "codigo": "W93018"
+      },
+      {
+        "marca": "VOX",
+        "codigo": "HIB173"
+      },
+      {
+        "marca": "PARKER/RACOR",
+        "codigo": "RH34310B"
+      },
+      {
+        "marca": "WEGA",
+        "codigo": "WO762"
+      },
+      {
+        "marca": "PARKER/RACOR",
+        "codigo": "RH34310Q"
+      },
+      {
+        "marca": "ZF-BRASIL",
+        "codigo": "70131306"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "2825448"
+      }
+    ]
+  },
+  "DIFERENCIAL__SCANIA P360": {
+    "tipo": "Diferencial",
+    "modelos": [
+      "SCANIA P360"
+    ],
+    "codigos": [
+      {
+        "marca": "BALDWIN FILTERS",
+        "codigo": "BT9318"
+      },
+      {
+        "marca": "RAMA",
+        "codigo": "RT5504"
+      },
+      {
+        "marca": "BOSCH-REXROTH",
+        "codigo": "451103330"
+      },
+      {
+        "marca": "RANDON",
+        "codigo": "215000145"
+      },
+      {
+        "marca": "DONALDSON",
+        "codigo": "P761108"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "562816"
+      },
+      {
+        "marca": "FILTROS TURBO",
+        "codigo": "TBH343"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "562817"
+      },
+      {
+        "marca": "FLEETGUARD",
+        "codigo": "HF7535"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "562818"
+      },
+      {
+        "marca": "FRAM",
+        "codigo": "PH8789"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "562820"
+      },
+      {
+        "marca": "FRAM",
+        "codigo": "PH8797A"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "1301696"
+      },
+      {
+        "marca": "GT PIECES ET SERVICES",
+        "codigo": "2240112"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "1304696"
+      },
+      {
+        "marca": "HENGST",
+        "codigo": "H24W05"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "1768402"
+      },
+      {
+        "marca": "INPECA",
+        "codigo": "SHB0424"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "2002705"
+      },
+      {
+        "marca": "JAPANPARTS",
+        "codigo": "FOBR108S"
+      },
+      {
+        "marca": "SOGEFI PRO/FRAM",
+        "codigo": "FT5433"
+      },
+      {
+        "marca": "KNECHT",
+        "codigo": "HC113"
+      },
+      {
+        "marca": "TECFIL",
+        "codigo": "PSH173"
+      },
+      {
+        "marca": "KS",
+        "codigo": "50013233"
+      },
+      {
+        "marca": "TECFIL",
+        "codigo": "PSL173"
+      },
+      {
+        "marca": "MAHLE",
+        "codigo": "5006815360"
+      },
+      {
+        "marca": "TODD GT",
+        "codigo": "2241063"
+      },
+      {
+        "marca": "MAHLE",
+        "codigo": "HC96"
+      },
+      {
+        "marca": "UFI",
+        "codigo": "8005900"
+      },
+      {
+        "marca": "MANN",
+        "codigo": "W9023/1"
+      },
+      {
+        "marca": "UNIFILTER",
+        "codigo": "UST343B10"
+      },
+      {
+        "marca": "MANN",
+        "codigo": "W930/14"
+      },
+      {
+        "marca": "VMC",
+        "codigo": "HF761108"
+      },
+      {
+        "marca": "MANN&HUMMEL",
+        "codigo": "W93014"
+      },
+      {
+        "marca": "VOX",
+        "codigo": "HIB3417"
+      },
+      {
+        "marca": "MANN&HUMMEL",
+        "codigo": "W93018"
+      },
+      {
+        "marca": "VOX",
+        "codigo": "HIB173"
+      },
+      {
+        "marca": "PARKER/RACOR",
+        "codigo": "RH34310B"
+      },
+      {
+        "marca": "WEGA",
+        "codigo": "WO762"
+      },
+      {
+        "marca": "PARKER/RACOR",
+        "codigo": "RH34310Q"
+      },
+      {
+        "marca": "ZF-BRASIL",
+        "codigo": "70131306"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "2825448"
+      }
+    ]
+  },
+  "COMBUSTIBLE CON TRAMPA__SCANIA P360": {
+    "tipo": "Combustible con trampa",
+    "modelos": [
+      "SCANIA P360"
+    ],
+    "codigos": [
+      {
+        "marca": "Alliance",
+        "codigo": "A30009002510097"
+      },
+      {
+        "marca": "Original Filter",
+        "codigo": "OFC1311E"
+      },
+      {
+        "marca": "Baldwin",
+        "codigo": "PF7896"
+      },
+      {
+        "marca": "Parker",
+        "codigo": "REC151"
+      },
+      {
+        "marca": "Bosch",
+        "codigo": "0986BF0250"
+      },
+      {
+        "marca": "Purolator",
+        "codigo": "F1114"
+      },
+      {
+        "marca": "Delphi",
+        "codigo": "HDF753"
+      },
+      {
+        "marca": "Sakura",
+        "codigo": "EF8301"
+      },
+      {
+        "marca": "Donaldson",
+        "codigo": "P550628"
+      },
+      {
+        "marca": "Scania",
+        "codigo": "1429059"
+      },
+      {
+        "marca": "Fleetguard",
+        "codigo": "FF5683"
+      },
+      {
+        "marca": "Scania",
+        "codigo": "1446432"
+      },
+      {
+        "marca": "Hengst",
+        "codigo": "E57KPD73"
+      },
+      {
+        "marca": "Scania",
+        "codigo": "1873018"
+      },
+      {
+        "marca": "Japanparts",
+        "codigo": "FCBR53S"
+      },
+      {
+        "marca": "Tecfil",
+        "codigo": "PEC3024"
+      },
+      {
+        "marca": "KSPG",
+        "codigo": "50014179"
+      },
+      {
+        "marca": "Vox",
+        "codigo": "CE3024"
+      },
+      {
+        "marca": "Mahle",
+        "codigo": "KX182/1D"
+      },
+      {
+        "marca": "Wega",
+        "codigo": "FCD0951"
+      },
+      {
+        "marca": "Mann",
+        "codigo": "PU941X"
+      },
+      {
+        "marca": "Wega",
+        "codigo": "FCD951"
+      },
+      {
+        "marca": "Master Parts",
+        "codigo": "MM100515"
+      },
+      {
+        "marca": "WIX",
+        "codigo": "WF10304"
+      }
+    ]
+  },
+  "COMBUSTIBLE__SCANIA P360": {
+    "tipo": "Combustible",
+    "modelos": [
+      "SCANIA P360"
+    ],
+    "codigos": [
+      {
+        "marca": "Acdelco",
+        "codigo": "01FBD009"
+      },
+      {
+        "marca": "Gonher",
+        "codigo": "GP1109"
+      },
+      {
+        "marca": "Baldwin",
+        "codigo": "BF7525"
+      },
+      {
+        "marca": "Hengst",
+        "codigo": "H178WK"
+      },
+      {
+        "marca": "Baldwin",
+        "codigo": "BF7632"
+      },
+      {
+        "marca": "Inpeca",
+        "codigo": "SCB0745"
+      },
+      {
+        "marca": "Baldwin",
+        "codigo": "BF7634"
+      },
+      {
+        "marca": "Japanparts",
+        "codigo": "FCBR183S"
+      },
+      {
+        "marca": "Bosch",
+        "codigo": "986450711"
+      },
+      {
+        "marca": "Knecht",
+        "codigo": "KC28"
+      },
+      {
+        "marca": "Caterpillar",
+        "codigo": "1R0759"
+      },
+      {
+        "marca": "Komatsu",
+        "codigo": "6003119120"
+      },
+      {
+        "marca": "Caterpillar",
+        "codigo": "1R0751"
+      },
+      {
+        "marca": "Luber Finer",
+        "codigo": "LFF4783"
+      },
+      {
+        "marca": "Delkraft",
+        "codigo": "DSC711"
+      },
+      {
+        "marca": "Luberfiner",
+        "codigo": "LFF4783"
+      },
+      {
+        "marca": "Delphi",
+        "codigo": "HDF407"
+      },
+      {
+        "marca": "Mahle",
+        "codigo": "KC134"
+      },
+      {
+        "marca": "Donaldson",
+        "codigo": "P551315"
+      },
+      {
+        "marca": "Mann",
+        "codigo": "WK950/3"
+      },
+      {
+        "marca": "Donaldson",
+        "codigo": "P551312"
+      },
+      {
+        "marca": "Mann",
+        "codigo": "WK850/3"
+      },
+      {
+        "marca": "Donsson",
+        "codigo": "GS014"
+      },
+      {
+        "marca": "Original filter",
+        "codigo": "OFC1025B"
+      },
+      {
+        "marca": "F Cross",
+        "codigo": "F158/5"
+      },
+      {
+        "marca": "Parker",
+        "codigo": "PERI355"
+      },
+      {
+        "marca": "Fam",
+        "codigo": "FC751"
+      },
+      {
+        "marca": "Partmo",
+        "codigo": "A1P2299"
+      },
+      {
+        "marca": "Fil Filter",
+        "codigo": "ZP518AF"
+      },
+      {
+        "marca": "Sakura",
+        "codigo": "FC5504"
+      },
+      {
+        "marca": "Fleetguard",
+        "codigo": "FF105"
+      },
+      {
+        "marca": "Tecfil",
+        "codigo": "PSC745"
+      },
+      {
+        "marca": "Fleetguard",
+        "codigo": "FF5321"
+      },
+      {
+        "marca": "Unifilter",
+        "codigo": "USC745"
+      },
+      {
+        "marca": "Fleetguard",
+        "codigo": "FF5245"
+      },
+      {
+        "marca": "Vox",
+        "codigo": "FBD745"
+      },
+      {
+        "marca": "Fleetguard",
+        "codigo": "FF5324"
+      },
+      {
+        "marca": "Vox Antigo",
+        "codigo": "FBD2432"
+      },
+      {
+        "marca": "Fram",
+        "codigo": "P8264"
+      },
+      {
+        "marca": "Wega",
+        "codigo": "FCD2040"
+      },
+      {
+        "marca": "Franig",
+        "codigo": "HCX3380"
+      },
+      {
+        "marca": "Wix",
+        "codigo": "W33377"
+      },
+      {
+        "marca": "CATERPILLAR",
+        "codigo": "1R-0751"
+      }
+    ]
+  },
+  "HABITÁCULO__SCANIA P360": {
+    "tipo": "Habitáculo",
+    "modelos": [
+      "SCANIA P360"
+    ],
+    "codigos": [
+      {
+        "marca": "DELPHI",
+        "codigo": "CKF10029"
+      },
+      {
+        "marca": "MICRON AIR",
+        "codigo": "MP9919"
+      },
+      {
+        "marca": "DONALDSON",
+        "codigo": "P753338"
+      },
+      {
+        "marca": "MWM",
+        "codigo": "MM100532"
+      },
+      {
+        "marca": "DONALDSON",
+        "codigo": "P957866"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "1913500"
+      },
+      {
+        "marca": "FILTROS BRASIL",
+        "codigo": "FB025010"
+      },
+      {
+        "marca": "SOGEFI PRO/FRAM",
+        "codigo": "PC8289"
+      },
+      {
+        "marca": "FILTROS MIL",
+        "codigo": "FC5004"
+      },
+      {
+        "marca": "TECFIL",
+        "codigo": "ACP177"
+      },
+      {
+        "marca": "FRAM",
+        "codigo": "CF10860"
+      },
+      {
+        "marca": "TURBO FILTROS",
+        "codigo": "TAC4305"
+      },
+      {
+        "marca": "HENGST",
+        "codigo": "E2960LI"
+      },
+      {
+        "marca": "UFI",
+        "codigo": "5328900"
+      },
+      {
+        "marca": "JAPANPARTS",
+        "codigo": "FAASC02"
+      },
+      {
+        "marca": "VOX",
+        "codigo": "FAC177"
+      },
+      {
+        "marca": "M. BENZ",
+        "codigo": "A30083501470097"
+      },
+      {
+        "marca": "WEGA",
+        "codigo": "AKX-4528"
+      },
+      {
+        "marca": "MAHLE",
+        "codigo": "LA702"
+      },
+      {
+        "marca": "WEGA",
+        "codigo": "AKX4528"
+      },
+      {
+        "marca": "MANN",
+        "codigo": "CU37001"
+      }
+    ]
+  },
+  "SECADOR DE AIRE__SCANIA P360": {
+    "tipo": "Secador de aire",
+    "modelos": [
+      "SCANIA P360"
+    ],
+    "codigos": [
+      {
+        "marca": "ALCO",
+        "codigo": "SP8001"
+      },
+      {
+        "marca": "REDUX32",
+        "codigo": "ARD1179"
+      },
+      {
+        "marca": "ASAS",
+        "codigo": "SP1451"
+      },
+      {
+        "marca": "RENAULT VI",
+        "codigo": "5001843522"
+      },
+      {
+        "marca": "BALDWIN",
+        "codigo": "BA5375"
+      },
+      {
+        "marca": "RENAULT VI",
+        "codigo": "5021170077"
+      },
+      {
+        "marca": "CLEAN",
+        "codigo": "DE2203"
+      },
+      {
+        "marca": "RENAULT VI",
+        "codigo": "7485137862"
+      },
+      {
+        "marca": "DONALDSON",
+        "codigo": "P783753"
+      },
+      {
+        "marca": "SAKURA",
+        "codigo": "AC8301"
+      },
+      {
+        "marca": "FIAAM",
+        "codigo": "FT5651"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "1384549"
+      },
+      {
+        "marca": "FIAAM",
+        "codigo": "FTAQ5561"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "1455253"
+      },
+      {
+        "marca": "FIL FILTER",
+        "codigo": "ZP3110"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "1774598"
+      },
+      {
+        "marca": "FLEETGUARD",
+        "codigo": "AD27745"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "2081360"
+      },
+      {
+        "marca": "FRAM",
+        "codigo": "PFA9596"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "2307617"
+      },
+      {
+        "marca": "GT1",
+        "codigo": "TIG300W"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "2562323"
+      },
+      {
+        "marca": "HENGST",
+        "codigo": "T300W"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "57142020"
+      },
+      {
+        "marca": "INPECA",
+        "codigo": "SDU1375"
+      },
+      {
+        "marca": "SOGEFI PRO/FRAM",
+        "codigo": "FT6047"
+      },
+      {
+        "marca": "JAPANPARTS",
+        "codigo": "FDBR03"
+      },
+      {
+        "marca": "TECFIL",
+        "codigo": "DSF0203"
+      },
+      {
+        "marca": "KNECHT",
+        "codigo": "AL14"
+      },
+      {
+        "marca": "UFI",
+        "codigo": "2734400"
+      },
+      {
+        "marca": "KNORR-BREMSE",
+        "codigo": "K087957"
+      },
+      {
+        "marca": "VOX",
+        "codigo": "SDA0203"
+      },
+      {
+        "marca": "LEKANG",
+        "codigo": "79865"
+      },
+      {
+        "marca": "WABCO",
+        "codigo": "4324102232"
+      },
+      {
+        "marca": "LUBERFINER",
+        "codigo": "LFP5375"
+      },
+      {
+        "marca": "WABCO",
+        "codigo": "4324102261"
+      },
+      {
+        "marca": "MAHLE",
+        "codigo": "AL14"
+      },
+      {
+        "marca": "WABCO",
+        "codigo": "4324102262"
+      },
+      {
+        "marca": "MANN",
+        "codigo": "TB1374/3X"
+      },
+      {
+        "marca": "WABCO",
+        "codigo": "4324109272"
+      },
+      {
+        "marca": "MANN",
+        "codigo": "TB1394/3x"
+      },
+      {
+        "marca": "WABCO",
+        "codigo": "4324152202"
+      },
+      {
+        "marca": "ORIGINAL FILTER",
+        "codigo": "OFD9100"
+      },
+      {
+        "marca": "WABCO",
+        "codigo": "4324152207"
+      },
+      {
+        "marca": "PARKER",
+        "codigo": "RAD30012"
+      },
+      {
+        "marca": "WEGA",
+        "codigo": "DAF200"
+      }
+    ]
+  },
+  "AIRE PRIMARIO__SCANIA G410": {
+    "tipo": "Aire primario",
+    "modelos": [
+      "SCANIA G410"
+    ],
+    "codigos": [
+      {
+        "marca": "SCANIA",
+        "codigo": "2414656"
+      },
+      {
+        "marca": "WEGA",
+        "codigo": "WAP362"
+      }
+    ]
+  },
+  "AIRE SECUNDARIO__SCANIA G410": {
+    "tipo": "Aire secundario",
+    "modelos": [
+      "SCANIA G410"
+    ],
+    "codigos": [
+      {
+        "marca": "SCANIA",
+        "codigo": "2414659"
+      },
+      {
+        "marca": "WEGA",
+        "codigo": "WAP362/S"
+      },
+      {
+        "marca": "TECFIL",
+        "codigo": "ASR178"
+      },
+      {
+        "marca": "WEGA",
+        "codigo": "WAP362S"
+      }
+    ]
+  },
+  "ACEITE__SCANIA G410": {
+    "tipo": "Aceite",
+    "modelos": [
+      "SCANIA G410"
+    ],
+    "codigos": [
+      {
+        "marca": "ALCO",
+        "codigo": "MD727"
+      },
+      {
+        "marca": "MANN",
+        "codigo": "HU10772Z"
+      },
+      {
+        "marca": "ASAS",
+        "codigo": "AS2515"
+      },
+      {
+        "marca": "ORIGINAL FILTER",
+        "codigo": "OFL0541E"
+      },
+      {
+        "marca": "BALDWIN",
+        "codigo": "P7502"
+      },
+      {
+        "marca": "PARKER",
+        "codigo": "REL816"
+      },
+      {
+        "marca": "BOSCH-REXROTH",
+        "codigo": "F026407100"
+      },
+      {
+        "marca": "PUROLATOR",
+        "codigo": "L1959"
+      },
+      {
+        "marca": "DELPHI",
+        "codigo": "EFL787"
+      },
+      {
+        "marca": "SAKURA",
+        "codigo": "EO83020"
+      },
+      {
+        "marca": "DONALDSON",
+        "codigo": "P953329"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "1742032"
+      },
+      {
+        "marca": "FIL FILTER",
+        "codigo": "MLE1578"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "1742037"
+      },
+      {
+        "marca": "FLEETGUARD",
+        "codigo": "LF17486"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "2022275"
+      },
+      {
+        "marca": "HENGST",
+        "codigo": "E123H01D194"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "2037556"
+      },
+      {
+        "marca": "HENGST",
+        "codigo": "E123HD194"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "2625884"
+      },
+      {
+        "marca": "JAPANPARTS",
+        "codigo": "FOBR70S"
+      },
+      {
+        "marca": "TECFIL",
+        "codigo": "PEL415"
+      },
+      {
+        "marca": "MAHLE",
+        "codigo": "OX562DECO"
+      },
+      {
+        "marca": "TEREX",
+        "codigo": "15504789"
+      },
+      {
+        "marca": "MANN",
+        "codigo": "HU1077/1X"
+      },
+      {
+        "marca": "UFI",
+        "codigo": "2518100"
+      },
+      {
+        "marca": "MANN",
+        "codigo": "HU1077/2Z"
+      },
+      {
+        "marca": "VOX",
+        "codigo": "LE415"
+      },
+      {
+        "marca": "MANN",
+        "codigo": "HU10771X"
+      },
+      {
+        "marca": "WEGA",
+        "codigo": "WOE471"
+      }
+    ]
+  },
+  "CAJA__SCANIA G410": {
+    "tipo": "Caja",
+    "modelos": [
+      "SCANIA G410"
+    ],
+    "codigos": [
+      {
+        "marca": "BALDWIN FILTERS",
+        "codigo": "BT9318"
+      },
+      {
+        "marca": "RAMA",
+        "codigo": "RT5504"
+      },
+      {
+        "marca": "BOSCH-REXROTH",
+        "codigo": "451103330"
+      },
+      {
+        "marca": "RANDON",
+        "codigo": "215000145"
+      },
+      {
+        "marca": "DONALDSON",
+        "codigo": "P761108"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "562816"
+      },
+      {
+        "marca": "FILTROS TURBO",
+        "codigo": "TBH343"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "562817"
+      },
+      {
+        "marca": "FLEETGUARD",
+        "codigo": "HF7535"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "562818"
+      },
+      {
+        "marca": "FRAM",
+        "codigo": "PH8789"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "562820"
+      },
+      {
+        "marca": "FRAM",
+        "codigo": "PH8797A"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "1301696"
+      },
+      {
+        "marca": "GT PIECES ET SERVICES",
+        "codigo": "2240112"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "1304696"
+      },
+      {
+        "marca": "HENGST",
+        "codigo": "H24W05"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "1768402"
+      },
+      {
+        "marca": "INPECA",
+        "codigo": "SHB0424"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "2002705"
+      },
+      {
+        "marca": "JAPANPARTS",
+        "codigo": "FOBR108S"
+      },
+      {
+        "marca": "SOGEFI PRO/FRAM",
+        "codigo": "FT5433"
+      },
+      {
+        "marca": "KNECHT",
+        "codigo": "HC113"
+      },
+      {
+        "marca": "TECFIL",
+        "codigo": "PSH173"
+      },
+      {
+        "marca": "KS",
+        "codigo": "50013233"
+      },
+      {
+        "marca": "TECFIL",
+        "codigo": "PSL173"
+      },
+      {
+        "marca": "MAHLE",
+        "codigo": "5006815360"
+      },
+      {
+        "marca": "TODD GT",
+        "codigo": "2241063"
+      },
+      {
+        "marca": "MAHLE",
+        "codigo": "HC96"
+      },
+      {
+        "marca": "UFI",
+        "codigo": "8005900"
+      },
+      {
+        "marca": "MANN",
+        "codigo": "W9023/1"
+      },
+      {
+        "marca": "UNIFILTER",
+        "codigo": "UST343B10"
+      },
+      {
+        "marca": "MANN",
+        "codigo": "W930/14"
+      },
+      {
+        "marca": "VMC",
+        "codigo": "HF761108"
+      },
+      {
+        "marca": "MANN&HUMMEL",
+        "codigo": "W93014"
+      },
+      {
+        "marca": "VOX",
+        "codigo": "HIB3417"
+      },
+      {
+        "marca": "MANN&HUMMEL",
+        "codigo": "W93018"
+      },
+      {
+        "marca": "VOX",
+        "codigo": "HIB173"
+      },
+      {
+        "marca": "PARKER/RACOR",
+        "codigo": "RH34310B"
+      },
+      {
+        "marca": "WEGA",
+        "codigo": "WO762"
+      },
+      {
+        "marca": "PARKER/RACOR",
+        "codigo": "RH34310Q"
+      },
+      {
+        "marca": "ZF-BRASIL",
+        "codigo": "70131306"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "2825448"
+      }
+    ]
+  },
+  "DIFERENCIAL__SCANIA G410": {
+    "tipo": "Diferencial",
+    "modelos": [
+      "SCANIA G410"
+    ],
+    "codigos": [
+      {
+        "marca": "BALDWIN FILTERS",
+        "codigo": "BT9318"
+      },
+      {
+        "marca": "RAMA",
+        "codigo": "RT5504"
+      },
+      {
+        "marca": "BOSCH-REXROTH",
+        "codigo": "451103330"
+      },
+      {
+        "marca": "RANDON",
+        "codigo": "215000145"
+      },
+      {
+        "marca": "DONALDSON",
+        "codigo": "P761108"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "562816"
+      },
+      {
+        "marca": "FILTROS TURBO",
+        "codigo": "TBH343"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "562817"
+      },
+      {
+        "marca": "FLEETGUARD",
+        "codigo": "HF7535"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "562818"
+      },
+      {
+        "marca": "FRAM",
+        "codigo": "PH8789"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "562820"
+      },
+      {
+        "marca": "FRAM",
+        "codigo": "PH8797A"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "1301696"
+      },
+      {
+        "marca": "GT PIECES ET SERVICES",
+        "codigo": "2240112"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "1304696"
+      },
+      {
+        "marca": "HENGST",
+        "codigo": "H24W05"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "1768402"
+      },
+      {
+        "marca": "INPECA",
+        "codigo": "SHB0424"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "2002705"
+      },
+      {
+        "marca": "JAPANPARTS",
+        "codigo": "FOBR108S"
+      },
+      {
+        "marca": "SOGEFI PRO/FRAM",
+        "codigo": "FT5433"
+      },
+      {
+        "marca": "KNECHT",
+        "codigo": "HC113"
+      },
+      {
+        "marca": "TECFIL",
+        "codigo": "PSH173"
+      },
+      {
+        "marca": "KS",
+        "codigo": "50013233"
+      },
+      {
+        "marca": "TECFIL",
+        "codigo": "PSL173"
+      },
+      {
+        "marca": "MAHLE",
+        "codigo": "5006815360"
+      },
+      {
+        "marca": "TODD GT",
+        "codigo": "2241063"
+      },
+      {
+        "marca": "MAHLE",
+        "codigo": "HC96"
+      },
+      {
+        "marca": "UFI",
+        "codigo": "8005900"
+      },
+      {
+        "marca": "MANN",
+        "codigo": "W9023/1"
+      },
+      {
+        "marca": "UNIFILTER",
+        "codigo": "UST343B10"
+      },
+      {
+        "marca": "MANN",
+        "codigo": "W930/14"
+      },
+      {
+        "marca": "VMC",
+        "codigo": "HF761108"
+      },
+      {
+        "marca": "MANN&HUMMEL",
+        "codigo": "W93014"
+      },
+      {
+        "marca": "VOX",
+        "codigo": "HIB3417"
+      },
+      {
+        "marca": "MANN&HUMMEL",
+        "codigo": "W93018"
+      },
+      {
+        "marca": "VOX",
+        "codigo": "HIB173"
+      },
+      {
+        "marca": "PARKER/RACOR",
+        "codigo": "RH34310B"
+      },
+      {
+        "marca": "WEGA",
+        "codigo": "WO762"
+      },
+      {
+        "marca": "PARKER/RACOR",
+        "codigo": "RH34310Q"
+      },
+      {
+        "marca": "ZF-BRASIL",
+        "codigo": "70131306"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "2825448"
+      }
+    ]
+  },
+  "COMBUSTIBLE CON TRAMPA__SCANIA G410": {
+    "tipo": "Combustible con trampa",
+    "modelos": [
+      "SCANIA G410"
+    ],
+    "codigos": [
+      {
+        "marca": "DONALDSON",
+        "codigo": "X770914"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "1736251"
+      },
+      {
+        "marca": "FLEETGUARD",
+        "codigo": "MK13301"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "2022753"
+      },
+      {
+        "marca": "HENGST",
+        "codigo": "E103KPD197"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "2022754"
+      },
+      {
+        "marca": "JAPANPARTS",
+        "codigo": "FCBR62S"
+      },
+      {
+        "marca": "TECFIL",
+        "codigo": "PEC3063KIT"
+      },
+      {
+        "marca": "MAHLE EUR",
+        "codigo": "PU10003-2x"
+      },
+      {
+        "marca": "WEGA",
+        "codigo": "FCD-0972K"
+      },
+      {
+        "marca": "ORIGINAL FILTER",
+        "codigo": "OFC1802E"
+      },
+      {
+        "marca": "WEGA",
+        "codigo": "FCD0972K"
+      }
+    ]
+  },
+  "COMBUSTIBLE CON TRAMPA 2__SCANIA G410": {
+    "tipo": "Combustible con trampa 2",
+    "modelos": [
+      "SCANIA G410"
+    ],
+    "codigos": [
+      {
+        "marca": "mann",
+        "codigo": "WK 1080/6 x"
+      },
+      {
+        "marca": "mann",
+        "codigo": "WK 1080/7 x"
+      }
+    ]
+  },
+  "HABITÁCULO__SCANIA G410": {
+    "tipo": "Habitáculo",
+    "modelos": [
+      "SCANIA G410"
+    ],
+    "codigos": [
+      {
+        "marca": "HENGST",
+        "codigo": "E4953LI"
+      },
+      {
+        "marca": "TECFIL",
+        "codigo": "ACP029"
+      },
+      {
+        "marca": "MAHLE",
+        "codigo": "LA1789"
+      },
+      {
+        "marca": "TURBO FILTROS",
+        "codigo": "TAC5029i"
+      },
+      {
+        "marca": "MANN",
+        "codigo": "CU45004"
+      },
+      {
+        "marca": "WEGA",
+        "codigo": "AKX4000F"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "2095029"
+      }
+    ]
+  },
+  "SECADOR DE AIRE__SCANIA G410": {
+    "tipo": "Secador de aire",
+    "modelos": [
+      "SCANIA G410"
+    ],
+    "codigos": [
+      {
+        "marca": "ALCO",
+        "codigo": "SP8001"
+      },
+      {
+        "marca": "REDUX32",
+        "codigo": "ARD1179"
+      },
+      {
+        "marca": "ASAS",
+        "codigo": "SP1451"
+      },
+      {
+        "marca": "RENAULT VI",
+        "codigo": "5001843522"
+      },
+      {
+        "marca": "BALDWIN",
+        "codigo": "BA5375"
+      },
+      {
+        "marca": "RENAULT VI",
+        "codigo": "5021170077"
+      },
+      {
+        "marca": "CLEAN",
+        "codigo": "DE2203"
+      },
+      {
+        "marca": "RENAULT VI",
+        "codigo": "7485137862"
+      },
+      {
+        "marca": "DONALDSON",
+        "codigo": "P783753"
+      },
+      {
+        "marca": "SAKURA",
+        "codigo": "AC8301"
+      },
+      {
+        "marca": "FIAAM",
+        "codigo": "FT5651"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "1384549"
+      },
+      {
+        "marca": "FIAAM",
+        "codigo": "FTAQ5561"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "1455253"
+      },
+      {
+        "marca": "FIL FILTER",
+        "codigo": "ZP3110"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "1774598"
+      },
+      {
+        "marca": "FLEETGUARD",
+        "codigo": "AD27745"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "2081360"
+      },
+      {
+        "marca": "FRAM",
+        "codigo": "PFA9596"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "2307617"
+      },
+      {
+        "marca": "GT1",
+        "codigo": "TIG300W"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "2562323"
+      },
+      {
+        "marca": "HENGST",
+        "codigo": "T300W"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "57142020"
+      },
+      {
+        "marca": "INPECA",
+        "codigo": "SDU1375"
+      },
+      {
+        "marca": "SOGEFI PRO/FRAM",
+        "codigo": "FT6047"
+      },
+      {
+        "marca": "JAPANPARTS",
+        "codigo": "FDBR03"
+      },
+      {
+        "marca": "TECFIL",
+        "codigo": "DSF0203"
+      },
+      {
+        "marca": "KNECHT",
+        "codigo": "AL14"
+      },
+      {
+        "marca": "UFI",
+        "codigo": "2734400"
+      },
+      {
+        "marca": "KNORR-BREMSE",
+        "codigo": "K087957"
+      },
+      {
+        "marca": "VOX",
+        "codigo": "SDA0203"
+      },
+      {
+        "marca": "LEKANG",
+        "codigo": "79865"
+      },
+      {
+        "marca": "WABCO",
+        "codigo": "4324102232"
+      },
+      {
+        "marca": "LUBERFINER",
+        "codigo": "LFP5375"
+      },
+      {
+        "marca": "WABCO",
+        "codigo": "4324102261"
+      },
+      {
+        "marca": "MAHLE",
+        "codigo": "AL14"
+      },
+      {
+        "marca": "WABCO",
+        "codigo": "4324102262"
+      },
+      {
+        "marca": "MANN",
+        "codigo": "TB1374/3X"
+      },
+      {
+        "marca": "WABCO",
+        "codigo": "4324109272"
+      },
+      {
+        "marca": "MANN",
+        "codigo": "TB1394/3x"
+      },
+      {
+        "marca": "WABCO",
+        "codigo": "4324152202"
+      },
+      {
+        "marca": "ORIGINAL FILTER",
+        "codigo": "OFD9100"
+      },
+      {
+        "marca": "WABCO",
+        "codigo": "4324152207"
+      },
+      {
+        "marca": "PARKER",
+        "codigo": "RAD30012"
+      },
+      {
+        "marca": "WEGA",
+        "codigo": "DAF200"
+      }
+    ]
+  },
+  "AIRE PRIMARIO__SCANIA G320": {
+    "tipo": "Aire primario",
+    "modelos": [
+      "SCANIA G320"
+    ],
+    "codigos": [
+      {
+        "marca": "SCANIA",
+        "codigo": "2414656"
+      },
+      {
+        "marca": "WEGA",
+        "codigo": "WAP362"
+      }
+    ]
+  },
+  "AIRE SECUNDARIO__SCANIA G320": {
+    "tipo": "Aire secundario",
+    "modelos": [
+      "SCANIA G320"
+    ],
+    "codigos": [
+      {
+        "marca": "SCANIA",
+        "codigo": "2414659"
+      },
+      {
+        "marca": "WEGA",
+        "codigo": "WAP362/S"
+      },
+      {
+        "marca": "TECFIL",
+        "codigo": "ASR178"
+      },
+      {
+        "marca": "WEGA",
+        "codigo": "WAP362S"
+      }
+    ]
+  },
+  "ACEITE__SCANIA G320": {
+    "tipo": "Aceite",
+    "modelos": [
+      "SCANIA G320"
+    ],
+    "codigos": [
+      {
+        "marca": "ALCO",
+        "codigo": "MD727"
+      },
+      {
+        "marca": "MANN",
+        "codigo": "HU10772Z"
+      },
+      {
+        "marca": "ASAS",
+        "codigo": "AS2515"
+      },
+      {
+        "marca": "ORIGINAL FILTER",
+        "codigo": "OFL0541E"
+      },
+      {
+        "marca": "BALDWIN",
+        "codigo": "P7502"
+      },
+      {
+        "marca": "PARKER",
+        "codigo": "REL816"
+      },
+      {
+        "marca": "BOSCH-REXROTH",
+        "codigo": "F026407100"
+      },
+      {
+        "marca": "PUROLATOR",
+        "codigo": "L1959"
+      },
+      {
+        "marca": "DELPHI",
+        "codigo": "EFL787"
+      },
+      {
+        "marca": "SAKURA",
+        "codigo": "EO83020"
+      },
+      {
+        "marca": "DONALDSON",
+        "codigo": "P953329"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "1742032"
+      },
+      {
+        "marca": "FIL FILTER",
+        "codigo": "MLE1578"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "1742037"
+      },
+      {
+        "marca": "FLEETGUARD",
+        "codigo": "LF17486"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "2022275"
+      },
+      {
+        "marca": "HENGST",
+        "codigo": "E123H01D194"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "2037556"
+      },
+      {
+        "marca": "HENGST",
+        "codigo": "E123HD194"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "2625884"
+      },
+      {
+        "marca": "JAPANPARTS",
+        "codigo": "FOBR70S"
+      },
+      {
+        "marca": "TECFIL",
+        "codigo": "PEL415"
+      },
+      {
+        "marca": "MAHLE",
+        "codigo": "OX562DECO"
+      },
+      {
+        "marca": "TEREX",
+        "codigo": "15504789"
+      },
+      {
+        "marca": "MANN",
+        "codigo": "HU1077/1X"
+      },
+      {
+        "marca": "UFI",
+        "codigo": "2518100"
+      },
+      {
+        "marca": "MANN",
+        "codigo": "HU1077/2Z"
+      },
+      {
+        "marca": "VOX",
+        "codigo": "LE415"
+      },
+      {
+        "marca": "MANN",
+        "codigo": "HU10771X"
+      },
+      {
+        "marca": "WEGA",
+        "codigo": "WOE471"
+      }
+    ]
+  },
+  "CAJA__SCANIA G320": {
+    "tipo": "Caja",
+    "modelos": [
+      "SCANIA G320"
+    ],
+    "codigos": [
+      {
+        "marca": "BALDWIN FILTERS",
+        "codigo": "BT9318"
+      },
+      {
+        "marca": "RAMA",
+        "codigo": "RT5504"
+      },
+      {
+        "marca": "BOSCH-REXROTH",
+        "codigo": "451103330"
+      },
+      {
+        "marca": "RANDON",
+        "codigo": "215000145"
+      },
+      {
+        "marca": "DONALDSON",
+        "codigo": "P761108"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "562816"
+      },
+      {
+        "marca": "FILTROS TURBO",
+        "codigo": "TBH343"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "562817"
+      },
+      {
+        "marca": "FLEETGUARD",
+        "codigo": "HF7535"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "562818"
+      },
+      {
+        "marca": "FRAM",
+        "codigo": "PH8789"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "562820"
+      },
+      {
+        "marca": "FRAM",
+        "codigo": "PH8797A"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "1301696"
+      },
+      {
+        "marca": "GT PIECES ET SERVICES",
+        "codigo": "2240112"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "1304696"
+      },
+      {
+        "marca": "HENGST",
+        "codigo": "H24W05"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "1768402"
+      },
+      {
+        "marca": "INPECA",
+        "codigo": "SHB0424"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "2002705"
+      },
+      {
+        "marca": "JAPANPARTS",
+        "codigo": "FOBR108S"
+      },
+      {
+        "marca": "SOGEFI PRO/FRAM",
+        "codigo": "FT5433"
+      },
+      {
+        "marca": "KNECHT",
+        "codigo": "HC113"
+      },
+      {
+        "marca": "TECFIL",
+        "codigo": "PSH173"
+      },
+      {
+        "marca": "KS",
+        "codigo": "50013233"
+      },
+      {
+        "marca": "TECFIL",
+        "codigo": "PSL173"
+      },
+      {
+        "marca": "MAHLE",
+        "codigo": "5006815360"
+      },
+      {
+        "marca": "TODD GT",
+        "codigo": "2241063"
+      },
+      {
+        "marca": "MAHLE",
+        "codigo": "HC96"
+      },
+      {
+        "marca": "UFI",
+        "codigo": "8005900"
+      },
+      {
+        "marca": "MANN",
+        "codigo": "W9023/1"
+      },
+      {
+        "marca": "UNIFILTER",
+        "codigo": "UST343B10"
+      },
+      {
+        "marca": "MANN",
+        "codigo": "W930/14"
+      },
+      {
+        "marca": "VMC",
+        "codigo": "HF761108"
+      },
+      {
+        "marca": "MANN&HUMMEL",
+        "codigo": "W93014"
+      },
+      {
+        "marca": "VOX",
+        "codigo": "HIB3417"
+      },
+      {
+        "marca": "MANN&HUMMEL",
+        "codigo": "W93018"
+      },
+      {
+        "marca": "VOX",
+        "codigo": "HIB173"
+      },
+      {
+        "marca": "PARKER/RACOR",
+        "codigo": "RH34310B"
+      },
+      {
+        "marca": "WEGA",
+        "codigo": "WO762"
+      },
+      {
+        "marca": "PARKER/RACOR",
+        "codigo": "RH34310Q"
+      },
+      {
+        "marca": "ZF-BRASIL",
+        "codigo": "70131306"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "2825448"
+      }
+    ]
+  },
+  "DIFERENCIAL__SCANIA G320": {
+    "tipo": "Diferencial",
+    "modelos": [
+      "SCANIA G320"
+    ],
+    "codigos": [
+      {
+        "marca": "BALDWIN FILTERS",
+        "codigo": "BT9318"
+      },
+      {
+        "marca": "RAMA",
+        "codigo": "RT5504"
+      },
+      {
+        "marca": "BOSCH-REXROTH",
+        "codigo": "451103330"
+      },
+      {
+        "marca": "RANDON",
+        "codigo": "215000145"
+      },
+      {
+        "marca": "DONALDSON",
+        "codigo": "P761108"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "562816"
+      },
+      {
+        "marca": "FILTROS TURBO",
+        "codigo": "TBH343"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "562817"
+      },
+      {
+        "marca": "FLEETGUARD",
+        "codigo": "HF7535"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "562818"
+      },
+      {
+        "marca": "FRAM",
+        "codigo": "PH8789"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "562820"
+      },
+      {
+        "marca": "FRAM",
+        "codigo": "PH8797A"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "1301696"
+      },
+      {
+        "marca": "GT PIECES ET SERVICES",
+        "codigo": "2240112"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "1304696"
+      },
+      {
+        "marca": "HENGST",
+        "codigo": "H24W05"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "1768402"
+      },
+      {
+        "marca": "INPECA",
+        "codigo": "SHB0424"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "2002705"
+      },
+      {
+        "marca": "JAPANPARTS",
+        "codigo": "FOBR108S"
+      },
+      {
+        "marca": "SOGEFI PRO/FRAM",
+        "codigo": "FT5433"
+      },
+      {
+        "marca": "KNECHT",
+        "codigo": "HC113"
+      },
+      {
+        "marca": "TECFIL",
+        "codigo": "PSH173"
+      },
+      {
+        "marca": "KS",
+        "codigo": "50013233"
+      },
+      {
+        "marca": "TECFIL",
+        "codigo": "PSL173"
+      },
+      {
+        "marca": "MAHLE",
+        "codigo": "5006815360"
+      },
+      {
+        "marca": "TODD GT",
+        "codigo": "2241063"
+      },
+      {
+        "marca": "MAHLE",
+        "codigo": "HC96"
+      },
+      {
+        "marca": "UFI",
+        "codigo": "8005900"
+      },
+      {
+        "marca": "MANN",
+        "codigo": "W9023/1"
+      },
+      {
+        "marca": "UNIFILTER",
+        "codigo": "UST343B10"
+      },
+      {
+        "marca": "MANN",
+        "codigo": "W930/14"
+      },
+      {
+        "marca": "VMC",
+        "codigo": "HF761108"
+      },
+      {
+        "marca": "MANN&HUMMEL",
+        "codigo": "W93014"
+      },
+      {
+        "marca": "VOX",
+        "codigo": "HIB3417"
+      },
+      {
+        "marca": "MANN&HUMMEL",
+        "codigo": "W93018"
+      },
+      {
+        "marca": "VOX",
+        "codigo": "HIB173"
+      },
+      {
+        "marca": "PARKER/RACOR",
+        "codigo": "RH34310B"
+      },
+      {
+        "marca": "WEGA",
+        "codigo": "WO762"
+      },
+      {
+        "marca": "PARKER/RACOR",
+        "codigo": "RH34310Q"
+      },
+      {
+        "marca": "ZF-BRASIL",
+        "codigo": "70131306"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "2825448"
+      }
+    ]
+  },
+  "COMBUSTIBLE CON TRAMPA__SCANIA G320": {
+    "tipo": "Combustible con trampa",
+    "modelos": [
+      "SCANIA G320"
+    ],
+    "codigos": [
+      {
+        "marca": "DONALDSON",
+        "codigo": "X770914"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "1736251"
+      },
+      {
+        "marca": "FLEETGUARD",
+        "codigo": "MK13301"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "2022753"
+      },
+      {
+        "marca": "HENGST",
+        "codigo": "E103KPD197"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "2022754"
+      },
+      {
+        "marca": "JAPANPARTS",
+        "codigo": "FCBR62S"
+      },
+      {
+        "marca": "TECFIL",
+        "codigo": "PEC3063KIT"
+      },
+      {
+        "marca": "MAHLE EUR",
+        "codigo": "PU10003-2x"
+      },
+      {
+        "marca": "WEGA",
+        "codigo": "FCD-0972K"
+      },
+      {
+        "marca": "ORIGINAL FILTER",
+        "codigo": "OFC1802E"
+      },
+      {
+        "marca": "WEGA",
+        "codigo": "FCD0972K"
+      },
+      {
+        "marca": "scania",
+        "codigo": "1865227"
+      },
+      {
+        "marca": "scania",
+        "codigo": "2003505"
+      },
+      {
+        "marca": "BALDWIN",
+        "codigo": "PF9829KIT"
+      }
+    ]
+  },
+  "COMBUSTIBLE CON TRAMPA 2__SCANIA G320": {
+    "tipo": "Combustible con trampa 2",
+    "modelos": [
+      "SCANIA G320"
+    ],
+    "codigos": [
+      {
+        "marca": "mann",
+        "codigo": "WK 1080/6 x"
+      },
+      {
+        "marca": "mann",
+        "codigo": "WK 1080/7 x"
+      }
+    ]
+  },
+  "HABITÁCULO__SCANIA G320": {
+    "tipo": "Habitáculo",
+    "modelos": [
+      "SCANIA G320"
+    ],
+    "codigos": [
+      {
+        "marca": "scania",
+        "codigo": "209529"
+      }
+    ]
+  },
+  "SECADOR DE AIRE__SCANIA G320": {
+    "tipo": "Secador de aire",
+    "modelos": [
+      "SCANIA G320"
+    ],
+    "codigos": [
+      {
+        "marca": "ALCO",
+        "codigo": "SP8001"
+      },
+      {
+        "marca": "REDUX32",
+        "codigo": "ARD1179"
+      },
+      {
+        "marca": "ASAS",
+        "codigo": "SP1451"
+      },
+      {
+        "marca": "RENAULT VI",
+        "codigo": "5001843522"
+      },
+      {
+        "marca": "BALDWIN",
+        "codigo": "BA5375"
+      },
+      {
+        "marca": "RENAULT VI",
+        "codigo": "5021170077"
+      },
+      {
+        "marca": "CLEAN",
+        "codigo": "DE2203"
+      },
+      {
+        "marca": "RENAULT VI",
+        "codigo": "7485137862"
+      },
+      {
+        "marca": "DONALDSON",
+        "codigo": "P783753"
+      },
+      {
+        "marca": "SAKURA",
+        "codigo": "AC8301"
+      },
+      {
+        "marca": "FIAAM",
+        "codigo": "FT5651"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "1384549"
+      },
+      {
+        "marca": "FIAAM",
+        "codigo": "FTAQ5561"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "1455253"
+      },
+      {
+        "marca": "FIL FILTER",
+        "codigo": "ZP3110"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "1774598"
+      },
+      {
+        "marca": "FLEETGUARD",
+        "codigo": "AD27745"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "2081360"
+      },
+      {
+        "marca": "FRAM",
+        "codigo": "PFA9596"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "2307617"
+      },
+      {
+        "marca": "GT1",
+        "codigo": "TIG300W"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "2562323"
+      },
+      {
+        "marca": "HENGST",
+        "codigo": "T300W"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "57142020"
+      },
+      {
+        "marca": "INPECA",
+        "codigo": "SDU1375"
+      },
+      {
+        "marca": "SOGEFI PRO/FRAM",
+        "codigo": "FT6047"
+      },
+      {
+        "marca": "JAPANPARTS",
+        "codigo": "FDBR03"
+      },
+      {
+        "marca": "TECFIL",
+        "codigo": "DSF0203"
+      },
+      {
+        "marca": "KNECHT",
+        "codigo": "AL14"
+      },
+      {
+        "marca": "UFI",
+        "codigo": "2734400"
+      },
+      {
+        "marca": "KNORR-BREMSE",
+        "codigo": "K087957"
+      },
+      {
+        "marca": "VOX",
+        "codigo": "SDA0203"
+      },
+      {
+        "marca": "LEKANG",
+        "codigo": "79865"
+      },
+      {
+        "marca": "WABCO",
+        "codigo": "4324102232"
+      },
+      {
+        "marca": "LUBERFINER",
+        "codigo": "LFP5375"
+      },
+      {
+        "marca": "WABCO",
+        "codigo": "4324102261"
+      },
+      {
+        "marca": "MAHLE",
+        "codigo": "AL14"
+      },
+      {
+        "marca": "WABCO",
+        "codigo": "4324102262"
+      },
+      {
+        "marca": "MANN",
+        "codigo": "TB1374/3X"
+      },
+      {
+        "marca": "WABCO",
+        "codigo": "4324109272"
+      },
+      {
+        "marca": "MANN",
+        "codigo": "TB1394/3x"
+      },
+      {
+        "marca": "WABCO",
+        "codigo": "4324152202"
+      },
+      {
+        "marca": "ORIGINAL FILTER",
+        "codigo": "OFD9100"
+      },
+      {
+        "marca": "WABCO",
+        "codigo": "4324152207"
+      },
+      {
+        "marca": "PARKER",
+        "codigo": "RAD30012"
+      },
+      {
+        "marca": "WEGA",
+        "codigo": "DAF200"
+      }
+    ]
+  },
+  "DIRECCIÓN HIDRÁULICA__SCANIA G320": {
+    "tipo": "Dirección hidráulica",
+    "modelos": [
+      "SCANIA G320"
+    ],
+    "codigos": [
+      {
+        "marca": "B M W",
+        "codigo": "32411120717"
+      },
+      {
+        "marca": "Mahle",
+        "codigo": "HX15"
+      },
+      {
+        "marca": "Baldwin",
+        "codigo": "P106HD"
+      },
+      {
+        "marca": "Mann",
+        "codigo": "H601/10"
+      },
+      {
+        "marca": "Bosch",
+        "codigo": "1457429820"
+      },
+      {
+        "marca": "Mann",
+        "codigo": "H601/4"
+      },
+      {
+        "marca": "Bosch",
+        "codigo": "0986B01652"
+      },
+      {
+        "marca": "Maxion",
+        "codigo": "2889829"
+      },
+      {
+        "marca": "Bosch",
+        "codigo": "9455085000"
+      },
+      {
+        "marca": "Maxion",
+        "codigo": "2889829M91"
+      },
+      {
+        "marca": "Controil",
+        "codigo": "CHFO00009"
+      },
+      {
+        "marca": "Mercedes Benz",
+        "codigo": "1842225"
+      },
+      {
+        "marca": "Delkraft",
+        "codigo": "DHT600"
+      },
+      {
+        "marca": "Mercedes Benz",
+        "codigo": "1842325"
+      },
+      {
+        "marca": "Delphi",
+        "codigo": "EFL043"
+      },
+      {
+        "marca": "Mercedes Benz",
+        "codigo": "4660204"
+      },
+      {
+        "marca": "Donaldson",
+        "codigo": "P550309"
+      },
+      {
+        "marca": "Mercedes Benz",
+        "codigo": "4660604"
+      },
+      {
+        "marca": "Donaldson",
+        "codigo": "P779625"
+      },
+      {
+        "marca": "Mercedes Benz",
+        "codigo": "11842225"
+      },
+      {
+        "marca": "Donaldson",
+        "codigo": "P172890"
+      },
+      {
+        "marca": "Mercedes Benz",
+        "codigo": "A0001842225"
+      },
+      {
+        "marca": "Donaldson",
+        "codigo": "P779624"
+      },
+      {
+        "marca": "Nasa",
+        "codigo": "NH1904"
+      },
+      {
+        "marca": "Donsson",
+        "codigo": "G317"
+      },
+      {
+        "marca": "Original Filter",
+        "codigo": "OF6500E"
+      },
+      {
+        "marca": "Engesa",
+        "codigo": "2680500218"
+      },
+      {
+        "marca": "Original Filter",
+        "codigo": "OFH6500E"
+      },
+      {
+        "marca": "Envemo",
+        "codigo": "BD7F3K758A"
+      },
+      {
+        "marca": "Parker / Racor",
+        "codigo": "RP352"
+      },
+      {
+        "marca": "Envemo",
+        "codigo": "763214102"
+      },
+      {
+        "marca": "Purolator",
+        "codigo": "H1001"
+      },
+      {
+        "marca": "F Cross",
+        "codigo": "FH1020"
+      },
+      {
+        "marca": "Purolator",
+        "codigo": "L1068"
+      },
+      {
+        "marca": "Fam",
+        "codigo": "FH0601"
+      },
+      {
+        "marca": "Purolator",
+        "codigo": "PM5122"
+      },
+      {
+        "marca": "Fiat",
+        "codigo": "2966261"
+      },
+      {
+        "marca": "Purolator",
+        "codigo": "L1068"
+      },
+      {
+        "marca": "Fiat",
+        "codigo": "79850021"
+      },
+      {
+        "marca": "Renault",
+        "codigo": "5000814407"
+      },
+      {
+        "marca": "Fiat",
+        "codigo": "7632141102"
+      },
+      {
+        "marca": "Roma",
+        "codigo": "HD604"
+      },
+      {
+        "marca": "Fiat Iveco",
+        "codigo": "1902137"
+      },
+      {
+        "marca": "Sakura",
+        "codigo": "PO83010"
+      },
+      {
+        "marca": "Filesp",
+        "codigo": "FH1020"
+      },
+      {
+        "marca": "Scania",
+        "codigo": "153468"
+      },
+      {
+        "marca": "Filtran",
+        "codigo": "101HX15"
+      },
+      {
+        "marca": "Scania",
+        "codigo": "1953094"
+      },
+      {
+        "marca": "Fleetguard",
+        "codigo": "HF6162"
+      },
+      {
+        "marca": "Sogefi Pro / Fram",
+        "codigo": "FA4018A"
+      },
+      {
+        "marca": "Fleetguard",
+        "codigo": "LF595"
+      },
+      {
+        "marca": "Steyer",
+        "codigo": "480A470060"
+      },
+      {
+        "marca": "Ford",
+        "codigo": "BD7T3K758A"
+      },
+      {
+        "marca": "Steyer",
+        "codigo": "480A470748"
+      },
+      {
+        "marca": "Ford",
+        "codigo": "7632141102"
+      },
+      {
+        "marca": "Tecfil",
+        "codigo": "PH346"
+      },
+      {
+        "marca": "Ford",
+        "codigo": "T11145397"
+      },
+      {
+        "marca": "Turbo Filtros",
+        "codigo": "TH13200"
+      },
+      {
+        "marca": "Fram",
+        "codigo": "CH803APL"
+      },
+      {
+        "marca": "Tutela",
+        "codigo": "LH326"
+      },
+      {
+        "marca": "Franig",
+        "codigo": "HCP19"
+      },
+      {
+        "marca": "Ufi",
+        "codigo": "2540601"
+      },
+      {
+        "marca": "Gonher",
+        "codigo": "G162H"
+      },
+      {
+        "marca": "Unifilter",
+        "codigo": "UH352P"
+      },
+      {
+        "marca": "Hengst",
+        "codigo": "E10H02"
+      },
+      {
+        "marca": "Valmet",
+        "codigo": "216230"
+      },
+      {
+        "marca": "Hidrafil",
+        "codigo": "500027"
+      },
+      {
+        "marca": "Volkswagen",
+        "codigo": "T11145397"
+      },
+      {
+        "marca": "Inpeca",
+        "codigo": "J300E"
+      },
+      {
+        "marca": "Volkswagen",
+        "codigo": "7632141102"
+      },
+      {
+        "marca": "Inpeca",
+        "codigo": "J601E"
+      },
+      {
+        "marca": "Volvo",
+        "codigo": "349619"
+      },
+      {
+        "marca": "Inpeca",
+        "codigo": "SH0601"
+      },
+      {
+        "marca": "Volvo",
+        "codigo": "7632141102"
+      },
+      {
+        "marca": "Inpeca",
+        "codigo": "SEH0601"
+      },
+      {
+        "marca": "Vox",
+        "codigo": "HIC346"
+      },
+      {
+        "marca": "Irlemp",
+        "codigo": "PI352"
+      },
+      {
+        "marca": "Vox Antigo",
+        "codigo": "HIC5001"
+      },
+      {
+        "marca": "Japanparts",
+        "codigo": "FH346S"
+      },
+      {
+        "marca": "Wega",
+        "codigo": "WE00512"
+      },
+      {
+        "marca": "Komatsu",
+        "codigo": "1083258"
+      },
+      {
+        "marca": "Wega",
+        "codigo": "WEO0512"
+      },
+      {
+        "marca": "KS",
+        "codigo": "044OH"
+      },
+      {
+        "marca": "WIX",
+        "codigo": "W51314"
+      },
+      {
+        "marca": "KSPG",
+        "codigo": "50013044"
+      },
+      {
+        "marca": "WIX",
+        "codigo": "WL10145"
+      },
+      {
+        "marca": "Logan",
+        "codigo": "CH391X"
+      },
+      {
+        "marca": "Worthington",
+        "codigo": "137632144112"
+      },
+      {
+        "marca": "Luberfiner",
+        "codigo": "LH8504"
+      },
+      {
+        "marca": "Worthington",
+        "codigo": "76321411020"
+      },
+      {
+        "marca": "Lucas",
+        "codigo": "EFL043"
+      },
+      {
+        "marca": "ZF",
+        "codigo": "7632141102"
+      },
+      {
+        "marca": "Fleetguard",
+        "codigo": "LF4143"
+      }
+    ]
+  },
+  "ACEITE CENTRÍFUGO__SCANIA G320": {
+    "tipo": "Aceite centrífugo",
+    "modelos": [
+      "SCANIA G320"
+    ],
+    "codigos": [
+      {
+        "marca": "SCANIA",
+        "codigo": "2731875"
+      }
+    ]
+  },
+  "AIRE PRIMARIO__SCANIA P410": {
+    "tipo": "Aire primario",
+    "modelos": [
+      "SCANIA P410"
+    ],
+    "codigos": [
+      {
+        "marca": "2G",
+        "codigo": "3401000281"
+      },
+      {
+        "marca": "LUBER-FINER",
+        "codigo": "LAF8087"
+      },
+      {
+        "marca": "AGRIKOMP",
+        "codigo": "133000001"
+      },
+      {
+        "marca": "MAHLE",
+        "codigo": "LX712"
+      },
+      {
+        "marca": "AUTOMOTIV",
+        "codigo": "AE1093RS"
+      },
+      {
+        "marca": "MANN&HUMMEL",
+        "codigo": "C301500"
+      },
+      {
+        "marca": "BALDWIN FILTERS",
+        "codigo": "RS3726"
+      },
+      {
+        "marca": "ORIGINAL FILTER",
+        "codigo": "OFA3013R"
+      },
+      {
+        "marca": "BARRA",
+        "codigo": "BPA11141"
+      },
+      {
+        "marca": "PARKER",
+        "codigo": "AFI9282RS"
+      },
+      {
+        "marca": "BOSCH",
+        "codigo": "1457432283"
+      },
+      {
+        "marca": "RAMA",
+        "codigo": "RA2532"
+      },
+      {
+        "marca": "BOSCH-REXROTH",
+        "codigo": "1457433904"
+      },
+      {
+        "marca": "RANDON",
+        "codigo": "212009282"
+      },
+      {
+        "marca": "BURKHARDT",
+        "codigo": "100560"
+      },
+      {
+        "marca": "SAAB",
+        "codigo": "1335678"
+      },
+      {
+        "marca": "BURKHARDT",
+        "codigo": "100975"
+      },
+      {
+        "marca": "SAAB",
+        "codigo": "1421021"
+      },
+      {
+        "marca": "CLEAN",
+        "codigo": "MA794"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "1335648"
+      },
+      {
+        "marca": "COOPERS",
+        "codigo": "AEM2712"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "1335678"
+      },
+      {
+        "marca": "COOPERS",
+        "codigo": "AEM2712P778336"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "1421021"
+      },
+      {
+        "marca": "DELKRAFT",
+        "codigo": "DR1418"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "1421021"
+      },
+      {
+        "marca": "DONALDSON",
+        "codigo": "P778336"
+      },
+      {
+        "marca": "SCHNELL",
+        "codigo": "1015159"
+      },
+      {
+        "marca": "ENSKEDE HYDRAUL",
+        "codigo": "218336"
+      },
+      {
+        "marca": "SOFIMA",
+        "codigo": "S7358A"
+      },
+      {
+        "marca": "FAMEL",
+        "codigo": "FSR8008"
+      },
+      {
+        "marca": "SOGEFI PRO/FRAM",
+        "codigo": "FLI6931"
+      },
+      {
+        "marca": "FIAAM",
+        "codigo": "FLI6931"
+      },
+      {
+        "marca": "TBFIL",
+        "codigo": "AR1142"
+      },
+      {
+        "marca": "FILTROS TURBO",
+        "codigo": "TR1021"
+      },
+      {
+        "marca": "TEC-FIL",
+        "codigo": "ARS1188"
+      },
+      {
+        "marca": "FLEETGUARD",
+        "codigo": "AF25313"
+      },
+      {
+        "marca": "TURBO FILTRO",
+        "codigo": "TR1021"
+      },
+      {
+        "marca": "FRAM",
+        "codigo": "CA9414"
+      },
+      {
+        "marca": "UFI",
+        "codigo": "2735800"
+      },
+      {
+        "marca": "GPC",
+        "codigo": "FC790"
+      },
+      {
+        "marca": "UNIFILTER",
+        "codigo": "UARS7087P"
+      },
+      {
+        "marca": "HENGST",
+        "codigo": "E290L"
+      },
+      {
+        "marca": "UNIFILTER",
+        "codigo": "UA7087P"
+      },
+      {
+        "marca": "INPECA",
+        "codigo": "SRS1021"
+      },
+      {
+        "marca": "VMC",
+        "codigo": "AF778336"
+      },
+      {
+        "marca": "INPECA",
+        "codigo": "SRS7099"
+      },
+      {
+        "marca": "VOX",
+        "codigo": "HD1188"
+      },
+      {
+        "marca": "JCB",
+        "codigo": "SC1421021"
+      },
+      {
+        "marca": "VOX ANTIGO",
+        "codigo": "HD3407"
+      },
+      {
+        "marca": "KNECHT",
+        "codigo": "LX712"
+      },
+      {
+        "marca": "WEGA",
+        "codigo": "WAP359"
+      },
+      {
+        "marca": "LOESING",
+        "codigo": "20426"
+      },
+      {
+        "marca": "XANFIL",
+        "codigo": "XL2056"
+      },
+      {
+        "marca": "FRAM",
+        "codigo": "CA5760"
+      }
+    ]
+  },
+  "AIRE SECUNDARIO__SCANIA P410": {
+    "tipo": "Aire secundario",
+    "modelos": [
+      "SCANIA P410"
+    ],
+    "codigos": [
+      {
+        "marca": "BALDWIN",
+        "codigo": "RS5313"
+      },
+      {
+        "marca": "SAKURA",
+        "codigo": "A83090"
+      },
+      {
+        "marca": "DONALDSON",
+        "codigo": "P781228"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "1335680"
+      },
+      {
+        "marca": "FLEETGUARD",
+        "codigo": "AF25969"
+      },
+      {
+        "marca": "TECFIL",
+        "codigo": "ASR118"
+      },
+      {
+        "marca": "HENGST",
+        "codigo": "E1033LS"
+      },
+      {
+        "marca": "TURBO FILTROS",
+        "codigo": "TR781228"
+      },
+      {
+        "marca": "JCB",
+        "codigo": "SC1335680"
+      },
+      {
+        "marca": "WEGA",
+        "codigo": "WAP-359/S"
+      },
+      {
+        "marca": "MANN",
+        "codigo": "CF1720"
+      },
+      {
+        "marca": "WEGA",
+        "codigo": "WAP359/S"
+      },
+      {
+        "marca": "ORIGINAL FILTER",
+        "codigo": "OFA3013RS"
+      }
+    ]
+  },
+  "ACEITE__SCANIA P410": {
+    "tipo": "Aceite",
+    "modelos": [
+      "SCANIA P410"
+    ],
+    "codigos": [
+      {
+        "marca": "ALCO",
+        "codigo": "MD727"
+      },
+      {
+        "marca": "MANN",
+        "codigo": "HU10772Z"
+      },
+      {
+        "marca": "ASAS",
+        "codigo": "AS2515"
+      },
+      {
+        "marca": "ORIGINAL FILTER",
+        "codigo": "OFL0541E"
+      },
+      {
+        "marca": "BALDWIN",
+        "codigo": "P7502"
+      },
+      {
+        "marca": "PARKER",
+        "codigo": "REL816"
+      },
+      {
+        "marca": "BOSCH-REXROTH",
+        "codigo": "F026407100"
+      },
+      {
+        "marca": "PUROLATOR",
+        "codigo": "L1959"
+      },
+      {
+        "marca": "DELPHI",
+        "codigo": "EFL787"
+      },
+      {
+        "marca": "SAKURA",
+        "codigo": "EO83020"
+      },
+      {
+        "marca": "DONALDSON",
+        "codigo": "P953329"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "1742032"
+      },
+      {
+        "marca": "FIL FILTER",
+        "codigo": "MLE1578"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "1742037"
+      },
+      {
+        "marca": "FLEETGUARD",
+        "codigo": "LF17486"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "2022275"
+      },
+      {
+        "marca": "HENGST",
+        "codigo": "E123H01D194"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "2037556"
+      },
+      {
+        "marca": "HENGST",
+        "codigo": "E123HD194"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "2625884"
+      },
+      {
+        "marca": "JAPANPARTS",
+        "codigo": "FOBR70S"
+      },
+      {
+        "marca": "TECFIL",
+        "codigo": "PEL415"
+      },
+      {
+        "marca": "MAHLE",
+        "codigo": "OX562DECO"
+      },
+      {
+        "marca": "TEREX",
+        "codigo": "15504789"
+      },
+      {
+        "marca": "MANN",
+        "codigo": "HU1077/1X"
+      },
+      {
+        "marca": "UFI",
+        "codigo": "2518100"
+      },
+      {
+        "marca": "MANN",
+        "codigo": "HU1077/2Z"
+      },
+      {
+        "marca": "VOX",
+        "codigo": "LE415"
+      },
+      {
+        "marca": "MANN",
+        "codigo": "HU10771X"
+      },
+      {
+        "marca": "WEGA",
+        "codigo": "WOE471"
+      }
+    ]
+  },
+  "CAJA__SCANIA P410": {
+    "tipo": "Caja",
+    "modelos": [
+      "SCANIA P410"
+    ],
+    "codigos": [
+      {
+        "marca": "BALDWIN FILTERS",
+        "codigo": "BT9318"
+      },
+      {
+        "marca": "RAMA",
+        "codigo": "RT5504"
+      },
+      {
+        "marca": "BOSCH-REXROTH",
+        "codigo": "451103330"
+      },
+      {
+        "marca": "RANDON",
+        "codigo": "215000145"
+      },
+      {
+        "marca": "DONALDSON",
+        "codigo": "P761108"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "562816"
+      },
+      {
+        "marca": "FILTROS TURBO",
+        "codigo": "TBH343"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "562817"
+      },
+      {
+        "marca": "FLEETGUARD",
+        "codigo": "HF7535"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "562818"
+      },
+      {
+        "marca": "FRAM",
+        "codigo": "PH8789"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "562820"
+      },
+      {
+        "marca": "FRAM",
+        "codigo": "PH8797A"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "1301696"
+      },
+      {
+        "marca": "GT PIECES ET SERVICES",
+        "codigo": "2240112"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "1304696"
+      },
+      {
+        "marca": "HENGST",
+        "codigo": "H24W05"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "1768402"
+      },
+      {
+        "marca": "INPECA",
+        "codigo": "SHB0424"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "2002705"
+      },
+      {
+        "marca": "JAPANPARTS",
+        "codigo": "FOBR108S"
+      },
+      {
+        "marca": "SOGEFI PRO/FRAM",
+        "codigo": "FT5433"
+      },
+      {
+        "marca": "KNECHT",
+        "codigo": "HC113"
+      },
+      {
+        "marca": "TECFIL",
+        "codigo": "PSH173"
+      },
+      {
+        "marca": "KS",
+        "codigo": "50013233"
+      },
+      {
+        "marca": "TECFIL",
+        "codigo": "PSL173"
+      },
+      {
+        "marca": "MAHLE",
+        "codigo": "5006815360"
+      },
+      {
+        "marca": "TODD GT",
+        "codigo": "2241063"
+      },
+      {
+        "marca": "MAHLE",
+        "codigo": "HC96"
+      },
+      {
+        "marca": "UFI",
+        "codigo": "8005900"
+      },
+      {
+        "marca": "MANN",
+        "codigo": "W9023/1"
+      },
+      {
+        "marca": "UNIFILTER",
+        "codigo": "UST343B10"
+      },
+      {
+        "marca": "MANN",
+        "codigo": "W930/14"
+      },
+      {
+        "marca": "VMC",
+        "codigo": "HF761108"
+      },
+      {
+        "marca": "MANN&HUMMEL",
+        "codigo": "W93014"
+      },
+      {
+        "marca": "VOX",
+        "codigo": "HIB3417"
+      },
+      {
+        "marca": "MANN&HUMMEL",
+        "codigo": "W93018"
+      },
+      {
+        "marca": "VOX",
+        "codigo": "HIB173"
+      },
+      {
+        "marca": "PARKER/RACOR",
+        "codigo": "RH34310B"
+      },
+      {
+        "marca": "WEGA",
+        "codigo": "WO762"
+      },
+      {
+        "marca": "PARKER/RACOR",
+        "codigo": "RH34310Q"
+      },
+      {
+        "marca": "ZF-BRASIL",
+        "codigo": "70131306"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "2825448"
+      }
+    ]
+  },
+  "DIFERENCIAL__SCANIA P410": {
+    "tipo": "Diferencial",
+    "modelos": [
+      "SCANIA P410"
+    ],
+    "codigos": [
+      {
+        "marca": "BALDWIN FILTERS",
+        "codigo": "BT9318"
+      },
+      {
+        "marca": "RAMA",
+        "codigo": "RT5504"
+      },
+      {
+        "marca": "BOSCH-REXROTH",
+        "codigo": "451103330"
+      },
+      {
+        "marca": "RANDON",
+        "codigo": "215000145"
+      },
+      {
+        "marca": "DONALDSON",
+        "codigo": "P761108"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "562816"
+      },
+      {
+        "marca": "FILTROS TURBO",
+        "codigo": "TBH343"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "562817"
+      },
+      {
+        "marca": "FLEETGUARD",
+        "codigo": "HF7535"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "562818"
+      },
+      {
+        "marca": "FRAM",
+        "codigo": "PH8789"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "562820"
+      },
+      {
+        "marca": "FRAM",
+        "codigo": "PH8797A"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "1301696"
+      },
+      {
+        "marca": "GT PIECES ET SERVICES",
+        "codigo": "2240112"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "1304696"
+      },
+      {
+        "marca": "HENGST",
+        "codigo": "H24W05"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "1768402"
+      },
+      {
+        "marca": "INPECA",
+        "codigo": "SHB0424"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "2002705"
+      },
+      {
+        "marca": "JAPANPARTS",
+        "codigo": "FOBR108S"
+      },
+      {
+        "marca": "SOGEFI PRO/FRAM",
+        "codigo": "FT5433"
+      },
+      {
+        "marca": "KNECHT",
+        "codigo": "HC113"
+      },
+      {
+        "marca": "TECFIL",
+        "codigo": "PSH173"
+      },
+      {
+        "marca": "KS",
+        "codigo": "50013233"
+      },
+      {
+        "marca": "TECFIL",
+        "codigo": "PSL173"
+      },
+      {
+        "marca": "MAHLE",
+        "codigo": "5006815360"
+      },
+      {
+        "marca": "TODD GT",
+        "codigo": "2241063"
+      },
+      {
+        "marca": "MAHLE",
+        "codigo": "HC96"
+      },
+      {
+        "marca": "UFI",
+        "codigo": "8005900"
+      },
+      {
+        "marca": "MANN",
+        "codigo": "W9023/1"
+      },
+      {
+        "marca": "UNIFILTER",
+        "codigo": "UST343B10"
+      },
+      {
+        "marca": "MANN",
+        "codigo": "W930/14"
+      },
+      {
+        "marca": "VMC",
+        "codigo": "HF761108"
+      },
+      {
+        "marca": "MANN&HUMMEL",
+        "codigo": "W93014"
+      },
+      {
+        "marca": "VOX",
+        "codigo": "HIB3417"
+      },
+      {
+        "marca": "MANN&HUMMEL",
+        "codigo": "W93018"
+      },
+      {
+        "marca": "VOX",
+        "codigo": "HIB173"
+      },
+      {
+        "marca": "PARKER/RACOR",
+        "codigo": "RH34310B"
+      },
+      {
+        "marca": "WEGA",
+        "codigo": "WO762"
+      },
+      {
+        "marca": "PARKER/RACOR",
+        "codigo": "RH34310Q"
+      },
+      {
+        "marca": "ZF-BRASIL",
+        "codigo": "70131306"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "2825448"
+      }
+    ]
+  },
+  "COMBUSTIBLE CON TRAMPA__SCANIA P410": {
+    "tipo": "Combustible con trampa",
+    "modelos": [
+      "SCANIA P410"
+    ],
+    "codigos": [
+      {
+        "marca": "Alliance",
+        "codigo": "A30009002510097"
+      },
+      {
+        "marca": "Original Filter",
+        "codigo": "OFC1311E"
+      },
+      {
+        "marca": "Baldwin",
+        "codigo": "PF7896"
+      },
+      {
+        "marca": "Parker",
+        "codigo": "REC151"
+      },
+      {
+        "marca": "Bosch",
+        "codigo": "0986BF0250"
+      },
+      {
+        "marca": "Purolator",
+        "codigo": "F1114"
+      },
+      {
+        "marca": "Delphi",
+        "codigo": "HDF753"
+      },
+      {
+        "marca": "Sakura",
+        "codigo": "EF8301"
+      },
+      {
+        "marca": "Donaldson",
+        "codigo": "P550628"
+      },
+      {
+        "marca": "Scania",
+        "codigo": "1429059"
+      },
+      {
+        "marca": "Fleetguard",
+        "codigo": "FF5683"
+      },
+      {
+        "marca": "Scania",
+        "codigo": "1446432"
+      },
+      {
+        "marca": "Hengst",
+        "codigo": "E57KPD73"
+      },
+      {
+        "marca": "Scania",
+        "codigo": "1873018"
+      },
+      {
+        "marca": "Japanparts",
+        "codigo": "FCBR53S"
+      },
+      {
+        "marca": "Tecfil",
+        "codigo": "PEC3024"
+      },
+      {
+        "marca": "KSPG",
+        "codigo": "50014179"
+      },
+      {
+        "marca": "Vox",
+        "codigo": "CE3024"
+      },
+      {
+        "marca": "Mahle",
+        "codigo": "KX182/1D"
+      },
+      {
+        "marca": "Wega",
+        "codigo": "FCD0951"
+      },
+      {
+        "marca": "Mann",
+        "codigo": "PU941X"
+      },
+      {
+        "marca": "Wega",
+        "codigo": "FCD951"
+      },
+      {
+        "marca": "Master Parts",
+        "codigo": "MM100515"
+      },
+      {
+        "marca": "WIX",
+        "codigo": "WF10304"
+      }
+    ]
+  },
+  "COMBUSTIBLE__SCANIA P410": {
+    "tipo": "Combustible",
+    "modelos": [
+      "SCANIA P410"
+    ],
+    "codigos": [
+      {
+        "marca": "Acdelco",
+        "codigo": "01FBD009"
+      },
+      {
+        "marca": "Gonher",
+        "codigo": "GP1109"
+      },
+      {
+        "marca": "Baldwin",
+        "codigo": "BF7525"
+      },
+      {
+        "marca": "Hengst",
+        "codigo": "H178WK"
+      },
+      {
+        "marca": "Baldwin",
+        "codigo": "BF7632"
+      },
+      {
+        "marca": "Inpeca",
+        "codigo": "SCB0745"
+      },
+      {
+        "marca": "Baldwin",
+        "codigo": "BF7634"
+      },
+      {
+        "marca": "Japanparts",
+        "codigo": "FCBR183S"
+      },
+      {
+        "marca": "Bosch",
+        "codigo": "986450711"
+      },
+      {
+        "marca": "Knecht",
+        "codigo": "KC28"
+      },
+      {
+        "marca": "Caterpillar",
+        "codigo": "1R0759"
+      },
+      {
+        "marca": "Komatsu",
+        "codigo": "6003119120"
+      },
+      {
+        "marca": "Caterpillar",
+        "codigo": "1R0751"
+      },
+      {
+        "marca": "Luber Finer",
+        "codigo": "LFF4783"
+      },
+      {
+        "marca": "Delkraft",
+        "codigo": "DSC711"
+      },
+      {
+        "marca": "Luberfiner",
+        "codigo": "LFF4783"
+      },
+      {
+        "marca": "Delphi",
+        "codigo": "HDF407"
+      },
+      {
+        "marca": "Mahle",
+        "codigo": "KC134"
+      },
+      {
+        "marca": "Donaldson",
+        "codigo": "P551315"
+      },
+      {
+        "marca": "Mann",
+        "codigo": "WK950/3"
+      },
+      {
+        "marca": "Donaldson",
+        "codigo": "P551312"
+      },
+      {
+        "marca": "Mann",
+        "codigo": "WK850/3"
+      },
+      {
+        "marca": "Donsson",
+        "codigo": "GS014"
+      },
+      {
+        "marca": "Original filter",
+        "codigo": "OFC1025B"
+      },
+      {
+        "marca": "F Cross",
+        "codigo": "F158/5"
+      },
+      {
+        "marca": "Parker",
+        "codigo": "PERI355"
+      },
+      {
+        "marca": "Fam",
+        "codigo": "FC751"
+      },
+      {
+        "marca": "Partmo",
+        "codigo": "A1P2299"
+      },
+      {
+        "marca": "Fil Filter",
+        "codigo": "ZP518AF"
+      },
+      {
+        "marca": "Sakura",
+        "codigo": "FC5504"
+      },
+      {
+        "marca": "Fleetguard",
+        "codigo": "FF105"
+      },
+      {
+        "marca": "Tecfil",
+        "codigo": "PSC745"
+      },
+      {
+        "marca": "Fleetguard",
+        "codigo": "FF5321"
+      },
+      {
+        "marca": "Unifilter",
+        "codigo": "USC745"
+      },
+      {
+        "marca": "Fleetguard",
+        "codigo": "FF5245"
+      },
+      {
+        "marca": "Vox",
+        "codigo": "FBD745"
+      },
+      {
+        "marca": "Fleetguard",
+        "codigo": "FF5324"
+      },
+      {
+        "marca": "Vox Antigo",
+        "codigo": "FBD2432"
+      },
+      {
+        "marca": "Fram",
+        "codigo": "P8264"
+      },
+      {
+        "marca": "Wega",
+        "codigo": "FCD2040"
+      },
+      {
+        "marca": "Franig",
+        "codigo": "HCX3380"
+      },
+      {
+        "marca": "Wix",
+        "codigo": "W33377"
+      },
+      {
+        "marca": "CATERPILLAR",
+        "codigo": "1R-0751"
+      }
+    ]
+  },
+  "HABITÁCULO__SCANIA P410": {
+    "tipo": "Habitáculo",
+    "modelos": [
+      "SCANIA P410"
+    ],
+    "codigos": [
+      {
+        "marca": "DELPHI",
+        "codigo": "CKF10029"
+      },
+      {
+        "marca": "MICRON AIR",
+        "codigo": "MP9919"
+      },
+      {
+        "marca": "DONALDSON",
+        "codigo": "P753338"
+      },
+      {
+        "marca": "MWM",
+        "codigo": "MM100532"
+      },
+      {
+        "marca": "DONALDSON",
+        "codigo": "P957866"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "1913500"
+      },
+      {
+        "marca": "FILTROS BRASIL",
+        "codigo": "FB025010"
+      },
+      {
+        "marca": "SOGEFI PRO/FRAM",
+        "codigo": "PC8289"
+      },
+      {
+        "marca": "FILTROS MIL",
+        "codigo": "FC5004"
+      },
+      {
+        "marca": "TECFIL",
+        "codigo": "ACP177"
+      },
+      {
+        "marca": "FRAM",
+        "codigo": "CF10860"
+      },
+      {
+        "marca": "TURBO FILTROS",
+        "codigo": "TAC4305"
+      },
+      {
+        "marca": "HENGST",
+        "codigo": "E2960LI"
+      },
+      {
+        "marca": "UFI",
+        "codigo": "5328900"
+      },
+      {
+        "marca": "JAPANPARTS",
+        "codigo": "FAASC02"
+      },
+      {
+        "marca": "VOX",
+        "codigo": "FAC177"
+      },
+      {
+        "marca": "M. BENZ",
+        "codigo": "A30083501470097"
+      },
+      {
+        "marca": "WEGA",
+        "codigo": "AKX-4528"
+      },
+      {
+        "marca": "MAHLE",
+        "codigo": "LA702"
+      },
+      {
+        "marca": "WEGA",
+        "codigo": "AKX4528"
+      },
+      {
+        "marca": "MANN",
+        "codigo": "CU37001"
+      }
+    ]
+  },
+  "SECADOR DE AIRE__SCANIA P410": {
+    "tipo": "Secador de aire",
+    "modelos": [
+      "SCANIA P410"
+    ],
+    "codigos": [
+      {
+        "marca": "ALCO",
+        "codigo": "SP8001"
+      },
+      {
+        "marca": "REDUX32",
+        "codigo": "ARD1179"
+      },
+      {
+        "marca": "ASAS",
+        "codigo": "SP1451"
+      },
+      {
+        "marca": "RENAULT VI",
+        "codigo": "5001843522"
+      },
+      {
+        "marca": "BALDWIN",
+        "codigo": "BA5375"
+      },
+      {
+        "marca": "RENAULT VI",
+        "codigo": "5021170077"
+      },
+      {
+        "marca": "CLEAN",
+        "codigo": "DE2203"
+      },
+      {
+        "marca": "RENAULT VI",
+        "codigo": "7485137862"
+      },
+      {
+        "marca": "DONALDSON",
+        "codigo": "P783753"
+      },
+      {
+        "marca": "SAKURA",
+        "codigo": "AC8301"
+      },
+      {
+        "marca": "FIAAM",
+        "codigo": "FT5651"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "1384549"
+      },
+      {
+        "marca": "FIAAM",
+        "codigo": "FTAQ5561"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "1455253"
+      },
+      {
+        "marca": "FIL FILTER",
+        "codigo": "ZP3110"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "1774598"
+      },
+      {
+        "marca": "FLEETGUARD",
+        "codigo": "AD27745"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "2081360"
+      },
+      {
+        "marca": "FRAM",
+        "codigo": "PFA9596"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "2307617"
+      },
+      {
+        "marca": "GT1",
+        "codigo": "TIG300W"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "2562323"
+      },
+      {
+        "marca": "HENGST",
+        "codigo": "T300W"
+      },
+      {
+        "marca": "SCANIA",
+        "codigo": "57142020"
+      },
+      {
+        "marca": "INPECA",
+        "codigo": "SDU1375"
+      },
+      {
+        "marca": "SOGEFI PRO/FRAM",
+        "codigo": "FT6047"
+      },
+      {
+        "marca": "JAPANPARTS",
+        "codigo": "FDBR03"
+      },
+      {
+        "marca": "TECFIL",
+        "codigo": "DSF0203"
+      },
+      {
+        "marca": "KNECHT",
+        "codigo": "AL14"
+      },
+      {
+        "marca": "UFI",
+        "codigo": "2734400"
+      },
+      {
+        "marca": "KNORR-BREMSE",
+        "codigo": "K087957"
+      },
+      {
+        "marca": "VOX",
+        "codigo": "SDA0203"
+      },
+      {
+        "marca": "LEKANG",
+        "codigo": "79865"
+      },
+      {
+        "marca": "WABCO",
+        "codigo": "4324102232"
+      },
+      {
+        "marca": "LUBERFINER",
+        "codigo": "LFP5375"
+      },
+      {
+        "marca": "WABCO",
+        "codigo": "4324102261"
+      },
+      {
+        "marca": "MAHLE",
+        "codigo": "AL14"
+      },
+      {
+        "marca": "WABCO",
+        "codigo": "4324102262"
+      },
+      {
+        "marca": "MANN",
+        "codigo": "TB1374/3X"
+      },
+      {
+        "marca": "WABCO",
+        "codigo": "4324109272"
+      },
+      {
+        "marca": "MANN",
+        "codigo": "TB1394/3x"
+      },
+      {
+        "marca": "WABCO",
+        "codigo": "4324152202"
+      },
+      {
+        "marca": "ORIGINAL FILTER",
+        "codigo": "OFD9100"
+      },
+      {
+        "marca": "WABCO",
+        "codigo": "4324152207"
+      },
+      {
+        "marca": "PARKER",
+        "codigo": "RAD30012"
+      },
+      {
+        "marca": "WEGA",
+        "codigo": "DAF200"
       }
     ]
   }
