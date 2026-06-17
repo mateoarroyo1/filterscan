@@ -18223,162 +18223,6 @@
       }
     ]
   },
-  "COMBUSTIBLE CON TRAMPA 2__EXCAVADORA CATERPILLAR 320D2 GC": {
-    "tipo": "Combustible con trampa 2",
-    "modelos": [
-      "EXCAVADORA CATERPILLAR 320D2 GC"
-    ],
-    "codigos": [
-      {
-        "marca": "BALDWIN",
-        "codigo": "BF46071"
-      },
-      {
-        "marca": "PARKER /RACOR",
-        "codigo": "R12010MBAQII"
-      },
-      {
-        "marca": "DONALDSON",
-        "codigo": "P551086"
-      },
-      {
-        "marca": "PUROLATOR",
-        "codigo": "F1085"
-      },
-      {
-        "marca": "DONALDSON",
-        "codigo": "P502461"
-      },
-      {
-        "marca": "PUROLATOR",
-        "codigo": "F1086"
-      },
-      {
-        "marca": "FRAM",
-        "codigo": "PS9026"
-      },
-      {
-        "marca": "RAMA",
-        "codigo": "R90AMB"
-      },
-      {
-        "marca": "GONHER",
-        "codigo": "GPP1060"
-      },
-      {
-        "marca": "SOGEFI PRO/FRAM",
-        "codigo": "FT6559"
-      },
-      {
-        "marca": "HENGST",
-        "codigo": "H705WK"
-      },
-      {
-        "marca": "TECFIL",
-        "codigo": "PSD480"
-      },
-      {
-        "marca": "INPECA",
-        "codigo": "SSB0480"
-      },
-      {
-        "marca": "TECFIL",
-        "codigo": "CSD02"
-      },
-      {
-        "marca": "INPECA",
-        "codigo": "SSB480"
-      },
-      {
-        "marca": "TURBO FILTROS",
-        "codigo": "TBC480i"
-      },
-      {
-        "marca": "IVECO",
-        "codigo": "7147701"
-      },
-      {
-        "marca": "TURBO FILTROS",
-        "codigo": "TBC480"
-      },
-      {
-        "marca": "JAPANPARTS",
-        "codigo": "FCBR123S"
-      },
-      {
-        "marca": "UNIFILTER",
-        "codigo": "UR90MB"
-      },
-      {
-        "marca": "KS",
-        "codigo": "50013473"
-      },
-      {
-        "marca": "UNIFILTER",
-        "codigo": "R90AMB"
-      },
-      {
-        "marca": "MAHLE",
-        "codigo": "KC125"
-      },
-      {
-        "marca": "UNIFILTER",
-        "codigo": "RK90MB"
-      },
-      {
-        "marca": "MANN",
-        "codigo": "WK1050/1"
-      },
-      {
-        "marca": "VOX",
-        "codigo": "FBS480"
-      },
-      {
-        "marca": "MANN",
-        "codigo": "WK10501"
-      },
-      {
-        "marca": "VOX ANTIGO",
-        "codigo": "FBS3053"
-      },
-      {
-        "marca": "MERCEDES-BENZ",
-        "codigo": "45700920001"
-      },
-      {
-        "marca": "WEGA",
-        "codigo": "FCD3090/1"
-      },
-      {
-        "marca": "MERCEDES-BENZ",
-        "codigo": "A4570920001"
-      },
-      {
-        "marca": "WIX",
-        "codigo": "WF10288"
-      },
-      {
-        "marca": "MERCEDES-BENZ",
-        "codigo": "A4570920001KZ"
-      },
-      {
-        "marca": "WSUZANO",
-        "codigo": "WSA1050/1"
-      },
-      {
-        "marca": "MERCEDES-BENZ",
-        "codigo": "4570920001"
-      },
-      {
-        "marca": "ZF-BRASIL",
-        "codigo": "70131010"
-      },
-      {
-        "marca": "ORIGINAL FILTER",
-        "codigo": "OFC1534S"
-      }
-    ]
-  },
   "ACEITE__EXCAVADORA CATERPILLAR 320D2 GC": {
     "tipo": "Aceite",
     "modelos": [
@@ -49262,6 +49106,162 @@
       {
         "marca": "wix",
         "codigo": "33532"
+      }
+    ]
+  },
+  "COMBUSTIBLE (REFORMA)__EXCAVADORA CATERPILLAR 320D2 GC": {
+    "tipo": "Combustible (Reforma)",
+    "modelos": [
+      "EXCAVADORA CATERPILLAR 320D2 GC"
+    ],
+    "codigos": [
+      {
+        "marca": "BALDWIN",
+        "codigo": "BF46071"
+      },
+      {
+        "marca": "PARKER /RACOR",
+        "codigo": "R12010MBAQII"
+      },
+      {
+        "marca": "DONALDSON",
+        "codigo": "P551086"
+      },
+      {
+        "marca": "PUROLATOR",
+        "codigo": "F1085"
+      },
+      {
+        "marca": "DONALDSON",
+        "codigo": "P502461"
+      },
+      {
+        "marca": "PUROLATOR",
+        "codigo": "F1086"
+      },
+      {
+        "marca": "FRAM",
+        "codigo": "PS9026"
+      },
+      {
+        "marca": "RAMA",
+        "codigo": "R90AMB"
+      },
+      {
+        "marca": "GONHER",
+        "codigo": "GPP1060"
+      },
+      {
+        "marca": "SOGEFI PRO/FRAM",
+        "codigo": "FT6559"
+      },
+      {
+        "marca": "HENGST",
+        "codigo": "H705WK"
+      },
+      {
+        "marca": "TECFIL",
+        "codigo": "PSD480"
+      },
+      {
+        "marca": "INPECA",
+        "codigo": "SSB0480"
+      },
+      {
+        "marca": "TECFIL",
+        "codigo": "CSD02"
+      },
+      {
+        "marca": "INPECA",
+        "codigo": "SSB480"
+      },
+      {
+        "marca": "TURBO FILTROS",
+        "codigo": "TBC480i"
+      },
+      {
+        "marca": "IVECO",
+        "codigo": "7147701"
+      },
+      {
+        "marca": "TURBO FILTROS",
+        "codigo": "TBC480"
+      },
+      {
+        "marca": "JAPANPARTS",
+        "codigo": "FCBR123S"
+      },
+      {
+        "marca": "UNIFILTER",
+        "codigo": "UR90MB"
+      },
+      {
+        "marca": "KS",
+        "codigo": "50013473"
+      },
+      {
+        "marca": "UNIFILTER",
+        "codigo": "R90AMB"
+      },
+      {
+        "marca": "MAHLE",
+        "codigo": "KC125"
+      },
+      {
+        "marca": "UNIFILTER",
+        "codigo": "RK90MB"
+      },
+      {
+        "marca": "MANN",
+        "codigo": "WK1050/1"
+      },
+      {
+        "marca": "VOX",
+        "codigo": "FBS480"
+      },
+      {
+        "marca": "MANN",
+        "codigo": "WK10501"
+      },
+      {
+        "marca": "VOX ANTIGO",
+        "codigo": "FBS3053"
+      },
+      {
+        "marca": "MERCEDES-BENZ",
+        "codigo": "45700920001"
+      },
+      {
+        "marca": "WEGA",
+        "codigo": "FCD3090/1"
+      },
+      {
+        "marca": "MERCEDES-BENZ",
+        "codigo": "A4570920001"
+      },
+      {
+        "marca": "WIX",
+        "codigo": "WF10288"
+      },
+      {
+        "marca": "MERCEDES-BENZ",
+        "codigo": "A4570920001KZ"
+      },
+      {
+        "marca": "WSUZANO",
+        "codigo": "WSA1050/1"
+      },
+      {
+        "marca": "MERCEDES-BENZ",
+        "codigo": "4570920001"
+      },
+      {
+        "marca": "ZF-BRASIL",
+        "codigo": "70131010"
+      },
+      {
+        "marca": "ORIGINAL FILTER",
+        "codigo": "OFC1534S"
       }
     ]
   }
