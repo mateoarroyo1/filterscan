@@ -22070,6 +22070,10 @@
       {
         "marca": "DARMET",
         "codigo": "EC-823"
+      },
+      {
+        "marca": "DONALDSON",
+        "codigo": "P502157"
       }
     ]
   },
@@ -37662,6 +37666,10 @@
       {
         "marca": "DARMET",
         "codigo": "VP1748"
+      },
+      {
+        "marca": "DARMET",
+        "codigo": "VP-1748"
       }
     ]
   },
@@ -37970,6 +37978,10 @@
       {
         "marca": "DARMET",
         "codigo": "VP1748/S"
+      },
+      {
+        "marca": "DARMER",
+        "codigo": "VP-1748/S"
       }
     ]
   },
@@ -42042,6 +42054,10 @@
       {
         "marca": "SCANIA",
         "codigo": "2825448"
+      },
+      {
+        "marca": "WIX",
+        "codigo": "WL57159"
       }
     ]
   },
@@ -42222,6 +42238,10 @@
       {
         "marca": "SCANIA",
         "codigo": "2825448"
+      },
+      {
+        "marca": "WIX",
+        "codigo": "WL57159"
       }
     ]
   },
@@ -43138,6 +43158,10 @@
       {
         "marca": "SCANIA",
         "codigo": "2825448"
+      },
+      {
+        "marca": "WIX",
+        "codigo": "WL57159"
       }
     ]
   },
@@ -43318,6 +43342,10 @@
       {
         "marca": "SCANIA",
         "codigo": "2825448"
+      },
+      {
+        "marca": "WIX",
+        "codigo": "WL57159"
       }
     ]
   },
@@ -43966,6 +43994,10 @@
       {
         "marca": "SCANIA",
         "codigo": "2825448"
+      },
+      {
+        "marca": "WIX",
+        "codigo": "WL57159"
       }
     ]
   },
@@ -44146,6 +44178,10 @@
       {
         "marca": "SCANIA",
         "codigo": "2825448"
+      },
+      {
+        "marca": "WIX",
+        "codigo": "WL57159"
       }
     ]
   },
@@ -45422,6 +45458,10 @@
       {
         "marca": "SCANIA",
         "codigo": "2825448"
+      },
+      {
+        "marca": "WIX",
+        "codigo": "WL57159"
       }
     ]
   },
@@ -45602,6 +45642,10 @@
       {
         "marca": "SCANIA",
         "codigo": "2825448"
+      },
+      {
+        "marca": "WIX",
+        "codigo": "WL57159"
       }
     ]
   },
