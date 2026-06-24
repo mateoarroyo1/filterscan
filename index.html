@@ -1350,7 +1350,7 @@ function reqGenerarPDF() {
   var movil       = document.getElementById('reqMovil').value.trim() || '—';
   var solicitante = document.getElementById('reqSolicitante').value.trim() || '—';
   var obs         = document.getElementById('reqObs').value.trim();
-  var checked     = document.querySelectorAll('#reqChecks input:checked');
+  var allChecked  = document.querySelectorAll('#reqChecks input:checked,#reqCustomChecks input:checked'); var checked = allChecked;
   if (!checked.length) return;
   var filtros = [];
   for (var i = 0; i < checked.length; i++) filtros.push(checked[i].value);
@@ -1368,12 +1368,36 @@ function reqGenerarPDF() {
     '<div class="pdf-row"><div class="pdf-field"><div class="pdf-field-label">Veh\u00edculo</div><div class="pdf-field-value">' + modelo + '</div></div>' +
     '<div class="pdf-field"><div class="pdf-field-label">M\u00f3vil</div><div class="pdf-field-value">' + movil + '</div></div></div>' +
     '<div class="pdf-row"><div class="pdf-field"><div class="pdf-field-label">Solicitado por</div><div class="pdf-field-value">' + solicitante + '</div></div></div>' +
-    '<div class="pdf-filtros-title">Filtros a preparar</div>' + filtrosHTML + obsHTML +
-    '<div class="pdf-footer">Inventra &middot; Sistema de gesti\u00f3n de filtros</div>';
+    '<div class="pdf-filtros-title">Insumos a preparar</div>' + filtrosHTML + obsHTML +
+    '';
   window.print();
 }
 
 // reqInit called after DB loads
+
+
+function reqAgregarItem() {
+  var input = document.getElementById('reqCustomItem');
+  var val = input.value.trim();
+  if (!val) return;
+  var checks = document.getElementById('reqCustomChecks');
+  var id = 'chk_custom_' + Date.now();
+  var div = document.createElement('div');
+  div.className = 'req-check selected';
+  div.innerHTML = '<input type="checkbox" id="' + id + '" value="' + val + '" checked>' +
+    '<label class="req-check-label" for="' + id + '">' + val + '</label>' +
+    '<button onclick="this.parentElement.remove();document.getElementById('reqBtn').disabled=!document.querySelectorAll('#reqChecks input:checked,#reqCustomChecks input:checked').length;" ' +
+    'style="background:none;border:none;color:var(--muted);font-size:18px;cursor:pointer;padding:0;">✕</button>';
+  div.addEventListener('click', function(e) {
+    if (e.target.tagName === 'BUTTON') return;
+    if (e.target.tagName !== 'INPUT') div.querySelector('input').click();
+    div.classList.toggle('selected', div.querySelector('input').checked);
+    document.getElementById('reqBtn').disabled = !document.querySelectorAll('#reqChecks input:checked,#reqCustomChecks input:checked').length;
+  });
+  checks.appendChild(div);
+  input.value = '';
+  document.getElementById('reqBtn').disabled = false;
+}
 
 </script>
 <!-- PAGE: HISTORIAL -->
@@ -1425,10 +1449,16 @@ function reqGenerarPDF() {
     <input class="req-input" id="reqMovil" type="text" placeholder="Ej: MV45, Unidad 03...">
     <div class="req-label">Solicitado por</div>
     <input class="req-input" id="reqSolicitante" type="text" placeholder="Nombre de quien solicita">
-    <div class="req-label" id="reqFiltrosLabel" style="display:none">Filtros a preparar</div>
+    <div class="req-label" id="reqFiltrosLabel" style="display:none">Insumos a preparar</div>
     <div class="req-checks" id="reqChecks"></div>
     <div class="req-label">Observaciones / Adicionales</div>
     <textarea class="req-textarea" id="reqObs" placeholder="Ej: Revisar trampa de agua..."></textarea>
+    <div class="req-label">Agregar insumo personalizado</div>
+    <div style="display:flex;gap:8px;margin-bottom:4px;">
+      <input class="req-input" id="reqCustomItem" type="text" placeholder="Ej: Trampa de agua, correa..." style="flex:1;">
+      <button onclick="reqAgregarItem()" style="width:48px;height:52px;background:var(--orange);color:#fff;border:none;border-radius:12px;font-size:24px;cursor:pointer;flex-shrink:0;">+</button>
+    </div>
+    <div class="req-checks" id="reqCustomChecks" style="margin-bottom:8px;"></div>
     <div style="height:16px"></div>
     <button class="req-btn" id="reqBtn" onclick="reqGenerarPDF()" disabled>&#128424; GENERAR E IMPRIMIR</button>
   </div>
