@@ -311,17 +311,14 @@ body { font-family: var(--f); background: var(--bg); color: var(--text); min-hei
 .req-input { width: 100%; padding: 14px 16px; border: 2px solid var(--border); border-radius: 12px; font-size: 15px; background: var(--panel); color: var(--text); box-sizing: border-box; }
 .req-input:focus { border-color: var(--orange); outline: none; }
 .req-checks { display: flex; flex-direction: column; gap: 10px; }
-.req-check { display: flex; align-items: center; gap: 12px; padding: 14px 16px; border: 2px solid var(--border); border-radius: 12px; background: var(--panel); cursor: pointer; transition: border-color .15s, background .15s; }
+.req-check { display: flex; align-items: center; gap: 12px; padding: 14px 16px; border: 2px solid var(--border); border-radius: 12px; background: var(--panel); cursor: pointer; transition: border-color .15s; }
 .req-check.selected { border-color: var(--orange); background: var(--orange-light); }
 .req-check input[type=checkbox] { width: 20px; height: 20px; accent-color: var(--orange); cursor: pointer; flex-shrink: 0; }
 .req-check-label { font-size: 15px; font-weight: 700; flex: 1; }
-.req-num { font-size: 12px; color: var(--muted); font-weight: 600; }
 .req-btn { width: 100%; padding: 16px; background: var(--orange); color: #fff; border: none; border-radius: 12px; font-size: 16px; font-weight: 900; cursor: pointer; letter-spacing: 0.5px; margin-top: 8px; }
 .req-btn:disabled { background: var(--border); color: var(--muted); cursor: not-allowed; }
 .req-textarea { width: 100%; padding: 14px 16px; border: 2px solid var(--border); border-radius: 12px; font-size: 14px; background: var(--panel); color: var(--text); box-sizing: border-box; min-height: 80px; resize: vertical; font-family: inherit; }
 .req-textarea:focus { border-color: var(--orange); outline: none; }
-
-/* ── PDF PRINT ── */
 @media print {
   body > *:not(#pdf-print) { display: none !important; }
   #pdf-print { display: block !important; padding: 24px; font-family: Arial, sans-serif; }
@@ -382,18 +379,18 @@ body { font-family: var(--f); background: var(--bg); color: var(--text); min-hei
         <div class="d-sub">Ver todas las existencias</div>
       </div>
     </button>
-    <button class="d-item" id="di-historial" onclick="goPage('historial')">
-      <div class="d-icon">📋</div>
-      <div>
-        <div class="d-label">Historial</div>
-        <div class="d-sub">Movimientos registrados</div>
-      </div>
-    </button>
     <button class="d-item" id="di-requisicion" onclick="goPage('requisicion')">
       <div class="d-icon">🗒️</div>
       <div>
         <div class="d-label">Requisición</div>
         <div class="d-sub">Generar pedido de filtros</div>
+      </div>
+    </button>
+    <button class="d-item" id="di-historial" onclick="goPage('historial')">
+      <div class="d-icon">📋</div>
+      <div>
+        <div class="d-label">Historial</div>
+        <div class="d-sub">Movimientos registrados</div>
       </div>
     </button>
   </div>
@@ -1298,108 +1295,86 @@ function lev(a,b) {
 
 // ── REQUISICIÓN ──
 function reqInit() {
-  const sel = document.getElementById('reqModelo');
+  var sel = document.getElementById('reqModelo');
   if (sel.options.length > 1) return;
-  const modelos = [...new Set(Object.values(DB).flatMap(v => v.modelos))].sort();
-  modelos.forEach(m => {
-    const o = document.createElement('option');
-    o.value = m; o.textContent = m;
+  var modelos = [];
+  var seen = {};
+  for (var key in DB) {
+    var v = DB[key];
+    for (var i = 0; i < v.modelos.length; i++) {
+      if (!seen[v.modelos[i]]) { seen[v.modelos[i]] = true; modelos.push(v.modelos[i]); }
+    }
+  }
+  modelos.sort();
+  for (var i = 0; i < modelos.length; i++) {
+    var o = document.createElement('option');
+    o.value = modelos[i]; o.textContent = modelos[i];
     sel.appendChild(o);
-  });
+  }
 }
 
 function reqCargarFiltros() {
-  const modelo = document.getElementById('reqModelo').value;
-  const checks = document.getElementById('reqChecks');
-  const label  = document.getElementById('reqFiltrosLabel');
-  const btn    = document.getElementById('reqBtn');
+  var modelo = document.getElementById('reqModelo').value;
+  var checks = document.getElementById('reqChecks');
+  var label  = document.getElementById('reqFiltrosLabel');
+  var btn    = document.getElementById('reqBtn');
   checks.innerHTML = '';
-
   if (!modelo) { label.style.display = 'none'; btn.disabled = true; return; }
-
-  const tipos = [];
-  for (const key in DB) {
-    const v = DB[key];
-    if (v.modelos.includes(modelo) && v.codigos.length > 0) {
-      tipos.push(v.tipo);
-    }
+  var tipos = [];
+  for (var key in DB) {
+    var v = DB[key];
+    if (v.modelos.indexOf(modelo) !== -1 && v.codigos.length > 0) tipos.push(v.tipo);
   }
   tipos.sort();
-
   if (!tipos.length) { label.style.display = 'none'; btn.disabled = true; return; }
   label.style.display = 'block';
-
-  tipos.forEach(tipo => {
-    const div = document.createElement('div');
-    div.className = 'req-check';
-    div.innerHTML = \`<input type="checkbox" id="chk_\${tipo.replace(/[^a-z0-9]/gi,'_')}" value="\${tipo}">
-      <label class="req-check-label" for="chk_\${tipo.replace(/[^a-z0-9]/gi,'_')}">\${tipo}</label>\`;
-    div.onclick = (e) => {
-      if (e.target.tagName !== 'INPUT') div.querySelector('input').click();
-      div.classList.toggle('selected', div.querySelector('input').checked);
-      btn.disabled = !checks.querySelector('input:checked');
-    };
-    checks.appendChild(div);
-  });
+  for (var i = 0; i < tipos.length; i++) {
+    (function(tipo) {
+      var id = 'chk_' + tipo.replace(/[^a-z0-9]/gi, '_');
+      var div = document.createElement('div');
+      div.className = 'req-check';
+      div.innerHTML = '<input type="checkbox" id="' + id + '" value="' + tipo + '"><label class="req-check-label" for="' + id + '">' + tipo + '</label>';
+      div.addEventListener('click', function(e) {
+        if (e.target.tagName !== 'INPUT') div.querySelector('input').click();
+        div.classList.toggle('selected', div.querySelector('input').checked);
+        btn.disabled = !checks.querySelector('input:checked');
+      });
+      checks.appendChild(div);
+    })(tipos[i]);
+  }
   btn.disabled = true;
 }
 
 function reqGenerarPDF() {
-  const modelo     = document.getElementById('reqModelo').value;
-  const movil      = document.getElementById('reqMovil').value.trim() || '—';
-  const solicitante= document.getElementById('reqSolicitante').value.trim() || '—';
-  const obs        = document.getElementById('reqObs').value.trim();
-  const checks     = document.querySelectorAll('#reqChecks input:checked');
-  if (!checks.length) return;
-
-  const filtros = [...checks].map(c => c.value);
-  const ahora   = new Date();
-  const fecha   = ahora.toLocaleDateString('es-AR', { day:'2-digit', month:'2-digit', year:'numeric' });
-  const hora    = ahora.toLocaleTimeString('es-AR', { hour:'2-digit', minute:'2-digit' });
-  const nro     = 'REQ-' + Date.now().toString().slice(-6);
-
-  const filtrosHTML = filtros.map(f => \`
-    <div class="pdf-filtro-item">
-      <div class="pdf-filtro-check"></div>
-      <div class="pdf-filtro-name">\${f}</div>
-    </div>\`).join('');
-
-  const obsHTML = obs ? \`<div class="pdf-obs">
-    <div class="pdf-obs-label">Observaciones</div>
-    <div class="pdf-obs-value">\${obs}</div>
-  </div>\` : '';
-
-  document.getElementById('pdf-print').innerHTML = \`
-    <div class="pdf-header">
-      <div class="pdf-title">REQUISICIÓN DE FILTROS</div>
-      <div class="pdf-sub">\${nro} · \${fecha} \${hora}</div>
-    </div>
-    <div class="pdf-row">
-      <div class="pdf-field">
-        <div class="pdf-field-label">Vehículo</div>
-        <div class="pdf-field-value">\${modelo}</div>
-      </div>
-      <div class="pdf-field">
-        <div class="pdf-field-label">Móvil</div>
-        <div class="pdf-field-value">\${movil}</div>
-      </div>
-    </div>
-    <div class="pdf-row">
-      <div class="pdf-field">
-        <div class="pdf-field-label">Solicitado por</div>
-        <div class="pdf-field-value">\${solicitante}</div>
-      </div>
-    </div>
-    <div class="pdf-filtros-title">Filtros a preparar</div>
-    \${filtrosHTML}
-    \${obsHTML}
-    <div class="pdf-footer">Inventra · Sistema de gestión de filtros</div>\`;
-
+  var modelo      = document.getElementById('reqModelo').value;
+  var movil       = document.getElementById('reqMovil').value.trim() || '—';
+  var solicitante = document.getElementById('reqSolicitante').value.trim() || '—';
+  var obs         = document.getElementById('reqObs').value.trim();
+  var checked     = document.querySelectorAll('#reqChecks input:checked');
+  if (!checked.length) return;
+  var filtros = [];
+  for (var i = 0; i < checked.length; i++) filtros.push(checked[i].value);
+  var ahora = new Date();
+  var fecha = ahora.toLocaleDateString('es-AR', { day:'2-digit', month:'2-digit', year:'numeric' });
+  var hora  = ahora.toLocaleTimeString('es-AR', { hour:'2-digit', minute:'2-digit' });
+  var nro   = 'REQ-' + String(Date.now()).slice(-6);
+  var filtrosHTML = '';
+  for (var i = 0; i < filtros.length; i++) {
+    filtrosHTML += '<div class="pdf-filtro-item"><div class="pdf-filtro-check"></div><div class="pdf-filtro-name">' + filtros[i] + '</div></div>';
+  }
+  var obsHTML = obs ? '<div class="pdf-obs"><div class="pdf-obs-label">Observaciones</div><div class="pdf-obs-value">' + obs + '</div></div>' : '';
+  document.getElementById('pdf-print').innerHTML =
+    '<div class="pdf-header"><div class="pdf-title">REQUISI\u00d3N DE FILTROS</div><div class="pdf-sub">' + nro + ' &middot; ' + fecha + ' ' + hora + '</div></div>' +
+    '<div class="pdf-row"><div class="pdf-field"><div class="pdf-field-label">Veh\u00edculo</div><div class="pdf-field-value">' + modelo + '</div></div>' +
+    '<div class="pdf-field"><div class="pdf-field-label">M\u00f3vil</div><div class="pdf-field-value">' + movil + '</div></div></div>' +
+    '<div class="pdf-row"><div class="pdf-field"><div class="pdf-field-label">Solicitado por</div><div class="pdf-field-value">' + solicitante + '</div></div></div>' +
+    '<div class="pdf-filtros-title">Filtros a preparar</div>' + filtrosHTML + obsHTML +
+    '<div class="pdf-footer">Inventra &middot; Sistema de gesti\u00f3n de filtros</div>';
   window.print();
 }
 
-// Inicializar requisición al cargar
 document.addEventListener('DOMContentLoaded', reqInit);
+
 </script>
 <!-- PAGE: HISTORIAL -->
 <div class="page" id="page-historial">
@@ -1434,38 +1409,30 @@ document.addEventListener('DOMContentLoaded', reqInit);
 </div>
 
 
-<!-- PAGE: REQUISICIÓN -->
+<!-- PAGE: REQUISICION -->
 <div class="page" id="page-requisicion">
   <div style="height:12px"></div>
   <div style="padding:0 16px 8px;">
-    <div style="font-size:22px;font-weight:900;letter-spacing:-0.5px;">REQUISICIÓN</div>
-    <div style="font-size:13px;color:var(--muted);margin-top:2px;">Generá un pedido de filtros para imprimir</div>
+    <div style="font-size:22px;font-weight:900;letter-spacing:-0.5px;">REQUISICI&Oacute;N</div>
+    <div style="font-size:13px;color:var(--muted);margin-top:2px;">Gener&aacute; un pedido de filtros para imprimir</div>
   </div>
-
   <div class="req-section">
-    <div class="req-label">Modelo de vehículo</div>
+    <div class="req-label">Modelo de veh&iacute;culo</div>
     <select class="req-select" id="reqModelo" onchange="reqCargarFiltros()">
-      <option value="">— Seleccioná el vehículo —</option>
+      <option value="">&mdash; Selecion&aacute; el veh&iacute;culo &mdash;</option>
     </select>
-
-    <div class="req-label">Móvil / Identificación</div>
+    <div class="req-label">M&oacute;vil / Identificaci&oacute;n</div>
     <input class="req-input" id="reqMovil" type="text" placeholder="Ej: MV45, Unidad 03...">
-
     <div class="req-label">Solicitado por</div>
     <input class="req-input" id="reqSolicitante" type="text" placeholder="Nombre de quien solicita">
-
     <div class="req-label" id="reqFiltrosLabel" style="display:none">Filtros a preparar</div>
     <div class="req-checks" id="reqChecks"></div>
-
     <div class="req-label">Observaciones / Adicionales</div>
-    <textarea class="req-textarea" id="reqObs" placeholder="Ej: También preparar trampa de agua, revisar soporte..."></textarea>
-
+    <textarea class="req-textarea" id="reqObs" placeholder="Ej: Revisar trampa de agua..."></textarea>
     <div style="height:16px"></div>
-    <button class="req-btn" id="reqBtn" onclick="reqGenerarPDF()" disabled>🖨️ GENERAR E IMPRIMIR</button>
+    <button class="req-btn" id="reqBtn" onclick="reqGenerarPDF()" disabled>&#128424; GENERAR E IMPRIMIR</button>
   </div>
 </div>
-
-<!-- PDF PRINT AREA -->
 <div id="pdf-print"></div>
 </body>
 </html>
