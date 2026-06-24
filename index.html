@@ -319,6 +319,7 @@ body { font-family: var(--f); background: var(--bg); color: var(--text); min-hei
 .req-btn:disabled { background: var(--border); color: var(--muted); cursor: not-allowed; }
 .req-textarea { width: 100%; padding: 14px 16px; border: 2px solid var(--border); border-radius: 12px; font-size: 14px; background: var(--panel); color: var(--text); box-sizing: border-box; min-height: 80px; resize: vertical; font-family: inherit; }
 .req-textarea:focus { border-color: var(--orange); outline: none; }
+.req-qty { width: 52px; padding: 6px 8px; border: 1.5px solid var(--border); border-radius: 8px; font-size: 15px; font-weight: 700; text-align: center; background: var(--bg); color: var(--text); }
 @page { margin: 1cm; size: A4; }
 @media print {
   body > *:not(#pdf-print) { display: none !important; }
@@ -333,7 +334,8 @@ body { font-family: var(--f); background: var(--bg); color: var(--text); min-hei
   .pdf-filtros-title { font-size: 12px; font-weight: 700; color: #999; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; border-top: 1px solid #eee; padding-top: 16px; }
   .pdf-filtro-item { display: flex; align-items: center; gap: 12px; padding: 14px 16px; border: 2px solid #eee; border-radius: 10px; margin-bottom: 10px; }
   .pdf-filtro-check { width: 24px; height: 24px; border: 2px solid #1B5EFF; border-radius: 4px; flex-shrink: 0; }
-  .pdf-filtro-name { font-size: 16px; font-weight: 700; }
+  .pdf-filtro-name { font-size: 16px; font-weight: 700; flex: 1; }
+  .pdf-filtro-qty { font-size: 15px; font-weight: 800; color: #1B5EFF; min-width: 36px; text-align: right; }
   .pdf-obs { margin-top: 16px; border-top: 1px solid #eee; padding-top: 16px; }
   .pdf-obs-label { font-size: 10px; font-weight: 700; color: #999; text-transform: uppercase; letter-spacing: 1px; }
   .pdf-obs-value { font-size: 14px; margin-top: 6px; }
@@ -1334,11 +1336,20 @@ function reqCargarFiltros() {
       var id = 'chk_' + tipo.replace(/[^a-z0-9]/gi, '_');
       var div = document.createElement('div');
       div.className = 'req-check';
-      div.innerHTML = '<input type="checkbox" id="' + id + '" value="' + tipo + '"><label class="req-check-label" for="' + id + '">' + tipo + '</label>';
+      var inp = document.createElement('input');
+      inp.type = 'checkbox'; inp.id = id; inp.value = tipo;
+      var lbl = document.createElement('label');
+      lbl.className = 'req-check-label'; lbl.setAttribute('for', id); lbl.textContent = tipo;
+      var qty = document.createElement('input');
+      qty.type = 'number'; qty.min = '1'; qty.value = '1';
+      qty.className = 'req-qty';
+      qty.addEventListener('click', function(e) { e.stopPropagation(); });
+      div.appendChild(inp); div.appendChild(lbl); div.appendChild(qty);
       div.addEventListener('click', function(e) {
-        if (e.target.tagName !== 'INPUT') div.querySelector('input').click();
-        div.classList.toggle('selected', div.querySelector('input').checked);
-        btn.disabled = !checks.querySelector('input:checked');
+        if (e.target.tagName === 'INPUT' && e.target.type === 'number') return;
+        if (e.target.tagName !== 'INPUT') div.querySelector('input[type=checkbox]').click();
+        div.classList.toggle('selected', div.querySelector('input[type=checkbox]').checked);
+        btn.disabled = !checks.querySelector('input[type=checkbox]:checked');
       });
       checks.appendChild(div);
     })(tipos[i]);
@@ -1364,7 +1375,9 @@ function reqGenerarPDF() {
   var nro = 'REQ-' + String(lastNro).padStart(4, '0');
   var filtrosHTML = '';
   for (var i = 0; i < filtros.length; i++) {
-    filtrosHTML += '<div class="pdf-filtro-item"><div class="pdf-filtro-check"></div><div class="pdf-filtro-name">' + filtros[i] + '</div></div>';
+    var qtyInput = checked[i].parentElement.querySelector('input[type=number]');
+    var qty = qtyInput ? qtyInput.value : '1';
+    filtrosHTML += '<div class="pdf-filtro-item"><div class="pdf-filtro-check"></div><div class="pdf-filtro-name">FILTRO ' + filtros[i].toUpperCase() + '</div><div class="pdf-filtro-qty">x' + qty + '</div></div>';
   }
   var obsHTML = obs ? '<div class="pdf-obs"><div class="pdf-obs-label">Observaciones</div><div class="pdf-obs-value">' + obs + '</div></div>' : '';
   document.getElementById('pdf-print').innerHTML =
@@ -1403,7 +1416,11 @@ function reqAgregarItem() {
   inp.type = 'checkbox'; inp.id = id; inp.value = val; inp.checked = true;
   var lbl = document.createElement('label');
   lbl.className = 'req-check-label'; lbl.setAttribute('for', id); lbl.textContent = val;
-  div.appendChild(inp); div.appendChild(lbl); div.appendChild(btn);
+  var qty = document.createElement('input');
+  qty.type = 'number'; qty.min = '1'; qty.value = '1';
+  qty.className = 'req-qty';
+  qty.addEventListener('click', function(e) { e.stopPropagation(); });
+  div.appendChild(inp); div.appendChild(lbl); div.appendChild(qty); div.appendChild(btn);
   div.addEventListener('click', function(e) {
     if (e.target.tagName === 'BUTTON') return;
     if (e.target.tagName !== 'INPUT') div.querySelector('input').click();
