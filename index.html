@@ -501,7 +501,7 @@ let currentGrupo = null; // grupo activo en el scanner
 // ── DB ──
 fetch("database.json")
   .then(r => r.json())
-  .then(d => { DB = d; poblarSelectores(); stockCargarLista(); })
+  .then(d => { DB = d; poblarSelectores(); stockCargarLista(); reqInit(); })
   .catch(() => console.error("Error DB"));
 
 // ── DRAWER ──
@@ -1373,7 +1373,7 @@ function reqGenerarPDF() {
   window.print();
 }
 
-document.addEventListener('DOMContentLoaded', reqInit);
+// reqInit called after DB loads
 
 </script>
 <!-- PAGE: HISTORIAL -->
