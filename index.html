@@ -319,6 +319,7 @@ body { font-family: var(--f); background: var(--bg); color: var(--text); min-hei
 .req-btn:disabled { background: var(--border); color: var(--muted); cursor: not-allowed; }
 .req-textarea { width: 100%; padding: 14px 16px; border: 2px solid var(--border); border-radius: 12px; font-size: 14px; background: var(--panel); color: var(--text); box-sizing: border-box; min-height: 80px; resize: vertical; font-family: inherit; }
 .req-textarea:focus { border-color: var(--orange); outline: none; }
+@page { margin: 1cm; size: A4; }
 @media print {
   body > *:not(#pdf-print) { display: none !important; }
   #pdf-print { display: block !important; padding: 24px; font-family: Arial, sans-serif; }
@@ -1357,7 +1358,10 @@ function reqGenerarPDF() {
   var ahora = new Date();
   var fecha = ahora.toLocaleDateString('es-AR', { day:'2-digit', month:'2-digit', year:'numeric' });
   var hora  = ahora.toLocaleTimeString('es-AR', { hour:'2-digit', minute:'2-digit' });
-  var nro   = 'REQ-' + String(Date.now()).slice(-6);
+  // Sequential REQ number
+  var lastNro = parseInt(localStorage.getItem('inventra_req_nro') || '0') + 1;
+  localStorage.setItem('inventra_req_nro', lastNro);
+  var nro = 'REQ-' + String(lastNro).padStart(4, '0');
   var filtrosHTML = '';
   for (var i = 0; i < filtros.length; i++) {
     filtrosHTML += '<div class="pdf-filtro-item"><div class="pdf-filtro-check"></div><div class="pdf-filtro-name">' + filtros[i] + '</div></div>';
@@ -1370,7 +1374,10 @@ function reqGenerarPDF() {
     '<div class="pdf-row"><div class="pdf-field"><div class="pdf-field-label">Solicitado por</div><div class="pdf-field-value">' + solicitante + '</div></div></div>' +
     '<div class="pdf-filtros-title">Insumos a preparar</div>' + filtrosHTML + obsHTML +
     '';
+  var prevTitle = document.title;
+  document.title = nro;
   window.print();
+  document.title = prevTitle;
 }
 
 // reqInit called after DB loads
