@@ -27256,136 +27256,88 @@
     ],
     "codigos": [
       {
-        "marca": "ALCO",
-        "codigo": "SP1276"
+        "marca": "BOSCH",
+        "codigo": "1457434310"
       },
       {
-        "marca": "KSPG",
-        "codigo": "50014813"
+        "marca": "LUBERFINER",
+        "codigo": "LFF6354"
       },
       {
-        "marca": "ASTRA",
-        "codigo": "132510"
+        "marca": "BOSCH",
+        "codigo": "0986BF0318"
       },
       {
         "marca": "MAHLE",
-        "codigo": "KC214"
+        "codigo": "KC182"
       },
       {
-        "marca": "BALDWIN FILTERS",
-        "codigo": "BF1365"
+        "marca": "CHYSLER",
+        "codigo": "52129238AA"
       },
       {
         "marca": "MANN",
-        "codigo": "WK950/19"
-      },
-      {
-        "marca": "BOSCH",
-        "codigo": "0986BF0317"
-      },
-      {
-        "marca": "MASTER PARTS",
-        "codigo": "MM100224"
-      },
-      {
-        "marca": "BOSCH",
-        "codigo": "F026402036"
-      },
-      {
-        "marca": "NEW HOLLAND",
-        "codigo": "87435525"
-      },
-      {
-        "marca": "CASE/CASE IH",
-        "codigo": "84219699"
-      },
-      {
-        "marca": "NEXPRO",
-        "codigo": "500058311"
-      },
-      {
-        "marca": "CASE/CASE IH",
-        "codigo": "84348882"
-      },
-      {
-        "marca": "NEXPRO",
-        "codigo": "48028387"
-      },
-      {
-        "marca": "CASE/CASE IH",
-        "codigo": "87435524"
-      },
-      {
-        "marca": "ORIGINAL FILTER",
-        "codigo": "OFC1604S"
-      },
-      {
-        "marca": "CASE/CASE IH",
-        "codigo": "87592170"
-      },
-      {
-        "marca": "PARKER/RACOR",
-        "codigo": "RC811"
+        "codigo": "WK854/2"
       },
       {
         "marca": "DELPHI",
-        "codigo": "HDF757"
+        "codigo": "HDF756"
       },
       {
-        "marca": "SAKURA",
-        "codigo": "SFC2203"
+        "marca": "NEXPRO",
+        "codigo": "500058309"
       },
       {
         "marca": "DONALDSON",
-        "codigo": "P550904"
+        "codigo": "P550903"
       },
       {
-        "marca": "SEINECA",
-        "codigo": "SFD9627"
-      },
-      {
-        "marca": "FIL FILTER",
-        "codigo": "ZP3070F"
-      },
-      {
-        "marca": "SEINECA ANTIGO",
-        "codigo": "SEI2604"
+        "marca": "ORIGINAL FILTER",
+        "codigo": "OFC1513S"
       },
       {
         "marca": "FLEETGUARD",
-        "codigo": "FS19821"
+        "codigo": "FS19781"
+      },
+      {
+        "marca": "SOGEFI PRO/FRAM",
+        "codigo": "FP6300"
+      },
+      {
+        "marca": "FRAM EU",
+        "codigo": "PS9553WST"
       },
       {
         "marca": "TECFIL",
-        "codigo": "PSC493"
+        "codigo": "PSC455"
       },
       {
         "marca": "HENGST",
-        "codigo": "H215WK"
+        "codigo": "H160WK"
       },
       {
         "marca": "TURBO FILTROS",
-        "codigo": "TBC493"
-      },
-      {
-        "marca": "HEULIEZ BUS",
-        "codigo": "2992662"
-      },
-      {
-        "marca": "VOX",
-        "codigo": "FBD493"
+        "codigo": "TBC455"
       },
       {
         "marca": "IVECO",
-        "codigo": "2992662"
+        "codigo": "2992300"
+      },
+      {
+        "marca": "VOX",
+        "codigo": "FBD455"
+      },
+      {
+        "marca": "IVECO",
+        "codigo": "504018807"
       },
       {
         "marca": "WEGA",
-        "codigo": "FCD2099"
+        "codigo": "FCD2096"
       },
       {
         "marca": "JAPANPARTS",
-        "codigo": "FCBR37S"
+        "codigo": "FCBR27S"
       }
     ]
   },
@@ -50002,6 +49954,146 @@
       {
         "marca": "ORIGINAL FILTER",
         "codigo": "OFC1542S"
+      }
+    ]
+  },
+  "COMBUSTIBLE CON TRAMPA__IVECO DAILY 35C14": {
+    "tipo": "Combustible con trampa",
+    "modelos": [
+      "IVECO DAILY 35C14"
+    ],
+    "codigos": [
+      {
+        "marca": "ALCO",
+        "codigo": "SP1276"
+      },
+      {
+        "marca": "KSPG",
+        "codigo": "50014813"
+      },
+      {
+        "marca": "ASTRA",
+        "codigo": "132510"
+      },
+      {
+        "marca": "MAHLE",
+        "codigo": "KC214"
+      },
+      {
+        "marca": "BALDWIN FILTERS",
+        "codigo": "BF1365"
+      },
+      {
+        "marca": "MANN",
+        "codigo": "WK950/19"
+      },
+      {
+        "marca": "BOSCH",
+        "codigo": "0986BF0317"
+      },
+      {
+        "marca": "MASTER PARTS",
+        "codigo": "MM100224"
+      },
+      {
+        "marca": "BOSCH",
+        "codigo": "F026402036"
+      },
+      {
+        "marca": "NEW HOLLAND",
+        "codigo": "87435525"
+      },
+      {
+        "marca": "CASE/CASE IH",
+        "codigo": "84219699"
+      },
+      {
+        "marca": "NEXPRO",
+        "codigo": "500058311"
+      },
+      {
+        "marca": "CASE/CASE IH",
+        "codigo": "84348882"
+      },
+      {
+        "marca": "NEXPRO",
+        "codigo": "48028387"
+      },
+      {
+        "marca": "CASE/CASE IH",
+        "codigo": "87435524"
+      },
+      {
+        "marca": "ORIGINAL FILTER",
+        "codigo": "OFC1604S"
+      },
+      {
+        "marca": "CASE/CASE IH",
+        "codigo": "87592170"
+      },
+      {
+        "marca": "PARKER/RACOR",
+        "codigo": "RC811"
+      },
+      {
+        "marca": "DELPHI",
+        "codigo": "HDF757"
+      },
+      {
+        "marca": "SAKURA",
+        "codigo": "SFC2203"
+      },
+      {
+        "marca": "DONALDSON",
+        "codigo": "P550904"
+      },
+      {
+        "marca": "SEINECA",
+        "codigo": "SFD9627"
+      },
+      {
+        "marca": "FIL FILTER",
+        "codigo": "ZP3070F"
+      },
+      {
+        "marca": "SEINECA ANTIGO",
+        "codigo": "SEI2604"
+      },
+      {
+        "marca": "FLEETGUARD",
+        "codigo": "FS19821"
+      },
+      {
+        "marca": "TECFIL",
+        "codigo": "PSC493"
+      },
+      {
+        "marca": "HENGST",
+        "codigo": "H215WK"
+      },
+      {
+        "marca": "TURBO FILTROS",
+        "codigo": "TBC493"
+      },
+      {
+        "marca": "HEULIEZ BUS",
+        "codigo": "2992662"
+      },
+      {
+        "marca": "VOX",
+        "codigo": "FBD493"
+      },
+      {
+        "marca": "IVECO",
+        "codigo": "2992662"
+      },
+      {
+        "marca": "WEGA",
+        "codigo": "FCD2099"
+      },
+      {
+        "marca": "JAPANPARTS",
+        "codigo": "FCBR37S"
       }
     ]
   }
