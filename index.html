@@ -1384,10 +1384,19 @@ function reqAgregarItem() {
   var id = 'chk_custom_' + Date.now();
   var div = document.createElement('div');
   div.className = 'req-check selected';
-  div.innerHTML = '<input type="checkbox" id="' + id + '" value="' + val + '" checked>' +
-    '<label class="req-check-label" for="' + id + '">' + val + '</label>' +
-    '<button onclick="this.parentElement.remove();document.getElementById('reqBtn').disabled=!document.querySelectorAll('#reqChecks input:checked,#reqCustomChecks input:checked').length;" ' +
-    'style="background:none;border:none;color:var(--muted);font-size:18px;cursor:pointer;padding:0;">✕</button>';
+  var btn = document.createElement('button');
+  btn.textContent = '✕';
+  btn.style.cssText = 'background:none;border:none;color:#999;font-size:18px;cursor:pointer;padding:0;';
+  btn.addEventListener('click', function(e) {
+    e.stopPropagation();
+    div.remove();
+    document.getElementById('reqBtn').disabled = !document.querySelectorAll('#reqChecks input:checked,#reqCustomChecks input:checked').length;
+  });
+  var inp = document.createElement('input');
+  inp.type = 'checkbox'; inp.id = id; inp.value = val; inp.checked = true;
+  var lbl = document.createElement('label');
+  lbl.className = 'req-check-label'; lbl.setAttribute('for', id); lbl.textContent = val;
+  div.appendChild(inp); div.appendChild(lbl); div.appendChild(btn);
   div.addEventListener('click', function(e) {
     if (e.target.tagName === 'BUTTON') return;
     if (e.target.tagName !== 'INPUT') div.querySelector('input').click();
