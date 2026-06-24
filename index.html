@@ -1368,7 +1368,7 @@ function reqGenerarPDF() {
   }
   var obsHTML = obs ? '<div class="pdf-obs"><div class="pdf-obs-label">Observaciones</div><div class="pdf-obs-value">' + obs + '</div></div>' : '';
   document.getElementById('pdf-print').innerHTML =
-    '<div class="pdf-header"><div class="pdf-title">REQUISI\u00d3N DE FILTROS</div><div class="pdf-sub">' + nro + ' &middot; ' + fecha + ' ' + hora + '</div></div>' +
+    '<div class="pdf-header"><div class="pdf-sub">' + nro + ' &middot; ' + fecha + ' ' + hora + '</div></div>' +
     '<div class="pdf-row"><div class="pdf-field"><div class="pdf-field-label">Veh\u00edculo</div><div class="pdf-field-value">' + modelo + '</div></div>' +
     '<div class="pdf-field"><div class="pdf-field-label">M\u00f3vil</div><div class="pdf-field-value">' + movil + '</div></div></div>' +
     '<div class="pdf-row"><div class="pdf-field"><div class="pdf-field-label">Solicitado por</div><div class="pdf-field-value">' + solicitante + '</div></div></div>' +
