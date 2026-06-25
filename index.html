@@ -342,6 +342,19 @@ body { font-family: var(--f); background: var(--bg); color: var(--text); min-hei
   .pdf-footer { margin-top: 32px; border-top: 1px solid #eee; padding-top: 12px; font-size: 11px; color: #999; text-align: center; }
 }
 #pdf-print { display: none; }
+
+/* ── ETIQUETA PRINT ── */
+#etiqueta-print { display: none; }
+@media print {
+  body > *:not(#etiqueta-print):not(#pdf-print) { display: none !important; }
+  #etiqueta-print { display: block !important; font-family: Arial, sans-serif; padding: 8px; }
+  .etq-wrap { border: 2px solid #000; border-radius: 6px; padding: 12px 14px; width: 90mm; box-sizing: border-box; }
+  .etq-codigo { font-size: 28px; font-weight: 900; letter-spacing: 1px; margin-bottom: 6px; }
+  .etq-marca { font-size: 13px; font-weight: 700; color: #444; margin-bottom: 8px; }
+  .etq-tipo { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: #000; background: #eee; padding: 3px 8px; border-radius: 4px; display: inline-block; margin-bottom: 8px; }
+  .etq-modelos-label { font-size: 9px; font-weight: 700; color: #999; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 3px; }
+  .etq-modelos { font-size: 11px; font-weight: 600; line-height: 1.4; }
+}
 </style>
 </head>
 <body>
@@ -828,6 +841,13 @@ async function mostrarResultado(codigo, data, aprox, detectado) {
     </div>
     ${movHTML}
     ${equivHTML}`;
+
+  // Botón imprimir etiqueta
+  const btnEtq = document.createElement('button');
+  btnEtq.textContent = '🏷️ IMPRIMIR ETIQUETA';
+  btnEtq.style.cssText = 'width:100%;margin:12px 0 0;padding:14px;background:var(--orange);color:#fff;border:none;border-radius:12px;font-size:15px;font-weight:900;cursor:pointer;letter-spacing:0.5px;';
+  btnEtq.onclick = function() { imprimirEtiqueta(codigo, data.marca, data.tipo, data.modelos); };
+  panel.appendChild(btnEtq);
 
   panel.classList.add('show');
 
@@ -1432,6 +1452,24 @@ function reqAgregarItem() {
   document.getElementById('reqBtn').disabled = false;
 }
 
+
+// ── IMPRIMIR ETIQUETA ──
+function imprimirEtiqueta(codigo, marca, tipo, modelos) {
+  var modelosStr = Array.isArray(modelos) ? modelos.join(' / ') : modelos;
+  document.getElementById('etiqueta-print').innerHTML =
+    '<div class="etq-wrap">' +
+    '<div class="etq-codigo">' + codigo + '</div>' +
+    '<div class="etq-marca">' + marca + '</div>' +
+    '<div class="etq-tipo">' + tipo + '</div>' +
+    '<div class="etq-modelos-label">Compatible con</div>' +
+    '<div class="etq-modelos">' + modelosStr + '</div>' +
+    '</div>';
+  var prevTitle = document.title;
+  document.title = codigo;
+  window.print();
+  document.title = prevTitle;
+}
+
 </script>
 <!-- PAGE: HISTORIAL -->
 <div class="page" id="page-historial">
@@ -1497,5 +1535,6 @@ function reqAgregarItem() {
   </div>
 </div>
 <div id="pdf-print"></div>
+<div id="etiqueta-print"></div>
 </body>
 </html>
