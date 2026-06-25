@@ -17996,7 +17996,28 @@
     "modelos": [
       "EXCAVADORA CATERPILLAR 320D2 GC"
     ],
-    "codigos": []
+    "codigos": [
+      {
+        "marca": "CATERPILLAR",
+        "codigo": "3223155"
+      },
+      {
+        "marca": "ORIGINAL FILTER",
+        "codigo": "OFL0574E"
+      },
+      {
+        "marca": "HIFI",
+        "codigo": "SO10112"
+      },
+      {
+        "marca": "TECFIL",
+        "codigo": "PEL2015"
+      },
+      {
+        "marca": "JAPANPARTS",
+        "codigo": "FOBR121S"
+      }
+    ]
   },
   "ACEITE__RETRO HYUNDAI H940C": {
     "tipo": "Aceite",
