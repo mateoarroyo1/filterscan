@@ -26,7 +26,7 @@ exports.handler = async function(event) {
   }
 
   try {
-    const query = 'site:showlub.com.br ' + q;
+    const query = q;
     const url = 'https://www.googleapis.com/customsearch/v1?key=' + GOOGLE_API_KEY +
                 '&cx=' + GOOGLE_CSE_ID +
                 '&q=' + encodeURIComponent(query) +
