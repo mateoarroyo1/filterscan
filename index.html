@@ -838,6 +838,22 @@ async function mostrarResultado(codigo, data, aprox, detectado) {
   })(codigo, data.marca, data.tipo, data.modelos);
   panel.appendChild(btnEtq);
 
+  // Boton Showlub
+  var btnShowlub = document.createElement('button');
+  btnShowlub.textContent = '🔍 VER EN SHOWLUB';
+  btnShowlub.style.cssText = 'width:100%;margin:8px 0 0;padding:14px;background:#fff;color:#222;border:2px solid var(--border);border-radius:12px;font-size:15px;font-weight:900;cursor:pointer;letter-spacing:0.5px;display:block;';
+  btnShowlub.onclick = function() { buscarShowlub(codigo, btnShowlub); };
+  (function(c, btn) {
+    btn.onclick = function() { buscarShowlub(c, btn); };
+  })(codigo, btnShowlub);
+  panel.appendChild(btnShowlub);
+
+  // Store for showlub callback
+  window._lastCodigo  = codigo;
+  window._lastMarca   = data.marca;
+  window._lastTipo    = data.tipo;
+  window._lastModelos = data.modelos;
+
   panel.classList.add('show');
 
   // Cargar stock async
@@ -861,6 +877,9 @@ function mostrarError(msg) {
       <div style="font-size:13px;color:var(--muted);margin-bottom:10px;">¿No está en la base? Mandalo para investigar y asignarle un modelo.</div>
       <button id="btnAgregar" onclick="enviarParaInvestigar('${codigoNF}')" style="width:100%;padding:14px;background:var(--orange);color:#fff;border:none;border-radius:10px;font-size:15px;font-weight:800;cursor:pointer;letter-spacing:0.5px;">
         📋 ENVIAR PARA AGREGAR
+      </button>
+      <button id="btnShowlubNF" style="width:100%;margin-top:8px;padding:14px;background:#fff;color:#222;border:2px solid var(--border);border-radius:10px;font-size:15px;font-weight:800;cursor:pointer;" onclick="buscarShowlub('${codigoNF}', this)">
+        🔍 VER EN SHOWLUB
       </button>
     </div>` : ''}`;
   panel.classList.add('show');
@@ -1443,30 +1462,88 @@ function reqAgregarItem() {
 
 
 // ── IMPRIMIR ETIQUETA ──
-function imprimirEtiqueta(codigo, marca, tipo, modelos) {
+function imprimirEtiqueta(codigo, marca, tipo, modelos, showlubUrl) {
   var modelosStr = Array.isArray(modelos) ? modelos.join(' / ') : modelos;
+  var qrHtml = '';
+  if (showlubUrl) {
+    var qrApi = 'https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=' + encodeURIComponent(showlubUrl);
+    qrHtml = '<div class="etq-qr"><img src="' + qrApi + '" width="80" height="80"><div class="etq-qr-label">Ver en Showlub</div></div>';
+  }
   var html = '<!DOCTYPE html><html><head><meta charset="UTF-8"><title>' + codigo + '</title><style>' +
     'body{margin:0;padding:16px;font-family:Arial,sans-serif;}' +
-    '.etq{border:2px solid #000;border-radius:8px;padding:14px 16px;width:90mm;box-sizing:border-box;}' +
-    '.etq-codigo{font-size:30px;font-weight:900;letter-spacing:1px;margin-bottom:6px;}' +
+    '.etq{border:2px solid #000;border-radius:8px;padding:14px 16px;width:130mm;box-sizing:border-box;display:flex;gap:12px;align-items:flex-start;}' +
+    '.etq-info{flex:1;}' +
+    '.etq-codigo{font-size:28px;font-weight:900;letter-spacing:1px;margin-bottom:6px;}' +
     '.etq-marca{font-size:14px;font-weight:700;color:#444;margin-bottom:8px;}' +
     '.etq-tipo{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:1px;background:#eee;padding:3px 8px;border-radius:4px;display:inline-block;margin-bottom:10px;}' +
     '.etq-mod-label{font-size:9px;font-weight:700;color:#999;text-transform:uppercase;letter-spacing:1px;margin-bottom:3px;}' +
     '.etq-mod{font-size:11px;font-weight:600;line-height:1.5;}' +
-    '@media print{@page{margin:0;size:100mm 60mm;}}' +
+    '.etq-qr{display:flex;flex-direction:column;align-items:center;gap:4px;flex-shrink:0;}' +
+    '.etq-qr-label{font-size:8px;color:#666;text-align:center;max-width:80px;}' +
+    '@media print{@page{margin:0;size:150mm 70mm;}}' +
     '</style></head><body>' +
     '<div class="etq">' +
+    '<div class="etq-info">' +
     '<div class="etq-codigo">' + codigo + '</div>' +
     '<div class="etq-marca">' + marca + '</div>' +
     '<div class="etq-tipo">' + tipo + '</div>' +
     '<div class="etq-mod-label">Compatible con</div>' +
     '<div class="etq-mod">' + modelosStr + '</div>' +
     '</div>' +
+    qrHtml +
+    '</div>' +
     '<script>window.onload=function(){window.print();window.close();}<\/script>' +
     '</body></html>';
-  var w = window.open('', '_blank', 'width=400,height=300');
+  var w = window.open('', '_blank', 'width=500,height=350');
   w.document.write(html);
   w.document.close();
+}
+
+
+// ── SHOWLUB ──
+var showlubCache = {};
+
+function buscarShowlub(codigo, btn) {
+  if (showlubCache[codigo]) {
+    window.open(showlubCache[codigo], '_blank');
+    return;
+  }
+  var orig = btn.textContent;
+  btn.textContent = 'Buscando...';
+  btn.disabled = true;
+
+  fetch('/.netlify/functions/showlub?q=' + encodeURIComponent(codigo))
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      if (data.link) {
+        showlubCache[codigo] = data.link;
+        // Actualizar btn etiqueta para incluir el link
+        var btnEtq = btn.previousElementSibling;
+        if (btnEtq) {
+          var oldClick = btnEtq.onclick;
+          (function(c, m, t, mod, url) {
+            btnEtq.onclick = function() { imprimirEtiqueta(c, m, t, mod, url); };
+          })(
+            window._lastCodigo || codigo,
+            window._lastMarca  || '',
+            window._lastTipo   || '',
+            window._lastModelos|| [],
+            data.link
+          );
+        }
+        window.open(data.link, '_blank');
+        btn.textContent = '✅ ABIERTO EN SHOWLUB';
+        btn.style.borderColor = '#1e7e34';
+        btn.style.color = '#1e7e34';
+      } else {
+        btn.textContent = '❌ No encontrado en Showlub';
+        btn.disabled = false;
+      }
+    })
+    .catch(function() {
+      btn.textContent = orig;
+      btn.disabled = false;
+    });
 }
 
 </script>
