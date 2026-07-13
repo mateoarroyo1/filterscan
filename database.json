@@ -8491,966 +8491,6 @@
       }
     ]
   },
-  "COMBUSTIBLE__JOHN DEERE 4045": {
-    "tipo": "Combustible",
-    "modelos": [
-      "JOHN DEERE 4045"
-    ],
-    "codigos": [
-      {
-        "marca": "ASAS",
-        "codigo": "SP4029"
-      },
-      {
-        "marca": "FORD",
-        "codigo": "AFG189S"
-      },
-      {
-        "marca": "ASAS",
-        "codigo": "SP4069"
-      },
-      {
-        "marca": "FORD",
-        "codigo": "EFG1844032667"
-      },
-      {
-        "marca": "CASE/CASE IH",
-        "codigo": "1931137"
-      },
-      {
-        "marca": "FORD",
-        "codigo": "EFG1844352681"
-      },
-      {
-        "marca": "CASE/CASE IH",
-        "codigo": "84477355"
-      },
-      {
-        "marca": "FORD",
-        "codigo": "YC159176AA"
-      },
-      {
-        "marca": "CASE/CASE IH",
-        "codigo": "84565927"
-      },
-      {
-        "marca": "JCB",
-        "codigo": "320A7123"
-      },
-      {
-        "marca": "CASE/CASE IH",
-        "codigo": "87802925"
-      },
-      {
-        "marca": "JCB",
-        "codigo": "32925950"
-      },
-      {
-        "marca": "CASE/CASE IH",
-        "codigo": "87802927"
-      },
-      {
-        "marca": "JOHN DEERE",
-        "codigo": "RE541922"
-      },
-      {
-        "marca": "CATERPILLAR",
-        "codigo": "2289130"
-      },
-      {
-        "marca": "JOHN DEERE",
-        "codigo": "RE562138"
-      },
-      {
-        "marca": "CATERPILLAR",
-        "codigo": "3491063"
-      },
-      {
-        "marca": "KNECHT",
-        "codigo": "KC116"
-      },
-      {
-        "marca": "CATERPILLAR",
-        "codigo": "3619554"
-      },
-      {
-        "marca": "MANN",
-        "codigo": "WK8184"
-      },
-      {
-        "marca": "CLAAS",
-        "codigo": "11453510"
-      },
-      {
-        "marca": "NEW HOLLAND",
-        "codigo": "84477355"
-      },
-      {
-        "marca": "NEW HOLLAND",
-        "codigo": "84565927"
-      },
-      {
-        "marca": "COOPERS",
-        "codigo": "FSM4145"
-      },
-      {
-        "marca": "NEW HOLLAND",
-        "codigo": "87801285"
-      },
-      {
-        "marca": "CROSLAND",
-        "codigo": "5212"
-      },
-      {
-        "marca": "NEW HOLLAND",
-        "codigo": "87802728"
-      },
-      {
-        "marca": "DONALDSON",
-        "codigo": "P551433"
-      },
-      {
-        "marca": "NEW HOLLAND",
-        "codigo": "87802926"
-      },
-      {
-        "marca": "FIAT",
-        "codigo": "NH87801285"
-      },
-      {
-        "marca": "ORIGINAL FILTER",
-        "codigo": "OFC1584S"
-      },
-      {
-        "marca": "FLEETGUARD",
-        "codigo": "FS19837"
-      },
-      {
-        "marca": "ROOSAMASTER",
-        "codigo": "33961"
-      },
-      {
-        "marca": "FLEETGUARD",
-        "codigo": "FS20049"
-      },
-      {
-        "marca": "ROOSAMASTER",
-        "codigo": "34470"
-      },
-      {
-        "marca": "FLEETGUARD",
-        "codigo": "FS20076"
-      },
-      {
-        "marca": "ROOSAMASTER",
-        "codigo": "35332"
-      },
-      {
-        "marca": "FORD",
-        "codigo": "4352681"
-      },
-      {
-        "marca": "FORD",
-        "codigo": "4032667"
-      }
-    ]
-  },
-  "COMBUSTIBLE CON TRAMPA__JOHN DEERE 4045": {
-    "tipo": "Combustible con trampa",
-    "modelos": [
-      "JOHN DEERE 4045"
-    ],
-    "codigos": [
-      {
-        "marca": "ASAS",
-        "codigo": "SP4004"
-      },
-      {
-        "marca": "JOHN DEERE",
-        "codigo": "AT274723"
-      },
-      {
-        "marca": "BALDWIN",
-        "codigo": "BF7786D"
-      },
-      {
-        "marca": "JOHN DEERE",
-        "codigo": "RE22878"
-      },
-      {
-        "marca": "BALDWIN",
-        "codigo": "BF7949D"
-      },
-      {
-        "marca": "JOHN DEERE",
-        "codigo": "RE509032"
-      },
-      {
-        "marca": "CASE/CASE IH",
-        "codigo": "73326640"
-      },
-      {
-        "marca": "JOHN DEERE",
-        "codigo": "RE522878"
-      },
-      {
-        "marca": "CLAAS",
-        "codigo": "11318200"
-      },
-      {
-        "marca": "JOHN DEERE",
-        "codigo": "RE524723"
-      },
-      {
-        "marca": "CLAAS",
-        "codigo": "11382000"
-      },
-      {
-        "marca": "JOHN DEERE",
-        "codigo": "RE541925"
-      },
-      {
-        "marca": "CLAAS",
-        "codigo": "11461700"
-      },
-      {
-        "marca": "LIEBHERR",
-        "codigo": "7091068"
-      },
-      {
-        "marca": "DONALDSON",
-        "codigo": "P551422"
-      },
-      {
-        "marca": "LIEBHERR",
-        "codigo": "7382111"
-      },
-      {
-        "marca": "FLEETGUARD",
-        "codigo": "FS19833"
-      },
-      {
-        "marca": "FLEETGUARD",
-        "codigo": "FS19865"
-      },
-      {
-        "marca": "LUBERFINER",
-        "codigo": "L8868F"
-      },
-      {
-        "marca": "FLEETGUARD",
-        "codigo": "FS19976"
-      },
-      {
-        "marca": "MANN",
-        "codigo": "WK8145"
-      },
-      {
-        "marca": "FST GULF",
-        "codigo": "FST551422"
-      },
-      {
-        "marca": "MANN",
-        "codigo": "WK8162"
-      },
-      {
-        "marca": "HENGST",
-        "codigo": "H300WK"
-      },
-      {
-        "marca": "ORIGINAL FILTER",
-        "codigo": "OFC1585S"
-      },
-      {
-        "marca": "INGERSOLL RAND",
-        "codigo": "23018955"
-      },
-      {
-        "marca": "TECFIL",
-        "codigo": "PSC885"
-      },
-      {
-        "marca": "JCB",
-        "codigo": "32007446"
-      },
-      {
-        "marca": "VAPORMATIC",
-        "codigo": "VPD6161"
-      },
-      {
-        "marca": "AUTOMOTIV",
-        "codigo": "AFS1501"
-      },
-      {
-        "marca": "INGERSOLL RAND",
-        "codigo": "23018799"
-      },
-      {
-        "marca": "BALDWIN",
-        "codigo": "BF9891D"
-      },
-      {
-        "marca": "IVECO",
-        "codigo": "8094862"
-      },
-      {
-        "marca": "BALDWIN",
-        "codigo": "BF7971D"
-      },
-      {
-        "marca": "JCB",
-        "codigo": "32925991"
-      },
-      {
-        "marca": "BOMAG",
-        "codigo": "5821455"
-      },
-      {
-        "marca": "JCB",
-        "codigo": "32925994"
-      },
-      {
-        "marca": "CASE/CASE IH",
-        "codigo": "47357911"
-      },
-      {
-        "marca": "JCB",
-        "codigo": "32/925991"
-      },
-      {
-        "marca": "CLAAS",
-        "codigo": "11318320"
-      },
-      {
-        "marca": "JOHN DEERE",
-        "codigo": "RE509036"
-      },
-      {
-        "marca": "CLAAS",
-        "codigo": "11383200"
-      },
-      {
-        "marca": "JOHN DEERE",
-        "codigo": "RE517180"
-      },
-      {
-        "marca": "CLAAS",
-        "codigo": "21526120"
-      },
-      {
-        "marca": "JOHN DEERE",
-        "codigo": "RE521540"
-      },
-      {
-        "marca": "JOHN DEERE",
-        "codigo": "RE522966"
-      },
-      {
-        "marca": "CLAAS",
-        "codigo": "21526170"
-      },
-      {
-        "marca": "JOHN DEERE",
-        "codigo": "RE529643"
-      },
-      {
-        "marca": "JOHN DEERE",
-        "codigo": "RE535217"
-      },
-      {
-        "marca": "CUMMINS",
-        "codigo": "FS19985"
-      },
-      {
-        "marca": "JOHN DEERE",
-        "codigo": "RE536193"
-      },
-      {
-        "marca": "DEUTZ-FAHR",
-        "codigo": "90004562"
-      },
-      {
-        "marca": "DONALDSON",
-        "codigo": "P551435"
-      },
-      {
-        "marca": "LIEBHERR",
-        "codigo": "7091069"
-      },
-      {
-        "marca": "FIL FILTER",
-        "codigo": "ZP3819F"
-      },
-      {
-        "marca": "MANN",
-        "codigo": "WK8161"
-      },
-      {
-        "marca": "FLEETGUARD",
-        "codigo": "FS19906"
-      },
-      {
-        "marca": "MCCORMICK",
-        "codigo": "702704A1"
-      },
-      {
-        "marca": "FLEETGUARD",
-        "codigo": "FS19975"
-      },
-      {
-        "marca": "NEW HOLLAND",
-        "codigo": "84154346"
-      },
-      {
-        "marca": "FST GULF",
-        "codigo": "FST551435"
-      },
-      {
-        "marca": "ORIGINAL FILTER",
-        "codigo": "OFC1567S"
-      },
-      {
-        "marca": "HENGST",
-        "codigo": "H301WK"
-      },
-      {
-        "marca": "TECFIL",
-        "codigo": "PSC870"
-      },
-      {
-        "marca": "INGERSOLL RAND",
-        "codigo": "22969265"
-      },
-      {
-        "marca": "VAPORMATIC",
-        "codigo": "VPD6162"
-      },
-      {
-        "marca": "FLEETGUARD",
-        "codigo": "FS19993"
-      }
-    ]
-  },
-  "AIRE PRIMARIO__JOHN DEERE 4045": {
-    "tipo": "Aire primario",
-    "modelos": [
-      "JOHN DEERE 4045"
-    ],
-    "codigos": [
-      {
-        "marca": "AGCO",
-        "codigo": "113855M1"
-      },
-      {
-        "marca": "HENGST",
-        "codigo": "E434L"
-      },
-      {
-        "marca": "AGCO",
-        "codigo": "35213"
-      },
-      {
-        "marca": "INGERSOLL RAND",
-        "codigo": "92793025"
-      },
-      {
-        "marca": "AGCO",
-        "codigo": "4270033M1"
-      },
-      {
-        "marca": "INPECA",
-        "codigo": "SA5589RS"
-      },
-      {
-        "marca": "AGCO",
-        "codigo": "WR35213"
-      },
-      {
-        "marca": "INPECA",
-        "codigo": "SRS5589"
-      },
-      {
-        "marca": "AGRINET LTD",
-        "codigo": "12395012560YANMAR"
-      },
-      {
-        "marca": "JAPANPARTS",
-        "codigo": "FA5589S"
-      },
-      {
-        "marca": "AHLMANN",
-        "codigo": "4198305A"
-      },
-      {
-        "marca": "JOHN DEERE",
-        "codigo": "AT171853"
-      },
-      {
-        "marca": "AIRMAN-HOKUETSU",
-        "codigo": "3214312700"
-      },
-      {
-        "marca": "LUBERFINER",
-        "codigo": "LAF4544"
-      },
-      {
-        "marca": "ALLMAND BROS",
-        "codigo": "MA375E"
-      },
-      {
-        "marca": "MAHLE",
-        "codigo": "LX3986"
-      },
-      {
-        "marca": "AUTOMOTIV",
-        "codigo": "AE1032RS"
-      },
-      {
-        "marca": "MANN",
-        "codigo": "C17337/2"
-      },
-      {
-        "marca": "BALDWIN",
-        "codigo": "RS3545"
-      },
-      {
-        "marca": "MANN",
-        "codigo": "C17337"
-      },
-      {
-        "marca": "CASE",
-        "codigo": "252640A1"
-      },
-      {
-        "marca": "MASSEY FERGUSON",
-        "codigo": "6190627M1"
-      },
-      {
-        "marca": "CASE",
-        "codigo": "222421A1"
-      },
-      {
-        "marca": "NEW HOLLAND",
-        "codigo": "5150017"
-      },
-      {
-        "marca": "CATERPILLAR",
-        "codigo": "901048"
-      },
-      {
-        "marca": "NEW HOLLAND",
-        "codigo": "47132343"
-      },
-      {
-        "marca": "CATERPILLAR",
-        "codigo": "1106326"
-      },
-      {
-        "marca": "NEW HOLLAND",
-        "codigo": "82981152"
-      },
-      {
-        "marca": "CATERPILLAR",
-        "codigo": "1318902"
-      },
-      {
-        "marca": "NEW HOLLAND",
-        "codigo": "84217229"
-      },
-      {
-        "marca": "CATERPILLAR",
-        "codigo": "26510342"
-      },
-      {
-        "marca": "NEW HOLLAND",
-        "codigo": "86982524"
-      },
-      {
-        "marca": "CATERPILLAR",
-        "codigo": "1318902X"
-      },
-      {
-        "marca": "PARKER",
-        "codigo": "AF8889RS"
-      },
-      {
-        "marca": "DELPHI",
-        "codigo": "EFA984"
-      },
-      {
-        "marca": "PARKER",
-        "codigo": "1930589"
-      },
-      {
-        "marca": "DONALDSON",
-        "codigo": "P772580"
-      },
-      {
-        "marca": "PERKINS",
-        "codigo": "26510342"
-      },
-      {
-        "marca": "DONALDSON",
-        "codigo": "P604996"
-      },
-      {
-        "marca": "PERKINS",
-        "codigo": "901048"
-      },
-      {
-        "marca": "DONALDSON",
-        "codigo": "P828889"
-      },
-      {
-        "marca": "SAKURA",
-        "codigo": "A5541"
-      },
-      {
-        "marca": "DYNAPAC",
-        "codigo": "374771"
-      },
-      {
-        "marca": "TECFIL",
-        "codigo": "ARS8889"
-      },
-      {
-        "marca": "FIATALLIS",
-        "codigo": "1930589"
-      },
-      {
-        "marca": "TURBO FILTRO",
-        "codigo": "TR5589RS"
-      },
-      {
-        "marca": "FLEETGUARD",
-        "codigo": "AF25292"
-      },
-      {
-        "marca": "UNIFILTER",
-        "codigo": "UARS8889P"
-      },
-      {
-        "marca": "FLEETGUARD",
-        "codigo": "AF25352"
-      },
-      {
-        "marca": "VOX",
-        "codigo": "HD8889"
-      },
-      {
-        "marca": "FLEETGUARD",
-        "codigo": "AF25557"
-      },
-      {
-        "marca": "VOX ANTIGO",
-        "codigo": "HD5607"
-      },
-      {
-        "marca": "FRAM",
-        "codigo": "CA5741"
-      },
-      {
-        "marca": "WEGA",
-        "codigo": "WAP903"
-      },
-      {
-        "marca": "FRAM",
-        "codigo": "CA8737"
-      },
-      {
-        "marca": "WIX",
-        "codigo": "W46562"
-      },
-      {
-        "marca": "GONHER",
-        "codigo": "GA853R"
-      },
-      {
-        "marca": "XANFIL",
-        "codigo": "XL2124"
-      }
-    ]
-  },
-  "AIRE SECUNDARIO__JOHN DEERE 4045": {
-    "tipo": "Aire secundario",
-    "modelos": [
-      "JOHN DEERE 4045"
-    ],
-    "codigos": [
-      {
-        "marca": "MANN",
-        "codigo": "CF980"
-      },
-      {
-        "marca": "AGCO",
-        "codigo": "2128537K91"
-      },
-      {
-        "marca": "MANN",
-        "codigo": "CF990/2"
-      },
-      {
-        "marca": "AUTHOMIX",
-        "codigo": "FAR2889"
-      },
-      {
-        "marca": "NEW HOLLAND",
-        "codigo": "86982525"
-      },
-      {
-        "marca": "BALDWIN",
-        "codigo": "RS3545"
-      },
-      {
-        "marca": "NEW HOLLAND",
-        "codigo": "47132346"
-      },
-      {
-        "marca": "CASE",
-        "codigo": "222422A1"
-      },
-      {
-        "marca": "CATERPILLAR",
-        "codigo": "1106331"
-      },
-      {
-        "marca": "PERKINS",
-        "codigo": "26510343"
-      },
-      {
-        "marca": "CATERPILLAR",
-        "codigo": "1318903"
-      },
-      {
-        "marca": "SAKURA",
-        "codigo": "A8621"
-      },
-      {
-        "marca": "CATERPILLAR",
-        "codigo": "26510343"
-      },
-      {
-        "marca": "TECFIL",
-        "codigo": "ASR889"
-      },
-      {
-        "marca": "DONALDSON",
-        "codigo": "P829333"
-      },
-      {
-        "marca": "TURBO FILTROS",
-        "codigo": "TR5590RS"
-      },
-      {
-        "marca": "FIAT ALLIS",
-        "codigo": "1930590"
-      },
-      {
-        "marca": "UFI",
-        "codigo": "2740700"
-      },
-      {
-        "marca": "FLEETGUARD",
-        "codigo": "AF25485"
-      },
-      {
-        "marca": "UNIFILTER",
-        "codigo": "UARS8890F"
-      },
-      {
-        "marca": "FLEETGUARD",
-        "codigo": "AF25558"
-      },
-      {
-        "marca": "VOX",
-        "codigo": "HDS889"
-      },
-      {
-        "marca": "FRAM",
-        "codigo": "CA5741SY"
-      },
-      {
-        "marca": "VOX ANTIGO",
-        "codigo": "HDS5609"
-      },
-      {
-        "marca": "GONHER",
-        "codigo": "GA854R"
-      },
-      {
-        "marca": "WEGA",
-        "codigo": "WAP903/S"
-      },
-      {
-        "marca": "INPECA",
-        "codigo": "SSR5980"
-      },
-      {
-        "marca": "WEGA",
-        "codigo": "WAP903S"
-      },
-      {
-        "marca": "JOHN DEERE",
-        "codigo": "AT171854"
-      },
-      {
-        "marca": "WIX",
-        "codigo": "W46569"
-      },
-      {
-        "marca": "LUBERFINER",
-        "codigo": "LAF4545"
-      },
-      {
-        "marca": "CNH",
-        "codigo": "87682999"
-      }
-    ]
-  },
-  "ACEITE__JOHN DEERE 4045": {
-    "tipo": "Aceite",
-    "modelos": [
-      "JOHN DEERE 4045"
-    ],
-    "codigos": [
-      {
-        "marca": "BALDWIN",
-        "codigo": "B7322"
-      },
-      {
-        "marca": "KOHLER",
-        "codigo": "GM32809"
-      },
-      {
-        "marca": "CAMECO",
-        "codigo": "RE504836"
-      },
-      {
-        "marca": "LIEBHERR",
-        "codigo": "7090561"
-      },
-      {
-        "marca": "CLAAS",
-        "codigo": "6005028743"
-      },
-      {
-        "marca": "LIEBHERR",
-        "codigo": "7090581"
-      },
-      {
-        "marca": "DONALDSON",
-        "codigo": "P550779"
-      },
-      {
-        "marca": "LUBERFINER",
-        "codigo": "LFP4836"
-      },
-      {
-        "marca": "DOOSAN",
-        "codigo": "36139632"
-      },
-      {
-        "marca": "MANN",
-        "codigo": "W1022"
-      },
-      {
-        "marca": "FIL FILTER",
-        "codigo": "ZP3195"
-      },
-      {
-        "marca": "ORIGINAL FILTER",
-        "codigo": "OFL0251B"
-      },
-      {
-        "marca": "FLEETGUARD",
-        "codigo": "LF16243"
-      },
-      {
-        "marca": "RENAULT VI",
-        "codigo": "6005028743"
-      },
-      {
-        "marca": "FRAM",
-        "codigo": "PH10220"
-      },
-      {
-        "marca": "SAKURA",
-        "codigo": "C7607"
-      },
-      {
-        "marca": "FST GULF",
-        "codigo": "FST550779"
-      },
-      {
-        "marca": "SDMO",
-        "codigo": "330510062"
-      },
-      {
-        "marca": "GRADALL",
-        "codigo": "91534005"
-      },
-      {
-        "marca": "SKYJACK",
-        "codigo": "13502869"
-      },
-      {
-        "marca": "INGERSOLL RAND",
-        "codigo": "22206148"
-      },
-      {
-        "marca": "TECFIL",
-        "codigo": "PSL598"
-      },
-      {
-        "marca": "JLG",
-        "codigo": "91534005"
-      },
-      {
-        "marca": "VAPORMATIC",
-        "codigo": "CPD5120"
-      },
-      {
-        "marca": "JOHN DEERE",
-        "codigo": "RE502513"
-      },
-      {
-        "marca": "VAPORMATIC",
-        "codigo": "VPD5120"
-      },
-      {
-        "marca": "JOHN DEERE",
-        "codigo": "RE504836"
-      },
-      {
-        "marca": "VAPORMATIC",
-        "codigo": "VPD5181"
-      },
-      {
-        "marca": "JOHN DEERE",
-        "codigo": "RE50486"
-      },
-      {
-        "marca": "VMC",
-        "codigo": "AL550779"
-      },
-      {
-        "marca": "JOHN DEERE",
-        "codigo": "RE507522"
-      },
-      {
-        "marca": "VMC",
-        "codigo": "LF550779"
-      },
-      {
-        "marca": "JOHN DEERE",
-        "codigo": "RE541420"
-      },
-      {
-        "marca": "WEGA",
-        "codigo": "WO761"
-      }
-    ]
-  },
   "COMBUSTIBLE__VOLVO VM310": {
     "tipo": "Combustible",
     "modelos": [
@@ -46786,606 +45826,6 @@
       }
     ]
   },
-  "AIRE PRIMARIO__JOHN DEERE 6068 TF": {
-    "tipo": "Aire primario",
-    "modelos": [
-      "JOHN DEERE 6068 TF"
-    ],
-    "codigos": [
-      {
-        "marca": "Baldwin",
-        "codigo": "PA1681FN"
-      },
-      {
-        "marca": "GM",
-        "codigo": "5114521"
-      },
-      {
-        "marca": "Parker / Racor",
-        "codigo": "AF2020KLL"
-      },
-      {
-        "marca": "Bosch",
-        "codigo": "1987430018"
-      },
-      {
-        "marca": "Gonher",
-        "codigo": "GAK403"
-      },
-      {
-        "marca": "Perkins",
-        "codigo": "26510211"
-      },
-      {
-        "marca": "Bosch",
-        "codigo": "9455087034"
-      },
-      {
-        "marca": "Hengst",
-        "codigo": "E568L"
-      },
-      {
-        "marca": "Puriar",
-        "codigo": "PA4805"
-      },
-      {
-        "marca": "Bosch",
-        "codigo": "0986B03524"
-      },
-      {
-        "marca": "Hidrafil",
-        "codigo": "520012"
-      },
-      {
-        "marca": "Purolator",
-        "codigo": "AF2040K"
-      },
-      {
-        "marca": "Brasif",
-        "codigo": "B774"
-      },
-      {
-        "marca": "Hidrafil",
-        "codigo": "5200012"
-      },
-      {
-        "marca": "Roma",
-        "codigo": "R143"
-      },
-      {
-        "marca": "Case",
-        "codigo": "E96143"
-      },
-      {
-        "marca": "Inpeca",
-        "codigo": "SAP2774"
-      },
-      {
-        "marca": "Sakura",
-        "codigo": "A5628"
-      },
-      {
-        "marca": "Case",
-        "codigo": "E062774"
-      },
-      {
-        "marca": "Inpeca",
-        "codigo": "SA2774"
-      },
-      {
-        "marca": "Sogefi Pro / Fram",
-        "codigo": "FLI0649"
-      },
-      {
-        "marca": "Case",
-        "codigo": "EO62774"
-      },
-      {
-        "marca": "Irlemp",
-        "codigo": "AF2040KLL"
-      },
-      {
-        "marca": "Tecfil",
-        "codigo": "AP6774"
-      },
-      {
-        "marca": "Caterpillar",
-        "codigo": "9Y6820"
-      },
-      {
-        "marca": "Iveco",
-        "codigo": "8014430"
-      },
-      {
-        "marca": "Turbo Filtros",
-        "codigo": "TR1049"
-      },
-      {
-        "marca": "Cummins",
-        "codigo": "705346"
-      },
-      {
-        "marca": "John Deere",
-        "codigo": "AT18426T"
-      },
-      {
-        "marca": "Ufi",
-        "codigo": "2787800"
-      },
-      {
-        "marca": "Donaldson",
-        "codigo": "P181054"
-      },
-      {
-        "marca": "Logan",
-        "codigo": "CFA396M"
-      },
-      {
-        "marca": "Unifilter",
-        "codigo": "UA2040PK"
-      },
-      {
-        "marca": "Engeagro",
-        "codigo": "137031"
-      },
-      {
-        "marca": "Luberfiner",
-        "codigo": "LAF1246"
-      },
-      {
-        "marca": "Vox",
-        "codigo": "HP5201"
-      },
-      {
-        "marca": "F Cross",
-        "codigo": "FE950"
-      },
-      {
-        "marca": "Mahle",
-        "codigo": "LX17"
-      },
-      {
-        "marca": "Vox",
-        "codigo": "HP6774"
-      },
-      {
-        "marca": "Fam",
-        "codigo": "FA2774"
-      },
-      {
-        "marca": "Mann",
-        "codigo": "C16190x"
-      },
-      {
-        "marca": "Vox Antigo",
-        "codigo": "HP5201"
-      },
-      {
-        "marca": "Fleetguard",
-        "codigo": "AF409K"
-      },
-      {
-        "marca": "Mann",
-        "codigo": "C16190"
-      },
-      {
-        "marca": "Wega",
-        "codigo": "WAP203"
-      },
-      {
-        "marca": "Fleetguard",
-        "codigo": "AF409KM"
-      },
-      {
-        "marca": "Mann",
-        "codigo": "C16192"
-      },
-      {
-        "marca": "Wix",
-        "codigo": "W42128"
-      },
-      {
-        "marca": "Fleetguard",
-        "codigo": "AF25287K"
-      },
-      {
-        "marca": "Massey Ferguson",
-        "codigo": "2803645M91"
-      },
-      {
-        "marca": "WIX",
-        "codigo": "42126"
-      },
-      {
-        "marca": "Fram",
-        "codigo": "CAK258"
-      },
-      {
-        "marca": "Maxion",
-        "codigo": "1025569M91"
-      },
-      {
-        "marca": "Xanfil",
-        "codigo": "XL2097"
-      },
-      {
-        "marca": "Fram",
-        "codigo": "CA3267"
-      },
-      {
-        "marca": "Nasa",
-        "codigo": "NR1143"
-      },
-      {
-        "marca": "Original Filter",
-        "codigo": "OFA2038C"
-      },
-      {
-        "marca": "GM",
-        "codigo": "5198867"
-      }
-    ]
-  },
-  "AIRE SECUNDARIO__JOHN DEERE 6068 TF": {
-    "tipo": "Aire secundario",
-    "modelos": [
-      "JOHN DEERE 6068 TF"
-    ],
-    "codigos": [
-      {
-        "marca": "MANN",
-        "codigo": "CF 1230"
-      },
-      {
-        "marca": "wix",
-        "codigo": "42648"
-      }
-    ]
-  },
-  "ACEITE__JOHN DEERE 6068 TF": {
-    "tipo": "Aceite",
-    "modelos": [
-      "JOHN DEERE 6068 TF"
-    ],
-    "codigos": [
-      {
-        "marca": "BALDWIN",
-        "codigo": "B7322"
-      },
-      {
-        "marca": "KOHLER",
-        "codigo": "GM32809"
-      },
-      {
-        "marca": "CAMECO",
-        "codigo": "RE504836"
-      },
-      {
-        "marca": "LIEBHERR",
-        "codigo": "7090561"
-      },
-      {
-        "marca": "CLAAS",
-        "codigo": "6005028743"
-      },
-      {
-        "marca": "LIEBHERR",
-        "codigo": "7090581"
-      },
-      {
-        "marca": "DONALDSON",
-        "codigo": "P550779"
-      },
-      {
-        "marca": "LUBERFINER",
-        "codigo": "LFP4836"
-      },
-      {
-        "marca": "DOOSAN",
-        "codigo": "36139632"
-      },
-      {
-        "marca": "MANN",
-        "codigo": "W1022"
-      },
-      {
-        "marca": "FIL FILTER",
-        "codigo": "ZP3195"
-      },
-      {
-        "marca": "ORIGINAL FILTER",
-        "codigo": "OFL0251B"
-      },
-      {
-        "marca": "FLEETGUARD",
-        "codigo": "LF16243"
-      },
-      {
-        "marca": "RENAULT VI",
-        "codigo": "6005028743"
-      },
-      {
-        "marca": "FRAM",
-        "codigo": "PH10220"
-      },
-      {
-        "marca": "SAKURA",
-        "codigo": "C7607"
-      },
-      {
-        "marca": "FST GULF",
-        "codigo": "FST550779"
-      },
-      {
-        "marca": "SDMO",
-        "codigo": "330510062"
-      },
-      {
-        "marca": "GRADALL",
-        "codigo": "91534005"
-      },
-      {
-        "marca": "SKYJACK",
-        "codigo": "13502869"
-      },
-      {
-        "marca": "INGERSOLL RAND",
-        "codigo": "22206148"
-      },
-      {
-        "marca": "TECFIL",
-        "codigo": "PSL598"
-      },
-      {
-        "marca": "JLG",
-        "codigo": "91534005"
-      },
-      {
-        "marca": "VAPORMATIC",
-        "codigo": "CPD5120"
-      },
-      {
-        "marca": "JOHN DEERE",
-        "codigo": "RE502513"
-      },
-      {
-        "marca": "VAPORMATIC",
-        "codigo": "VPD5120"
-      },
-      {
-        "marca": "JOHN DEERE",
-        "codigo": "RE504836"
-      },
-      {
-        "marca": "VAPORMATIC",
-        "codigo": "VPD5181"
-      },
-      {
-        "marca": "JOHN DEERE",
-        "codigo": "RE50486"
-      },
-      {
-        "marca": "VMC",
-        "codigo": "AL550779"
-      },
-      {
-        "marca": "JOHN DEERE",
-        "codigo": "RE507522"
-      },
-      {
-        "marca": "VMC",
-        "codigo": "LF550779"
-      },
-      {
-        "marca": "JOHN DEERE",
-        "codigo": "RE541420"
-      },
-      {
-        "marca": "WEGA",
-        "codigo": "WO761"
-      },
-      {
-        "marca": "WIX",
-        "codigo": "57750S"
-      }
-    ]
-  },
-  "COMBUSTIBLE__JOHN DEERE 6068 TF": {
-    "tipo": "Combustible",
-    "modelos": [
-      "JOHN DEERE 6068 TF"
-    ],
-    "codigos": [
-      {
-        "marca": "Baldwin",
-        "codigo": "BF7674D"
-      },
-      {
-        "marca": "Gonher",
-        "codigo": "GPP419"
-      },
-      {
-        "marca": "Baldwin",
-        "codigo": "BF7674D"
-      },
-      {
-        "marca": "Hengst",
-        "codigo": "H174WK"
-      },
-      {
-        "marca": "Baldwin",
-        "codigo": "BF7674D"
-      },
-      {
-        "marca": "Japanparts",
-        "codigo": "FCBR100S"
-      },
-      {
-        "marca": "Caterpillar",
-        "codigo": "1311812"
-      },
-      {
-        "marca": "John Deere",
-        "codigo": "RE62419"
-      },
-      {
-        "marca": "Caterpillar",
-        "codigo": "1596102"
-      },
-      {
-        "marca": "Luberfiner",
-        "codigo": "L8681F"
-      },
-      {
-        "marca": "Donaldson",
-        "codigo": "P551424"
-      },
-      {
-        "marca": "Mann",
-        "codigo": "WK8102"
-      },
-      {
-        "marca": "Donaldson",
-        "codigo": "P551424"
-      },
-      {
-        "marca": "Tecfil",
-        "codigo": "PSC877"
-      },
-      {
-        "marca": "Donaldson",
-        "codigo": "P550397"
-      },
-      {
-        "marca": "Vox",
-        "codigo": "FBD877"
-      },
-      {
-        "marca": "Donaldson",
-        "codigo": "P551424"
-      },
-      {
-        "marca": "Wega",
-        "codigo": "FCD0188"
-      },
-      {
-        "marca": "Fleetguard",
-        "codigo": "FS19531"
-      },
-      {
-        "marca": "Wega",
-        "codigo": "FCD188"
-      },
-      {
-        "marca": "Fleetguard",
-        "codigo": "FS19517"
-      },
-      {
-        "marca": "WIX",
-        "codigo": "33638"
-      },
-      {
-        "marca": "Fram",
-        "codigo": "PS8533"
-      },
-      {
-        "marca": "Original Filter",
-        "codigo": "OFC1586S"
-      }
-    ]
-  },
-  "COMBUSTIBLE CON TRAMPA__JOHN DEERE 6068 TF": {
-    "tipo": "Combustible con trampa",
-    "modelos": [
-      "JOHN DEERE 6068 TF"
-    ],
-    "codigos": [
-      {
-        "marca": "MANN",
-        "codigo": "WK9165"
-      }
-    ]
-  },
-  "COMBUSTIBLE CON TRAMPA 2__JOHN DEERE 6068 TF": {
-    "tipo": "Combustible con trampa 2",
-    "modelos": [
-      "JOHN DEERE 6068 TF"
-    ],
-    "codigos": [
-      {
-        "marca": "AGRALE",
-        "codigo": "6007001619005"
-      },
-      {
-        "marca": "MAHLE",
-        "codigo": "KC641D PLUS"
-      },
-      {
-        "marca": "BOSCH",
-        "codigo": "986450709"
-      },
-      {
-        "marca": "MANN",
-        "codigo": "WK1040"
-      },
-      {
-        "marca": "FORD",
-        "codigo": "BF8X9155AA"
-      },
-      {
-        "marca": "MERCEDES-BENZ",
-        "codigo": "3760927001"
-      },
-      {
-        "marca": "FRAM",
-        "codigo": "PS8187"
-      },
-      {
-        "marca": "ORIGINAL FILTER",
-        "codigo": "OFC1524S"
-      },
-      {
-        "marca": "INPECA",
-        "codigo": "SSB0460"
-      },
-      {
-        "marca": "SOGEFI PRO/FRAM",
-        "codigo": "FT9593"
-      },
-      {
-        "marca": "IVECO",
-        "codigo": "7146716"
-      },
-      {
-        "marca": "TECFIL",
-        "codigo": "PSD460"
-      },
-      {
-        "marca": "JAPANPARTS",
-        "codigo": "FCBR78S"
-      },
-      {
-        "marca": "VOLKSWAGEN",
-        "codigo": "2RP127491"
-      },
-      {
-        "marca": "MAHLE",
-        "codigo": "KC122"
-      },
-      {
-        "marca": "WEGA",
-        "codigo": "FCD3061"
-      },
-      {
-        "marca": "MAHLE",
-        "codigo": "KC641D"
-      },
-      {
-        "marca": "wix",
-        "codigo": "33532"
-      }
-    ]
-  },
   "COMBUSTIBLE (REFORMA)__EXCAVADORA CATERPILLAR 320D2 GC": {
     "tipo": "Combustible (Reforma)",
     "modelos": [
@@ -50115,6 +48555,1998 @@
       {
         "marca": "JAPANPARTS",
         "codigo": "FCBR37S"
+      }
+    ]
+  },
+  "AIRE PRIMARIO__JOHN DEERE 6068": {
+    "tipo": "Aire primario",
+    "modelos": [
+      "JOHN DEERE 6068"
+    ],
+    "codigos": [
+      {
+        "marca": "Baldwin",
+        "codigo": "PA1681FN"
+      },
+      {
+        "marca": "GM",
+        "codigo": "5114521"
+      },
+      {
+        "marca": "Parker / Racor",
+        "codigo": "AF2020KLL"
+      },
+      {
+        "marca": "Bosch",
+        "codigo": "1987430018"
+      },
+      {
+        "marca": "Gonher",
+        "codigo": "GAK403"
+      },
+      {
+        "marca": "Perkins",
+        "codigo": "26510211"
+      },
+      {
+        "marca": "Bosch",
+        "codigo": "9455087034"
+      },
+      {
+        "marca": "Hengst",
+        "codigo": "E568L"
+      },
+      {
+        "marca": "Puriar",
+        "codigo": "PA4805"
+      },
+      {
+        "marca": "Bosch",
+        "codigo": "0986B03524"
+      },
+      {
+        "marca": "Hidrafil",
+        "codigo": "520012"
+      },
+      {
+        "marca": "Purolator",
+        "codigo": "AF2040K"
+      },
+      {
+        "marca": "Brasif",
+        "codigo": "B774"
+      },
+      {
+        "marca": "Hidrafil",
+        "codigo": "5200012"
+      },
+      {
+        "marca": "Roma",
+        "codigo": "R143"
+      },
+      {
+        "marca": "Case",
+        "codigo": "E96143"
+      },
+      {
+        "marca": "Inpeca",
+        "codigo": "SAP2774"
+      },
+      {
+        "marca": "Sakura",
+        "codigo": "A5628"
+      },
+      {
+        "marca": "Case",
+        "codigo": "E062774"
+      },
+      {
+        "marca": "Inpeca",
+        "codigo": "SA2774"
+      },
+      {
+        "marca": "Sogefi Pro / Fram",
+        "codigo": "FLI0649"
+      },
+      {
+        "marca": "Case",
+        "codigo": "EO62774"
+      },
+      {
+        "marca": "Irlemp",
+        "codigo": "AF2040KLL"
+      },
+      {
+        "marca": "Tecfil",
+        "codigo": "AP6774"
+      },
+      {
+        "marca": "Caterpillar",
+        "codigo": "9Y6820"
+      },
+      {
+        "marca": "Iveco",
+        "codigo": "8014430"
+      },
+      {
+        "marca": "Turbo Filtros",
+        "codigo": "TR1049"
+      },
+      {
+        "marca": "Cummins",
+        "codigo": "705346"
+      },
+      {
+        "marca": "John Deere",
+        "codigo": "AT18426T"
+      },
+      {
+        "marca": "Ufi",
+        "codigo": "2787800"
+      },
+      {
+        "marca": "Donaldson",
+        "codigo": "P181054"
+      },
+      {
+        "marca": "Logan",
+        "codigo": "CFA396M"
+      },
+      {
+        "marca": "Unifilter",
+        "codigo": "UA2040PK"
+      },
+      {
+        "marca": "Engeagro",
+        "codigo": "137031"
+      },
+      {
+        "marca": "Luberfiner",
+        "codigo": "LAF1246"
+      },
+      {
+        "marca": "Vox",
+        "codigo": "HP5201"
+      },
+      {
+        "marca": "F Cross",
+        "codigo": "FE950"
+      },
+      {
+        "marca": "Mahle",
+        "codigo": "LX17"
+      },
+      {
+        "marca": "Vox",
+        "codigo": "HP6774"
+      },
+      {
+        "marca": "Fam",
+        "codigo": "FA2774"
+      },
+      {
+        "marca": "Mann",
+        "codigo": "C16190x"
+      },
+      {
+        "marca": "Vox Antigo",
+        "codigo": "HP5201"
+      },
+      {
+        "marca": "Fleetguard",
+        "codigo": "AF409K"
+      },
+      {
+        "marca": "Mann",
+        "codigo": "C16190"
+      },
+      {
+        "marca": "Wega",
+        "codigo": "WAP203"
+      },
+      {
+        "marca": "Fleetguard",
+        "codigo": "AF409KM"
+      },
+      {
+        "marca": "Mann",
+        "codigo": "C16192"
+      },
+      {
+        "marca": "Wix",
+        "codigo": "W42128"
+      },
+      {
+        "marca": "Fleetguard",
+        "codigo": "AF25287K"
+      },
+      {
+        "marca": "Massey Ferguson",
+        "codigo": "2803645M91"
+      },
+      {
+        "marca": "WIX",
+        "codigo": "42126"
+      },
+      {
+        "marca": "Fram",
+        "codigo": "CAK258"
+      },
+      {
+        "marca": "Maxion",
+        "codigo": "1025569M91"
+      },
+      {
+        "marca": "Xanfil",
+        "codigo": "XL2097"
+      },
+      {
+        "marca": "Fram",
+        "codigo": "CA3267"
+      },
+      {
+        "marca": "Nasa",
+        "codigo": "NR1143"
+      },
+      {
+        "marca": "Original Filter",
+        "codigo": "OFA2038C"
+      },
+      {
+        "marca": "GM",
+        "codigo": "5198867"
+      }
+    ]
+  },
+  "AIRE SECUNDARIO__JOHN DEERE 6068": {
+    "tipo": "Aire secundario",
+    "modelos": [
+      "JOHN DEERE 6068"
+    ],
+    "codigos": [
+      {
+        "marca": "MANN",
+        "codigo": "CF1230"
+      },
+      {
+        "marca": "WIX",
+        "codigo": "42648"
+      },
+      {
+        "marca": "FRAM",
+        "codigo": "CA1553SY"
+      },
+      {
+        "marca": "DONALSON",
+        "codigo": "P130050"
+      },
+      {
+        "marca": "DONALSON",
+        "codigo": "P141319"
+      },
+      {
+        "marca": "BALDWIN",
+        "codigo": "PA2547"
+      }
+    ]
+  },
+  "ACEITE__JOHN DEERE 6068": {
+    "tipo": "Aceite",
+    "modelos": [
+      "JOHN DEERE 6068"
+    ],
+    "codigos": [
+      {
+        "marca": "BALDWIN",
+        "codigo": "B7125"
+      },
+      {
+        "marca": "LIEBHERR",
+        "codigo": "7090065"
+      },
+      {
+        "marca": "BIG A",
+        "codigo": "91243"
+      },
+      {
+        "marca": "LUBERFINER",
+        "codigo": "LFP5757"
+      },
+      {
+        "marca": "DITCH WITCH",
+        "codigo": "194815"
+      },
+      {
+        "marca": "M.D.F. SARL",
+        "codigo": "MDL3118"
+      },
+      {
+        "marca": "DITCH WITCH",
+        "codigo": "RE59754"
+      },
+      {
+        "marca": "M.D.F. SARL",
+        "codigo": "MDL3118181001"
+      },
+      {
+        "marca": "DONALDSON",
+        "codigo": "P551352"
+      },
+      {
+        "marca": "MANN",
+        "codigo": "W925"
+      },
+      {
+        "marca": "FLEETGUARD",
+        "codigo": "LF3703"
+      },
+      {
+        "marca": "NEW HOLLAND",
+        "codigo": "73327626"
+      },
+      {
+        "marca": "FRAM",
+        "codigo": "PH8476"
+      },
+      {
+        "marca": "NORTHERN LIGHTS",
+        "codigo": "2401002"
+      },
+      {
+        "marca": "GEHL",
+        "codigo": "L99420"
+      },
+      {
+        "marca": "ORIGINAL",
+        "codigo": "36881696"
+      },
+      {
+        "marca": "GEHL",
+        "codigo": "RE59754"
+      },
+      {
+        "marca": "ORIGINAL",
+        "codigo": "7090065"
+      },
+      {
+        "marca": "GONHER",
+        "codigo": "GP754"
+      },
+      {
+        "marca": "ORIGINAL",
+        "codigo": "RE59754"
+      },
+      {
+        "marca": "GRADALL",
+        "codigo": "7021095"
+      },
+      {
+        "marca": "ORIGINAL FILTER",
+        "codigo": "OFL0238B"
+      },
+      {
+        "marca": "HENGST",
+        "codigo": "H26W01"
+      },
+      {
+        "marca": "PUROLATOR",
+        "codigo": "L35197"
+      },
+      {
+        "marca": "HITACHI",
+        "codigo": "RE59754"
+      },
+      {
+        "marca": "RACOR",
+        "codigo": "RL371"
+      },
+      {
+        "marca": "INGERSOLL RAND",
+        "codigo": "36881696"
+      },
+      {
+        "marca": "RENAULT VI",
+        "codigo": "6005021346"
+      },
+      {
+        "marca": "INGERSOLL RAND",
+        "codigo": "59154856"
+      },
+      {
+        "marca": "RENAULT VI",
+        "codigo": "6005021347"
+      },
+      {
+        "marca": "INGERSOLL RAND",
+        "codigo": "RE59754"
+      },
+      {
+        "marca": "SAKURA",
+        "codigo": "C7603"
+      },
+      {
+        "marca": "JLG",
+        "codigo": "91404005"
+      },
+      {
+        "marca": "SDMO",
+        "codigo": "330560553"
+      },
+      {
+        "marca": "JOHN DEERE",
+        "codigo": "RE506178"
+      },
+      {
+        "marca": "TECFIL",
+        "codigo": "PSL597"
+      },
+      {
+        "marca": "JOHN DEERE",
+        "codigo": "RE59574"
+      },
+      {
+        "marca": "TODD GT",
+        "codigo": "2240124"
+      },
+      {
+        "marca": "JOHN DEERE",
+        "codigo": "RE59754"
+      },
+      {
+        "marca": "UNIFILTER",
+        "codigo": "USL3703"
+      },
+      {
+        "marca": "KOHLER",
+        "codigo": "360031"
+      },
+      {
+        "marca": "VAPORMATIC",
+        "codigo": "VPD5109"
+      },
+      {
+        "marca": "KRALINATOR",
+        "codigo": "L339"
+      },
+      {
+        "marca": "VMC",
+        "codigo": "LF551352"
+      },
+      {
+        "marca": "KUKJE",
+        "codigo": "THA5102A4"
+      },
+      {
+        "marca": "WIX",
+        "codigo": "57243"
+      },
+      {
+        "marca": "LIEBHERR",
+        "codigo": "7090065"
+      }
+    ]
+  },
+  "COMBUSTIBLE__JOHN DEERE 6068": {
+    "tipo": "Combustible",
+    "modelos": [
+      "JOHN DEERE 6068"
+    ],
+    "codigos": [
+      {
+        "marca": "AGCO",
+        "codigo": "V836862563"
+      },
+      {
+        "marca": "KRALINATOR",
+        "codigo": "FS248"
+      },
+      {
+        "marca": "ASAS",
+        "codigo": "SP4045"
+      },
+      {
+        "marca": "LIEBHERR",
+        "codigo": "7381646"
+      },
+      {
+        "marca": "BALDWIN",
+        "codigo": "BF7679D"
+      },
+      {
+        "marca": "LINCOLN ELECTRIC",
+        "codigo": "M16890C"
+      },
+      {
+        "marca": "CASE/CASE IH",
+        "codigo": "162000080845"
+      },
+      {
+        "marca": "LUBERFINER",
+        "codigo": "L8682F"
+      },
+      {
+        "marca": "CASE/CASE IH",
+        "codigo": "84477351"
+      },
+      {
+        "marca": "MANN",
+        "codigo": "WK8109"
+      },
+      {
+        "marca": "CASE/CASE IH",
+        "codigo": "P2950591"
+      },
+      {
+        "marca": "MCCORMICK",
+        "codigo": "MC162000080845"
+      },
+      {
+        "marca": "CASE/CASE IH",
+        "codigo": "P2950591P"
+      },
+      {
+        "marca": "NEW HOLLAND",
+        "codigo": "84477351"
+      },
+      {
+        "marca": "CATERPILLAR",
+        "codigo": "1174089"
+      },
+      {
+        "marca": "NEW HOLLAND",
+        "codigo": "87840591"
+      },
+      {
+        "marca": "CHAMPION ROAD",
+        "codigo": "23230"
+      },
+      {
+        "marca": "ORIGINAL FILTER",
+        "codigo": "OFC1547S"
+      },
+      {
+        "marca": "CHAMPION ROAD",
+        "codigo": "26827"
+      },
+      {
+        "marca": "PETTIBONE",
+        "codigo": "JDRE62424"
+      },
+      {
+        "marca": "CHAMPION ROAD",
+        "codigo": "26830"
+      },
+      {
+        "marca": "PONSSE",
+        "codigo": "67409"
+      },
+      {
+        "marca": "CNH",
+        "codigo": "84477351"
+      },
+      {
+        "marca": "SISU",
+        "codigo": "836859302"
+      },
+      {
+        "marca": "COOPERS",
+        "codigo": "FSW4150"
+      },
+      {
+        "marca": "SISU",
+        "codigo": "836859302V"
+      },
+      {
+        "marca": "DONALDSON",
+        "codigo": "P551430"
+      },
+      {
+        "marca": "SISU",
+        "codigo": "836862563"
+      },
+      {
+        "marca": "FLEETGUARD",
+        "codigo": "FS19555"
+      },
+      {
+        "marca": "TECFIL",
+        "codigo": "PSC879"
+      },
+      {
+        "marca": "FLEETGUARD",
+        "codigo": "FS19526"
+      },
+      {
+        "marca": "TIMBERJACK",
+        "codigo": "F433618"
+      },
+      {
+        "marca": "FRAM",
+        "codigo": "PS8322"
+      },
+      {
+        "marca": "TODD GT",
+        "codigo": "2241127"
+      },
+      {
+        "marca": "FRAM",
+        "codigo": "PS8487"
+      },
+      {
+        "marca": "VALMET",
+        "codigo": "836859302"
+      },
+      {
+        "marca": "GONHER",
+        "codigo": "GPP424"
+      },
+      {
+        "marca": "VALTRA",
+        "codigo": "20359302"
+      },
+      {
+        "marca": "HOBART",
+        "codigo": "285364"
+      },
+      {
+        "marca": "VMC",
+        "codigo": "FS550434"
+      },
+      {
+        "marca": "IMPERIAL",
+        "codigo": "CV102718"
+      },
+      {
+        "marca": "VMC",
+        "codigo": "FS550502"
+      },
+      {
+        "marca": "JCB",
+        "codigo": "32925816"
+      },
+      {
+        "marca": "VMC",
+        "codigo": "FS551723"
+      },
+      {
+        "marca": "JOHN DEERE",
+        "codigo": "RE52424"
+      },
+      {
+        "marca": "VOX",
+        "codigo": "FBD879"
+      },
+      {
+        "marca": "JOHN DEERE",
+        "codigo": "RE61723"
+      },
+      {
+        "marca": "WISCONSIN",
+        "codigo": "31391"
+      },
+      {
+        "marca": "JOHN DEERE",
+        "codigo": "RE62424"
+      },
+      {
+        "marca": "WIX",
+        "codigo": "W33632"
+      },
+      {
+        "marca": "KRALINATOR",
+        "codigo": "FS229"
+      },
+      {
+        "marca": "WIX",
+        "codigo": "33636"
+      }
+    ]
+  },
+  "COMBUSTIBLE 2__JOHN DEERE 6068": {
+    "tipo": "Combustible 2",
+    "modelos": [
+      "JOHN DEERE 6068"
+    ],
+    "codigos": [
+      {
+        "marca": "AC DELCO",
+        "codigo": "GF647"
+      },
+      {
+        "marca": "KRALINATOR",
+        "codigo": "FS237"
+      },
+      {
+        "marca": "AC DELCO",
+        "codigo": "TP1263"
+      },
+      {
+        "marca": "KUKJE",
+        "codigo": "RE62419"
+      },
+      {
+        "marca": "AMERICAN PARTS",
+        "codigo": "95532"
+      },
+      {
+        "marca": "KUKJE",
+        "codigo": "TY6201A4"
+      },
+      {
+        "marca": "AMERICAN PARTS",
+        "codigo": "95534"
+      },
+      {
+        "marca": "LIEBHERR",
+        "codigo": "7381645"
+      },
+      {
+        "marca": "ASAS",
+        "codigo": "SP4047"
+      },
+      {
+        "marca": "LOESING",
+        "codigo": "25139"
+      },
+      {
+        "marca": "ASV INCORPORATED",
+        "codigo": "310089"
+      },
+      {
+        "marca": "LOESING",
+        "codigo": "25165"
+      },
+      {
+        "marca": "ATLAS",
+        "codigo": "TP1263"
+      },
+      {
+        "marca": "LUBERFINER",
+        "codigo": "L8721F"
+      },
+      {
+        "marca": "ATLAS COPCO",
+        "codigo": "RE62419"
+      },
+      {
+        "marca": "LULL",
+        "codigo": "8320269"
+      },
+      {
+        "marca": "BABCOCK MARINE (ROSYTH)",
+        "codigo": "2911000000000"
+      },
+      {
+        "marca": "LULL",
+        "codigo": "83320269"
+      },
+      {
+        "marca": "BALDWIN",
+        "codigo": "BF7674D"
+      },
+      {
+        "marca": "MANN",
+        "codigo": "WK8102"
+      },
+      {
+        "marca": "BEPCO GROUP LTD",
+        "codigo": "11126"
+      },
+      {
+        "marca": "MASSEY FERGUSON",
+        "codigo": "26560143"
+      },
+      {
+        "marca": "BIG A",
+        "codigo": "95532"
+      },
+      {
+        "marca": "MASSEY FERGUSON",
+        "codigo": "26560919"
+      },
+      {
+        "marca": "BIG A",
+        "codigo": "95534"
+      },
+      {
+        "marca": "OLSSONS I ELLOS AB",
+        "codigo": "RE52987"
+      },
+      {
+        "marca": "BIG A",
+        "codigo": "95537"
+      },
+      {
+        "marca": "ORIGINAL FILTER",
+        "codigo": "OFC1586S"
+      },
+      {
+        "marca": "BIG A",
+        "codigo": "95546"
+      },
+      {
+        "marca": "PERKINS",
+        "codigo": "2650143"
+      },
+      {
+        "marca": "BOBCAT",
+        "codigo": "6670996"
+      },
+      {
+        "marca": "PERKINS",
+        "codigo": "26530142"
+      },
+      {
+        "marca": "CASE/CASE IH",
+        "codigo": "73326639"
+      },
+      {
+        "marca": "PERKINS",
+        "codigo": "26560142"
+      },
+      {
+        "marca": "CATERPILLAR",
+        "codigo": "1005593"
+      },
+      {
+        "marca": "PERKINS",
+        "codigo": "26560143"
+      },
+      {
+        "marca": "CATERPILLAR",
+        "codigo": "1383096"
+      },
+      {
+        "marca": "PERKINS",
+        "codigo": "26560919"
+      },
+      {
+        "marca": "CATERPILLAR",
+        "codigo": "1383098"
+      },
+      {
+        "marca": "PERKINS",
+        "codigo": "36560143"
+      },
+      {
+        "marca": "CATERPILLAR",
+        "codigo": "1476543"
+      },
+      {
+        "marca": "PETTIBONE",
+        "codigo": "JDRE62419"
+      },
+      {
+        "marca": "CATERPILLAR",
+        "codigo": "1596102"
+      },
+      {
+        "marca": "PONSSE",
+        "codigo": "67411"
+      },
+      {
+        "marca": "CATERPILLAR",
+        "codigo": "2053043"
+      },
+      {
+        "marca": "PUROLATOR",
+        "codigo": "6939841"
+      },
+      {
+        "marca": "CATERPILLAR",
+        "codigo": "1311812"
+      },
+      {
+        "marca": "PUROLATOR",
+        "codigo": "6942249"
+      },
+      {
+        "marca": "CATERPILLAR",
+        "codigo": "1596102"
+      },
+      {
+        "marca": "PUROLATOR",
+        "codigo": "6942457"
+      },
+      {
+        "marca": "CHAMPION ROAD",
+        "codigo": "23117"
+      },
+      {
+        "marca": "PUROLATOR",
+        "codigo": "F55293"
+      },
+      {
+        "marca": "CHAMPION ROAD",
+        "codigo": "26828"
+      },
+      {
+        "marca": "PUROLATOR",
+        "codigo": "F56170"
+      },
+      {
+        "marca": "CHAMPION ROAD",
+        "codigo": "27916"
+      },
+      {
+        "marca": "PUROLATOR",
+        "codigo": "F65169"
+      },
+      {
+        "marca": "CLAAS",
+        "codigo": "3159680"
+      },
+      {
+        "marca": "PUROLATOR",
+        "codigo": "F65170"
+      },
+      {
+        "marca": "CLAAS",
+        "codigo": "6005020220"
+      },
+      {
+        "marca": "PUROLATOR",
+        "codigo": "F65299"
+      },
+      {
+        "marca": "CLARK",
+        "codigo": "6670996"
+      },
+      {
+        "marca": "RENAULT VI",
+        "codigo": "6005020220"
+      },
+      {
+        "marca": "COOPERS",
+        "codigo": "FSW4151"
+      },
+      {
+        "marca": "ROOSAMASTER",
+        "codigo": "29573"
+      },
+      {
+        "marca": "CROSLAND",
+        "codigo": "6007"
+      },
+      {
+        "marca": "ROOSAMASTER",
+        "codigo": "30221"
+      },
+      {
+        "marca": "DEZZI",
+        "codigo": "350003"
+      },
+      {
+        "marca": "ROOSAMASTER",
+        "codigo": "30233"
+      },
+      {
+        "marca": "DONALDSON",
+        "codigo": "P551424"
+      },
+      {
+        "marca": "ROOSAMASTER",
+        "codigo": "30729"
+      },
+      {
+        "marca": "DONALDSON",
+        "codigo": "P550397"
+      },
+      {
+        "marca": "ROOSAMASTER",
+        "codigo": "31385"
+      },
+      {
+        "marca": "FG WILSON",
+        "codigo": "10000051230"
+      },
+      {
+        "marca": "ROOSAMASTER",
+        "codigo": "31616"
+      },
+      {
+        "marca": "FG WILSON",
+        "codigo": "1000051230"
+      },
+      {
+        "marca": "ROOSAMASTER",
+        "codigo": "31733"
+      },
+      {
+        "marca": "FG WILSON",
+        "codigo": "901248"
+      },
+      {
+        "marca": "ROOSAMASTER",
+        "codigo": "31872"
+      },
+      {
+        "marca": "FIAAM",
+        "codigo": "FT5446"
+      },
+      {
+        "marca": "ROOSAMASTER",
+        "codigo": "31873"
+      },
+      {
+        "marca": "FLEETGUARD",
+        "codigo": "FS19531"
+      },
+      {
+        "marca": "ROOSAMASTER",
+        "codigo": "31875"
+      },
+      {
+        "marca": "FLEETGUARD",
+        "codigo": "FS19517"
+      },
+      {
+        "marca": "ROOSAMASTER",
+        "codigo": "31876"
+      },
+      {
+        "marca": "FLEETGUARD",
+        "codigo": "FS20073"
+      },
+      {
+        "marca": "ROOSAMASTER",
+        "codigo": "32916"
+      },
+      {
+        "marca": "FLEETGUARD",
+        "codigo": "FS19832"
+      },
+      {
+        "marca": "ROOSAMASTER",
+        "codigo": "32917"
+      },
+      {
+        "marca": "FLEETGUARD",
+        "codigo": "FS19861"
+      },
+      {
+        "marca": "ROOSAMASTER",
+        "codigo": "35370"
+      },
+      {
+        "marca": "FLEETGUARD",
+        "codigo": "FS19978"
+      },
+      {
+        "marca": "ROOSAMASTER",
+        "codigo": "35614"
+      },
+      {
+        "marca": "FRAM",
+        "codigo": "PS8622"
+      },
+      {
+        "marca": "SDMO",
+        "codigo": "330560611"
+      },
+      {
+        "marca": "GONHER",
+        "codigo": "GPP419"
+      },
+      {
+        "marca": "SULLAIR",
+        "codigo": "1005593"
+      },
+      {
+        "marca": "GREYFRIARS",
+        "codigo": "481F"
+      },
+      {
+        "marca": "TECFIL",
+        "codigo": "PSC877"
+      },
+      {
+        "marca": "GREYFRIARS",
+        "codigo": "498F"
+      },
+      {
+        "marca": "TFMC",
+        "codigo": "L04208"
+      },
+      {
+        "marca": "GT PIECES ET SERVICES",
+        "codigo": "2241075"
+      },
+      {
+        "marca": "TRAK INTERNATIONAL",
+        "codigo": "8230269"
+      },
+      {
+        "marca": "HENGST",
+        "codigo": "H174WK"
+      },
+      {
+        "marca": "TRAK INTERNATIONAL",
+        "codigo": "8320269"
+      },
+      {
+        "marca": "HITACHI",
+        "codigo": "RE62419"
+      },
+      {
+        "marca": "UNITED CENTRAL IND SUPP",
+        "codigo": "918736"
+      },
+      {
+        "marca": "JAPANPARTS",
+        "codigo": "FCBR100S"
+      },
+      {
+        "marca": "VAPORMATIC",
+        "codigo": "VPD6028"
+      },
+      {
+        "marca": "JCB",
+        "codigo": "32253917"
+      },
+      {
+        "marca": "VMC",
+        "codigo": "FS550397"
+      },
+      {
+        "marca": "JLG",
+        "codigo": "7024227"
+      },
+      {
+        "marca": "VMC",
+        "codigo": "FS550401"
+      },
+      {
+        "marca": "JOHN DEERE",
+        "codigo": "RE503198"
+      },
+      {
+        "marca": "VMC",
+        "codigo": "FS550506"
+      },
+      {
+        "marca": "JOHN DEERE",
+        "codigo": "RE522868"
+      },
+      {
+        "marca": "VMC",
+        "codigo": "FS550771"
+      },
+      {
+        "marca": "JOHN DEERE",
+        "codigo": "RE526557"
+      },
+      {
+        "marca": "VMC",
+        "codigo": "FS551424"
+      },
+      {
+        "marca": "JOHN DEERE",
+        "codigo": "RE52987"
+      },
+      {
+        "marca": "VOLVO CONSTR. EQUIP.",
+        "codigo": "11711183"
+      },
+      {
+        "marca": "JOHN DEERE",
+        "codigo": "RE53400"
+      },
+      {
+        "marca": "VOX",
+        "codigo": "FBD877"
+      },
+      {
+        "marca": "JOHN DEERE",
+        "codigo": "RE544394"
+      },
+      {
+        "marca": "WARNER & SWASEY",
+        "codigo": "L8684F"
+      },
+      {
+        "marca": "JOHN DEERE",
+        "codigo": "RE62419"
+      },
+      {
+        "marca": "WEGA",
+        "codigo": "FCD0188"
+      },
+      {
+        "marca": "JOHN DEERE",
+        "codigo": "RE64219"
+      },
+      {
+        "marca": "WEGA",
+        "codigo": "FCD188"
+      },
+      {
+        "marca": "JOHN DEERE",
+        "codigo": "RE64450"
+      },
+      {
+        "marca": "WISCONSIN",
+        "codigo": "TMD27F00287"
+      },
+      {
+        "marca": "KRALINATOR",
+        "codigo": "FS234"
+      },
+      {
+        "marca": "WIX",
+        "codigo": "33638"
+      },
+      {
+        "marca": "KRALINATOR",
+        "codigo": "FS236"
+      }
+    ]
+  },
+  "AIRE PRIMARIO__JOHN DEERE 4045": {
+    "tipo": "Aire primario",
+    "modelos": [
+      "JOHN DEERE 4045"
+    ],
+    "codigos": [
+      {
+        "marca": "AGCO",
+        "codigo": "113855M1"
+      },
+      {
+        "marca": "HENGST",
+        "codigo": "E434L"
+      },
+      {
+        "marca": "AGCO",
+        "codigo": "35213"
+      },
+      {
+        "marca": "INGERSOLL RAND",
+        "codigo": "92793025"
+      },
+      {
+        "marca": "AGCO",
+        "codigo": "4270033M1"
+      },
+      {
+        "marca": "INPECA",
+        "codigo": "SA5589RS"
+      },
+      {
+        "marca": "AGCO",
+        "codigo": "WR35213"
+      },
+      {
+        "marca": "INPECA",
+        "codigo": "SRS5589"
+      },
+      {
+        "marca": "AGRINET LTD",
+        "codigo": "12395012560YANMAR"
+      },
+      {
+        "marca": "JAPANPARTS",
+        "codigo": "FA5589S"
+      },
+      {
+        "marca": "AHLMANN",
+        "codigo": "4198305A"
+      },
+      {
+        "marca": "JOHN DEERE",
+        "codigo": "AT171853"
+      },
+      {
+        "marca": "AIRMAN-HOKUETSU",
+        "codigo": "3214312700"
+      },
+      {
+        "marca": "LUBERFINER",
+        "codigo": "LAF4544"
+      },
+      {
+        "marca": "ALLMAND BROS",
+        "codigo": "MA375E"
+      },
+      {
+        "marca": "MAHLE",
+        "codigo": "LX3986"
+      },
+      {
+        "marca": "AUTOMOTIV",
+        "codigo": "AE1032RS"
+      },
+      {
+        "marca": "MANN",
+        "codigo": "C17337/2"
+      },
+      {
+        "marca": "BALDWIN",
+        "codigo": "RS3545"
+      },
+      {
+        "marca": "MANN",
+        "codigo": "C17337"
+      },
+      {
+        "marca": "CASE",
+        "codigo": "252640A1"
+      },
+      {
+        "marca": "MASSEY FERGUSON",
+        "codigo": "6190627M1"
+      },
+      {
+        "marca": "CASE",
+        "codigo": "222421A1"
+      },
+      {
+        "marca": "NEW HOLLAND",
+        "codigo": "5150017"
+      },
+      {
+        "marca": "CATERPILLAR",
+        "codigo": "901048"
+      },
+      {
+        "marca": "NEW HOLLAND",
+        "codigo": "47132343"
+      },
+      {
+        "marca": "CATERPILLAR",
+        "codigo": "1106326"
+      },
+      {
+        "marca": "NEW HOLLAND",
+        "codigo": "82981152"
+      },
+      {
+        "marca": "CATERPILLAR",
+        "codigo": "1318902"
+      },
+      {
+        "marca": "NEW HOLLAND",
+        "codigo": "84217229"
+      },
+      {
+        "marca": "CATERPILLAR",
+        "codigo": "26510342"
+      },
+      {
+        "marca": "NEW HOLLAND",
+        "codigo": "86982524"
+      },
+      {
+        "marca": "CATERPILLAR",
+        "codigo": "1318902X"
+      },
+      {
+        "marca": "PARKER",
+        "codigo": "AF8889RS"
+      },
+      {
+        "marca": "DELPHI",
+        "codigo": "EFA984"
+      },
+      {
+        "marca": "PARKER",
+        "codigo": "1930589"
+      },
+      {
+        "marca": "DONALDSON",
+        "codigo": "P772580"
+      },
+      {
+        "marca": "PERKINS",
+        "codigo": "26510342"
+      },
+      {
+        "marca": "DONALDSON",
+        "codigo": "P604996"
+      },
+      {
+        "marca": "PERKINS",
+        "codigo": "901048"
+      },
+      {
+        "marca": "DONALDSON",
+        "codigo": "P828889"
+      },
+      {
+        "marca": "SAKURA",
+        "codigo": "A5541"
+      },
+      {
+        "marca": "DYNAPAC",
+        "codigo": "374771"
+      },
+      {
+        "marca": "TECFIL",
+        "codigo": "ARS8889"
+      },
+      {
+        "marca": "FIATALLIS",
+        "codigo": "1930589"
+      },
+      {
+        "marca": "TURBO FILTRO",
+        "codigo": "TR5589RS"
+      },
+      {
+        "marca": "FLEETGUARD",
+        "codigo": "AF25292"
+      },
+      {
+        "marca": "UNIFILTER",
+        "codigo": "UARS8889P"
+      },
+      {
+        "marca": "FLEETGUARD",
+        "codigo": "AF25352"
+      },
+      {
+        "marca": "VOX",
+        "codigo": "HD8889"
+      },
+      {
+        "marca": "FLEETGUARD",
+        "codigo": "AF25557"
+      },
+      {
+        "marca": "VOX ANTIGO",
+        "codigo": "HD5607"
+      },
+      {
+        "marca": "FRAM",
+        "codigo": "CA5741"
+      },
+      {
+        "marca": "WEGA",
+        "codigo": "WAP903"
+      },
+      {
+        "marca": "FRAM",
+        "codigo": "CA8737"
+      },
+      {
+        "marca": "WIX",
+        "codigo": "W46562"
+      },
+      {
+        "marca": "GONHER",
+        "codigo": "GA853R"
+      },
+      {
+        "marca": "XANFIL",
+        "codigo": "XL2124"
+      }
+    ]
+  },
+  "AIRE SECUNDARIO__JOHN DEERE 4045": {
+    "tipo": "Aire secundario",
+    "modelos": [
+      "JOHN DEERE 4045"
+    ],
+    "codigos": [
+      {
+        "marca": "MANN",
+        "codigo": "CF980"
+      },
+      {
+        "marca": "AGCO",
+        "codigo": "2128537K91"
+      },
+      {
+        "marca": "MANN",
+        "codigo": "CF990/2"
+      },
+      {
+        "marca": "AUTHOMIX",
+        "codigo": "FAR2889"
+      },
+      {
+        "marca": "NEW HOLLAND",
+        "codigo": "86982525"
+      },
+      {
+        "marca": "BALDWIN",
+        "codigo": "RS3545"
+      },
+      {
+        "marca": "NEW HOLLAND",
+        "codigo": "47132346"
+      },
+      {
+        "marca": "CASE",
+        "codigo": "222422A1"
+      },
+      {
+        "marca": "NEW HOLLAND",
+        "codigo": "86982525"
+      },
+      {
+        "marca": "CATERPILLAR",
+        "codigo": "1106331"
+      },
+      {
+        "marca": "PERKINS",
+        "codigo": "26510343"
+      },
+      {
+        "marca": "CATERPILLAR",
+        "codigo": "1318903"
+      },
+      {
+        "marca": "SAKURA",
+        "codigo": "A8621"
+      },
+      {
+        "marca": "CATERPILLAR",
+        "codigo": "26510343"
+      },
+      {
+        "marca": "TECFIL",
+        "codigo": "ASR889"
+      },
+      {
+        "marca": "DONALDSON",
+        "codigo": "P829333"
+      },
+      {
+        "marca": "TURBO FILTROS",
+        "codigo": "TR5590RS"
+      },
+      {
+        "marca": "FIAT ALLIS",
+        "codigo": "1930590"
+      },
+      {
+        "marca": "UFI",
+        "codigo": "2740700"
+      },
+      {
+        "marca": "FLEETGUARD",
+        "codigo": "AF25485"
+      },
+      {
+        "marca": "UNIFILTER",
+        "codigo": "UARS8890F"
+      },
+      {
+        "marca": "FLEETGUARD",
+        "codigo": "AF25558"
+      },
+      {
+        "marca": "VOX",
+        "codigo": "HDS889"
+      },
+      {
+        "marca": "FRAM",
+        "codigo": "CA5741SY"
+      },
+      {
+        "marca": "VOX ANTIGO",
+        "codigo": "HDS5609"
+      },
+      {
+        "marca": "GONHER",
+        "codigo": "GA854R"
+      },
+      {
+        "marca": "WEGA",
+        "codigo": "WAP903/S"
+      },
+      {
+        "marca": "INPECA",
+        "codigo": "SSR5980"
+      },
+      {
+        "marca": "WEGA",
+        "codigo": "WAP903S"
+      },
+      {
+        "marca": "JOHN DEERE",
+        "codigo": "AT171854"
+      },
+      {
+        "marca": "WIX",
+        "codigo": "W46569"
+      },
+      {
+        "marca": "LUBERFINER",
+        "codigo": "LAF4545"
+      },
+      {
+        "marca": "CNH",
+        "codigo": "87682999"
+      },
+      {
+        "marca": "FRAM",
+        "codigo": "CA8737SY"
+      }
+    ]
+  },
+  "ACEITE__JOHN DEERE 4045": {
+    "tipo": "Aceite",
+    "modelos": [
+      "JOHN DEERE 4045"
+    ],
+    "codigos": [
+      {
+        "marca": "BALDWIN",
+        "codigo": "B7322"
+      },
+      {
+        "marca": "KOHLER",
+        "codigo": "GM32809"
+      },
+      {
+        "marca": "CAMECO",
+        "codigo": "RE504836"
+      },
+      {
+        "marca": "LIEBHERR",
+        "codigo": "7090561"
+      },
+      {
+        "marca": "CLAAS",
+        "codigo": "6005028743"
+      },
+      {
+        "marca": "LIEBHERR",
+        "codigo": "7090581"
+      },
+      {
+        "marca": "DONALDSON",
+        "codigo": "P550779"
+      },
+      {
+        "marca": "LUBERFINER",
+        "codigo": "LFP4836"
+      },
+      {
+        "marca": "DOOSAN",
+        "codigo": "36139632"
+      },
+      {
+        "marca": "MANN",
+        "codigo": "W1022"
+      },
+      {
+        "marca": "FIL FILTER",
+        "codigo": "ZP3195"
+      },
+      {
+        "marca": "ORIGINAL FILTER",
+        "codigo": "OFL0251B"
+      },
+      {
+        "marca": "FLEETGUARD",
+        "codigo": "LF16243"
+      },
+      {
+        "marca": "RENAULT VI",
+        "codigo": "6005028743"
+      },
+      {
+        "marca": "FRAM",
+        "codigo": "PH10220"
+      },
+      {
+        "marca": "SAKURA",
+        "codigo": "C7607"
+      },
+      {
+        "marca": "FST GULF",
+        "codigo": "FST550779"
+      },
+      {
+        "marca": "SDMO",
+        "codigo": "330510062"
+      },
+      {
+        "marca": "GRADALL",
+        "codigo": "91534005"
+      },
+      {
+        "marca": "SKYJACK",
+        "codigo": "13502869"
+      },
+      {
+        "marca": "INGERSOLL RAND",
+        "codigo": "22206148"
+      },
+      {
+        "marca": "TECFIL",
+        "codigo": "PSL598"
+      },
+      {
+        "marca": "JLG",
+        "codigo": "91534005"
+      },
+      {
+        "marca": "VAPORMATIC",
+        "codigo": "CPD5120"
+      },
+      {
+        "marca": "JOHN DEERE",
+        "codigo": "RE502513"
+      },
+      {
+        "marca": "VAPORMATIC",
+        "codigo": "VPD5120"
+      },
+      {
+        "marca": "JOHN DEERE",
+        "codigo": "RE504836"
+      },
+      {
+        "marca": "VAPORMATIC",
+        "codigo": "VPD5181"
+      },
+      {
+        "marca": "JOHN DEERE",
+        "codigo": "RE50486"
+      },
+      {
+        "marca": "VMC",
+        "codigo": "AL550779"
+      },
+      {
+        "marca": "JOHN DEERE",
+        "codigo": "RE507522"
+      },
+      {
+        "marca": "VMC",
+        "codigo": "LF550779"
+      },
+      {
+        "marca": "JOHN DEERE",
+        "codigo": "RE541420"
+      },
+      {
+        "marca": "WEGA",
+        "codigo": "WO761"
+      }
+    ]
+  },
+  "COMBUSTIBLE__JOHN DEERE 4045": {
+    "tipo": "Combustible",
+    "modelos": [
+      "JOHN DEERE 4045"
+    ],
+    "codigos": [
+      {
+        "marca": "ASAS",
+        "codigo": "SP4029"
+      },
+      {
+        "marca": "FORD",
+        "codigo": "AFG189S"
+      },
+      {
+        "marca": "ASAS",
+        "codigo": "SP4069"
+      },
+      {
+        "marca": "FORD",
+        "codigo": "EFG1844032667"
+      },
+      {
+        "marca": "CASE/CASE IH",
+        "codigo": "1931137"
+      },
+      {
+        "marca": "FORD",
+        "codigo": "EFG1844352681"
+      },
+      {
+        "marca": "CASE/CASE IH",
+        "codigo": "84477355"
+      },
+      {
+        "marca": "FORD",
+        "codigo": "YC159176AA"
+      },
+      {
+        "marca": "CASE/CASE IH",
+        "codigo": "84565927"
+      },
+      {
+        "marca": "JCB",
+        "codigo": "320A7123"
+      },
+      {
+        "marca": "CASE/CASE IH",
+        "codigo": "87802925"
+      },
+      {
+        "marca": "JCB",
+        "codigo": "32925950"
+      },
+      {
+        "marca": "CASE/CASE IH",
+        "codigo": "87802927"
+      },
+      {
+        "marca": "JOHN DEERE",
+        "codigo": "RE541922"
+      },
+      {
+        "marca": "CATERPILLAR",
+        "codigo": "2289130"
+      },
+      {
+        "marca": "JOHN DEERE",
+        "codigo": "RE562138"
+      },
+      {
+        "marca": "CATERPILLAR",
+        "codigo": "3491063"
+      },
+      {
+        "marca": "KNECHT",
+        "codigo": "KC116"
+      },
+      {
+        "marca": "CATERPILLAR",
+        "codigo": "3619554"
+      },
+      {
+        "marca": "MANN",
+        "codigo": "WK8184"
+      },
+      {
+        "marca": "CLAAS",
+        "codigo": "11453510"
+      },
+      {
+        "marca": "NEW HOLLAND",
+        "codigo": "84477355"
+      },
+      {
+        "marca": "CLAAS",
+        "codigo": "11453510"
+      },
+      {
+        "marca": "NEW HOLLAND",
+        "codigo": "84565927"
+      },
+      {
+        "marca": "COOPERS",
+        "codigo": "FSM4145"
+      },
+      {
+        "marca": "NEW HOLLAND",
+        "codigo": "87801285"
+      },
+      {
+        "marca": "CROSLAND",
+        "codigo": "5212"
+      },
+      {
+        "marca": "NEW HOLLAND",
+        "codigo": "87802728"
+      },
+      {
+        "marca": "DONALDSON",
+        "codigo": "P551433"
+      },
+      {
+        "marca": "NEW HOLLAND",
+        "codigo": "87802926"
+      },
+      {
+        "marca": "FIAT",
+        "codigo": "NH87801285"
+      },
+      {
+        "marca": "ORIGINAL FILTER",
+        "codigo": "OFC1584S"
+      },
+      {
+        "marca": "FLEETGUARD",
+        "codigo": "FS19837"
+      },
+      {
+        "marca": "ROOSAMASTER",
+        "codigo": "33961"
+      },
+      {
+        "marca": "FLEETGUARD",
+        "codigo": "FS20049"
+      },
+      {
+        "marca": "ROOSAMASTER",
+        "codigo": "34470"
+      },
+      {
+        "marca": "FLEETGUARD",
+        "codigo": "FS20076"
+      },
+      {
+        "marca": "ROOSAMASTER",
+        "codigo": "35332"
+      },
+      {
+        "marca": "FORD",
+        "codigo": "4352681"
+      },
+      {
+        "marca": "FORD",
+        "codigo": "4032667"
+      }
+    ]
+  },
+  "COMBUSTIBLE 2__JOHN DEERE 4045": {
+    "tipo": "Combustible 2",
+    "modelos": [
+      "JOHN DEERE 4045"
+    ],
+    "codigos": [
+      {
+        "marca": "BALDWIN",
+        "codigo": "BF7949D"
+      },
+      {
+        "marca": "JOHN DEERE",
+        "codigo": "RE524723"
+      },
+      {
+        "marca": "CLAAS",
+        "codigo": "11318200"
+      },
+      {
+        "marca": "JOHN DEERE",
+        "codigo": "RE535216"
+      },
+      {
+        "marca": "DONALDSON",
+        "codigo": "P551433"
+      },
+      {
+        "marca": "LIEBHERR",
+        "codigo": "7091068"
+      },
+      {
+        "marca": "DONALDSON",
+        "codigo": "P551422"
+      },
+      {
+        "marca": "MANN",
+        "codigo": "WK8162"
+      },
+      {
+        "marca": "FLEETGUARD",
+        "codigo": "FS19976"
+      },
+      {
+        "marca": "MANN",
+        "codigo": "WK8187"
+      },
+      {
+        "marca": "HENGST",
+        "codigo": "H300WK"
+      },
+      {
+        "marca": "TECFIL",
+        "codigo": "PSC885"
+      },
+      {
+        "marca": "JOHN DEERE",
+        "codigo": "RE22878"
+      },
+      {
+        "marca": "WEGA",
+        "codigo": "FCD0194"
+      },
+      {
+        "marca": "JOHN DEERE",
+        "codigo": "RE522878"
+      },
+      {
+        "marca": "WEGA",
+        "codigo": "FCD194"
       }
     ]
   }
