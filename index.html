@@ -385,6 +385,7 @@ body { font-family: var(--f); background: var(--bg); color: var(--text); min-hei
 .ped-badge.pedido{background:#fff3cd;color:#856404;}
 .ped-badge.transito{background:#cfe2ff;color:#084298;}
 .ped-badge.llego{background:#d1e7dd;color:#0a3622;}
+.ped-badge.usado{background:#e2d9f3;color:#6f42c1;}
 .ped-filter-bar{display:flex;gap:10px;align-items:center;margin-bottom:12px;flex-wrap:wrap;}
 .ped-filter-select{padding:8px 12px;border:1.5px solid var(--border);border-radius:8px;font-size:13px;background:var(--panel);color:var(--text);}
 /* Estado quick-change */
@@ -1841,7 +1842,7 @@ function pedFiltrar() {
 function pedFiltrarEnviados() {
   var sede = document.getElementById('pedFiltroSede').value;
   var filtered = pedAllData.filter(function(p) {
-    if (p.estado !== 'En tránsito' && p.estado !== 'Llegó') return false;
+    if (p.estado !== 'Enviado' && p.estado !== 'Llegó') return false;
     if (sede && p.sede !== sede) return false;
     return true;
   });
@@ -1855,7 +1856,7 @@ function pedRenderTabla(rows, tbody, isEnviados) {
   }
   tbody.innerHTML = '';
   rows.forEach(function(p) {
-    var badgeClass = p.estado === 'Llegó' ? 'llego' : p.estado === 'En tránsito' ? 'transito' : 'pedido';
+    var badgeClass = p.estado === 'Llegó' ? 'llego' : p.estado === 'Enviado' ? 'transito' : 'pedido';
     var tr = document.createElement('tr');
 
     // Build action buttons using DOM to avoid quote issues
@@ -1865,11 +1866,11 @@ function pedRenderTabla(rows, tbody, isEnviados) {
       if (p.estado === 'Pedido') {
         td.appendChild(pedMakeBtn('blue', 'Enviar', p.id, 'transito'));
         td.appendChild(pedMakeBtn('green', 'Llegó', p.id, 'llego'));
-      } else if (p.estado === 'En tránsito') {
+      } else if (p.estado === 'Enviado') {
         td.appendChild(pedMakeBtn('green', 'Llegó', p.id, 'llego'));
       }
     } else {
-      if (p.estado === 'En tránsito') {
+      if (p.estado === 'Enviado') {
         td.appendChild(pedMakeBtn('green', 'Llegó', p.id, 'llego'));
       }
       if (p.estado === 'Llegó' && !p.precio) {
@@ -1908,25 +1909,75 @@ function pedMakeBtn(cls, txt, id, action) {
   var btn = document.createElement('button');
   btn.className = 'ped-status-btn ' + cls;
   btn.textContent = txt;
-  btn.onclick = (function(id, action) {
+  btn.onclick = (function(id, action, btn) {
     return function() {
       if (action === 'precio') { pedAbrirPrecio(id, btn); }
+      else if (action === 'transito') { pedAbrirModalSede(id, btn); }
       else { pedActualizarBtn(id, action, btn); }
     };
-  })(id, action);
+  })(id, action, btn);
   return btn;
 }
 
 
+function pedAbrirModalSede(id, btn) {
+  // Build modal with sede dropdown
+  var overlay = document.createElement('div');
+  overlay.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:300;display:flex;align-items:center;justify-content:center;padding:20px;';
+  var modal = document.createElement('div');
+  modal.style.cssText = 'background:var(--panel);border-radius:16px;padding:24px;width:100%;max-width:360px;';
+  var title = document.createElement('div');
+  title.style.cssText = 'font-size:18px;font-weight:900;margin-bottom:16px;';
+  title.textContent = 'Seleccion\u00e1 la sede destino';
+  var sel = document.createElement('select');
+  sel.className = 'ped-select';
+  sel.style.marginBottom = '16px';
+  if (!pedSedes.length) {
+    var o = document.createElement('option');
+    o.value = ''; o.textContent = '-- Sin sedes configuradas --';
+    sel.appendChild(o);
+  } else {
+    var oDefault = document.createElement('option');
+    oDefault.value = ''; oDefault.textContent = '-- Elegir sede --';
+    sel.appendChild(oDefault);
+    pedSedes.forEach(function(s) {
+      var o = document.createElement('option');
+      o.value = s; o.textContent = s;
+      sel.appendChild(o);
+    });
+  }
+  var btnRow = document.createElement('div');
+  btnRow.style.cssText = 'display:flex;gap:8px;';
+  var btnConfirm = document.createElement('button');
+  btnConfirm.className = 'ped-btn';
+  btnConfirm.style.flex = '1';
+  btnConfirm.textContent = 'Confirmar';
+  btnConfirm.onclick = function() {
+    var sede = sel.value;
+    if (!sede) { alert('Selecion\u00e1 una sede'); return; }
+    document.body.removeChild(overlay);
+    pedActualizar(id, 'Enviado', btn, sede);
+  };
+  var btnCancel = document.createElement('button');
+  btnCancel.className = 'ped-btn-outline';
+  btnCancel.style.flex = '1';
+  btnCancel.textContent = 'Cancelar';
+  btnCancel.onclick = function() { document.body.removeChild(overlay); };
+  btnRow.appendChild(btnConfirm); btnRow.appendChild(btnCancel);
+  modal.appendChild(title); modal.appendChild(sel); modal.appendChild(btnRow);
+  overlay.appendChild(modal);
+  document.body.appendChild(overlay);
+}
+
 function pedActualizarBtn(id, action, btn) {
-  var estadoMap = { transito: 'En tránsito', llego: 'Llegó' };
+  var estadoMap = { transito: 'Enviado', llego: 'Llegó' };
   var estado = estadoMap[action] || action;
   pedActualizar(id, estado, btn);
 }
 
 function pedActualizar(id, estado, btn) {
   var sede = '';
-  if (estado === 'En tránsito') {
+  if (estado === 'Enviado') {
     // Ask for sede
     var sedeOptions = pedSedes.length ? pedSedes.join(', ') : 'ej: Sede Norte';
     sede = prompt('Sede destino (' + sedeOptions + '):');
@@ -1959,7 +2010,7 @@ function pedAbrirPrecio(id, btn) {
 function pedVerDetalle(id) {
   var p = pedAllData.find(function(x) { return x.id === id; });
   if (!p) return;
-  var badgeClass = p.estado === 'Llegó' ? 'llego' : p.estado === 'En tránsito' ? 'transito' : 'pedido';
+  var badgeClass = p.estado === 'Llegó' ? 'llego' : p.estado === 'Enviado' ? 'transito' : 'pedido';
   var chips = (p.items || '').split(' | ').map(function(i) {
     return '<span class="ped-chip">' + i + '</span>';
   }).join('');
@@ -2162,6 +2213,7 @@ function pedEliminarSede(idx) {
           <option value="Pedido">Pedido</option>
           <option value="En tr&#225;nsito">En tr&#225;nsito</option>
           <option value="Lleg&#243;">Lleg&#243;</option>
+          <option value="Usado">Usado</option>
         </select>
         <select class="ped-filter-select" id="pedFiltroMovil" onchange="pedFiltrar()">
           <option value="">Todos los m&#243;viles</option>
