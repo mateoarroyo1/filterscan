@@ -373,6 +373,10 @@ body { font-family: var(--f); background: var(--bg); color: var(--text); min-hei
 .ped-submit{padding:14px 32px;background:var(--orange);color:#fff;border:none;border-radius:12px;font-size:15px;font-weight:900;cursor:pointer;margin-top:16px;}
 /* Tabla de pedidos */
 .ped-table-wrap{overflow-x:auto;margin-top:8px;}
+#page-pedidos{max-width:100% !important;padding:0 !important;}
+#page-pedidos .ped-section{padding:12px 24px;}
+#page-pedidos .ped-header{padding:16px 24px 0;}
+#page-pedidos .ped-tabs{margin:12px 24px 0;}
 .ped-table{width:100%;border-collapse:collapse;font-size:14px;}
 .ped-table th{padding:10px 14px;text-align:left;font-size:11px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:1px;border-bottom:2px solid var(--border);white-space:nowrap;}
 .ped-table td{padding:12px 14px;border-bottom:1px solid var(--border);vertical-align:middle;}
@@ -1890,11 +1894,9 @@ function pedRenderTabla(rows, tbody, isEnviados) {
         '<td>' + (p.precio ? '$ ' + p.precio : '-') + '</td>';
     } else {
       tr.innerHTML =
-        '<td style="font-weight:800">' + (p.nroSolicitud || '-') + '</td>' +
-        '<td>' + (p.nroOT || '-') + '</td>' +
+        '<td style="font-weight:800">' + (p.nroSolicitud || '-') + (p.nroOT ? '<br><span style="font-weight:600;font-size:11px;color:var(--muted)">OT: ' + p.nroOT + '</span>' : '') + '</td>' +
         '<td style="font-weight:700">' + (p.movil || '-') + '</td>' +
-        '<td>' + (p.modelo || '-') + '</td>' +
-        '<td style="color:var(--muted)">' + (p.fecha || '') + '</td>' +
+        '<td style="color:var(--muted);font-size:12px;">' + (p.fecha || '') + '</td>' +
         '<td><span class="ped-badge ' + badgeClass + '">' + p.estado + '</span></td>';
     }
     tr.appendChild(td);
@@ -2171,10 +2173,8 @@ function pedEliminarSede(idx) {
         <table class="ped-table" id="pedTabla">
           <thead>
             <tr>
-              <th>SOLICITUD</th>
-              <th>OT</th>
+              <th>SOLICITUD / OT</th>
               <th>M&#211;VIL</th>
-              <th>MODELO</th>
               <th>FECHA</th>
               <th>ESTADO</th>
               <th>ACCIONES</th>
