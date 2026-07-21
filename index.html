@@ -434,7 +434,7 @@ body { font-family: var(--f); background: var(--bg); color: var(--text); min-hei
         <div class="d-sub">Generar pedido de filtros</div>
       </div>
     </button>
-    <button class="d-item" id="di-pedidos" onclick="goPage('pedidos')">
+    <button class="d-item" id="di-pedidos" onclick="goPage('pedidos');pedCheckAuth()">
       <div class="d-icon">&#x1F4E6;</div>
       <div>
         <div class="d-label">Pedidos</div>
@@ -1623,19 +1623,16 @@ function pedCerrarSesion() {
   document.getElementById('pedPass').value = '';
 }
 
-// Mostrar contenido si ya esta autenticado
-var _pedOrigGoPage = goPage;
-function goPage(name) {
-  _pedOrigGoPage(name);
-  if (name === 'pedidos') {
-    if (sessionStorage.getItem('ped_auth') === '1') {
-      document.getElementById('ped-login-screen').style.display = 'none';
-      document.getElementById('ped-content').style.display = 'block';
-      pedInitModelos();
-    } else {
-      document.getElementById('ped-login-screen').style.display = 'flex';
-      document.getElementById('ped-content').style.display = 'none';
-    }
+// Check auth when pedidos page is shown
+function pedCheckAuth() {
+  if (sessionStorage.getItem('ped_auth') === '1') {
+    document.getElementById('ped-login-screen').style.display = 'none';
+    document.getElementById('ped-content').style.display = 'block';
+    pedInitModelos();
+    pedCargarSeguimiento();
+  } else {
+    document.getElementById('ped-login-screen').style.display = 'flex';
+    document.getElementById('ped-content').style.display = 'none';
   }
 }
 
