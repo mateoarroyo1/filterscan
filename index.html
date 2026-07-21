@@ -1665,6 +1665,9 @@ function pedInitModelos() {
 
 function pedCargarFiltros() {
   var modelo = document.getElementById('pedModelo').value;
+  var container = document.getElementById('pedItemsList');
+  container.innerHTML = '';
+  pedItems = [];
   if (!modelo) return;
   var tipos = [];
   for (var key in DB) {
@@ -1672,9 +1675,22 @@ function pedCargarFiltros() {
     if (v.modelos.indexOf(modelo) !== -1 && v.codigos.length > 0) tipos.push(v.tipo);
   }
   tipos.sort();
-  // Pre-populate items with filter types for this model
-  pedItems = tipos.map(function(t) { return 'Filtro ' + t; });
-  pedRenderItems();
+  // Show as checkboxes — user ticks what they want
+  tipos.forEach(function(tipo) {
+    var id = 'pedchk_' + tipo.replace(/[^a-z0-9]/gi, '_');
+    var div = document.createElement('div');
+    div.className = 'req-check';
+    var inp = document.createElement('input');
+    inp.type = 'checkbox'; inp.id = id; inp.value = 'Filtro ' + tipo;
+    var lbl = document.createElement('label');
+    lbl.className = 'req-check-label'; lbl.setAttribute('for', id); lbl.textContent = 'Filtro ' + tipo;
+    div.appendChild(inp); div.appendChild(lbl);
+    div.addEventListener('click', function(e) {
+      if (e.target.tagName !== 'INPUT') div.querySelector('input').click();
+      div.classList.toggle('selected', div.querySelector('input').checked);
+    });
+    container.appendChild(div);
+  });
 }
 
 function pedAgregarItem() {
@@ -1710,7 +1726,13 @@ function pedCrear() {
   var nroOT = document.getElementById('pedNroOT').value.trim();
   var obs = document.getElementById('pedObs').value.trim();
 
-  if (!movil || !nroSol || pedItems.length === 0) {
+  // Collect checked filter items
+  var checkedItems = [];
+  document.querySelectorAll('#pedItemsList input[type=checkbox]:checked').forEach(function(c) {
+    checkedItems.push(c.value);
+  });
+  var allItems = checkedItems.concat(pedItems);
+  if (!movil || !nroSol || allItems.length === 0) {
     alert('Completá al menos: Móvil, Nº Solicitud y al menos un ítem.');
     return;
   }
@@ -1724,7 +1746,7 @@ function pedCrear() {
     modelo: modelo,
     nroSolicitud: nroSol,
     nroOT: nroOT,
-    items: pedItems.join(' | '),
+    items: allItems.join(' | '),
     obs: obs
   };
 
@@ -1745,7 +1767,8 @@ function pedCrear() {
         document.getElementById('pedNroOT').value = '';
         document.getElementById('pedObs').value = '';
         pedItems = [];
-        pedRenderItems();
+        document.getElementById('pedModelo').value = '';
+        pedCargarFiltros();
         pedShowTab('seguimiento');
       }, 1200);
     } else {
@@ -1954,23 +1977,23 @@ function pedGuardarPrecio(id) {
     </div>
     <div id="pedPane-nuevo" class="ped-section">
       <div class="ped-label">M&#243;vil</div>
-      <input class="ped-input" id="pedMovil" type="text" placeholder="Ej: MV45">
+      <input class="ped-input" id="pedMovil" type="text" placeholder="">
       <div class="ped-label">Modelo de veh&#237;culo</div>
       <select class="ped-select" id="pedModelo" onchange="pedCargarFiltros()">
         <option value="">-- Selecion&#225; el veh&#237;culo --</option>
       </select>
       <div class="ped-label">N&#250;mero de Solicitud</div>
-      <input class="ped-input" id="pedNroSol" type="text" placeholder="Ej: SOL-001">
+      <input class="ped-input" id="pedNroSol" type="text" placeholder="">
       <div class="ped-label">N&#250;mero de OT</div>
-      <input class="ped-input" id="pedNroOT" type="text" placeholder="Ej: OT-2025-001">
+      <input class="ped-input" id="pedNroOT" type="text" placeholder="">
       <div class="ped-label">Items a pedir</div>
       <div class="ped-items-list" id="pedItemsList"></div>
       <div class="ped-add-row">
-        <input class="ped-input" id="pedItemInput" type="text" placeholder="Agregar filtro u otro repuesto..." style="flex:1" onkeydown="if(event.key==='Enter') pedAgregarItem()">
+        <input class="ped-input" id="pedItemInput" type="text" placeholder="" style="flex:1" onkeydown="if(event.key==='Enter') pedAgregarItem()">
         <button class="ped-btn" onclick="pedAgregarItem()">+</button>
       </div>
       <div class="ped-label">Observaciones</div>
-      <input class="ped-input" id="pedObs" type="text" placeholder="Opcional...">
+      <input class="ped-input" id="pedObs" type="text" placeholder="">
       <button class="ped-submit" onclick="pedCrear()">CREAR PEDIDO</button>
     </div>
     <div id="pedPane-seguimiento" class="ped-section" style="display:none;">
