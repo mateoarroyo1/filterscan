@@ -342,6 +342,51 @@ body { font-family: var(--f); background: var(--bg); color: var(--text); min-hei
   .pdf-footer { margin-top: 32px; border-top: 1px solid #eee; padding-top: 12px; font-size: 11px; color: #999; text-align: center; }
 }
 #pdf-print { display: none; }
+
+.ped-login{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:60vh;gap:16px;padding:24px;}
+.ped-login-title{font-size:22px;font-weight:900;}
+.ped-login-sub{font-size:13px;color:var(--muted);}
+.ped-login-input{width:100%;max-width:280px;padding:14px 16px;border:2px solid var(--border);border-radius:12px;font-size:16px;text-align:center;letter-spacing:4px;background:var(--panel);color:var(--text);box-sizing:border-box;}
+.ped-login-btn{width:100%;max-width:280px;padding:14px;background:var(--orange);color:#fff;border:none;border-radius:12px;font-size:16px;font-weight:900;cursor:pointer;}
+.ped-tabs{display:flex;border-bottom:2px solid var(--border);margin:0 16px;}
+.ped-tab{flex:1;padding:12px;font-size:13px;font-weight:800;text-align:center;cursor:pointer;color:var(--muted);border-bottom:3px solid transparent;margin-bottom:-2px;background:none;border-top:none;border-left:none;border-right:none;}
+.ped-tab.on{color:var(--orange);border-bottom-color:var(--orange);}
+.ped-section{padding:16px;}
+.ped-label{font-size:11px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin:14px 0 6px;}
+.ped-input{width:100%;padding:12px 14px;border:2px solid var(--border);border-radius:10px;font-size:15px;background:var(--panel);color:var(--text);box-sizing:border-box;}
+.ped-input:focus{border-color:var(--orange);outline:none;}
+.ped-select{width:100%;padding:12px 14px;border:2px solid var(--border);border-radius:10px;font-size:15px;background:var(--panel);color:var(--text);appearance:none;cursor:pointer;}
+.ped-items-list{display:flex;flex-direction:column;gap:8px;margin-top:4px;}
+.ped-item-row{display:flex;align-items:center;gap:8px;padding:10px 14px;background:var(--panel);border:1.5px solid var(--border);border-radius:10px;}
+.ped-item-name{flex:1;font-size:14px;font-weight:700;}
+.ped-item-del{background:none;border:none;color:var(--muted);font-size:18px;cursor:pointer;padding:0;}
+.ped-add-row{display:flex;gap:8px;margin-top:8px;}
+.ped-btn{padding:13px 16px;background:var(--orange);color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:900;cursor:pointer;white-space:nowrap;}
+.ped-btn-outline{padding:13px 16px;background:var(--panel);color:var(--text);border:2px solid var(--border);border-radius:10px;font-size:14px;font-weight:800;cursor:pointer;}
+.ped-submit{width:100%;padding:16px;background:var(--orange);color:#fff;border:none;border-radius:12px;font-size:16px;font-weight:900;cursor:pointer;margin-top:16px;}
+.ped-card{background:var(--panel);border:2px solid var(--border);border-radius:12px;margin-bottom:12px;overflow:hidden;}
+.ped-card-head{padding:14px 16px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;}
+.ped-card-left{flex:1;}
+.ped-card-nro{font-size:16px;font-weight:900;}
+.ped-card-sub{font-size:12px;color:var(--muted);margin-top:2px;}
+.ped-badge{font-size:11px;font-weight:800;padding:4px 10px;border-radius:20px;}
+.ped-badge.pedido{background:#fff3cd;color:#856404;}
+.ped-badge.transito{background:#cfe2ff;color:#084298;}
+.ped-badge.llego{background:#d1e7dd;color:#0a3622;}
+.ped-card-body{padding:14px 16px;border-top:1.5px solid var(--border);display:none;}
+.ped-card-body.open{display:block;}
+.ped-detail-row{display:flex;justify-content:space-between;margin-bottom:6px;font-size:13px;}
+.ped-detail-label{color:var(--muted);font-weight:700;}
+.ped-detail-val{font-weight:800;text-align:right;}
+.ped-items-chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0;}
+.ped-chip{background:var(--bg);border:1.5px solid var(--border);border-radius:20px;padding:4px 10px;font-size:12px;font-weight:700;}
+.ped-actions{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap;}
+.ped-act-btn{flex:1;padding:10px;border:none;border-radius:8px;font-size:13px;font-weight:800;cursor:pointer;}
+.ped-act-btn.green{background:#d1e7dd;color:#0a3622;}
+.ped-act-btn.blue{background:#cfe2ff;color:#084298;}
+.ped-act-btn.orange{background:var(--orange);color:#fff;}
+.ped-price-row{display:flex;gap:8px;margin-top:8px;}
+.ped-price-input{flex:1;padding:10px 12px;border:2px solid var(--border);border-radius:8px;font-size:14px;background:var(--bg);color:var(--text);}
 </style>
 </head>
 <body>
@@ -387,6 +432,13 @@ body { font-family: var(--f); background: var(--bg); color: var(--text); min-hei
       <div>
         <div class="d-label">Requisición</div>
         <div class="d-sub">Generar pedido de filtros</div>
+      </div>
+    </button>
+    <button class="d-item" id="di-pedidos" onclick="goPage('pedidos')">
+      <div class="d-icon">&#x1F4E6;</div>
+      <div>
+        <div class="d-label">Pedidos</div>
+        <div class="d-sub">Seguimiento de repuestos</div>
       </div>
     </button>
     <button class="d-item" id="di-historial" onclick="goPage('historial')">
@@ -1546,6 +1598,277 @@ function buscarShowlub(codigo, btn) {
     });
 }
 
+
+// ── PEDIDOS ──
+var PED_PASS = 'Tallerocme1234';
+var pedItems = [];
+
+function pedLogin() {
+  var val = document.getElementById('pedPass').value;
+  if (val === PED_PASS) {
+    sessionStorage.setItem('ped_auth', '1');
+    document.getElementById('ped-login-screen').style.display = 'none';
+    document.getElementById('ped-content').style.display = 'block';
+    pedInitModelos();
+    pedCargarSeguimiento();
+  } else {
+    document.getElementById('pedPassErr').style.display = 'block';
+  }
+}
+
+function pedCerrarSesion() {
+  sessionStorage.removeItem('ped_auth');
+  document.getElementById('ped-login-screen').style.display = 'flex';
+  document.getElementById('ped-content').style.display = 'none';
+  document.getElementById('pedPass').value = '';
+}
+
+// Mostrar contenido si ya esta autenticado
+var _pedOrigGoPage = goPage;
+function goPage(name) {
+  _pedOrigGoPage(name);
+  if (name === 'pedidos') {
+    if (sessionStorage.getItem('ped_auth') === '1') {
+      document.getElementById('ped-login-screen').style.display = 'none';
+      document.getElementById('ped-content').style.display = 'block';
+      pedInitModelos();
+    } else {
+      document.getElementById('ped-login-screen').style.display = 'flex';
+      document.getElementById('ped-content').style.display = 'none';
+    }
+  }
+}
+
+function pedShowTab(tab) {
+  document.querySelectorAll('.ped-tab').forEach(function(t) { t.classList.remove('on'); });
+  document.getElementById('pedTab-' + tab).classList.add('on');
+  document.getElementById('pedPane-nuevo').style.display = tab === 'nuevo' ? 'block' : 'none';
+  document.getElementById('pedPane-seguimiento').style.display = tab === 'seguimiento' ? 'block' : 'none';
+  if (tab === 'seguimiento') pedCargarSeguimiento();
+}
+
+function pedInitModelos() {
+  var sel = document.getElementById('pedModelo');
+  if (sel.options.length > 1) return;
+  var modelos = [];
+  var seen = {};
+  for (var key in DB) {
+    var v = DB[key];
+    for (var i = 0; i < v.modelos.length; i++) {
+      if (!seen[v.modelos[i]]) { seen[v.modelos[i]] = true; modelos.push(v.modelos[i]); }
+    }
+  }
+  modelos.sort();
+  modelos.forEach(function(m) {
+    var o = document.createElement('option');
+    o.value = m; o.textContent = m;
+    sel.appendChild(o);
+  });
+}
+
+function pedCargarFiltros() {
+  var modelo = document.getElementById('pedModelo').value;
+  if (!modelo) return;
+  var tipos = [];
+  for (var key in DB) {
+    var v = DB[key];
+    if (v.modelos.indexOf(modelo) !== -1 && v.codigos.length > 0) tipos.push(v.tipo);
+  }
+  tipos.sort();
+  // Pre-populate items with filter types for this model
+  pedItems = tipos.map(function(t) { return 'Filtro ' + t; });
+  pedRenderItems();
+}
+
+function pedAgregarItem() {
+  var inp = document.getElementById('pedItemInput');
+  var val = inp.value.trim();
+  if (!val) return;
+  pedItems.push(val);
+  pedRenderItems();
+  inp.value = '';
+}
+
+function pedRenderItems() {
+  var container = document.getElementById('pedItemsList');
+  container.innerHTML = '';
+  pedItems.forEach(function(item, idx) {
+    var div = document.createElement('div');
+    div.className = 'ped-item-row';
+    div.innerHTML = '<span class="ped-item-name">' + item + '</span>' +
+      '<button class="ped-item-del" onclick="pedEliminarItem(' + idx + ')">✕</button>';
+    container.appendChild(div);
+  });
+}
+
+function pedEliminarItem(idx) {
+  pedItems.splice(idx, 1);
+  pedRenderItems();
+}
+
+function pedCrear() {
+  var movil = document.getElementById('pedMovil').value.trim();
+  var modelo = document.getElementById('pedModelo').value;
+  var nroSol = document.getElementById('pedNroSol').value.trim();
+  var nroOT = document.getElementById('pedNroOT').value.trim();
+  var obs = document.getElementById('pedObs').value.trim();
+
+  if (!movil || !nroSol || pedItems.length === 0) {
+    alert('Completá al menos: Móvil, Nº Solicitud y al menos un ítem.');
+    return;
+  }
+
+  var btn = document.querySelector('#pedPane-nuevo .ped-submit');
+  btn.disabled = true; btn.textContent = 'Guardando...';
+
+  var body = {
+    accion: 'nuevoPedido',
+    movil: movil,
+    modelo: modelo,
+    nroSolicitud: nroSol,
+    nroOT: nroOT,
+    items: pedItems.join(' | '),
+    obs: obs
+  };
+
+  fetch('/.netlify/functions/sheets', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body)
+  })
+  .then(function(r) { return r.json(); })
+  .then(function(data) {
+    if (data.ok) {
+      btn.textContent = '✅ Pedido creado';
+      setTimeout(function() {
+        btn.disabled = false; btn.textContent = '📦 CREAR PEDIDO';
+        document.getElementById('pedMovil').value = '';
+        document.getElementById('pedModelo').value = '';
+        document.getElementById('pedNroSol').value = '';
+        document.getElementById('pedNroOT').value = '';
+        document.getElementById('pedObs').value = '';
+        pedItems = [];
+        pedRenderItems();
+        pedShowTab('seguimiento');
+      }, 1200);
+    } else {
+      btn.disabled = false; btn.textContent = '📦 CREAR PEDIDO';
+      alert('Error: ' + (data.error || 'desconocido'));
+    }
+  })
+  .catch(function() { btn.disabled = false; btn.textContent = '📦 CREAR PEDIDO'; });
+}
+
+function pedCargarSeguimiento() {
+  var container = document.getElementById('pedListaContainer');
+  container.innerHTML = '<div style="text-align:center;color:var(--muted);padding:40px 0;">Cargando...</div>';
+
+  fetch('/.netlify/functions/sheets?accion=pedidos')
+  .then(function(r) { return r.json(); })
+  .then(function(data) {
+    var pedidos = data.pedidos || [];
+    document.getElementById('pedCount').textContent = pedidos.length + ' pedidos';
+    if (!pedidos.length) {
+      container.innerHTML = '<div style="text-align:center;color:var(--muted);padding:40px 0;">Sin pedidos aún</div>';
+      return;
+    }
+    container.innerHTML = '';
+    pedidos.reverse().forEach(function(p) {
+      container.appendChild(pedRenderCard(p));
+    });
+  })
+  .catch(function() {
+    container.innerHTML = '<div style="text-align:center;color:#c5221f;padding:40px 0;">Error al cargar</div>';
+  });
+}
+
+function pedRenderCard(p) {
+  var badgeClass = p.estado === 'Llegó' ? 'llego' : p.estado === 'En tránsito' ? 'transito' : 'pedido';
+  var div = document.createElement('div');
+  div.className = 'ped-card';
+
+  var itemsChips = (p.items || '').split(' | ').map(function(i) {
+    return '<span class="ped-chip">' + i + '</span>';
+  }).join('');
+
+  var priceRow = p.estado === 'Llegó' ? (
+    '<div style="margin-top:10px;">' +
+    '<div class="ped-label" style="margin-top:0;">Precio real</div>' +
+    '<div class="ped-price-row">' +
+    '<input class="ped-price-input" type="text" placeholder="$ 0.00" value="' + (p.precio || '') + '" id="price_' + p.id + '">' +
+    '<button class="ped-act-btn orange" onclick="pedGuardarPrecio(\'' + p.id + '\')" style="flex:0;padding:10px 14px;">Guardar</button>' +
+    '</div></div>'
+  ) : '';
+
+  var sedeRow = p.sede ? ('<div class="ped-detail-row"><span class="ped-detail-label">Sede destino</span><span class="ped-detail-val">' + p.sede + '</span></div>') : '';
+  var precioRow = p.precio ? ('<div class="ped-detail-row"><span class="ped-detail-label">Precio</span><span class="ped-detail-val" style="color:var(--orange);">$ ' + p.precio + '</span></div>') : '';
+
+  div.innerHTML =
+    '<div class="ped-card-head" onclick="pedToggleCard(this)">' +
+      '<div class="ped-card-left">' +
+        '<div class="ped-card-nro">SOL ' + p.nroSolicitud + (p.nroOT ? ' &bull; OT ' + p.nroOT : '') + '</div>' +
+        '<div class="ped-card-sub">' + (p.movil || '') + (p.modelo ? ' &bull; ' + p.modelo : '') + ' &bull; ' + (p.fecha || '') + '</div>' +
+      '</div>' +
+      '<span class="ped-badge ' + badgeClass + '">' + p.estado + '</span>' +
+    '</div>' +
+    '<div class="ped-card-body">' +
+      sedeRow +
+      precioRow +
+      '<div class="ped-detail-row"><span class="ped-detail-label">Items</span></div>' +
+      '<div class="ped-items-chips">' + itemsChips + '</div>' +
+      (p.obs ? '<div class="ped-detail-row"><span class="ped-detail-label">Obs.</span><span class="ped-detail-val">' + p.obs + '</span></div>' : '') +
+      '<div class="ped-actions">' +
+        (p.estado === 'Pedido' ? '<button class="ped-act-btn blue" onclick="pedActualizar(\'' + p.id + '\', \'En tránsito\', this)">✈️ Enviado a sede</button>' : '') +
+        (p.estado === 'Pedido' ? '<button class="ped-act-btn green" onclick="pedActualizar(\'' + p.id + '\', \'Llegó\', this)">✅ Llegó</button>' : '') +
+        (p.estado === 'En tránsito' ? '<input id="sede_' + p.id + '" class="ped-price-input" placeholder="Nombre de sede..." style="flex:1">' : '') +
+        (p.estado === 'En tránsito' ? '<button class="ped-act-btn blue" onclick="pedEnviarSede(\'' + p.id + '\')" style="flex:0;padding:10px 14px;">Confirmar</button>' : '') +
+        (p.estado === 'En tránsito' ? '<button class="ped-act-btn green" onclick="pedActualizar(\'' + p.id + '\', \'Llegó\', this)" style="margin-top:6px;width:100%;">✅ Llegó</button>' : '') +
+      '</div>' +
+      priceRow +
+    '</div>';
+  return div;
+}
+
+function pedToggleCard(head) {
+  var body = head.nextElementSibling;
+  body.classList.toggle('open');
+}
+
+function pedActualizar(id, estado, btn) {
+  if (btn) { btn.disabled = true; btn.textContent = '...'; }
+  fetch('/.netlify/functions/sheets', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ accion: 'actualizarPedido', id: id, estado: estado })
+  })
+  .then(function(r) { return r.json(); })
+  .then(function() { pedCargarSeguimiento(); })
+  .catch(function() { if (btn) { btn.disabled = false; } });
+}
+
+function pedEnviarSede(id) {
+  var sede = document.getElementById('sede_' + id).value.trim();
+  if (!sede) { alert('Indicá la sede destino'); return; }
+  fetch('/.netlify/functions/sheets', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ accion: 'actualizarPedido', id: id, estado: 'En tránsito', sede: sede })
+  })
+  .then(function(r) { return r.json(); })
+  .then(function() { pedCargarSeguimiento(); });
+}
+
+function pedGuardarPrecio(id) {
+  var val = document.getElementById('price_' + id).value.trim();
+  fetch('/.netlify/functions/sheets', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ accion: 'actualizarPedido', id: id, precio: val })
+  })
+  .then(function(r) { return r.json(); })
+  .then(function() { pedCargarSeguimiento(); });
+}
+
 </script>
 <!-- PAGE: HISTORIAL -->
 <div class="page" id="page-historial">
@@ -1611,5 +1934,56 @@ function buscarShowlub(codigo, btn) {
   </div>
 </div>
 <div id="pdf-print"></div>
+
+<!-- PAGE: PEDIDOS -->
+<div class="page" id="page-pedidos">
+  <div id="ped-login-screen" class="ped-login">
+    <div style="font-size:36px;">&#x1F4E6;</div>
+    <div class="ped-login-title">Pedidos</div>
+    <div class="ped-login-sub">Ingres&#225; la contrase&#241;a</div>
+    <input class="ped-login-input" id="pedPass" type="password" placeholder="&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;" onkeydown="if(event.key==='Enter') pedLogin()">
+    <button class="ped-login-btn" onclick="pedLogin()">INGRESAR</button>
+    <div id="pedPassErr" style="color:#c5221f;font-size:13px;font-weight:700;display:none;">Contrase&#241;a incorrecta</div>
+  </div>
+  <div id="ped-content" style="display:none;">
+    <div style="height:12px"></div>
+    <div style="padding:0 16px 8px;display:flex;justify-content:space-between;align-items:center;">
+      <div style="font-size:22px;font-weight:900;">PEDIDOS</div>
+      <button onclick="pedCerrarSesion()" style="background:none;border:none;color:var(--muted);font-size:13px;font-weight:700;cursor:pointer;">Cerrar sesi&#243;n</button>
+    </div>
+    <div class="ped-tabs">
+      <button class="ped-tab on" id="pedTab-nuevo" onclick="pedShowTab('nuevo')">NUEVO PEDIDO</button>
+      <button class="ped-tab" id="pedTab-seguimiento" onclick="pedShowTab('seguimiento')">SEGUIMIENTO</button>
+    </div>
+    <div id="pedPane-nuevo" class="ped-section">
+      <div class="ped-label">M&#243;vil</div>
+      <input class="ped-input" id="pedMovil" type="text" placeholder="Ej: MV45">
+      <div class="ped-label">Modelo de veh&#237;culo</div>
+      <select class="ped-select" id="pedModelo" onchange="pedCargarFiltros()">
+        <option value="">-- Selecion&#225; el veh&#237;culo --</option>
+      </select>
+      <div class="ped-label">N&#250;mero de Solicitud</div>
+      <input class="ped-input" id="pedNroSol" type="text" placeholder="Ej: SOL-001">
+      <div class="ped-label">N&#250;mero de OT</div>
+      <input class="ped-input" id="pedNroOT" type="text" placeholder="Ej: OT-2025-001">
+      <div class="ped-label">Items a pedir</div>
+      <div class="ped-items-list" id="pedItemsList"></div>
+      <div class="ped-add-row">
+        <input class="ped-input" id="pedItemInput" type="text" placeholder="Agregar filtro u otro repuesto..." style="flex:1" onkeydown="if(event.key==='Enter') pedAgregarItem()">
+        <button class="ped-btn" onclick="pedAgregarItem()">+</button>
+      </div>
+      <div class="ped-label">Observaciones</div>
+      <input class="ped-input" id="pedObs" type="text" placeholder="Opcional...">
+      <button class="ped-submit" onclick="pedCrear()">CREAR PEDIDO</button>
+    </div>
+    <div id="pedPane-seguimiento" class="ped-section" style="display:none;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+        <div style="font-size:13px;color:var(--muted);font-weight:700;" id="pedCount"></div>
+        <button class="ped-btn-outline" onclick="pedCargarSeguimiento()" style="padding:8px 14px;font-size:12px;">Actualizar</button>
+      </div>
+      <div id="pedListaContainer"><div style="text-align:center;color:var(--muted);padding:40px 0;">Cargando...</div></div>
+    </div>
+  </div>
+</div>
 </body>
 </html>
