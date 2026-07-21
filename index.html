@@ -1665,11 +1665,13 @@ function pedCheckAuth() {
 function pedShowTab(tab) {
   document.querySelectorAll('.ped-tab').forEach(function(t) { t.classList.remove('on'); });
   document.getElementById('pedTab-' + tab).classList.add('on');
-  ['nuevo','seguimiento','enviados'].forEach(function(t) {
-    document.getElementById('pedPane-' + t).style.display = t === tab ? 'block' : 'none';
+  ['nuevo','seguimiento','enviados','historial'].forEach(function(t) {
+    var el = document.getElementById('pedPane-' + t);
+    if (el) el.style.display = t === tab ? 'block' : 'none';
   });
   if (tab === 'seguimiento') pedFiltrar();
   if (tab === 'enviados') pedFiltrarEnviados();
+  if (tab === 'historial') pedFiltrarHistorial();
 }
 
 function pedInitModelos() {
@@ -1842,13 +1844,18 @@ function pedFiltrar() {
 function pedFiltrarEnviados() {
   var sede = document.getElementById('pedFiltroSede').value;
   var filtered = pedAllData.filter(function(p) {
-    if (p.estado !== 'Enviado' && p.estado !== 'Llegó') return false;
-    if (sede && p.sede !== sede) return false;
-    return true;
-  });
+  if (p.estado === 'Usado') return false; // Usado va a historial
+  if (p.estado === 'Enviado') return false; // Enviado va a su tab
+  if (estado && p.estado !== estado) return false;
+  if (movil && p.movil !== movil) return false;
+  return true;
+});
   pedRenderTabla(filtered, document.getElementById('pedTbodyEnv'), true);
 }
-
+function pedFiltrarHistorial() {
+  var filtered = pedAllData.filter(function(p) { return p.estado === 'Usado'; });
+  pedRenderTabla(filtered, document.getElementById('pedTbodyHist'), false);
+}
 function pedRenderTabla(rows, tbody, isEnviados) {
   if (!rows.length) {
     tbody.innerHTML = '<tr><td colspan="8" style="text-align:center;color:var(--muted);padding:24px">Sin resultados</td></tr>';
@@ -1863,20 +1870,17 @@ function pedRenderTabla(rows, tbody, isEnviados) {
     var td = document.createElement('td');
 
     if (!isEnviados) {
-      if (p.estado === 'Pedido') {
-        td.appendChild(pedMakeBtn('blue', 'Enviar', p.id, 'transito'));
-        td.appendChild(pedMakeBtn('green', 'Llegó', p.id, 'llego'));
-      } else if (p.estado === 'Enviado') {
-        td.appendChild(pedMakeBtn('green', 'Llegó', p.id, 'llego'));
-      }
-    } else {
-      if (p.estado === 'Enviado') {
-        td.appendChild(pedMakeBtn('green', 'Llegó', p.id, 'llego'));
-      }
-      if (p.estado === 'Llegó' && !p.precio) {
-        td.appendChild(pedMakeBtn('orange', '$ Precio', p.id, 'precio'));
-      }
-    }
+  if (p.estado === 'Pedido') {
+    td.appendChild(pedMakeBtn('green', 'Llegó', p.id, 'llego'));
+  } else if (p.estado === 'Llegó') {
+    td.appendChild(pedMakeBtn('orange', 'Usar', p.id, 'usar'));
+    td.appendChild(pedMakeBtn('blue', 'Enviar', p.id, 'transito'));
+  }
+} else {
+  if (p.estado === 'Enviado') {
+    td.appendChild(pedMakeBtn('orange', 'Usado', p.id, 'usar'));
+  }
+}
     var verBtn = document.createElement('button');
     verBtn.className = 'ped-status-btn';
     verBtn.style.cssText = 'background:var(--bg);border:1px solid var(--border);color:var(--text);';
@@ -1970,30 +1974,13 @@ function pedAbrirModalSede(id, btn) {
 }
 
 function pedActualizarBtn(id, action, btn) {
-  var estadoMap = { transito: 'Enviado', llego: 'Llegó' };
+  var estadoMap = { transito: 'Enviado', llego: 'Llegó', usar: 'Usado' };
   var estado = estadoMap[action] || action;
   pedActualizar(id, estado, btn);
 }
 
-function pedActualizar(id, estado, btn) {
-  var sede = '';
-  if (estado === 'Enviado') {
-    // Ask for sede
-    var sedeOptions = pedSedes.length ? pedSedes.join(', ') : 'ej: Sede Norte';
-    sede = prompt('Sede destino (' + sedeOptions + '):');
-    if (sede === null) return;
-    sede = sede.trim();
-  }
-  if (btn) { btn.disabled = true; btn.textContent = '...'; }
-  fetch('/.netlify/functions/sheets', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ accion: 'actualizarPedido', id: id, estado: estado, sede: sede })
-  })
-  .then(function(r) { return r.json(); })
-  .then(function() { pedCargarSeguimiento(); })
-  .catch(function() { if (btn) btn.disabled = false; });
-}
+function pedActualizar(id, estado, btn, sede) {
+  sede = sede || '';
 
 function pedAbrirPrecio(id, btn) {
   var precio = prompt('Ingresá el precio real:');
