@@ -343,71 +343,50 @@ body { font-family: var(--f); background: var(--bg); color: var(--text); min-hei
 }
 #pdf-print { display: none; }
 
-/* ── PEDIDOS ── */
 .ped-login{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:60vh;gap:16px;padding:24px;}
-.ped-login-title{font-size:24px;font-weight:900;}
-.ped-login-sub{font-size:14px;color:var(--muted);}
-.ped-login-input{width:100%;max-width:300px;padding:14px 16px;border:2px solid var(--border);border-radius:12px;font-size:18px;text-align:center;letter-spacing:4px;background:var(--panel);color:var(--text);box-sizing:border-box;}
-.ped-login-btn{width:100%;max-width:300px;padding:14px;background:var(--orange);color:#fff;border:none;border-radius:12px;font-size:16px;font-weight:900;cursor:pointer;}
-.ped-header{padding:16px 20px 0;display:flex;justify-content:space-between;align-items:center;}
-.ped-header-title{font-size:26px;font-weight:900;letter-spacing:-0.5px;}
-.ped-header-actions{display:flex;gap:10px;align-items:center;}
-.ped-tabs{display:flex;border-bottom:2px solid var(--border);margin:12px 20px 0;gap:4px;}
-.ped-tab{padding:10px 20px;font-size:13px;font-weight:800;cursor:pointer;color:var(--muted);border-bottom:3px solid transparent;margin-bottom:-2px;background:none;border-top:none;border-left:none;border-right:none;white-space:nowrap;}
+.ped-login-title{font-size:22px;font-weight:900;}
+.ped-login-sub{font-size:13px;color:var(--muted);}
+.ped-login-input{width:100%;max-width:280px;padding:14px 16px;border:2px solid var(--border);border-radius:12px;font-size:16px;text-align:center;letter-spacing:4px;background:var(--panel);color:var(--text);box-sizing:border-box;}
+.ped-login-btn{width:100%;max-width:280px;padding:14px;background:var(--orange);color:#fff;border:none;border-radius:12px;font-size:16px;font-weight:900;cursor:pointer;}
+.ped-tabs{display:flex;border-bottom:2px solid var(--border);margin:0 16px;}
+.ped-tab{flex:1;padding:12px;font-size:13px;font-weight:800;text-align:center;cursor:pointer;color:var(--muted);border-bottom:3px solid transparent;margin-bottom:-2px;background:none;border-top:none;border-left:none;border-right:none;}
 .ped-tab.on{color:var(--orange);border-bottom-color:var(--orange);}
-.ped-section{padding:16px 20px;}
+.ped-section{padding:16px;}
 .ped-label{font-size:11px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin:14px 0 6px;}
-.ped-input{width:100%;padding:10px 14px;border:2px solid var(--border);border-radius:10px;font-size:15px;background:var(--panel);color:var(--text);box-sizing:border-box;}
+.ped-input{width:100%;padding:12px 14px;border:2px solid var(--border);border-radius:10px;font-size:15px;background:var(--panel);color:var(--text);box-sizing:border-box;}
 .ped-input:focus{border-color:var(--orange);outline:none;}
-.ped-select{width:100%;padding:10px 14px;border:2px solid var(--border);border-radius:10px;font-size:15px;background:var(--panel);color:var(--text);appearance:none;cursor:pointer;}
-.ped-form-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 20px;}
+.ped-select{width:100%;padding:12px 14px;border:2px solid var(--border);border-radius:10px;font-size:15px;background:var(--panel);color:var(--text);appearance:none;cursor:pointer;}
 .ped-items-list{display:flex;flex-direction:column;gap:8px;margin-top:4px;}
 .ped-item-row{display:flex;align-items:center;gap:8px;padding:10px 14px;background:var(--panel);border:1.5px solid var(--border);border-radius:10px;}
 .ped-item-name{flex:1;font-size:14px;font-weight:700;}
 .ped-item-del{background:none;border:none;color:var(--muted);font-size:18px;cursor:pointer;padding:0;}
 .ped-add-row{display:flex;gap:8px;margin-top:8px;}
-.ped-btn{padding:10px 18px;background:var(--orange);color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:900;cursor:pointer;white-space:nowrap;}
-.ped-btn-sm{padding:6px 14px;background:var(--orange);color:#fff;border:none;border-radius:8px;font-size:12px;font-weight:800;cursor:pointer;}
-.ped-btn-outline{padding:10px 18px;background:var(--panel);color:var(--text);border:2px solid var(--border);border-radius:10px;font-size:14px;font-weight:800;cursor:pointer;}
-.ped-btn-icon{width:36px;height:36px;background:var(--panel);border:1.5px solid var(--border);border-radius:8px;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;}
-.ped-submit{padding:14px 32px;background:var(--orange);color:#fff;border:none;border-radius:12px;font-size:15px;font-weight:900;cursor:pointer;margin-top:16px;}
-/* Tabla de pedidos */
-.ped-table-wrap{overflow-x:auto;margin-top:8px;}
-#page-pedidos{max-width:100% !important;padding:0 !important;}
-#page-pedidos .ped-section{padding:12px 24px;}
-#page-pedidos .ped-header{padding:16px 24px 0;}
-#page-pedidos .ped-tabs{margin:12px 24px 0;}
-.ped-table{width:100%;border-collapse:collapse;font-size:14px;}
-.ped-table th{padding:10px 14px;text-align:left;font-size:11px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:1px;border-bottom:2px solid var(--border);white-space:nowrap;}
-.ped-table td{padding:12px 14px;border-bottom:1px solid var(--border);vertical-align:middle;}
-.ped-table tr:hover td{background:var(--bg);}
-.ped-badge{font-size:11px;font-weight:800;padding:4px 10px;border-radius:20px;white-space:nowrap;}
+.ped-btn{padding:13px 16px;background:var(--orange);color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:900;cursor:pointer;white-space:nowrap;}
+.ped-btn-outline{padding:13px 16px;background:var(--panel);color:var(--text);border:2px solid var(--border);border-radius:10px;font-size:14px;font-weight:800;cursor:pointer;}
+.ped-submit{width:100%;padding:16px;background:var(--orange);color:#fff;border:none;border-radius:12px;font-size:16px;font-weight:900;cursor:pointer;margin-top:16px;}
+.ped-card{background:var(--panel);border:2px solid var(--border);border-radius:12px;margin-bottom:12px;overflow:hidden;}
+.ped-card-head{padding:14px 16px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;}
+.ped-card-left{flex:1;}
+.ped-card-nro{font-size:16px;font-weight:900;}
+.ped-card-sub{font-size:12px;color:var(--muted);margin-top:2px;}
+.ped-badge{font-size:11px;font-weight:800;padding:4px 10px;border-radius:20px;}
 .ped-badge.pedido{background:#fff3cd;color:#856404;}
 .ped-badge.transito{background:#cfe2ff;color:#084298;}
 .ped-badge.llego{background:#d1e7dd;color:#0a3622;}
-.ped-badge.usado{background:#e2d9f3;color:#6f42c1;}
-.ped-filter-bar{display:flex;gap:10px;align-items:center;margin-bottom:12px;flex-wrap:wrap;}
-.ped-filter-select{padding:8px 12px;border:1.5px solid var(--border);border-radius:8px;font-size:13px;background:var(--panel);color:var(--text);}
-/* Estado quick-change */
-.ped-status-btn{padding:5px 10px;border:none;border-radius:6px;font-size:11px;font-weight:800;cursor:pointer;margin-right:4px;}
-.ped-status-btn.green{background:#d1e7dd;color:#0a3622;}
-.ped-status-btn.blue{background:#cfe2ff;color:#084298;}
-.ped-status-btn.orange{background:var(--orange);color:#fff;}
-/* Modal detalle */
-.ped-modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:200;display:flex;align-items:center;justify-content:center;padding:20px;}
-.ped-modal{background:var(--panel);border-radius:16px;padding:24px;width:100%;max-width:520px;max-height:80vh;overflow-y:auto;}
-.ped-modal-title{font-size:20px;font-weight:900;margin-bottom:16px;}
-.ped-modal-row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:14px;}
-.ped-modal-label{color:var(--muted);font-weight:700;}
-.ped-modal-val{font-weight:800;}
-.ped-chips{display:flex;flex-wrap:wrap;gap:6px;padding:8px 0;}
-.ped-chip{background:var(--bg);border:1.5px solid var(--border);border-radius:20px;padding:4px 12px;font-size:12px;font-weight:700;}
-.ped-price-input{padding:8px 12px;border:1.5px solid var(--border);border-radius:8px;font-size:14px;background:var(--bg);color:var(--text);width:140px;}
-/* Config modal */
-.ped-config-modal{background:var(--panel);border-radius:16px;padding:24px;width:100%;max-width:400px;}
-.ped-sede-row{display:flex;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid var(--border);}
-.ped-sede-name{flex:1;font-size:14px;font-weight:700;}
-
+.ped-card-body{padding:14px 16px;border-top:1.5px solid var(--border);display:none;}
+.ped-card-body.open{display:block;}
+.ped-detail-row{display:flex;justify-content:space-between;margin-bottom:6px;font-size:13px;}
+.ped-detail-label{color:var(--muted);font-weight:700;}
+.ped-detail-val{font-weight:800;text-align:right;}
+.ped-items-chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0;}
+.ped-chip{background:var(--bg);border:1.5px solid var(--border);border-radius:20px;padding:4px 10px;font-size:12px;font-weight:700;}
+.ped-actions{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap;}
+.ped-act-btn{flex:1;padding:10px;border:none;border-radius:8px;font-size:13px;font-weight:800;cursor:pointer;}
+.ped-act-btn.green{background:#d1e7dd;color:#0a3622;}
+.ped-act-btn.blue{background:#cfe2ff;color:#084298;}
+.ped-act-btn.orange{background:var(--orange);color:#fff;}
+.ped-price-row{display:flex;gap:8px;margin-top:8px;}
+.ped-price-input{flex:1;padding:10px 12px;border:2px solid var(--border);border-radius:8px;font-size:14px;background:var(--bg);color:var(--text);}
 </style>
 </head>
 <body>
@@ -1623,12 +1602,6 @@ function buscarShowlub(codigo, btn) {
 // ── PEDIDOS ──
 var PED_PASS = 'Tallerocme1234';
 var pedItems = [];
-var pedAllData = [];
-var pedSedes = JSON.parse(localStorage.getItem('ped_sedes') || '[]');
-
-function pedSaveSedes() {
-  localStorage.setItem('ped_sedes', JSON.stringify(pedSedes));
-}
 
 function pedLogin() {
   var val = document.getElementById('pedPass').value;
@@ -1650,6 +1623,7 @@ function pedCerrarSesion() {
   document.getElementById('pedPass').value = '';
 }
 
+// Check auth when pedidos page is shown
 function pedCheckAuth() {
   if (sessionStorage.getItem('ped_auth') === '1') {
     document.getElementById('ped-login-screen').style.display = 'none';
@@ -1665,13 +1639,9 @@ function pedCheckAuth() {
 function pedShowTab(tab) {
   document.querySelectorAll('.ped-tab').forEach(function(t) { t.classList.remove('on'); });
   document.getElementById('pedTab-' + tab).classList.add('on');
-  ['nuevo','seguimiento','enviados','historial'].forEach(function(t) {
-    var el = document.getElementById('pedPane-' + t);
-    if (el) el.style.display = t === tab ? 'block' : 'none';
-  });
-  if (tab === 'seguimiento') pedFiltrar();
-  if (tab === 'enviados') pedFiltrarEnviados();
-  if (tab === 'historial') pedFiltrarHistorial();
+  document.getElementById('pedPane-nuevo').style.display = tab === 'nuevo' ? 'block' : 'none';
+  document.getElementById('pedPane-seguimiento').style.display = tab === 'seguimiento' ? 'block' : 'none';
+  if (tab === 'seguimiento') pedCargarSeguimiento();
 }
 
 function pedInitModelos() {
@@ -1705,6 +1675,7 @@ function pedCargarFiltros() {
     if (v.modelos.indexOf(modelo) !== -1 && v.codigos.length > 0) tipos.push(v.tipo);
   }
   tipos.sort();
+  // Show as checkboxes — user ticks what they want
   tipos.forEach(function(tipo) {
     var id = 'pedchk_' + tipo.replace(/[^a-z0-9]/gi, '_');
     var div = document.createElement('div');
@@ -1727,14 +1698,25 @@ function pedAgregarItem() {
   var val = inp.value.trim();
   if (!val) return;
   pedItems.push(val);
-  // Add as chip below checkboxes
-  var chip = document.createElement('div');
-  chip.className = 'ped-item-row';
-  chip.style.marginTop = '4px';
-  var idx = pedItems.length - 1;
-  chip.innerHTML = '<span class="ped-item-name">' + val + '</span><button class="ped-item-del" onclick="this.parentElement.remove();pedItems.splice(' + idx + ',1)">&#x2715;</button>';
-  document.getElementById('pedItemInput').insertAdjacentElement('beforebegin', chip);
+  pedRenderItems();
   inp.value = '';
+}
+
+function pedRenderItems() {
+  var container = document.getElementById('pedItemsList');
+  container.innerHTML = '';
+  pedItems.forEach(function(item, idx) {
+    var div = document.createElement('div');
+    div.className = 'ped-item-row';
+    div.innerHTML = '<span class="ped-item-name">' + item + '</span>' +
+      '<button class="ped-item-del" onclick="pedEliminarItem(' + idx + ')">✕</button>';
+    container.appendChild(div);
+  });
+}
+
+function pedEliminarItem(idx) {
+  pedItems.splice(idx, 1);
+  pedRenderItems();
 }
 
 function pedCrear() {
@@ -1744,42 +1726,51 @@ function pedCrear() {
   var nroOT = document.getElementById('pedNroOT').value.trim();
   var obs = document.getElementById('pedObs').value.trim();
 
+  // Collect checked filter items
   var checkedItems = [];
   document.querySelectorAll('#pedItemsList input[type=checkbox]:checked').forEach(function(c) {
     checkedItems.push(c.value);
   });
   var allItems = checkedItems.concat(pedItems);
-
   if (!movil || !nroSol || allItems.length === 0) {
-    alert('Completá: Móvil, Nº Solicitud y al menos un ítem.');
+    alert('Completá al menos: Móvil, Nº Solicitud y al menos un ítem.');
     return;
   }
 
   var btn = document.querySelector('#pedPane-nuevo .ped-submit');
   btn.disabled = true; btn.textContent = 'Guardando...';
 
+  var body = {
+    accion: 'nuevoPedido',
+    movil: movil,
+    modelo: modelo,
+    nroSolicitud: nroSol,
+    nroOT: nroOT,
+    items: allItems.join(' | '),
+    obs: obs
+  };
+
   fetch('/.netlify/functions/sheets', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ accion: 'nuevoPedido', movil: movil, modelo: modelo,
-      nroSolicitud: nroSol, nroOT: nroOT, items: allItems.join(' | '), obs: obs })
+    body: JSON.stringify(body)
   })
   .then(function(r) { return r.json(); })
   .then(function(data) {
     if (data.ok) {
-      btn.textContent = '✅ Creado!';
+      btn.textContent = '✅ Pedido creado';
       setTimeout(function() {
         btn.disabled = false; btn.textContent = '📦 CREAR PEDIDO';
         document.getElementById('pedMovil').value = '';
+        document.getElementById('pedModelo').value = '';
         document.getElementById('pedNroSol').value = '';
         document.getElementById('pedNroOT').value = '';
         document.getElementById('pedObs').value = '';
-        document.getElementById('pedModelo').value = '';
         pedItems = [];
+        document.getElementById('pedModelo').value = '';
         pedCargarFiltros();
-        pedCargarSeguimiento();
         pedShowTab('seguimiento');
-      }, 1000);
+      }, 1200);
     } else {
       btn.disabled = false; btn.textContent = '📦 CREAR PEDIDO';
       alert('Error: ' + (data.error || 'desconocido'));
@@ -1789,278 +1780,114 @@ function pedCrear() {
 }
 
 function pedCargarSeguimiento() {
+  var container = document.getElementById('pedListaContainer');
+  container.innerHTML = '<div style="text-align:center;color:var(--muted);padding:40px 0;">Cargando...</div>';
+
   fetch('/.netlify/functions/sheets?accion=pedidos')
   .then(function(r) { return r.json(); })
   .then(function(data) {
-    pedAllData = (data.pedidos || []).reverse();
-    pedPoblarFiltroMovil();
-    pedPoblarFiltroSede();
-    pedFiltrar();
-    pedFiltrarEnviados();
+    var pedidos = data.pedidos || [];
+    document.getElementById('pedCount').textContent = pedidos.length + ' pedidos';
+    if (!pedidos.length) {
+      container.innerHTML = '<div style="text-align:center;color:var(--muted);padding:40px 0;">Sin pedidos aún</div>';
+      return;
+    }
+    container.innerHTML = '';
+    pedidos.reverse().forEach(function(p) {
+      container.appendChild(pedRenderCard(p));
+    });
   })
   .catch(function() {
-    document.getElementById('pedTbody').innerHTML = '<tr><td colspan="7" style="text-align:center;color:#c5221f;padding:20px">Error al cargar</td></tr>';
+    container.innerHTML = '<div style="text-align:center;color:#c5221f;padding:40px 0;">Error al cargar</div>';
   });
 }
 
-function pedPoblarFiltroMovil() {
-  var sel = document.getElementById('pedFiltroMovil');
-  var cur = sel.value;
-  sel.innerHTML = '<option value="">Todos los móviles</option>';
-  var moviles = [...new Set(pedAllData.map(function(p){ return p.movil; }).filter(Boolean))].sort();
-  moviles.forEach(function(m) {
-    var o = document.createElement('option');
-    o.value = m; o.textContent = m;
-    if (m === cur) o.selected = true;
-    sel.appendChild(o);
-  });
+function pedRenderCard(p) {
+  var badgeClass = p.estado === 'Llegó' ? 'llego' : p.estado === 'En tránsito' ? 'transito' : 'pedido';
+  var div = document.createElement('div');
+  div.className = 'ped-card';
+
+  var itemsChips = (p.items || '').split(' | ').map(function(i) {
+    return '<span class="ped-chip">' + i + '</span>';
+  }).join('');
+
+  var priceRow = p.estado === 'Llegó' ? (
+    '<div style="margin-top:10px;">' +
+    '<div class="ped-label" style="margin-top:0;">Precio real</div>' +
+    '<div class="ped-price-row">' +
+    '<input class="ped-price-input" type="text" placeholder="$ 0.00" value="' + (p.precio || '') + '" id="price_' + p.id + '">' +
+    '<button class="ped-act-btn orange" onclick="pedGuardarPrecio(\'' + p.id + '\')" style="flex:0;padding:10px 14px;">Guardar</button>' +
+    '</div></div>'
+  ) : '';
+
+  var sedeRow = p.sede ? ('<div class="ped-detail-row"><span class="ped-detail-label">Sede destino</span><span class="ped-detail-val">' + p.sede + '</span></div>') : '';
+  var precioRow = p.precio ? ('<div class="ped-detail-row"><span class="ped-detail-label">Precio</span><span class="ped-detail-val" style="color:var(--orange);">$ ' + p.precio + '</span></div>') : '';
+
+  div.innerHTML =
+    '<div class="ped-card-head" onclick="pedToggleCard(this)">' +
+      '<div class="ped-card-left">' +
+        '<div class="ped-card-nro">SOL ' + p.nroSolicitud + (p.nroOT ? ' &bull; OT ' + p.nroOT : '') + '</div>' +
+        '<div class="ped-card-sub">' + (p.movil || '') + (p.modelo ? ' &bull; ' + p.modelo : '') + ' &bull; ' + (p.fecha || '') + '</div>' +
+      '</div>' +
+      '<span class="ped-badge ' + badgeClass + '">' + p.estado + '</span>' +
+    '</div>' +
+    '<div class="ped-card-body">' +
+      sedeRow +
+      precioRow +
+      '<div class="ped-detail-row"><span class="ped-detail-label">Items</span></div>' +
+      '<div class="ped-items-chips">' + itemsChips + '</div>' +
+      (p.obs ? '<div class="ped-detail-row"><span class="ped-detail-label">Obs.</span><span class="ped-detail-val">' + p.obs + '</span></div>' : '') +
+      '<div class="ped-actions">' +
+        (p.estado === 'Pedido' ? '<button class="ped-act-btn blue" onclick="pedActualizar(\'' + p.id + '\', \'En tránsito\', this)">✈️ Enviado a sede</button>' : '') +
+        (p.estado === 'Pedido' ? '<button class="ped-act-btn green" onclick="pedActualizar(\'' + p.id + '\', \'Llegó\', this)">✅ Llegó</button>' : '') +
+        (p.estado === 'En tránsito' ? '<input id="sede_' + p.id + '" class="ped-price-input" placeholder="Nombre de sede..." style="flex:1">' : '') +
+        (p.estado === 'En tránsito' ? '<button class="ped-act-btn blue" onclick="pedEnviarSede(\'' + p.id + '\')" style="flex:0;padding:10px 14px;">Confirmar</button>' : '') +
+        (p.estado === 'En tránsito' ? '<button class="ped-act-btn green" onclick="pedActualizar(\'' + p.id + '\', \'Llegó\', this)" style="margin-top:6px;width:100%;">✅ Llegó</button>' : '') +
+      '</div>' +
+      priceRow +
+    '</div>';
+  return div;
 }
 
-function pedPoblarFiltroSede() {
-  var sel = document.getElementById('pedFiltroSede');
-  var cur = sel.value;
-  sel.innerHTML = '<option value="">Todas las sedes</option>';
-  var sedes = [...new Set(pedAllData.filter(function(p){ return p.sede; }).map(function(p){ return p.sede; }))].sort();
-  sedes.forEach(function(s) {
-    var o = document.createElement('option');
-    o.value = s; o.textContent = s;
-    if (s === cur) o.selected = true;
-    sel.appendChild(o);
-  });
+function pedToggleCard(head) {
+  var body = head.nextElementSibling;
+  body.classList.toggle('open');
 }
 
-function pedFiltrar() {
-  var estado = document.getElementById('pedFiltroEstado').value;
-  var movil = document.getElementById('pedFiltroMovil').value;
-  var filtered = pedAllData.filter(function(p) {
-    if (estado && p.estado !== estado) return false;
-    if (movil && p.movil !== movil) return false;
-    return true;
-  });
-  document.getElementById('pedCount').textContent = filtered.length + ' pedidos';
-  pedRenderTabla(filtered, document.getElementById('pedTbody'), false);
-}
-
-function pedFiltrarEnviados() {
-  var sede = document.getElementById('pedFiltroSede').value;
-  var filtered = pedAllData.filter(function(p) {
-  if (p.estado === 'Usado') return false; // Usado va a historial
-  if (p.estado === 'Enviado') return false; // Enviado va a su tab
-  if (estado && p.estado !== estado) return false;
-  if (movil && p.movil !== movil) return false;
-  return true;
-});
-  pedRenderTabla(filtered, document.getElementById('pedTbodyEnv'), true);
-}
-function pedFiltrarHistorial() {
-  var filtered = pedAllData.filter(function(p) { return p.estado === 'Usado'; });
-  pedRenderTabla(filtered, document.getElementById('pedTbodyHist'), false);
-}
-function pedRenderTabla(rows, tbody, isEnviados) {
-  if (!rows.length) {
-    tbody.innerHTML = '<tr><td colspan="8" style="text-align:center;color:var(--muted);padding:24px">Sin resultados</td></tr>';
-    return;
-  }
-  tbody.innerHTML = '';
-  rows.forEach(function(p) {
-    var badgeClass = p.estado === 'Llegó' ? 'llego' : p.estado === 'Enviado' ? 'transito' : 'pedido';
-    var tr = document.createElement('tr');
-
-    // Build action buttons using DOM to avoid quote issues
-    var td = document.createElement('td');
-
-    if (!isEnviados) {
-  if (p.estado === 'Pedido') {
-    td.appendChild(pedMakeBtn('green', 'Llegó', p.id, 'llego'));
-  } else if (p.estado === 'Llegó') {
-    td.appendChild(pedMakeBtn('orange', 'Usar', p.id, 'usar'));
-    td.appendChild(pedMakeBtn('blue', 'Enviar', p.id, 'transito'));
-  }
-} else {
-  if (p.estado === 'Enviado') {
-    td.appendChild(pedMakeBtn('orange', 'Usado', p.id, 'usar'));
-  }
-}
-    var verBtn = document.createElement('button');
-    verBtn.className = 'ped-status-btn';
-    verBtn.style.cssText = 'background:var(--bg);border:1px solid var(--border);color:var(--text);';
-    verBtn.textContent = 'Ver';
-    verBtn.onclick = (function(id) { return function() { pedVerDetalle(id); }; })(p.id);
-    td.appendChild(verBtn);
-
-    if (isEnviados) {
-      tr.innerHTML =
-        '<td style="font-weight:800">' + (p.nroSolicitud || '-') + '</td>' +
-        '<td>' + (p.nroOT || '-') + '</td>' +
-        '<td style="font-weight:700">' + (p.movil || '-') + '</td>' +
-        '<td>' + (p.sede || '-') + '</td>' +
-        '<td style="color:var(--muted)">' + (p.fecha || '') + '</td>' +
-        '<td><span class="ped-badge ' + badgeClass + '">' + p.estado + '</span></td>' +
-        '<td>' + (p.precio ? '$ ' + p.precio : '-') + '</td>';
-    } else {
-      tr.innerHTML =
-        '<td style="font-weight:800">' + (p.nroSolicitud || '-') + (p.nroOT ? '<br><span style="font-weight:600;font-size:11px;color:var(--muted)">OT: ' + p.nroOT + '</span>' : '') + '</td>' +
-        '<td style="font-weight:700">' + (p.movil || '-') + '</td>' +
-        '<td style="color:var(--muted);font-size:12px;">' + (p.fecha || '') + '</td>' +
-        '<td><span class="ped-badge ' + badgeClass + '">' + p.estado + '</span></td>';
-    }
-    tr.appendChild(td);
-    tbody.appendChild(tr);
-  });
-}
-
-function pedMakeBtn(cls, txt, id, action) {
-  var btn = document.createElement('button');
-  btn.className = 'ped-status-btn ' + cls;
-  btn.textContent = txt;
-  btn.onclick = (function(id, action, btn) {
-    return function() {
-      if (action === 'precio') { pedAbrirPrecio(id, btn); }
-      else if (action === 'transito') { pedAbrirModalSede(id, btn); }
-      else { pedActualizarBtn(id, action, btn); }
-    };
-  })(id, action, btn);
-  return btn;
-}
-
-
-function pedAbrirModalSede(id, btn) {
-  // Build modal with sede dropdown
-  var overlay = document.createElement('div');
-  overlay.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:300;display:flex;align-items:center;justify-content:center;padding:20px;';
-  var modal = document.createElement('div');
-  modal.style.cssText = 'background:var(--panel);border-radius:16px;padding:24px;width:100%;max-width:360px;';
-  var title = document.createElement('div');
-  title.style.cssText = 'font-size:18px;font-weight:900;margin-bottom:16px;';
-  title.textContent = 'Seleccion\u00e1 la sede destino';
-  var sel = document.createElement('select');
-  sel.className = 'ped-select';
-  sel.style.marginBottom = '16px';
-  if (!pedSedes.length) {
-    var o = document.createElement('option');
-    o.value = ''; o.textContent = '-- Sin sedes configuradas --';
-    sel.appendChild(o);
-  } else {
-    var oDefault = document.createElement('option');
-    oDefault.value = ''; oDefault.textContent = '-- Elegir sede --';
-    sel.appendChild(oDefault);
-    pedSedes.forEach(function(s) {
-      var o = document.createElement('option');
-      o.value = s; o.textContent = s;
-      sel.appendChild(o);
-    });
-  }
-  var btnRow = document.createElement('div');
-  btnRow.style.cssText = 'display:flex;gap:8px;';
-  var btnConfirm = document.createElement('button');
-  btnConfirm.className = 'ped-btn';
-  btnConfirm.style.flex = '1';
-  btnConfirm.textContent = 'Confirmar';
-  btnConfirm.onclick = function() {
-    var sede = sel.value;
-    if (!sede) { alert('Selecion\u00e1 una sede'); return; }
-    document.body.removeChild(overlay);
-    pedActualizar(id, 'Enviado', btn, sede);
-  };
-  var btnCancel = document.createElement('button');
-  btnCancel.className = 'ped-btn-outline';
-  btnCancel.style.flex = '1';
-  btnCancel.textContent = 'Cancelar';
-  btnCancel.onclick = function() { document.body.removeChild(overlay); };
-  btnRow.appendChild(btnConfirm); btnRow.appendChild(btnCancel);
-  modal.appendChild(title); modal.appendChild(sel); modal.appendChild(btnRow);
-  overlay.appendChild(modal);
-  document.body.appendChild(overlay);
-}
-
-function pedActualizarBtn(id, action, btn) {
-  var estadoMap = { transito: 'Enviado', llego: 'Llegó', usar: 'Usado' };
-  var estado = estadoMap[action] || action;
-  pedActualizar(id, estado, btn);
-}
-
-function pedActualizar(id, estado, btn, sede) {
-  sede = sede || '';
-
-function pedAbrirPrecio(id, btn) {
-  var precio = prompt('Ingresá el precio real:');
-  if (precio === null || !precio.trim()) return;
+function pedActualizar(id, estado, btn) {
+  if (btn) { btn.disabled = true; btn.textContent = '...'; }
   fetch('/.netlify/functions/sheets', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ accion: 'actualizarPedido', id: id, precio: precio.trim() })
+    body: JSON.stringify({ accion: 'actualizarPedido', id: id, estado: estado })
+  })
+  .then(function(r) { return r.json(); })
+  .then(function() { pedCargarSeguimiento(); })
+  .catch(function() { if (btn) { btn.disabled = false; } });
+}
+
+function pedEnviarSede(id) {
+  var sede = document.getElementById('sede_' + id).value.trim();
+  if (!sede) { alert('Indicá la sede destino'); return; }
+  fetch('/.netlify/functions/sheets', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ accion: 'actualizarPedido', id: id, estado: 'En tránsito', sede: sede })
   })
   .then(function(r) { return r.json(); })
   .then(function() { pedCargarSeguimiento(); });
 }
 
-function pedVerDetalle(id) {
-  var p = pedAllData.find(function(x) { return x.id === id; });
-  if (!p) return;
-  var badgeClass = p.estado === 'Llegó' ? 'llego' : p.estado === 'Enviado' ? 'transito' : 'pedido';
-  var chips = (p.items || '').split(' | ').map(function(i) {
-    return '<span class="ped-chip">' + i + '</span>';
-  }).join('');
-  document.getElementById('pedModalContent').innerHTML =
-    '<div class="ped-modal-title">Pedido ' + (p.nroSolicitud || '') + '</div>' +
-    '<div class="ped-modal-row"><span class="ped-modal-label">Estado</span><span class="ped-badge ' + badgeClass + '">' + p.estado + '</span></div>' +
-    '<div class="ped-modal-row"><span class="ped-modal-label">Móvil</span><span class="ped-modal-val">' + (p.movil || '-') + '</span></div>' +
-    '<div class="ped-modal-row"><span class="ped-modal-label">Modelo</span><span class="ped-modal-val">' + (p.modelo || '-') + '</span></div>' +
-    '<div class="ped-modal-row"><span class="ped-modal-label">Nº OT</span><span class="ped-modal-val">' + (p.nroOT || '-') + '</span></div>' +
-    '<div class="ped-modal-row"><span class="ped-modal-label">Fecha</span><span class="ped-modal-val">' + (p.fecha || '-') + '</span></div>' +
-    (p.sede ? '<div class="ped-modal-row"><span class="ped-modal-label">Sede</span><span class="ped-modal-val">' + p.sede + '</span></div>' : '') +
-    (p.precio ? '<div class="ped-modal-row"><span class="ped-modal-label">Precio</span><span class="ped-modal-val">$ ' + p.precio + '</span></div>' : '') +
-    (p.obs ? '<div class="ped-modal-row"><span class="ped-modal-label">Obs.</span><span class="ped-modal-val">' + p.obs + '</span></div>' : '') +
-    '<div style="margin-top:8px;"><div class="ped-modal-label" style="margin-bottom:6px;">Items</div><div class="ped-chips">' + chips + '</div></div>' +
-    '<button class="ped-btn-outline" onclick="pedCerrarModal()" style="width:100%;margin-top:16px;">Cerrar</button>';
-  document.getElementById('pedModalOverlay').style.display = 'flex';
+function pedGuardarPrecio(id) {
+  var val = document.getElementById('price_' + id).value.trim();
+  fetch('/.netlify/functions/sheets', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ accion: 'actualizarPedido', id: id, precio: val })
+  })
+  .then(function(r) { return r.json(); })
+  .then(function() { pedCargarSeguimiento(); });
 }
-
-function pedCerrarModal() {
-  document.getElementById('pedModalOverlay').style.display = 'none';
-}
-
-// ── CONFIG SEDES ──
-function pedAbrirConfig() {
-  pedRenderSedes();
-  document.getElementById('pedConfigOverlay').style.display = 'flex';
-}
-
-function pedCerrarConfig() {
-  document.getElementById('pedConfigOverlay').style.display = 'none';
-}
-
-function pedRenderSedes() {
-  var container = document.getElementById('pedSedesList');
-  if (!pedSedes.length) {
-    container.innerHTML = '<div style="color:var(--muted);font-size:13px;padding:8px 0;">Sin sedes configuradas</div>';
-    return;
-  }
-  container.innerHTML = '';
-  pedSedes.forEach(function(s, idx) {
-    var div = document.createElement('div');
-    div.className = 'ped-sede-row';
-    div.innerHTML = '<span class="ped-sede-name">' + s + '</span>' +
-      '<button class="ped-item-del" onclick="pedEliminarSede(' + idx + ')">&#x2715;</button>';
-    container.appendChild(div);
-  });
-}
-
-function pedAgregarSede() {
-  var val = document.getElementById('pedSedeInput').value.trim();
-  if (!val || pedSedes.includes(val)) return;
-  pedSedes.push(val);
-  pedSaveSedes();
-  document.getElementById('pedSedeInput').value = '';
-  pedRenderSedes();
-}
-
-function pedEliminarSede(idx) {
-  pedSedes.splice(idx, 1);
-  pedSaveSedes();
-  pedRenderSedes();
-}
-
 
 </script>
 <!-- PAGE: HISTORIAL -->
@@ -2130,146 +1957,53 @@ function pedEliminarSede(idx) {
 
 <!-- PAGE: PEDIDOS -->
 <div class="page" id="page-pedidos">
-
-  <!-- LOGIN -->
   <div id="ped-login-screen" class="ped-login">
-    <div style="font-size:48px;">&#x1F4E6;</div>
-    <div class="ped-login-title">Pedidos &amp; Seguimiento</div>
-    <div class="ped-login-sub">Ingres&#225; la contrase&#241;a para continuar</div>
+    <div style="font-size:36px;">&#x1F4E6;</div>
+    <div class="ped-login-title">Pedidos</div>
+    <div class="ped-login-sub">Ingres&#225; la contrase&#241;a</div>
     <input class="ped-login-input" id="pedPass" type="password" placeholder="&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;" onkeydown="if(event.key==='Enter') pedLogin()">
     <button class="ped-login-btn" onclick="pedLogin()">INGRESAR</button>
     <div id="pedPassErr" style="color:#c5221f;font-size:13px;font-weight:700;display:none;">Contrase&#241;a incorrecta</div>
   </div>
-
-  <!-- CONTENIDO -->
   <div id="ped-content" style="display:none;">
-    <div class="ped-header">
-      <div class="ped-header-title">PEDIDOS</div>
-      <div class="ped-header-actions">
-        <button class="ped-btn-icon" onclick="pedAbrirConfig()" title="Configurar sedes">&#9881;</button>
-        <button class="ped-btn-outline" onclick="pedCerrarSesion()" style="padding:8px 14px;font-size:12px;">Salir</button>
-      </div>
+    <div style="height:12px"></div>
+    <div style="padding:0 16px 8px;display:flex;justify-content:space-between;align-items:center;">
+      <div style="font-size:22px;font-weight:900;">PEDIDOS</div>
+      <button onclick="pedCerrarSesion()" style="background:none;border:none;color:var(--muted);font-size:13px;font-weight:700;cursor:pointer;">Cerrar sesi&#243;n</button>
     </div>
-
     <div class="ped-tabs">
-      <button class="ped-tab on" id="pedTab-nuevo" onclick="pedShowTab('nuevo')">+ NUEVO PEDIDO</button>
+      <button class="ped-tab on" id="pedTab-nuevo" onclick="pedShowTab('nuevo')">NUEVO PEDIDO</button>
       <button class="ped-tab" id="pedTab-seguimiento" onclick="pedShowTab('seguimiento')">SEGUIMIENTO</button>
-      <button class="ped-tab" id="pedTab-enviados" onclick="pedShowTab('enviados')">ENVIADOS</button>
     </div>
-
-    <!-- TAB: NUEVO PEDIDO -->
     <div id="pedPane-nuevo" class="ped-section">
-      <div class="ped-form-grid">
-        <div>
-          <div class="ped-label">M&#243;vil</div>
-          <input class="ped-input" id="pedMovil" type="text">
-        </div>
-        <div>
-          <div class="ped-label">Modelo de veh&#237;culo</div>
-          <select class="ped-select" id="pedModelo" onchange="pedCargarFiltros()">
-            <option value="">-- Selecion&#225; --</option>
-          </select>
-        </div>
-        <div>
-          <div class="ped-label">N&#250;mero de Solicitud</div>
-          <input class="ped-input" id="pedNroSol" type="text">
-        </div>
-        <div>
-          <div class="ped-label">N&#250;mero de OT</div>
-          <input class="ped-input" id="pedNroOT" type="text">
-        </div>
-      </div>
+      <div class="ped-label">M&#243;vil</div>
+      <input class="ped-input" id="pedMovil" type="text" placeholder="">
+      <div class="ped-label">Modelo de veh&#237;culo</div>
+      <select class="ped-select" id="pedModelo" onchange="pedCargarFiltros()">
+        <option value="">-- Selecion&#225; el veh&#237;culo --</option>
+      </select>
+      <div class="ped-label">N&#250;mero de Solicitud</div>
+      <input class="ped-input" id="pedNroSol" type="text" placeholder="">
+      <div class="ped-label">N&#250;mero de OT</div>
+      <input class="ped-input" id="pedNroOT" type="text" placeholder="">
       <div class="ped-label">Items a pedir</div>
       <div class="ped-items-list" id="pedItemsList"></div>
-      <div class="ped-add-row" style="margin-top:12px;">
-        <input class="ped-input" id="pedItemInput" type="text" placeholder="Agregar repuesto manual..." style="flex:1" onkeydown="if(event.key==='Enter') pedAgregarItem()">
+      <div class="ped-add-row">
+        <input class="ped-input" id="pedItemInput" type="text" placeholder="" style="flex:1" onkeydown="if(event.key==='Enter') pedAgregarItem()">
         <button class="ped-btn" onclick="pedAgregarItem()">+</button>
       </div>
       <div class="ped-label">Observaciones</div>
-      <input class="ped-input" id="pedObs" type="text">
-      <div style="margin-top:16px;">
-        <button class="ped-submit" onclick="pedCrear()">&#x1F4E6; CREAR PEDIDO</button>
-      </div>
+      <input class="ped-input" id="pedObs" type="text" placeholder="">
+      <button class="ped-submit" onclick="pedCrear()">CREAR PEDIDO</button>
     </div>
-
-    <!-- TAB: SEGUIMIENTO -->
     <div id="pedPane-seguimiento" class="ped-section" style="display:none;">
-      <div class="ped-filter-bar">
-        <select class="ped-filter-select" id="pedFiltroEstado" onchange="pedFiltrar()">
-          <option value="">Todos los estados</option>
-          <option value="Pedido">Pedido</option>
-          <option value="En tr&#225;nsito">En tr&#225;nsito</option>
-          <option value="Lleg&#243;">Lleg&#243;</option>
-          <option value="Usado">Usado</option>
-        </select>
-        <select class="ped-filter-select" id="pedFiltroMovil" onchange="pedFiltrar()">
-          <option value="">Todos los m&#243;viles</option>
-        </select>
-        <button class="ped-btn-outline" onclick="pedCargarSeguimiento()" style="padding:8px 14px;font-size:12px;margin-left:auto;">&#8635; Actualizar</button>
-        <span style="font-size:13px;color:var(--muted);font-weight:700;" id="pedCount"></span>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+        <div style="font-size:13px;color:var(--muted);font-weight:700;" id="pedCount"></div>
+        <button class="ped-btn-outline" onclick="pedCargarSeguimiento()" style="padding:8px 14px;font-size:12px;">Actualizar</button>
       </div>
-      <div class="ped-table-wrap">
-        <table class="ped-table" id="pedTabla">
-          <thead>
-            <tr>
-              <th>SOLICITUD / OT</th>
-              <th>M&#211;VIL</th>
-              <th>FECHA</th>
-              <th>ESTADO</th>
-              <th>ACCIONES</th>
-            </tr>
-          </thead>
-          <tbody id="pedTbody"></tbody>
-        </table>
-      </div>
-    </div>
-
-    <!-- TAB: ENVIADOS -->
-    <div id="pedPane-enviados" class="ped-section" style="display:none;">
-      <div class="ped-filter-bar">
-        <select class="ped-filter-select" id="pedFiltroSede" onchange="pedFiltrarEnviados()">
-          <option value="">Todas las sedes</option>
-        </select>
-        <button class="ped-btn-outline" onclick="pedCargarSeguimiento()" style="padding:8px 14px;font-size:12px;margin-left:auto;">&#8635; Actualizar</button>
-      </div>
-      <div class="ped-table-wrap">
-        <table class="ped-table">
-          <thead>
-            <tr>
-              <th>SOLICITUD</th>
-              <th>OT</th>
-              <th>M&#211;VIL</th>
-              <th>SEDE DESTINO</th>
-              <th>FECHA</th>
-              <th>ESTADO</th>
-              <th>PRECIO</th>
-              <th>ACCIONES</th>
-            </tr>
-          </thead>
-          <tbody id="pedTbodyEnv"></tbody>
-        </table>
-      </div>
+      <div id="pedListaContainer"><div style="text-align:center;color:var(--muted);padding:40px 0;">Cargando...</div></div>
     </div>
   </div>
 </div>
-
-<!-- MODAL DETALLE PEDIDO -->
-<div class="ped-modal-overlay" id="pedModalOverlay" style="display:none;" onclick="if(event.target===this)pedCerrarModal()">
-  <div class="ped-modal" id="pedModalContent"></div>
-</div>
-
-<!-- MODAL CONFIG SEDES -->
-<div class="ped-modal-overlay" id="pedConfigOverlay" style="display:none;" onclick="if(event.target===this)pedCerrarConfig()">
-  <div class="ped-config-modal">
-    <div class="ped-modal-title">&#9881; Configurar Sedes</div>
-    <div id="pedSedesList" style="margin-bottom:16px;"></div>
-    <div class="ped-add-row">
-      <input class="ped-input" id="pedSedeInput" type="text" placeholder="Nueva sede..." style="flex:1" onkeydown="if(event.key==='Enter') pedAgregarSede()">
-      <button class="ped-btn" onclick="pedAgregarSede()">+</button>
-    </div>
-    <button class="ped-btn-outline" onclick="pedCerrarConfig()" style="width:100%;margin-top:14px;">Cerrar</button>
-  </div>
-</div>
-
 </body>
 </html>
