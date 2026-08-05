@@ -320,10 +320,27 @@ const TIPO_ALIAS = {
    HELPERS
    ────────────────────────────────────────────── */
 function norm(c) {
-  return String(c).toUpperCase().replace(/[\s\-\/\.]/g, '');
+  // Borra TODO lo que no sea letra o número: guion, espacio, punto, barra,
+  // guion bajo. Así "WK-950", "WK 950", "wk.950" y "WK950" son el mismo código.
+  return String(c).toUpperCase().replace(/[^A-Z0-9]/g, '');
 }
-function baseCode(c) {
-  return String(c).replace(/\s/g, '').split(/[\/\-]/)[0].toUpperCase();
+
+/* Trozos de un código de la BASE cortados en cada separador, para poder
+   encontrarlo cuando falta el sufijo:
+     WK950/26  -> ["WK950"]        así "WK950" encuentra "WK950/26"
+     H601/4/2  -> ["H601","H6014"]
+   Se calcula SOLO sobre los códigos de la base. Lo que escribe el usuario
+   nunca se corta: se normaliza entero y se busca tal cual. */
+function prefijos(codigo) {
+  const partes = String(codigo).split(/[^A-Za-z0-9]+/).filter(Boolean);
+  const out = [];
+  let acc = '';
+  for (let i = 0; i < partes.length - 1; i++) {
+    acc += partes[i];
+    const b = norm(acc);
+    if (b.length >= 3) out.push(b);
+  }
+  return out;
 }
 function normTipo(t) {
   const s = String(t).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
@@ -353,9 +370,10 @@ function construirIndices() {
       if (!IDX.has(n)) IDX.set(n, []);
       IDX.get(n).push(g);
 
-      const b = baseCode(c.codigo);
-      if (!BIDX.has(b)) BIDX.set(b, []);
-      BIDX.get(b).push({ codigo: c.codigo, marca: c.marca, grupo: g });
+      for (const b of prefijos(c.codigo)) {
+        if (!BIDX.has(b)) BIDX.set(b, []);
+        BIDX.get(b).push({ codigo: c.codigo, marca: c.marca, grupo: g });
+      }
     }
   }
 }
@@ -519,7 +537,7 @@ function buscarEnDB(codigo, tipoPref) {
   }
 
   // 2) Aproximada: mismo código antes de la barra o el guion
-  const cands = BIDX.get(baseCode(codigo));
+  const cands = BIDX.get(needle);
   if (cands && cands.length) {
     const c  = cands.find(x => norm(x.codigo) !== needle) || cands[0];
     const bn = norm(c.codigo);
@@ -634,7 +652,11 @@ function mostrarResultado(f) {
     ${avisoAprox}${ambHTML}${principalesHTML}${restoHTML}${sinEquiv}`;
 
   panel.classList.add('show');
-  document.getElementById('manual').value = codigo;
+
+  /* El buscador conserva lo que la persona escribió o lo que leyó el escáner.
+     Si la coincidencia es aproximada, NO se pisa con el código sugerido:
+     el sugerido vive en la ficha de abajo, no en el campo de búsqueda. */
+  document.getElementById('manual').value = aprox ? orig : codigo;
 }
 
 function mostrarNoEncontrado(codigo) {
