@@ -2,8 +2,9 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>Inventra</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#1B5EFF">
+<title>Inventra — Equivalencias de filtros</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -12,19 +13,16 @@
   --border: #e0e0e0;
   --orange: #1B5EFF;
   --orange-light: #EEF3FF;
-  --orange-border: #93B4FF;
   --green: #1a7a3c;
-  --green-light: #e6f7ed;
   --red: #c0392b;
-  --red-light: #fdecea;
   --amber: #c07a00;
-  --amber-light: #fef6e0;
   --text: #111111;
   --muted: #777777;
   --f: 'Inter', sans-serif;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
 body { font-family: var(--f); background: var(--bg); color: var(--text); min-height: 100vh; }
+:focus-visible { outline: 3px solid var(--orange); outline-offset: 2px; }
 
 /* TOPBAR */
 .topbar {
@@ -33,8 +31,6 @@ body { font-family: var(--f); background: var(--bg); color: var(--text); min-hei
   display: flex; align-items: center; padding: 12px 16px; gap: 12px;
   box-shadow: 0 2px 12px #00000012;
 }
-.topbar-title { flex: 1; font-size: 20px; font-weight: 900; letter-spacing: -0.5px; }
-.topbar-title span { color: var(--orange); }
 .menu-btn {
   width: 44px; height: 44px; border: 1.5px solid var(--border); background: var(--bg);
   cursor: pointer; display: flex; flex-direction: column;
@@ -43,6 +39,8 @@ body { font-family: var(--f); background: var(--bg); color: var(--text); min-hei
 }
 .menu-btn:hover { background: #e8e8e8; }
 .menu-btn span { display: block; width: 20px; height: 2.5px; background: var(--text); border-radius: 2px; }
+.home-btn { padding: 8px 14px; font-family: var(--f); font-size: 13px; font-weight: 800; background: var(--bg); border: 2px solid var(--border); color: var(--text); border-radius: 8px; cursor: pointer; transition: all .15s; white-space: nowrap; text-transform: uppercase; letter-spacing: .5px; }
+.home-btn:hover { border-color: var(--orange); color: var(--orange); }
 
 /* DRAWER */
 .overlay { position: fixed; inset: 0; background: #0007; z-index: 90; opacity: 0; pointer-events: none; transition: opacity .25s; }
@@ -54,15 +52,9 @@ body { font-family: var(--f); background: var(--bg); color: var(--text); min-hei
   border-left: 3px solid var(--orange);
 }
 .drawer.open { right: 0; }
-.drawer-hdr {
-  padding: 14px 16px; border-bottom: 1px solid var(--border);
-  display: flex; align-items: center; justify-content: space-between;
-  background: var(--panel);
-}
-.drawer-logo { font-size: 16px; font-weight: 900; color: var(--text); letter-spacing: 1px; text-transform: uppercase; }
-.drawer-logo span { color: var(--orange); }
+.drawer-hdr { padding: 14px 16px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
 .drawer-close { width: 34px; height: 34px; border: none; background: var(--bg); border-radius: 6px; cursor: pointer; font-size: 16px; color: var(--muted); }
-.drawer-nav { flex: 1; padding: 12px; background: var(--panel); }
+.drawer-nav { flex: 1; padding: 12px; }
 .d-item {
   display: flex; align-items: center; gap: 14px; padding: 16px;
   border-radius: 8px; cursor: pointer; transition: all .15s;
@@ -81,6 +73,11 @@ body { font-family: var(--f); background: var(--bg); color: var(--text); min-hei
 .page { display: none; max-width: 500px; margin: 0 auto; padding: 16px; }
 .page.active { display: block; }
 
+/* OFFLINE */
+.offline-bar { display: none; background: var(--amber); color: #fff; font-size: 12px; font-weight: 800; text-align: center; padding: 7px 12px; text-transform: uppercase; letter-spacing: .5px; }
+body.offline .offline-bar { display: block; }
+body.offline .viewfinder, body.offline .scan-btn { display: none; }
+
 /* SCANNER */
 .viewfinder {
   position: relative; background: #000; border-radius: 10px;
@@ -88,20 +85,13 @@ body { font-family: var(--f); background: var(--bg); color: var(--text); min-hei
   box-shadow: 0 4px 20px #00000033; border: 2px solid #222;
 }
 .viewfinder video { width: 100%; height: 100%; object-fit: cover; display: block; }
-.sz {
-  position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
-  width: 76%; height: 28%; pointer-events: none;
-}
+.sz { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 76%; height: 28%; pointer-events: none; }
 .szc { position: absolute; width: 22px; height: 22px; border-color: var(--orange); border-style: solid; }
 .szc.tl{top:0;left:0;border-width:3px 0 0 3px;}
 .szc.tr{top:0;right:0;border-width:3px 3px 0 0;}
 .szc.br{bottom:0;right:0;border-width:0 3px 3px 0;}
 .szc.bl{bottom:0;left:0;border-width:0 0 3px 3px;}
-.szl {
-  position: absolute; left: 3px; right: 3px; height: 2px;
-  background: linear-gradient(90deg,transparent,var(--orange),transparent);
-  animation: sl 2s linear infinite; opacity: 0;
-}
+.szl { position: absolute; left: 3px; right: 3px; height: 2px; background: linear-gradient(90deg,transparent,var(--orange),transparent); animation: sl 2s linear infinite; opacity: 0; }
 .scanning .szl { opacity: 1; }
 @keyframes sl { 0%{top:3px} 100%{top:calc(100% - 3px)} }
 .vf-st { position: absolute; bottom: 10px; left: 0; right: 0; text-align: center; font-size: 13px; font-weight: 700; color: #fff; text-shadow: 0 1px 6px #000a; letter-spacing: .5px; text-transform: uppercase; }
@@ -112,15 +102,16 @@ body { font-family: var(--f); background: var(--bg); color: var(--text); min-hei
   box-shadow: 0 4px 16px #1B5EFF40; transition: all .12s; margin-bottom: 10px;
   text-transform: uppercase; letter-spacing: 1px;
 }
-.scan-btn:active { transform: scale(.97); background: #e05a00; }
+.scan-btn:active { transform: scale(.97); }
 .scan-btn:disabled { opacity: .35; cursor: not-allowed; transform: none; }
 .scan-btn .sp { display:none; width:20px;height:20px;border:3px solid #fff4;border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;margin:0 auto; }
 .scan-btn.loading .lbl{display:none;} .scan-btn.loading .sp{display:block;}
 @keyframes spin{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion: reduce) { .szl, .sp { animation: none; } }
 
 .manual-row { display: flex; gap: 10px; margin-bottom: 14px; }
 .manual-row input {
-  flex: 1; padding: 15px 16px; font-family: var(--f); font-size: 17px; font-weight: 700;
+  flex: 1; min-width: 0; padding: 15px 16px; font-family: var(--f); font-size: 17px; font-weight: 700;
   text-transform: uppercase; letter-spacing: 1px;
   background: var(--panel); border: 2px solid var(--border); color: var(--text);
   border-radius: 8px; outline: none; transition: border-color .15s;
@@ -135,14 +126,7 @@ body { font-family: var(--f); background: var(--bg); color: var(--text); min-hei
 .manual-row button:hover { background: var(--orange); border-color: var(--orange); }
 
 /* RESULT CARD */
-.result-card {
-  background: var(--panel);
-  border: 2px solid var(--border);
-  border-radius: 10px;
-  overflow: hidden;
-  display: none;
-  border-left: 4px solid var(--orange);
-}
+.result-card { background: var(--panel); border: 2px solid var(--border); border-radius: 10px; overflow: hidden; display: none; border-left: 4px solid var(--orange); }
 .result-card.show { display: block; }
 .rc-head { padding: 12px 16px; display: flex; align-items: center; gap: 8px; border-bottom: 2px solid var(--border); background: #fafafa; }
 .rc-dot { width: 10px; height: 10px; border-radius: 2px; background: var(--green); flex-shrink: 0; }
@@ -150,47 +134,30 @@ body { font-family: var(--f); background: var(--bg); color: var(--text); min-hei
 .rc-lbl { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: var(--green); }
 .rc-lbl.ap{color:var(--amber);} .rc-lbl.er{color:var(--red);}
 .rc-main { padding: 16px; }
-.rc-code { font-size: 36px; font-weight: 900; color: var(--orange); letter-spacing: 1px; line-height: 1; margin-bottom: 14px; }
-.rc-grid { display: grid; grid-template-columns: auto 1fr; gap: 8px 14px; margin-bottom: 14px; }
-.rc-fl { font-size: 10px; font-weight: 800; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; padding-top: 3px; }
-.rc-fv { font-size: 18px; font-weight: 800; }
-.rc-stock-row {
-  display: flex; align-items: center; justify-content: space-between;
-  background: #1e1e1e; border-radius: 8px; padding: 14px 16px; border-left: 4px solid var(--orange);
-}
-.rc-stock-label { font-size: 11px; font-weight: 800; color: #aaa; text-transform: uppercase; letter-spacing: 1px; }
-.rc-stock-num { font-size: 52px; font-weight: 900; line-height: 1; color: #fff; }
-.rc-stock-num.zero{color:#ff6b6b;} .rc-stock-num.low{color:#ffb347;} .rc-stock-num.ok{color:#5dde7a;}
-.rc-mov { border-top: 2px solid var(--border); padding: 14px 16px; }
-.qty-row { display: flex; align-items: center; gap: 14px; margin-bottom: 12px; }
-.qty-lbl { font-size: 14px; font-weight: 800; text-transform: uppercase; letter-spacing: .5px; flex-shrink: 0; color: var(--muted); }
-.qty-ctrl { display: flex; align-items: center; border: 2px solid var(--border); border-radius: 8px; overflow: hidden; }
-.qty-btn { width: 46px; height: 46px; border: none; background: var(--bg); font-size: 24px; font-weight: 900; cursor: pointer; color: var(--text); }
-.qty-btn:active { background: var(--border); }
-.qty-inp { width: 56px; text-align: center; font-size: 22px; font-weight: 900; border: none; border-left: 2px solid var(--border); border-right: 2px solid var(--border); outline: none; font-family: var(--f); color: var(--text); background: var(--panel); padding: 8px 0; }
-.mov-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-.mov-btn { padding: 20px 10px; border: none; border-radius: 8px; cursor: pointer; font-family: var(--f); font-weight: 900; font-size: 18px; transition: all .12s; display: flex; flex-direction: column; align-items: center; gap: 5px; text-transform: uppercase; letter-spacing: .5px; }
-.mov-btn:active{transform:scale(.95);}
-.mov-btn-sub{font-size:11px;font-weight:700;opacity:.8;text-transform:uppercase;letter-spacing:.5px;}
-.btn-ing{background:var(--green-light);color:var(--green);border:2px solid #86efac;}
-.btn-ing:hover{background:#c6f0d6;}
-.btn-sal{background:var(--red-light);color:var(--red);border:2px solid #fca5a5;}
-.btn-sal:hover{background:#fad5d0;}
-.mov-feedback{text-align:center;padding:8px;font-size:14px;font-weight:700;color:var(--muted);display:none;}
-.mov-feedback.show{display:block;}
-.salida-modal-overlay{position:fixed;inset:0;background:#00000055;z-index:200;display:none;align-items:flex-end;justify-content:center;}
-.salida-modal-overlay.open{display:flex;}
-.salida-modal{background:var(--panel);border-radius:20px 20px 0 0;width:100%;max-width:500px;padding-bottom:24px;}
-.salida-modal-handle{width:36px;height:4px;background:var(--border);border-radius:2px;margin:12px auto 16px;}
-.salida-modal-title{font-size:19px;font-weight:900;padding:0 20px 4px;color:var(--text);}
-.salida-modal-sub{font-size:13px;color:var(--muted);padding:0 20px 16px;font-weight:500;}
-.salida-modal input{display:block;width:calc(100% - 40px);margin:0 20px 16px;padding:15px 16px;font-family:var(--f);font-size:17px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;background:var(--bg);border:2px solid var(--border);color:var(--text);border-radius:10px;outline:none;transition:border-color .15s;}
-.salida-modal input:focus{border-color:var(--orange);}
-.salida-modal input::placeholder{text-transform:none;letter-spacing:0;font-weight:400;color:#bbb;}
-.salida-modal-btns{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 20px;}
-.salida-modal-cancel{padding:15px;font-family:var(--f);font-size:15px;font-weight:700;background:var(--bg);border:2px solid var(--border);color:var(--muted);border-radius:10px;cursor:pointer;}
-.salida-modal-ok{padding:15px;font-family:var(--f);font-size:15px;font-weight:800;background:var(--red);border:none;color:#fff;border-radius:10px;cursor:pointer;}
-.salida-modal-ok:active{opacity:.85;}
+.rc-code { font-size: 36px; font-weight: 900; color: var(--orange); letter-spacing: 1px; line-height: 1.05; margin-bottom: 14px; word-break: break-all; }
+.rc-grid { display: grid; grid-template-columns: auto 1fr; gap: 8px 14px; }
+.rc-fl { font-size: 10px; font-weight: 800; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; padding-top: 5px; }
+.rc-fv { font-size: 18px; font-weight: 800; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.rc-nf { padding: 18px 16px; font-size: 15px; color: var(--muted); line-height: 1.6; }
+.rc-warn { margin: 12px 16px; padding: 14px 16px; background: #fef3c7; border: 2px solid #f59e0b; border-radius: 10px; }
+.rc-warn-t { font-size: 15px; font-weight: 900; color: #92400e; margin-bottom: 4px; }
+.rc-warn-b { font-size: 13px; font-weight: 600; color: #78350f; }
+
+/* SELECTOR DE TIPO AMBIGUO */
+.amb { padding: 12px 16px; border-top: 2px solid var(--border); background: #fafafa; }
+.amb-lbl { font-size: 10px; font-weight: 800; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+.amb-row { display: flex; flex-wrap: wrap; gap: 6px; }
+.amb-btn { padding: 8px 12px; border: 2px solid var(--border); background: var(--panel); border-radius: 6px; font-family: var(--f); font-size: 12px; font-weight: 800; cursor: pointer; color: var(--text); }
+.amb-btn.on { background: var(--orange); color: #fff; border-color: var(--orange); }
+
+/* EQUIVALENCIAS */
+.eq-main { padding: 10px 16px 4px; border-top: 2px solid var(--border); }
+.eq-row { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--border); cursor: pointer; width: 100%; background: none; border-left: 0; border-right: 0; border-top: 0; text-align: left; font-family: var(--f); color: var(--text); }
+.eq-row:last-child { border-bottom: none; }
+.eq-row img { height: 26px; width: 76px; object-fit: contain; object-position: left; flex-shrink: 0; }
+.eq-row-code { font-size: 15px; font-weight: 800; letter-spacing: .3px; word-break: break-all; }
+.eq-row-marca { font-size: 11px; color: var(--muted); margin-top: 1px; font-weight: 600; }
+.eq-arr { font-size: 12px; color: var(--muted); }
 .equiv-toggle {
   width: 100%; padding: 14px 16px; display: flex; align-items: center; justify-content: space-between;
   border: none; background: #fafafa; border-top: 2px solid var(--border); cursor: pointer;
@@ -202,18 +169,16 @@ body { font-family: var(--f); background: var(--bg); color: var(--text); min-hei
 .equiv-toggle.open .arr{transform:rotate(180deg);}
 .equiv-body{display:none;padding:0 16px 14px;}
 .equiv-body.open{display:block;}
-.equiv-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;}
-.eq-chip{background:var(--bg);border:2px solid var(--border);border-radius:6px;padding:9px 12px;cursor:pointer;transition:all .15s;}
-.eq-chip:hover,.eq-chip.on{border-color:var(--orange);background:var(--orange-light);}
-.eq-chip.on .eq-code{color:var(--orange);}
-.eq-code{font-size:14px;font-weight:800;letter-spacing:.5px;}
+.equiv-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;padding-top:10px;}
+.eq-chip{background:var(--bg);border:2px solid var(--border);border-radius:6px;padding:9px 12px;cursor:pointer;transition:all .15s;text-align:left;font-family:var(--f);color:var(--text);}
+.eq-chip:hover{border-color:var(--orange);background:var(--orange-light);}
+.eq-code{font-size:14px;font-weight:800;letter-spacing:.5px;word-break:break-all;}
 .eq-marca{font-size:11px;color:var(--muted);margin-top:2px;font-weight:600;}
-.rc-nf{padding:18px 16px;font-size:15px;color:var(--muted);line-height:1.6;}
 
-/* VEHICULO + STOCK */
+/* VEHICULO */
 .sec-title { font-size: 22px; font-weight: 900; margin-bottom: 2px; margin-top: 4px; text-transform: uppercase; letter-spacing: .5px; }
-.sec-sub   { font-size: 13px; color: var(--muted); margin-bottom: 16px; font-weight: 600; }
-.veh-select, .stock-veh-select {
+.sec-sub { font-size: 13px; color: var(--muted); margin-bottom: 16px; font-weight: 600; }
+.veh-select {
   width: 100%; padding: 15px 16px; font-family: var(--f); font-size: 16px; font-weight: 700;
   background: var(--panel); border: 2px solid var(--border); color: var(--text);
   border-radius: 8px; outline: none; appearance: none;
@@ -221,7 +186,8 @@ body { font-family: var(--f); background: var(--bg); color: var(--text); min-hei
   background-repeat: no-repeat; background-position: right 14px center;
   cursor: pointer; transition: border-color .15s; margin-bottom: 12px;
 }
-.veh-select:focus,.stock-veh-select:focus{border-color:var(--orange);}
+.veh-select:focus { border-color: var(--orange); }
+.veh-lbl { font-size: 12px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .5px; margin-bottom: 10px; }
 .tipo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 14px; }
 .tipo-btn {
   padding: 14px 10px; font-family: var(--f); font-size: 14px; font-weight: 800;
@@ -232,220 +198,46 @@ body { font-family: var(--f); background: var(--bg); color: var(--text); min-hei
 .tipo-btn.on{background:var(--orange);color:#fff;border-color:var(--orange);}
 .codes-table { background: var(--panel); border: 2px solid var(--border); border-radius: 10px; overflow: hidden; display: none; }
 .codes-table.show{display:block;}
-.ct-head { padding: 12px 16px; border-bottom: 2px solid var(--border); display: flex; justify-content: space-between; align-items: center; background: var(--orange); }
-.ct-title{font-size:12px;font-weight:800;color:#fff;text-transform:uppercase;letter-spacing:1px;opacity:.9;}
-.ct-count{font-size:12px;font-weight:800;color:#111;background:var(--orange);padding:3px 10px;border-radius:4px;}
-.ct-row { padding: 14px 16px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 12px; cursor: pointer; transition: background .12s; }
-.ct-row:last-child{border-bottom:none;}
-.ct-row:hover{background:var(--orange-light);}
-.ct-info{flex:1;}
-.ct-code{font-size:17px;font-weight:900;letter-spacing:.5px;}
-.ct-marca{font-size:12px;color:var(--muted);font-weight:600;margin-top:2px;}
-.ct-stock{font-size:28px;font-weight:900;min-width:44px;text-align:right;}
-.ct-stock.zero{color:var(--red);}.ct-stock.low{color:var(--amber);}.ct-stock.ok{color:var(--green);}
-.stock-list{background:var(--panel);border:2px solid var(--border);border-radius:10px;overflow:hidden;}
-.sl-hdr{padding:14px 16px;border-bottom:2px solid var(--border);display:flex;justify-content:space-between;align-items:center;background:var(--orange);}
-.sl-hdr-title{font-size:14px;font-weight:900;text-transform:uppercase;letter-spacing:1px;color:#fff;}
-.sl-refresh{padding:7px 14px;font-family:var(--f);font-size:12px;font-weight:800;background:transparent;border:2px solid #555;border-radius:6px;cursor:pointer;color:#fff;transition:all .15s;text-transform:uppercase;letter-spacing:.5px;}
-.sl-refresh:hover{border-color:var(--orange);color:var(--orange);}
-.sl-item{padding:14px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px;}
-.sl-item:last-child{border-bottom:none;}
-.sl-info{flex:1;min-width:0;}
-.sl-tipo{font-size:10px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:1px;}
-.sl-veh{font-size:17px;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.sl-n{font-size:32px;font-weight:900;min-width:46px;text-align:right;}
-.sl-n.zero{color:var(--red);}.sl-n.low{color:var(--amber);}.sl-n.ok{color:var(--green);}
-.sl-empty{padding:28px;text-align:center;font-size:15px;color:var(--muted);font-weight:600;}
-.unknown-card{background:var(--panel);border:2px solid var(--border);border-radius:10px;overflow:hidden;display:none;border-left:4px solid var(--amber);}
-.unknown-card.show{display:block;}
-.unk-head{padding:14px 16px;background:#e85e00;display:flex;align-items:center;gap:10px;}
-.unk-head-icon{font-size:22px;}
-.unk-head-title{font-size:13px;font-weight:800;color:#fff;text-transform:uppercase;letter-spacing:.5px;}
-.unk-head-sub{font-size:11px;color:#aaa;margin-top:2px;font-weight:600;}
-.unk-code{font-size:32px;font-weight:900;color:var(--text);padding:16px 16px 8px;letter-spacing:1px;}
-.unk-label{font-size:10px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:1px;padding:0 16px 10px;}
-.tipo-chips{display:flex;flex-wrap:wrap;gap:8px;padding:0 16px 16px;}
-.tipo-chip{padding:10px 16px;border:2px solid var(--border);border-radius:6px;font-family:var(--f);font-size:13px;font-weight:800;background:var(--bg);color:var(--text);cursor:pointer;transition:all .15s;text-transform:uppercase;letter-spacing:.3px;}
-.tipo-chip:hover{border-color:var(--orange);color:var(--orange);}
-.tipo-chip.on{background:var(--orange);color:#fff;border-color:var(--orange);}
-.unk-add-btn{width:calc(100% - 32px);margin:0 16px 16px;padding:16px;font-family:var(--f);font-size:16px;font-weight:900;background:var(--orange);color:#fff;border:none;border-radius:8px;cursor:pointer;transition:all .12s;display:none;text-transform:uppercase;letter-spacing:1px;}
-.unk-add-btn.show{display:block;}
-.unk-add-btn:active{transform:scale(.97);}
-.unk-feedback{text-align:center;padding:0 16px 14px;font-size:14px;font-weight:700;color:var(--muted);display:none;}
-.unk-feedback.show{display:block;}
-.tipo-stock-row{padding:24px 20px;display:flex;align-items:center;justify-content:space-between;background:#1e1e1e;border-radius:8px;}
-.tipo-stock-label{font-size:11px;font-weight:800;color:#aaa;text-transform:uppercase;letter-spacing:1px;}
-.tipo-stock-num{font-size:72px;font-weight:900;line-height:1;color:#fff;}
-.tipo-stock-num.zero{color:#ff6b6b;} .tipo-stock-num.low{color:#ffb347;} .tipo-stock-num.ok{color:#5dde7a;}
-.tipo-stock-footer{padding:12px 20px 16px;font-size:13px;color:var(--muted);border-top:1px solid var(--border);font-weight:600;}
-.home-btn{padding:8px 14px;font-family:var(--f);font-size:13px;font-weight:800;background:var(--bg);border:2px solid var(--border);color:var(--text);border-radius:8px;cursor:pointer;transition:all .15s;white-space:nowrap;text-transform:uppercase;letter-spacing:.5px;}
-.home-btn:hover{border-color:var(--orange);color:var(--orange);}
-
-/* HISTORIAL */
-.hist-list{background:var(--panel);border:2px solid var(--border);border-radius:10px;overflow:hidden;}
-.hist-hdr{padding:14px 16px;border-bottom:2px solid var(--border);display:flex;justify-content:space-between;align-items:center;background:var(--orange);}
-.hist-hdr-title{font-size:14px;font-weight:900;text-transform:uppercase;letter-spacing:1px;color:#fff;}
-.hist-refresh{padding:7px 14px;font-family:var(--f);font-size:12px;font-weight:800;background:transparent;border:2px solid rgba(255,255,255,.5);border-radius:6px;cursor:pointer;color:#fff;transition:all .15s;text-transform:uppercase;}
-.hist-refresh:hover{border-color:#fff;background:rgba(255,255,255,.15);}
-.hist-item{padding:14px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px;}
-.hist-item:last-child{border-bottom:none;}
-.hist-badge{padding:5px 10px;border-radius:5px;font-size:12px;font-weight:900;text-transform:uppercase;letter-spacing:.5px;flex-shrink:0;min-width:70px;text-align:center;}
-.hist-badge.ing{background:var(--green-light);color:var(--green);}
-.hist-badge.sal{background:var(--red-light);color:var(--red);}
-.hist-info{flex:1;min-width:0;}
-.hist-tipo{font-size:10px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:1px;}
-.hist-veh{font-size:15px;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.hist-cod{font-size:12px;color:var(--muted);font-weight:600;margin-top:1px;}
-.hist-right{text-align:right;flex-shrink:0;}
-.hist-cant{font-size:24px;font-weight:900;}
-.hist-cant.ing{color:var(--green);}
-.hist-cant.sal{color:var(--red);}
-.hist-fecha{font-size:11px;color:var(--muted);margin-top:2px;font-weight:600;}
-.hist-stock-after{font-size:11px;color:var(--muted);margin-top:1px;}
-
-/* ── REQUISICIÓN ── */
-.req-section { padding: 0 16px 24px; }
-.req-label { font-size: 11px; font-weight: 800; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin: 18px 0 8px; }
-.req-select { width: 100%; padding: 14px 16px; border: 2px solid var(--border); border-radius: 12px; font-size: 16px; font-weight: 700; background: var(--panel); color: var(--text); appearance: none; cursor: pointer; }
-.req-select:focus { border-color: var(--orange); outline: none; }
-.req-input { width: 100%; padding: 14px 16px; border: 2px solid var(--border); border-radius: 12px; font-size: 15px; background: var(--panel); color: var(--text); box-sizing: border-box; }
-.req-input:focus { border-color: var(--orange); outline: none; }
-.req-checks { display: flex; flex-direction: column; gap: 10px; }
-.req-check { display: flex; align-items: center; gap: 12px; padding: 14px 16px; border: 2px solid var(--border); border-radius: 12px; background: var(--panel); cursor: pointer; transition: border-color .15s; }
-.req-check.selected { border-color: var(--orange); background: var(--orange-light); }
-.req-check input[type=checkbox] { width: 20px; height: 20px; accent-color: var(--orange); cursor: pointer; flex-shrink: 0; }
-.req-check-label { font-size: 15px; font-weight: 700; flex: 1; }
-.req-btn { width: 100%; padding: 16px; background: var(--orange); color: #fff; border: none; border-radius: 12px; font-size: 16px; font-weight: 900; cursor: pointer; letter-spacing: 0.5px; margin-top: 8px; }
-.req-btn:disabled { background: var(--border); color: var(--muted); cursor: not-allowed; }
-.req-textarea { width: 100%; padding: 14px 16px; border: 2px solid var(--border); border-radius: 12px; font-size: 14px; background: var(--panel); color: var(--text); box-sizing: border-box; min-height: 80px; resize: vertical; font-family: inherit; }
-.req-textarea:focus { border-color: var(--orange); outline: none; }
-.req-qty { width: 52px; padding: 6px 8px; border: 1.5px solid var(--border); border-radius: 8px; font-size: 15px; font-weight: 700; text-align: center; background: var(--bg); color: var(--text); }
-@page { margin: 1cm; size: A4; }
-@media print {
-  body > *:not(#pdf-print) { display: none !important; }
-  #pdf-print { display: block !important; padding: 24px; font-family: Arial, sans-serif; }
-  .pdf-header { border-bottom: 3px solid #1B5EFF; padding-bottom: 12px; margin-bottom: 20px; }
-  .pdf-title { font-size: 22px; font-weight: 900; color: #1B5EFF; }
-  .pdf-sub { font-size: 13px; color: #666; margin-top: 4px; }
-  .pdf-row { display: flex; justify-content: space-between; margin-bottom: 20px; }
-  .pdf-field { flex: 1; }
-  .pdf-field-label { font-size: 10px; font-weight: 700; color: #999; text-transform: uppercase; letter-spacing: 1px; }
-  .pdf-field-value { font-size: 16px; font-weight: 800; margin-top: 4px; }
-  .pdf-filtros-title { font-size: 12px; font-weight: 700; color: #999; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; border-top: 1px solid #eee; padding-top: 16px; }
-  .pdf-filtro-item { display: flex; align-items: center; gap: 12px; padding: 14px 16px; border: 2px solid #eee; border-radius: 10px; margin-bottom: 10px; }
-  .pdf-filtro-check { width: 24px; height: 24px; border: 2px solid #1B5EFF; border-radius: 4px; flex-shrink: 0; }
-  .pdf-filtro-name { font-size: 16px; font-weight: 700; flex: 1; }
-  .pdf-filtro-qty { font-size: 15px; font-weight: 800; color: #1B5EFF; min-width: 36px; text-align: right; }
-  .pdf-obs { margin-top: 16px; border-top: 1px solid #eee; padding-top: 16px; }
-  .pdf-obs-label { font-size: 10px; font-weight: 700; color: #999; text-transform: uppercase; letter-spacing: 1px; }
-  .pdf-obs-value { font-size: 14px; margin-top: 6px; }
-  .pdf-footer { margin-top: 32px; border-top: 1px solid #eee; padding-top: 12px; font-size: 11px; color: #999; text-align: center; }
-}
-#pdf-print { display: none; }
-
-.ped-login{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:60vh;gap:16px;padding:24px;}
-.ped-login-title{font-size:22px;font-weight:900;}
-.ped-login-sub{font-size:13px;color:var(--muted);}
-.ped-login-input{width:100%;max-width:280px;padding:14px 16px;border:2px solid var(--border);border-radius:12px;font-size:16px;text-align:center;letter-spacing:4px;background:var(--panel);color:var(--text);box-sizing:border-box;}
-.ped-login-btn{width:100%;max-width:280px;padding:14px;background:var(--orange);color:#fff;border:none;border-radius:12px;font-size:16px;font-weight:900;cursor:pointer;}
-.ped-tabs{display:flex;border-bottom:2px solid var(--border);margin:0 16px;}
-.ped-tab{flex:1;padding:12px;font-size:13px;font-weight:800;text-align:center;cursor:pointer;color:var(--muted);border-bottom:3px solid transparent;margin-bottom:-2px;background:none;border-top:none;border-left:none;border-right:none;}
-.ped-tab.on{color:var(--orange);border-bottom-color:var(--orange);}
-.ped-section{padding:16px;}
-.ped-label{font-size:11px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin:14px 0 6px;}
-.ped-input{width:100%;padding:12px 14px;border:2px solid var(--border);border-radius:10px;font-size:15px;background:var(--panel);color:var(--text);box-sizing:border-box;}
-.ped-input:focus{border-color:var(--orange);outline:none;}
-.ped-select{width:100%;padding:12px 14px;border:2px solid var(--border);border-radius:10px;font-size:15px;background:var(--panel);color:var(--text);appearance:none;cursor:pointer;}
-.ped-items-list{display:flex;flex-direction:column;gap:8px;margin-top:4px;}
-.ped-item-row{display:flex;align-items:center;gap:8px;padding:10px 14px;background:var(--panel);border:1.5px solid var(--border);border-radius:10px;}
-.ped-item-name{flex:1;font-size:14px;font-weight:700;}
-.ped-item-del{background:none;border:none;color:var(--muted);font-size:18px;cursor:pointer;padding:0;}
-.ped-add-row{display:flex;gap:8px;margin-top:8px;}
-.ped-btn{padding:13px 16px;background:var(--orange);color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:900;cursor:pointer;white-space:nowrap;}
-.ped-btn-outline{padding:13px 16px;background:var(--panel);color:var(--text);border:2px solid var(--border);border-radius:10px;font-size:14px;font-weight:800;cursor:pointer;}
-.ped-submit{width:100%;padding:16px;background:var(--orange);color:#fff;border:none;border-radius:12px;font-size:16px;font-weight:900;cursor:pointer;margin-top:16px;}
-.ped-card{background:var(--panel);border:2px solid var(--border);border-radius:12px;margin-bottom:12px;overflow:hidden;}
-.ped-card-head{padding:14px 16px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;}
-.ped-card-left{flex:1;}
-.ped-card-nro{font-size:16px;font-weight:900;}
-.ped-card-sub{font-size:12px;color:var(--muted);margin-top:2px;}
-.ped-badge{font-size:11px;font-weight:800;padding:4px 10px;border-radius:20px;}
-.ped-badge.pedido{background:#fff3cd;color:#856404;}
-.ped-badge.transito{background:#cfe2ff;color:#084298;}
-.ped-badge.llego{background:#d1e7dd;color:#0a3622;}
-.ped-card-body{padding:14px 16px;border-top:1.5px solid var(--border);display:none;}
-.ped-card-body.open{display:block;}
-.ped-detail-row{display:flex;justify-content:space-between;margin-bottom:6px;font-size:13px;}
-.ped-detail-label{color:var(--muted);font-weight:700;}
-.ped-detail-val{font-weight:800;text-align:right;}
-.ped-items-chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0;}
-.ped-chip{background:var(--bg);border:1.5px solid var(--border);border-radius:20px;padding:4px 10px;font-size:12px;font-weight:700;}
-.ped-actions{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap;}
-.ped-act-btn{flex:1;padding:10px;border:none;border-radius:8px;font-size:13px;font-weight:800;cursor:pointer;}
-.ped-act-btn.green{background:#d1e7dd;color:#0a3622;}
-.ped-act-btn.blue{background:#cfe2ff;color:#084298;}
-.ped-act-btn.orange{background:var(--orange);color:#fff;}
-.ped-price-row{display:flex;gap:8px;margin-top:8px;}
-.ped-price-input{flex:1;padding:10px 12px;border:2px solid var(--border);border-radius:8px;font-size:14px;background:var(--bg);color:var(--text);}
+.ct-head { padding: 12px 16px; border-bottom: 2px solid var(--border); display: flex; justify-content: space-between; align-items: center; background: var(--orange); gap: 10px; }
+.ct-title{font-size:12px;font-weight:800;color:#fff;text-transform:uppercase;letter-spacing:1px;}
+.ct-count{font-size:12px;font-weight:800;color:#fff;opacity:.85;text-align:right;}
 </style>
 </head>
 <body>
 
 <!-- TOPBAR -->
 <div class="topbar">
-  <button class="home-btn" id="homeBtn" onclick="goPage('scanner')" style="display:none">
-    ← Inicio
-  </button>
+  <button class="home-btn" id="homeBtn" onclick="goPage('scanner')" style="display:none">← Escáner</button>
   <div style="display:flex;align-items:center;gap:8px;margin-right:auto;">
-    <img src="https://i.imgur.com/crqLw8M.png" style="height:30px;object-fit:contain;">
-    <img src="https://i.imgur.com/JcdijCK.png" style="height:30px;object-fit:contain;">
+    <img src="https://i.imgur.com/crqLw8M.png" alt="" style="height:30px;object-fit:contain;">
+    <img src="https://i.imgur.com/JcdijCK.png" alt="" style="height:30px;object-fit:contain;">
   </div>
-  <button class="menu-btn" onclick="toggleDrawer()">
+  <button class="menu-btn" onclick="toggleDrawer()" aria-label="Abrir menú">
     <span></span><span></span><span></span>
   </button>
 </div>
+<div class="offline-bar">Sin conexión — el escáner no está disponible, buscá por código o por modelo</div>
 
 <!-- DRAWER -->
 <div class="overlay" id="overlay" onclick="closeDrawer()"></div>
 <div class="drawer" id="drawer">
   <div class="drawer-hdr">
-    <img src="https://i.imgur.com/K2sK0L3.png" style="height:28px;object-fit:contain;">
-    <button class="drawer-close" onclick="closeDrawer()">✕</button>
+    <img src="https://i.imgur.com/K2sK0L3.png" alt="" style="height:28px;object-fit:contain;">
+    <button class="drawer-close" onclick="closeDrawer()" aria-label="Cerrar menú">✕</button>
   </div>
   <div class="drawer-nav">
+    <button class="d-item" id="di-scanner" onclick="goPage('scanner')">
+      <div class="d-icon">📷</div>
+      <div>
+        <div class="d-label">Escanear código</div>
+        <div class="d-sub">Leer la etiqueta con la cámara</div>
+      </div>
+    </button>
     <button class="d-item" id="di-vehiculo" onclick="goPage('vehiculo')">
       <div class="d-icon">🚛</div>
       <div>
         <div class="d-label">Buscar por modelo</div>
-        <div class="d-sub">Filtros y stock por modelo</div>
-      </div>
-    </button>
-    <button class="d-item" id="di-stock" onclick="goPage('stock')">
-      <div class="d-icon">📦</div>
-      <div>
-        <div class="d-label">Stock general</div>
-        <div class="d-sub">Ver todas las existencias</div>
-      </div>
-    </button>
-    <button class="d-item" id="di-requisicion" onclick="goPage('requisicion')">
-      <div class="d-icon">🗒️</div>
-      <div>
-        <div class="d-label">Requisición</div>
-        <div class="d-sub">Generar pedido de filtros</div>
-      </div>
-    </button>
-    <button class="d-item" id="di-pedidos" onclick="goPage('pedidos');pedCheckAuth()">
-      <div class="d-icon">&#x1F4E6;</div>
-      <div>
-        <div class="d-label">Pedidos</div>
-        <div class="d-sub">Seguimiento de repuestos</div>
-      </div>
-    </button>
-    <button class="d-item" id="di-historial" onclick="goPage('historial')">
-      <div class="d-icon">📋</div>
-      <div>
-        <div class="d-label">Historial</div>
-        <div class="d-sub">Movimientos registrados</div>
+        <div class="d-sub">Filtros que usa cada vehículo</div>
       </div>
     </button>
   </div>
@@ -453,8 +245,6 @@ body { font-family: var(--f); background: var(--bg); color: var(--text); min-hei
 
 <!-- PAGE: SCANNER -->
 <div class="page active" id="page-scanner">
-  <div style="height:12px"></div>
-
   <div class="viewfinder">
     <video id="video" autoplay playsinline muted></video>
     <div id="sz" class="sz">
@@ -471,54 +261,25 @@ body { font-family: var(--f); background: var(--bg); color: var(--text); min-hei
   </button>
 
   <div class="manual-row">
-    <input id="manual" type="text" placeholder="Código manual..." autocomplete="off">
-    <button onclick="buscarManual()">BUSCAR</button>
+    <input id="manual" type="text" placeholder="Código manual..." autocomplete="off" autocapitalize="characters" spellcheck="false">
+    <button onclick="buscarManual()">Buscar</button>
   </div>
 
-  </div><!-- end sticky top -->
-  <div style="flex:1;overflow-y:auto;padding:0 16px 16px;">
-    <div class="result-card" id="resultado"></div>
-
-  <!-- Código desconocido -->
-  <div class="unknown-card" id="unknownCard">
-    <div class="unk-head">
-      <span class="unk-head-icon">🔍</span>
-      <div>
-        <div class="unk-head-title">Código no encontrado en la base</div>
-        <div class="unk-head-sub">Podés clasificarlo y agregarlo al stock</div>
-      </div>
-    </div>
-    <div class="unk-code" id="unkCode">—</div>
-    <div class="unk-label">¿Qué tipo de filtro es?</div>
-    <div class="tipo-chips">
-      <button class="tipo-chip" onclick="unkSelTipo(this,'Aceite')">🛢 Aceite</button>
-      <button class="tipo-chip" onclick="unkSelTipo(this,'Combustible')">⛽ Combustible</button>
-      <button class="tipo-chip" onclick="unkSelTipo(this,'Aire primario')">💨 Aire primario</button>
-      <button class="tipo-chip" onclick="unkSelTipo(this,'Aire secundario')">💨 Aire secundario</button>
-      <button class="tipo-chip" onclick="unkSelTipo(this,'Hidráulico')">🔧 Hidráulico</button>
-      <button class="tipo-chip" onclick="unkSelTipo(this,'Dirección hidráulica')">🔧 Dirección</button>
-      <button class="tipo-chip" onclick="unkSelTipo(this,'Secador de aire')">💧 Secador</button>
-      <button class="tipo-chip" onclick="unkSelTipo(this,'Otro')">📦 Otro</button>
-    </div>
-    <button class="unk-add-btn" id="unkAddBtn" onclick="unkAgregar()">+ Agregar al stock</button>
-    <div class="unk-feedback" id="unkFeedback"></div>
-  </div>
-
+  <div class="result-card" id="resultado"></div>
   <div style="height:24px"></div>
 </div>
 
 <!-- PAGE: VEHÍCULO -->
 <div class="page" id="page-vehiculo">
-  <div style="height:12px"></div>
   <div class="sec-title">Buscar por modelo</div>
-  <div class="sec-sub">Seleccioná el modelo para ver sus filtros y stock</div>
+  <div class="sec-sub">Elegí el vehículo para ver qué filtros usa</div>
 
   <select class="veh-select" id="vehicleSelect" onchange="onVehicleChange()">
     <option value="">— Seleccioná el vehículo —</option>
   </select>
 
   <div id="tipoSection" style="display:none">
-    <div style="font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px;">Tipo de filtro</div>
+    <div class="veh-lbl">Tipo de filtro</div>
     <div class="tipo-grid" id="tipoGrid"></div>
   </div>
 
@@ -526,40 +287,82 @@ body { font-family: var(--f); background: var(--bg); color: var(--text); min-hei
   <div style="height:24px"></div>
 </div>
 
-<!-- PAGE: STOCK -->
-<div class="page" id="page-stock">
-  <div style="height:12px"></div>
-  <div class="sec-title">Stock general</div>
-  <div class="sec-sub">Filtrá por vehículo o mirá todo</div>
-
-  <select class="stock-veh-select" id="stockVehSel" onchange="stockFiltrar()">
-    <option value="">— Todos los vehículos —</option>
-  </select>
-
-  <div class="stock-list">
-    <div class="sl-hdr">
-      <span class="sl-hdr-title">📋 Existencias</span>
-      <button class="sl-refresh" onclick="stockCargarLista()">↻ Actualizar</button>
-    </div>
-    <div id="stockBody"><div class="sl-empty">Cargando...</div></div>
-  </div>
-  <div style="height:24px"></div>
-</div>
-
 <script>
-const SHEET_URL = "/.netlify/functions/sheets";
+'use strict';
 
+/* ──────────────────────────────────────────────
+   ESTADO
+   ────────────────────────────────────────────── */
 let DB = {};
-let allStock = [];
-let currentGrupo = null; // grupo activo en el scanner
+const IDX  = new Map();  // código normalizado  -> [grupos]
+const BIDX = new Map();  // código base         -> [{codigo, marca, grupo}]
 
-// ── DB ──
-fetch("database.json")
+/* Logos de marcas principales. Para agregar una marca, sumá una línea
+   con la marca EN MAYÚSCULAS y la URL del logo. */
+const LOGOS = {
+  'DONALDSON':   'https://i.imgur.com/SF5bsdy.png',
+  'MANN':        'https://i.imgur.com/lJwH1UM.jpeg',
+  'MANN FILTER': 'https://i.imgur.com/lJwH1UM.jpeg',
+  'BALDWIN':     'https://i.imgur.com/kmy7xmC.png',
+  'FRAM':        'https://i.imgur.com/XgZp781.png',
+  'FLEETGUARD':  'https://i.imgur.com/nbdBux5.png',
+  'WIX':         'https://i.imgur.com/PwHPwAC.png',
+  'WEGA':        'https://i.imgur.com/UIWShqY.png'
+};
+
+/* Tipos que en la base están escritos de más de una forma y son lo mismo.
+   Clave y valor van en minúscula y sin acentos. */
+const TIPO_ALIAS = {
+  'secador': 'secador de aire'
+};
+
+/* ──────────────────────────────────────────────
+   HELPERS
+   ────────────────────────────────────────────── */
+function norm(c) {
+  return String(c).toUpperCase().replace(/[\s\-\/\.]/g, '');
+}
+function baseCode(c) {
+  return String(c).replace(/\s/g, '').split(/[\/\-]/)[0].toUpperCase();
+}
+function normTipo(t) {
+  const s = String(t).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+    .trim().replace(/\s+/g, ' ');
+  return TIPO_ALIAS[s] || s;
+}
+function esc(s) {
+  return String(s).replace(/[&<>"']/g, m =>
+    ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[m]));
+}
+
+/* ──────────────────────────────────────────────
+   CARGA DE LA BASE + ÍNDICES
+   ────────────────────────────────────────────── */
+fetch('database.json')
   .then(r => r.json())
-  .then(d => { DB = d; poblarSelectores(); stockCargarLista(); reqInit(); })
-  .catch(() => console.error("Error DB"));
+  .then(d => { DB = d; construirIndices(); poblarSelectores(); })
+  .catch(() => mostrarError('No se pudo cargar la base de datos. Recargá la página.'));
 
-// ── DRAWER ──
+function construirIndices() {
+  for (const gkey in DB) {
+    const g = DB[gkey];
+    g._tn = normTipo(g.tipo);
+    g.codigos = g.codigos || [];
+    for (const c of g.codigos) {
+      const n = norm(c.codigo);
+      if (!IDX.has(n)) IDX.set(n, []);
+      IDX.get(n).push(g);
+
+      const b = baseCode(c.codigo);
+      if (!BIDX.has(b)) BIDX.set(b, []);
+      BIDX.get(b).push({ codigo: c.codigo, marca: c.marca, grupo: g });
+    }
+  }
+}
+
+/* ──────────────────────────────────────────────
+   NAVEGACIÓN
+   ────────────────────────────────────────────── */
 function toggleDrawer() {
   document.getElementById('drawer').classList.toggle('open');
   document.getElementById('overlay').classList.toggle('open');
@@ -568,1442 +371,416 @@ function closeDrawer() {
   document.getElementById('drawer').classList.remove('open');
   document.getElementById('overlay').classList.remove('open');
 }
-
-// ── NAV ──
 function goPage(name) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.d-item').forEach(b => b.classList.remove('active'));
   document.getElementById('page-' + name).classList.add('active');
+  document.querySelectorAll('.d-item').forEach(d => d.classList.remove('active'));
   const di = document.getElementById('di-' + name);
   if (di) di.classList.add('active');
   document.getElementById('homeBtn').style.display = name === 'scanner' ? 'none' : 'block';
-  // Limpiar resultado al cambiar de página
-  document.getElementById('resultado').classList.remove('show');
-  document.getElementById('unknownCard').classList.remove('show');
   closeDrawer();
   window.scrollTo(0, 0);
+  if (name === 'scanner') iniciarCamara();
 }
 
-// ── CÁMARA ──
+/* ──────────────────────────────────────────────
+   CÁMARA
+   ────────────────────────────────────────────── */
 const video  = document.getElementById('video');
 const vfSt   = document.getElementById('vfSt');
 const btnCap = document.getElementById('btnCap');
 const sz     = document.getElementById('sz');
 
 function iniciarCamara() {
-  // Detener stream anterior si existe
-  if (video.srcObject) {
-    video.srcObject.getTracks().forEach(t => t.stop());
-    video.srcObject = null;
+  if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+    vfSt.textContent = 'Cámara no disponible'; btnCap.disabled = true; return;
   }
+  if (video.srcObject && video.srcObject.getTracks().some(t => t.readyState === 'live')) return;
+  if (video.srcObject) { video.srcObject.getTracks().forEach(t => t.stop()); video.srcObject = null; }
+
   navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } })
     .then(s => {
       video.srcObject = s;
-      vfSt.textContent = 'Apuntar al código del filtro';
+      vfSt.textContent = 'Apuntá al código del filtro';
       btnCap.disabled = false;
     })
-    .catch(() => { vfSt.textContent = 'Sin acceso a cámara'; btnCap.disabled = true; });
+    .catch(() => { vfSt.textContent = 'Sin acceso a la cámara'; btnCap.disabled = true; });
 }
-
 iniciarCamara();
 
-// Reiniciar cámara cuando la página vuelve a ser visible
 document.addEventListener('visibilitychange', () => {
-  if (!document.hidden) iniciarCamara();
-});
-
-// Reiniciar cuando vuelve el foco a la ventana (útil en PWA/app)
-window.addEventListener('focus', () => {
-  if (video.readyState === 0 || !video.srcObject) iniciarCamara();
+  if (document.hidden) {
+    if (video.srcObject) { video.srcObject.getTracks().forEach(t => t.stop()); video.srcObject = null; }
+  } else if (document.getElementById('page-scanner').classList.contains('active')) {
+    iniciarCamara();
+  }
 });
 
 function capturar() {
+  // Reescalar a 1024px de ancho: menos datos, menos costo, misma lectura.
+  const MAXW = 1024;
+  const vw = video.videoWidth  || 640;
+  const vh = video.videoHeight || 480;
+  const escala = Math.min(1, MAXW / vw);
   const c = document.createElement('canvas');
-  c.width = video.videoWidth||640; c.height = video.videoHeight||480;
-  c.getContext('2d').drawImage(video, 0, 0);
-  const b64 = c.toDataURL('image/jpeg', .85).split(',')[1];
+  c.width  = Math.round(vw * escala);
+  c.height = Math.round(vh * escala);
+  c.getContext('2d').drawImage(video, 0, 0, c.width, c.height);
+  const b64 = c.toDataURL('image/jpeg', 0.85).split(',')[1];
   setScanLoading(true);
-  leerClaude(b64);
+  leerCodigo(b64);
 }
 
 function setScanLoading(on) {
   btnCap.disabled = on;
   btnCap.classList.toggle('loading', on);
-  vfSt.textContent = on ? 'Analizando...' : 'Apuntar al código del filtro';
+  vfSt.textContent = on ? 'Analizando...' : 'Apuntá al código del filtro';
   sz.classList.toggle('scanning', on);
 }
 
-async function leerClaude(b64) {
+async function leerCodigo(b64) {
   try {
-    const res  = await fetch('/.netlify/functions/claude', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ imageBase64: b64 }) });
+    const res = await fetch('/.netlify/functions/claude', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ imageBase64: b64 })
+    });
     const data = await res.json();
     if (data.error) throw new Error(data.error);
-    const codigo = (data.codigo||'NO_DETECTADO').toUpperCase().replace(/\s+/g,'');
-    buscarInteligente(codigo);
-  } catch(e) { mostrarError('Error: ' + e.message); }
-  finally    { setScanLoading(false); }
+
+    const codigo = String(data.codigo || 'NO_DETECTADO').toUpperCase().replace(/\s+/g, '');
+    if (!/^[A-Z0-9\/\-\.]{3,24}$/.test(codigo)) {
+      mostrarError('No se pudo leer el código de la etiqueta. Probá con mejor luz o escribilo a mano.');
+      return;
+    }
+    buscar(codigo);
+  } catch (e) {
+    mostrarError('No se pudo analizar la foto. Revisá la conexión e intentá de nuevo.');
+  } finally {
+    setScanLoading(false);
+  }
 }
 
-// ── BÚSQUEDA ──
-// Expansión transitiva limitada al mismo tipo de filtro
-function expandirPorTipo(needleNorm, tipoFiltro) {
-  const visitados = new Set([needleNorm]);
-  const cola = [needleNorm];
+/* ──────────────────────────────────────────────
+   BÚSQUEDA
+   ────────────────────────────────────────────── */
+
+// Expande equivalencias saltando de grupo en grupo, dentro del mismo tipo.
+function expandirPorTipo(needle, tipoNorm) {
+  const vistos = new Set([needle]);
+  const cola   = [needle];
   const grupos = [];
-  const marcaMap = new Map();
+  const enLista = new Set();
 
-  while (cola.length > 0) {
+  while (cola.length) {
     const actual = cola.shift();
-    for (const gkey in DB) {
-      const grupo = DB[gkey];
-      // Solo cruzar grupos del mismo tipo
-      if (grupo.tipo !== tipoFiltro) continue;
-      const found = grupo.codigos.find(c => c.codigo.toUpperCase().replace(/[\s\-\/]/g,'') === actual);
-      if (!found) continue;
-      if (!grupos.find(g => g.grupo === grupo)) grupos.push({ found, grupo });
-      if (!marcaMap.has(actual)) marcaMap.set(actual, { marca: found.marca, codigo: found.codigo });
-      for (const c of grupo.codigos) {
-        const cn = c.codigo.toUpperCase().replace(/[\s\-\/]/g,'');
-        if (!visitados.has(cn)) {
-          visitados.add(cn);
-          cola.push(cn);
-          if (!marcaMap.has(cn)) marcaMap.set(cn, { marca: c.marca, codigo: c.codigo });
-        }
+    for (const g of (IDX.get(actual) || [])) {
+      if (g._tn !== tipoNorm || enLista.has(g)) continue;
+      enLista.add(g);
+      grupos.push(g);
+      for (const c of g.codigos) {
+        const cn = norm(c.codigo);
+        if (!vistos.has(cn)) { vistos.add(cn); cola.push(cn); }
       }
     }
   }
-  return { grupos, marcaMap };
+  return grupos;
 }
 
-function buscarEnDB(codigo) {
-  const needle = codigo.toUpperCase().replace(/[\s\-\/]/g,'');
-
-  // Buscar hits directos para determinar el tipo
-  const hitsDirectos = [];
-  for (const gkey in DB) {
-    const grupo = DB[gkey];
-    const found = grupo.codigos.find(c => c.codigo.toUpperCase().replace(/[\s\-\/]/g,'') === needle);
-    if (found) hitsDirectos.push({ found, grupo });
-  }
-
-  if (hitsDirectos.length > 0) {
-    const base = hitsDirectos[0];
-    const tipoFiltro = base.grupo.tipo;
-
-    // Expansión transitiva solo dentro del mismo tipo
-    const { grupos } = expandirPorTipo(needle, tipoFiltro);
-
-    const todosModelos = [...new Set(grupos.flatMap(h => h.grupo.modelos))];
-    const equivMap = new Map();
-    for (const h of grupos) {
-      for (const c of h.grupo.codigos) {
-        const cu = c.codigo.toUpperCase();
-        if (cu.replace(/[\s\-\/]/g,'') !== needle && !equivMap.has(cu)) {
-          equivMap.set(cu, c);
-        }
-      }
+function armarResultado(grupos, needle, marca, tipoLabel) {
+  const modelos = [...new Set(grupos.flatMap(g => g.modelos || []))];
+  const equivMap = new Map();
+  for (const g of grupos) {
+    for (const c of g.codigos) {
+      const cu = c.codigo.toUpperCase();
+      if (norm(cu) !== needle && !equivMap.has(cu)) equivMap.set(cu, c);
     }
+  }
+  return { marca, tipo: tipoLabel, modelos, equivalencias: [...equivMap.values()] };
+}
+
+function buscarEnDB(codigo, tipoPref) {
+  const needle = norm(codigo);
+
+  // 1) Coincidencia exacta
+  const hits = IDX.get(needle);
+  if (hits && hits.length) {
+    const tipos = [...new Set(hits.map(g => g._tn))];
+    const tn    = (tipoPref && tipos.includes(tipoPref)) ? tipoPref : tipos[0];
+    const base  = hits.find(g => g._tn === tn);
+    const found = base.codigos.find(c => norm(c.codigo) === needle);
+    const grupos = expandirPorTipo(needle, tn);
     return {
-      key: base.found.codigo.toUpperCase(),
-      data: {
-        marca:         base.found.marca,
-        tipo:          tipoFiltro,
-        modelos:       todosModelos,
-        equivalencias: [...equivMap.values()]
-      }
+      key: found.codigo.toUpperCase(),
+      data: armarResultado(grupos, needle, found.marca, base.tipo),
+      tipos: tipos.map(t => ({ id: t, label: hits.find(g => g._tn === t).tipo })),
+      tipoActual: tn
     };
   }
 
-  // Fuzzy: solo si la parte ANTES de / o - coincide exactamente
-  function baseCode(c) {
-    return c.replace(/\s/g,'').split(/[\/\-]/)[0].toUpperCase();
-  }
-  const needleBase = baseCode(codigo);
-
-  const aproxHits = [];
-  for (const gkey in DB) {
-    const grupo = DB[gkey];
-    for (const c of grupo.codigos) {
-      const cn = c.codigo.toUpperCase();
-      const cnBase = baseCode(cn);
-      if (cnBase === needleBase && cn.replace(/[\s\-\/]/g,'') !== needle) {
-        aproxHits.push({ cn, grupo, marca: c.marca });
-        break;
-      }
-    }
-  }
-  if (aproxHits.length > 0) {
-    const base = aproxHits[0];
-    const tipoFiltro = base.grupo.tipo;
-    const { grupos } = expandirPorTipo(base.cn.replace(/[\s\-\/]/g,''), tipoFiltro);
-    const todosModelos = [...new Set(grupos.flatMap(h => h.grupo.modelos))];
-    const equivMap = new Map();
-    for (const h of grupos) {
-      for (const c of h.grupo.codigos) {
-        const cu = c.codigo.toUpperCase();
-        if (cu !== base.cn && !equivMap.has(cu)) equivMap.set(cu, c);
-      }
-    }
+  // 2) Aproximada: mismo código antes de la barra o el guion
+  const cands = BIDX.get(baseCode(codigo));
+  if (cands && cands.length) {
+    const c  = cands.find(x => norm(x.codigo) !== needle) || cands[0];
+    const bn = norm(c.codigo);
+    const grupos = expandirPorTipo(bn, c.grupo._tn);
     return {
-      key:  base.cn,
-      data: {
-        marca:         base.marca,
-        tipo:          tipoFiltro,
-        modelos:       todosModelos,
-        equivalencias: [...equivMap.values()]
-      },
+      key: c.codigo.toUpperCase(),
+      data: armarResultado(grupos, bn, c.marca, c.grupo.tipo),
       aprox: true,
-      orig:  codigo
+      orig: codigo,
+      tipos: [],
+      tipoActual: c.grupo._tn
     };
   }
+
   return null;
 }
 
-function buscarInteligente(codigo) {
-  if (!codigo || codigo === 'NO_DETECTADO') { mostrarError('No se detectó ningún código. Intentá de nuevo.'); return; }
-  const f = buscarEnDB(codigo);
-  if (!f) { mostrarDesconocido(codigo); return; }
-  mostrarResultado(f.key, f.data, f.aprox, f.orig||codigo);
+function buscar(codigo, tipoPref) {
+  if (!codigo || codigo === 'NO_DETECTADO') {
+    mostrarError('No se detectó ningún código. Intentá de nuevo.');
+    return;
+  }
+  const f = buscarEnDB(codigo, tipoPref);
+  if (!f) { mostrarNoEncontrado(codigo); return; }
+  mostrarResultado(f);
 }
 
 function buscarManual() {
   const c = document.getElementById('manual').value.trim().toUpperCase();
-  if (c) buscarInteligente(c);
+  if (c) buscar(c);
 }
-document.getElementById('manual').addEventListener('keydown', e => { if(e.key==='Enter') buscarManual(); });
+document.getElementById('manual').addEventListener('keydown', e => {
+  if (e.key === 'Enter') buscarManual();
+});
 
-// ── RESULTADO SCANNER ──
-async function mostrarResultado(codigo, data, aprox, detectado) {
-  document.getElementById('unknownCard').classList.remove('show');
-  const panel  = document.getElementById('resultado');
-  const modelos = Array.isArray(data.modelos) ? data.modelos.join(' / ') : (data.modelos||'—');
-  const equivs  = data.equivalencias || [];
-  const grupoId = getGrupoId(data.tipo, data.modelos);
+/* ──────────────────────────────────────────────
+   RENDER DEL RESULTADO
+   ────────────────────────────────────────────── */
+function filaEquiv(c) {
+  const logo = LOGOS[c.marca.toUpperCase()];
+  return `<button class="eq-row" data-codigo="${esc(c.codigo.toUpperCase())}">
+    ${logo ? `<img src="${logo}" alt="${esc(c.marca)}">` : ''}
+    <span style="flex:1;">
+      <span class="eq-row-code">${esc(c.codigo.toUpperCase())}</span>
+      <span class="eq-row-marca" style="display:block;">${esc(c.marca)}</span>
+    </span>
+    <span class="eq-arr">›</span>
+  </button>`;
+}
 
-  currentGrupo = {
-    grupoId, tipo: data.tipo, modelos,
-    codigos: [codigo, ...equivs.map(e=>e.codigo.toUpperCase())].slice(0,8).join(', ')
-  };
+function mostrarResultado(f) {
+  const { key: codigo, data, aprox, orig, tipos, tipoActual } = f;
+  const panel = document.getElementById('resultado');
+  const modelos = (data.modelos || []).join(' / ') || '—';
+  const equivs = data.equivalencias || [];
 
-  // Mapa de logos (mismo que en mostrarTipo)
-  const RC_LOGOS = {
-    'DONALDSON':  'https://i.imgur.com/SF5bsdy.png',
-    'MANN':       'https://i.imgur.com/lJwH1UM.jpeg',
-    'MANN FILTER':'https://i.imgur.com/lJwH1UM.jpeg',
-    'BALDWIN':    'https://i.imgur.com/kmy7xmC.png',
-    'FRAM':       'https://i.imgur.com/XgZp781.png',
-    'FLEETGUARD': 'https://i.imgur.com/nbdBux5.png',
-    'WIX':        'https://i.imgur.com/PwHPwAC.png',
-    'WEGA':       'https://i.imgur.com/UIWShqY.png',
-  };
+  const principales = equivs.filter(e => LOGOS[e.marca.toUpperCase()]);
+  const resto       = equivs.filter(e => !LOGOS[e.marca.toUpperCase()]);
 
-  // Logo de la marca escaneada
-  const marcaLogo = RC_LOGOS[data.marca.toUpperCase()];
+  const marcaLogo = LOGOS[data.marca.toUpperCase()];
 
-  // Separar equivalencias en principales (con logo) y resto
-  const equivPrincipales = equivs.filter(e => RC_LOGOS[e.marca.toUpperCase()]);
-  const equivResto        = equivs.filter(e => !RC_LOGOS[e.marca.toUpperCase()]);
-
-  const principalesHTML = equivPrincipales.length ? `
-    <div style="padding:10px 16px 4px;border-top:2px solid var(--border);">
-      ${equivPrincipales.map(e=>`
-        <div onclick="chipClick(null,'${e.codigo.toUpperCase()}')" style="display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--border);cursor:pointer;">
-          <img src="${RC_LOGOS[e.marca.toUpperCase()]}" style="height:24px;width:72px;object-fit:contain;object-position:left;flex-shrink:0;">
-          <div style="flex:1;">
-            <div style="font-size:15px;font-weight:800;letter-spacing:.3px;">${e.codigo.toUpperCase()}</div>
-          </div>
-          <div style="font-size:12px;color:var(--muted);">›</div>
-        </div>`).join('')}
+  const avisoAprox = aprox ? `
+    <div class="rc-warn">
+      <div class="rc-warn-t">⚠️ Coincidencia aproximada</div>
+      <div class="rc-warn-b">Buscaste <strong>${esc(orig)}</strong>. Este resultado es parecido pero no idéntico — verificá el código completo, incluido el sufijo, antes de usarlo.</div>
     </div>` : '';
 
-  const restoHTML = equivResto.length ? `
+  const ambHTML = (tipos && tipos.length > 1) ? `
+    <div class="amb">
+      <div class="amb-lbl">Este código existe en más de un tipo de filtro</div>
+      <div class="amb-row">
+        ${tipos.map(t => `<button class="amb-btn${t.id === tipoActual ? ' on' : ''}" data-tipo="${esc(t.id)}" data-codigo="${esc(codigo)}">${esc(t.label)}</button>`).join('')}
+      </div>
+    </div>` : '';
+
+  const principalesHTML = principales.length
+    ? `<div class="eq-main">${principales.map(filaEquiv).join('')}</div>` : '';
+
+  const restoHTML = resto.length ? `
     <button class="equiv-toggle" id="equivToggle" onclick="toggleEquiv()">
-      Más equivalencias (${equivResto.length})
+      Más equivalencias (${resto.length})
       <span class="arr">▾</span>
     </button>
     <div class="equiv-body" id="equivBody">
-      <div class="equiv-grid" style="padding-top:10px;">
-        ${equivResto.map(e=>`
-          <div class="eq-chip" onclick="chipClick(this,'${e.codigo.toUpperCase()}')">
-            <div class="eq-code">${e.codigo.toUpperCase()}</div>
-            <div class="eq-marca">${e.marca}</div>
-          </div>`).join('')}
+      <div class="equiv-grid">
+        ${resto.map(e => `<button class="eq-chip" data-codigo="${esc(e.codigo.toUpperCase())}">
+          <span class="eq-code">${esc(e.codigo.toUpperCase())}</span>
+          <span class="eq-marca" style="display:block;">${esc(e.marca)}</span>
+        </button>`).join('')}
       </div>
     </div>` : '';
 
-  const equivHTML = (equivPrincipales.length || equivResto.length)
-    ? principalesHTML + restoHTML : '';
-
-  const movHTML = aprox ? `
-    <div style="margin:12px 16px;padding:14px 16px;background:#fef3c7;border:2px solid #f59e0b;border-radius:10px;">
-      <div style="font-size:15px;font-weight:900;color:#92400e;margin-bottom:4px;">⚠️ COINCIDENCIA APROXIMADA</div>
-      <div style="font-size:13px;font-weight:600;color:#78350f;">Buscaste <strong>${detectado}</strong> — Este resultado es similar pero no exacto. Verificá el código antes de registrar.</div>
-    </div>` : `
-    <div class="rc-mov">
-      <div class="qty-row">
-        <span class="qty-lbl">Cantidad</span>
-        <div class="qty-ctrl">
-          <button class="qty-btn" onclick="qtyChange(-1)">−</button>
-          <input class="qty-inp" id="qtyVal" type="number" value="1" min="1" max="999">
-          <button class="qty-btn" onclick="qtyChange(+1)">+</button>
-        </div>
-      </div>
-      <div class="mov-btns">
-        <button class="mov-btn btn-ing" onclick="registrarMov(+1)">↑ INGRESO<span class="mov-btn-sub">Suma al stock</span></button>
-        <button class="mov-btn btn-sal" onclick="abrirModalSalida()">↓ SALIDA<span class="mov-btn-sub">Resta del stock</span></button>
-      </div>
-      <div class="mov-feedback" id="movFeedback"></div>
-    </div>`;
-
-  if (aprox) currentGrupo = null; // bloquear movimientos en aprox
+  const sinEquiv = (!principales.length && !resto.length)
+    ? `<div class="rc-nf">No hay equivalencias registradas para este código.</div>` : '';
 
   panel.innerHTML = `
     <div class="rc-head">
-      <div class="rc-dot${aprox?' ap':''}"></div>
-      <span class="rc-lbl${aprox?' ap':''}">${aprox?`Coincidencia aprox. detectado: ${detectado}`:'Código encontrado'}</span>
+      <div class="rc-dot${aprox ? ' ap' : ''}"></div>
+      <span class="rc-lbl${aprox ? ' ap' : ''}">${aprox ? 'Coincidencia aproximada' : 'Código encontrado'}</span>
     </div>
     <div class="rc-main">
-      <div class="rc-code">${codigo}</div>
+      <div class="rc-code">${esc(codigo)}</div>
       <div class="rc-grid">
         <span class="rc-fl">Marca</span>
-        <span class="rc-fv" style="display:flex;align-items:center;gap:8px;">
-          ${marcaLogo ? `<img src="${marcaLogo}" style="height:20px;max-width:60px;object-fit:contain;object-position:left;">` : ''}
-          ${data.marca}
-        </span>
-        <span class="rc-fl">Tipo</span>     <span class="rc-fv">${data.tipo}</span>
-        <span class="rc-fl">Vehículo</span> <span class="rc-fv">${modelos}</span>
-      </div>
-      <div class="rc-stock-row">
-        <div class="rc-stock-label">Stock actual</div>
-        <div class="rc-stock-num" id="rcStockNum">...</div>
+        <span class="rc-fv">${marcaLogo ? `<img src="${marcaLogo}" alt="" style="height:20px;max-width:60px;object-fit:contain;">` : ''}${esc(data.marca)}</span>
+        <span class="rc-fl">Tipo</span>
+        <span class="rc-fv">${esc(data.tipo)}</span>
+        <span class="rc-fl">Vehículo</span>
+        <span class="rc-fv" style="font-size:15px;">${esc(modelos)}</span>
       </div>
     </div>
-    ${movHTML}
-    ${equivHTML}`;
-
-  // Boton imprimir etiqueta
-  var btnEtq = document.createElement('button');
-  btnEtq.textContent = '\ud83c\udff7\ufe0f IMPRIMIR ETIQUETA';
-  btnEtq.style.cssText = 'width:100%;margin:12px 0 0;padding:14px;background:var(--orange);color:#fff;border:none;border-radius:12px;font-size:15px;font-weight:900;cursor:pointer;letter-spacing:0.5px;display:block;';
-  (function(c, m, t, mod) {
-    btnEtq.onclick = function() { imprimirEtiqueta(c, m, t, mod); };
-  })(codigo, data.marca, data.tipo, data.modelos);
-  panel.appendChild(btnEtq);
-
-  // Boton Showlub
-  var btnShowlub = document.createElement('button');
-  btnShowlub.textContent = '🔍 VER EN SHOWLUB';
-  btnShowlub.style.cssText = 'width:100%;margin:8px 0 0;padding:14px;background:#fff;color:#222;border:2px solid var(--border);border-radius:12px;font-size:15px;font-weight:900;cursor:pointer;letter-spacing:0.5px;display:block;';
-  btnShowlub.onclick = function() { buscarShowlub(codigo, btnShowlub); };
-  (function(c, btn) {
-    btn.onclick = function() { buscarShowlub(c, btn); };
-  })(codigo, btnShowlub);
-  panel.appendChild(btnShowlub);
-
-  // Store for showlub callback
-  window._lastCodigo  = codigo;
-  window._lastMarca   = data.marca;
-  window._lastTipo    = data.tipo;
-  window._lastModelos = data.modelos;
+    ${avisoAprox}${ambHTML}${principalesHTML}${restoHTML}${sinEquiv}`;
 
   panel.classList.add('show');
+  document.getElementById('manual').value = codigo;
+}
 
-  // Cargar stock async
-  try {
-    const stock = await apiGetStock(grupoId);
-    actualizarRcStock(stock);
-  } catch(e) { document.getElementById('rcStockNum').textContent = '?'; }
+function mostrarNoEncontrado(codigo) {
+  const panel = document.getElementById('resultado');
+  panel.innerHTML = `
+    <div class="rc-head"><div class="rc-dot er"></div><span class="rc-lbl er">Sin resultado</span></div>
+    <div class="rc-main"><div class="rc-code">${esc(codigo)}</div></div>
+    <div class="rc-nf">
+      Este código no está en la base.<br>
+      Revisá que estén todos los caracteres, incluido el sufijo del final (SY, PU, /1X y similares).
+      También podés buscar el filtro por modelo de vehículo desde el menú.
+    </div>`;
+  panel.classList.add('show');
 }
 
 function mostrarError(msg) {
   const panel = document.getElementById('resultado');
-  // Extraer el código del mensaje si viene en formato "...código X"
-  const matchCodigo = msg.match(/:\s*([A-Z0-9\-\/\.]+)\s*$/i);
-  const codigoNF = matchCodigo ? matchCodigo[1] : '';
-
   panel.innerHTML = `
     <div class="rc-head"><div class="rc-dot er"></div><span class="rc-lbl er">Sin resultado</span></div>
-    <div class="rc-nf">${msg.replace(/\n/g,'<br>')}</div>
-    ${codigoNF ? `
-    <div style="padding:16px;">
-      <div style="font-size:13px;color:var(--muted);margin-bottom:10px;">¿No está en la base? Mandalo para investigar y asignarle un modelo.</div>
-      <button id="btnAgregar" onclick="enviarParaInvestigar('${codigoNF}')" style="width:100%;padding:14px;background:var(--orange);color:#fff;border:none;border-radius:10px;font-size:15px;font-weight:800;cursor:pointer;letter-spacing:0.5px;">
-        📋 ENVIAR PARA AGREGAR
-      </button>
-      <button id="btnShowlubNF" style="width:100%;margin-top:8px;padding:14px;background:#fff;color:#222;border:2px solid var(--border);border-radius:10px;font-size:15px;font-weight:800;cursor:pointer;" onclick="buscarShowlub('${codigoNF}', this)">
-        🔍 VER EN SHOWLUB
-      </button>
-    </div>` : ''}`;
+    <div class="rc-nf">${esc(msg)}</div>`;
   panel.classList.add('show');
-  currentGrupo = null;
-}
-
-async function enviarParaInvestigar(codigo) {
-  const btn = document.getElementById('btnAgregar');
-  if (btn) { btn.disabled = true; btn.textContent = 'Enviando...'; }
-
-  try {
-    const res = await fetch('/.netlify/functions/sheets', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ accion: 'agregar', codigo: codigo.toUpperCase() })
-    });
-    const data = await res.json();
-    if (data.ok) {
-      if (btn) { btn.textContent = '✅ Enviado'; btn.style.background = '#1e7e34'; }
-    } else {
-      if (btn) { btn.disabled = false; btn.textContent = '📋 ENVIAR PARA AGREGAR'; }
-      alert('Error al enviar: ' + (data.error || 'desconocido'));
-    }
-  } catch(e) {
-    if (btn) { btn.disabled = false; btn.textContent = '📋 ENVIAR PARA AGREGAR'; }
-    alert('Error de conexión');
-  }
-}
-
-function actualizarRcStock(n) {
-  const el = document.getElementById('rcStockNum');
-  if (!el) return;
-  el.textContent = n;
-  el.className = 'rc-stock-num ' + (n===0?'zero':n<=2?'low':'ok');
 }
 
 function toggleEquiv() {
-  const btn  = document.getElementById('equivToggle');
-  const body = document.getElementById('equivBody');
-  btn.classList.toggle('open');
-  body.classList.toggle('open');
+  document.getElementById('equivToggle').classList.toggle('open');
+  document.getElementById('equivBody').classList.toggle('open');
 }
 
-function chipClick(el, codigo) {
-  document.querySelectorAll('.eq-chip').forEach(c=>c.classList.remove('on'));
-  el.classList.add('on');
-  document.getElementById('manual').value = codigo;
-}
-
-// ── MOVIMIENTOS ──
-function qtyChange(d) {
-  const inp = document.getElementById('qtyVal');
-  if (inp) inp.value = Math.max(1, (parseInt(inp.value)||1) + d);
-}
-
-async function registrarMov(dir) {
-  if (!currentGrupo) return;
-  const qty    = parseInt(document.getElementById('qtyVal').value)||1;
-  const delta  = dir * qty;
-  const fb     = document.getElementById('movFeedback');
-  fb.textContent = 'Guardando...'; fb.classList.add('show');
-  try {
-    const nuevo = await apiUpdate(currentGrupo, delta);
-    actualizarRcStock(nuevo);
-    fb.textContent = dir>0 ? `✅ Ingresados ${qty} — Stock: ${nuevo}` : `✅ Retirados ${qty} — Stock: ${nuevo}`;
-    document.getElementById('qtyVal').value = 1;
-    setTimeout(() => fb.classList.remove('show'), 2500);
-    stockCargarLista();
-  } catch(e) {
-    fb.textContent = '❌ Error al guardar.';
-    setTimeout(() => fb.classList.remove('show'), 3000);
+// Un solo listener para todos los códigos clicables del panel
+document.getElementById('resultado').addEventListener('click', e => {
+  const amb = e.target.closest('.amb-btn');
+  if (amb) { buscar(amb.dataset.codigo, amb.dataset.tipo); return; }
+  const el = e.target.closest('[data-codigo]');
+  if (el) {
+    buscar(el.dataset.codigo);
+    document.getElementById('resultado').scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
-}
+});
 
-// ── VEHÍCULO ──
+/* ──────────────────────────────────────────────
+   BÚSQUEDA POR MODELO
+   ────────────────────────────────────────────── */
 function poblarSelectores() {
   const set = new Set();
-  for (const k in DB) (DB[k].modelos||[]).forEach(m => set.add(m));
-  const opts = [...set].sort();
-  ['vehicleSelect','stockVehSel'].forEach(id => {
-    const sel = document.getElementById(id);
-    opts.forEach(m => { const o=document.createElement('option'); o.value=m; o.textContent=m; sel.appendChild(o); });
-  });
-}
-
-function onVehicleChange() {
-  const modelo = document.getElementById('vehicleSelect').value;
-  const sec    = document.getElementById('tipoSection');
-  const grid   = document.getElementById('tipoGrid');
-  const table  = document.getElementById('codesTable');
-  table.classList.remove('show'); table.innerHTML = '';
-  if (!modelo) { sec.style.display='none'; return; }
-  const tipos = new Set();
-  for (const k in DB) if ((DB[k].modelos||[]).includes(modelo)) tipos.add(DB[k].tipo);
-  grid.innerHTML = [...tipos].sort().map(t=>`<button class="tipo-btn" onclick="mostrarTipo('${modelo}','${t}',this)">${t}</button>`).join('');
-  sec.style.display = 'block';
-}
-
-async function mostrarTipo(modelo, tipo, btn) {
-  document.querySelectorAll('.tipo-btn').forEach(b=>b.classList.remove('on'));
-  btn.classList.add('on');
-
-  // Buscar el grupo directamente por tipo+modelo
-  const codigos = [];
-  for (const gkey in DB) {
-    const g = DB[gkey];
-    if (g.tipo === tipo && (g.modelos||[]).includes(modelo)) {
-      for (const c of g.codigos) codigos.push({ codigo: c.codigo, marca: c.marca });
-      break; // solo un grupo por tipo+modelo
-    }
-  }
-
-  // Marcas principales con logo
-  const LOGOS = {
-    'DONALDSON':  'https://i.imgur.com/SF5bsdy.png',
-    'MANN':       'https://i.imgur.com/lJwH1UM.jpeg',
-    'MANN FILTER':'https://i.imgur.com/lJwH1UM.jpeg',
-    'BALDWIN':    'https://i.imgur.com/kmy7xmC.png',
-    'FRAM':       'https://i.imgur.com/XgZp781.png',
-    'FLEETGUARD': 'https://i.imgur.com/nbdBux5.png',
-    'WIX':        'https://i.imgur.com/PwHPwAC.png',
-    'WEGA':       'https://i.imgur.com/UIWShqY.png',
-  };
-
-  const principales = codigos.filter(c => LOGOS[c.marca.toUpperCase()]);
-  const resto       = codigos.filter(c => !LOGOS[c.marca.toUpperCase()]);
-
-  const principalesHTML = principales.length ? `
-    <div style="padding:12px 16px 4px;border-top:2px solid var(--border);">
-      <div style="font-size:10px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;">Marcas principales</div>
-      ${principales.map(c => `
-        <div onclick="irAScanner('${c.codigo}')" style="display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--border);cursor:pointer;">
-          <img src="${LOGOS[c.marca.toUpperCase()]}" style="height:28px;width:80px;object-fit:contain;object-position:left;flex-shrink:0;">
-          <div style="flex:1;">
-            <div style="font-size:15px;font-weight:800;letter-spacing:.5px;">${c.codigo}</div>
-            <div style="font-size:11px;color:var(--muted);margin-top:1px;">${c.marca}</div>
-          </div>
-          <div style="font-size:12px;color:var(--muted);">›</div>
-        </div>`).join('')}
-    </div>` : '';
-
-  const restoHTML = resto.length ? `
-    <button class="equiv-toggle" id="vehEquivToggle" onclick="toggleVehEquiv()" style="width:100%;padding:13px 16px;display:flex;align-items:center;justify-content:space-between;border:none;background:none;border-top:2px solid var(--border);cursor:pointer;font-family:var(--f);font-size:13px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;">
-      Más equivalencias (${resto.length})
-      <span id="vehEquivArr" style="transition:transform .2s;font-size:16px;">▾</span>
-    </button>
-    <div id="vehEquivBody" style="display:none;padding:0 16px 14px;">
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;padding-top:10px;">
-        ${resto.map(c=>`
-          <div class="eq-chip" onclick="irAScanner('${c.codigo}')">
-            <div class="eq-code">${c.codigo}</div>
-            <div class="eq-marca">${c.marca}</div>
-          </div>`).join('')}
-      </div>
-    </div>` : '';
-
-  const equivHTML = principalesHTML + restoHTML;
-
-  const table = document.getElementById('codesTable');
-  table.innerHTML = `
-    <div class="ct-head">
-      <span class="ct-title">${tipo}</span>
-      <span class="ct-count">${modelo}</span>
-    </div>
-    <div class="tipo-stock-row">
-      <div class="tipo-stock-label">Unidades en stock</div>
-      <div class="tipo-stock-num" id="tipoStockNum">...</div>
-    </div>
-    <div class="tipo-stock-footer">Incluye todas las marcas equivalentes</div>
-    ${equivHTML}`;
-  table.classList.add('show');
-  table.scrollIntoView({ behavior:'smooth', block:'nearest' });
-
-  // Buscar stock: primero en allStock (más confiable), si no llamar a la API
-  const stockItem = allStock.find(item =>
-    item.tipo.toUpperCase() === tipo.toUpperCase() &&
-    item.modelos.toUpperCase().includes(modelo.toUpperCase())
-  );
-
-  const el = document.getElementById('tipoStockNum');
-  if (stockItem !== undefined) {
-    const stock = stockItem.stock;
-    if (el) { el.textContent=stock; el.className='tipo-stock-num '+(stock===0?'zero':stock<=2?'low':'ok'); }
-  } else {
-    // No está en allStock todavía, consultar API directo
-    if (codigos.length) {
-      const grupoId = getGrupoId(tipo, [modelo]);
-      try {
-        const stock = await apiGetStock(grupoId);
-        if (el) { el.textContent=stock; el.className='tipo-stock-num '+(stock===0?'zero':stock<=2?'low':'ok'); }
-      } catch(e) { if(el) el.textContent='?'; }
-    } else {
-      if(el) { el.textContent='0'; el.className='tipo-stock-num zero'; }
-    }
-  }
-}
-
-function toggleVehEquiv() {
-  const body = document.getElementById('vehEquivBody');
-  const arr  = document.getElementById('vehEquivArr');
-  const open = body.style.display === 'block';
-  body.style.display = open ? 'none' : 'block';
-  arr.style.transform = open ? '' : 'rotate(180deg)';
-}
-
-function irAScanner(codigo) {
-  goPage('scanner');
-  const f = buscarEnDB(codigo);
-  if (f) mostrarResultado(f.key, f.data, f.aprox, f.orig||codigo);
-}
-
-// ── STOCK GENERAL ──
-function stockFiltrar() {
-  const modelo = document.getElementById('stockVehSel').value;
-  if (!modelo) {
-    // Sin filtro: mostrar solo los que tienen stock
-    renderStock(allStock);
-    return;
-  }
-  // Con vehículo seleccionado: mostrar TODOS los tipos del vehículo, stock 0 si no hay
-  const tipos = new Set();
-  for (const k in DB) {
-    if ((DB[k].modelos||[]).includes(modelo)) tipos.add(DB[k].tipo);
-  }
-  const items = [...tipos].sort().map(tipo => {
-    const found = allStock.find(i =>
-      i.tipo && i.modelos &&
-      i.tipo.trim().toUpperCase() === tipo.toUpperCase() &&
-      i.modelos.trim().toUpperCase().includes(modelo.toUpperCase())
-    );
-    return { tipo, modelos: modelo, stock: found ? found.stock : 0 };
-  });
-  renderStock(items);
-}
-
-async function stockCargarLista() {
-  const body = document.getElementById('stockBody');
-  if (!SHEET_URL || SHEET_URL.includes('TU_URL')) {
-    body.innerHTML = '<div class="sl-empty">Configurá Google Sheets para ver el stock.</div>'; return;
-  }
-  try {
-    const res = await fetch(SHEET_URL + '?accion=lista');
-    const d   = await res.json();
-    allStock  = (d.items||[])
-      .filter(i => i.tipo && i.modelos && i.tipo.trim() && i.modelos.trim())
-      .sort((a,b)=>a.stock-b.stock||a.modelos.localeCompare(b.modelos));
-    stockFiltrar();
-  } catch(e) { body.innerHTML = '<div class="sl-empty">Error al cargar.</div>'; }
-}
-
-function renderStock(items) {
-  const body = document.getElementById('stockBody');
-  // Filtrar items con tipo y modelos válidos
-  const validos = items.filter(i => i.tipo && i.modelos && i.tipo.trim() && i.modelos.trim());
-  if (!validos.length) { body.innerHTML='<div class="sl-empty">Sin datos.</div>'; return; }
-  body.innerHTML = validos.map(i => {
-    const cls = i.stock===0?'zero':i.stock<=2?'low':'ok';
-    // Si hay vehículo filtrado, no mostrar el nombre (ya se sabe cuál es)
-    const modeloSel = document.getElementById('stockVehSel').value;
-    const showVeh = !modeloSel;
-    return `<div class="sl-item">
-      <div class="sl-info">
-        <div class="sl-tipo">${i.tipo}</div>
-        ${showVeh ? `<div class="sl-veh">${i.modelos}</div>` : ''}
-      </div>
-      <div class="sl-n ${cls}">${i.stock}</div>
-    </div>`;
-  }).join('');
-}
-
-// ── SHEETS API ──
-function getGrupoId(tipo, modelos) {
-  return (tipo+'__'+[...(Array.isArray(modelos)?modelos:[modelos])].sort().join('|')).toUpperCase();
-}
-async function apiGetStock(grupoId) {
-  const res = await fetch(SHEET_URL+'?accion=get&grupoId='+encodeURIComponent(grupoId));
-  return (await res.json()).stock||0;
-}
-async function apiUpdate(grupo, delta) {
-  const res = await fetch(SHEET_URL, { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({accion:'update',...grupo,delta}) });
-  return (await res.json()).nuevoStock;
-}
-
-
-// ── HISTORIAL ──
-async function histCargar() {
-  const body = document.getElementById('histBody');
-  body.innerHTML = '<div class="sl-empty">Cargando...</div>';
-  try {
-    const res = await fetch(SHEET_URL + '?accion=historial&limite=60');
-    const d   = await res.json();
-    const movs = d.movimientos || [];
-    if (!movs.length) { body.innerHTML='<div class="sl-empty">Sin movimientos registrados todavía.</div>'; return; }
-    body.innerHTML = movs.map(m => {
-      const esIng = m.movimiento === 'INGRESO';
-      // Fecha: tomar de m.fecha (ISO date)
-      let fechaStr = '';
-      let horaStr  = '';
-      try {
-        if (m.fecha) {
-          const df = new Date(m.fecha);
-          if (!isNaN(df)) fechaStr = df.toLocaleDateString('es-AR', {day:'2-digit',month:'2-digit',year:'numeric'});
-        }
-        // Hora: viene como "1899-12-30T15:15:48.000Z" — extraer solo HH:MM
-        if (m.hora) {
-          const dh = new Date(m.hora);
-          if (!isNaN(dh)) horaStr = dh.toISOString().substring(11,16);
-        }
-      } catch(e) {}
-      const veh = (m.modelos||'').length > 22 ? (m.modelos||'').substring(0,20)+'…' : (m.modelos||'');
-      return `<div class="hist-item">
-        <div class="hist-badge ${esIng?'ing':'sal'}">${esIng?'IN':'OUT'}</div>
-        <div class="hist-info">
-          <div class="hist-tipo">${m.tipo||''}</div>
-          <div class="hist-veh">${veh}</div>
-          <div class="hist-cod">${m.codigo||''}</div>
-        </div>
-        <div class="hist-right">
-          <div class="hist-cant ${esIng?'ing':'sal'}">${esIng?'+':'-'}${m.cantidad||1}</div>
-          <div class="hist-fecha">${fechaStr} ${horaStr}</div>
-          <div class="hist-stock-after">Stock: ${m.stockDespues||0}</div>
-        </div>
-      </div>`;
-    }).join('');
-  } catch(e) {
-    body.innerHTML = '<div class="sl-empty">Error al cargar historial.</div>';
-  }
-}
-
-// ── CÓDIGO DESCONOCIDO ──
-let unkCodigo = null;
-let unkTipo   = null;
-
-function mostrarDesconocido(codigo) {
-  document.getElementById('unknownCard').classList.remove('show');
-  mostrarError('Código no encontrado en la base de datos: ' + codigo);
-}
-
-function unkSelTipo(btn, tipo) {
-  document.querySelectorAll('.tipo-chip').forEach(c => c.classList.remove('on'));
-  btn.classList.add('on');
-  unkTipo = tipo;
-  document.getElementById('unkAddBtn').classList.add('show');
-}
-
-async function unkAgregar() {
-  if (!unkCodigo || !unkTipo) return;
-  const fb  = document.getElementById('unkFeedback');
-  const btn = document.getElementById('unkAddBtn');
-  btn.textContent = 'Guardando...';
-  fb.classList.remove('show');
-  const grupo = {
-    grupoId: (unkTipo + '__SIN_DETERMINAR').toUpperCase(),
-    tipo:    unkTipo,
-    modelos: 'Sin determinar',
-    codigos: unkCodigo,
-    delta:   1
-  };
-  try {
-    const nuevo = await apiUpdate(grupo, 1);
-    fb.textContent = '✅ Agregado — ' + unkTipo + ' · Sin determinar · Stock: ' + nuevo;
-    fb.classList.add('show');
-    btn.textContent = '+ Agregar al stock';
-    btn.classList.remove('show');
-    stockCargarLista();
-  } catch(e) {
-    fb.textContent = '❌ Error al guardar.';
-    fb.classList.add('show');
-    btn.textContent = '+ Agregar al stock';
-  }
-}
-
-// ── MODAL SALIDA ──
-
-function salidaOnSelect() {
-  const val = document.getElementById('salidaVehSel').value;
-  const inp = document.getElementById('salidaVehInput');
-  if (val === '__otro') {
-    inp.style.display = 'block';
-    inp.focus();
-  } else {
-    inp.style.display = 'none';
-    inp.value = '';
-  }
-}
-
-
-
-// ── MODAL SALIDA ──
-
-function salidaOnSelect() {
-  const val = document.getElementById('salidaVehSel').value;
-  const inp = document.getElementById('salidaVehInput');
-  inp.style.display = val === '__otro' ? 'block' : 'none';
-  if (val === '__otro') inp.focus();
-  else inp.value = '';
-}
-
-
-
-// ── MODAL SALIDA ──
-function abrirModalSalida() {
-  if (!currentGrupo) return;
-  document.getElementById('salidaVehInput').value = '';
-  document.getElementById('salidaOverlay').classList.add('open');
-  setTimeout(() => document.getElementById('salidaVehInput').focus(), 200);
-}
-function cerrarModalSalida() {
-  document.getElementById('salidaOverlay').classList.remove('open');
-}
-async function confirmarSalida() {
-  const destino = document.getElementById('salidaVehInput').value.trim();
-  if (!destino) {
-    document.getElementById('salidaVehInput').style.borderColor = 'var(--red)';
-    setTimeout(() => document.getElementById('salidaVehInput').style.borderColor = '', 1500);
-    return;
-  }
-  cerrarModalSalida();
-  const qty = parseInt(document.getElementById('qtyVal').value)||1;
-  const fb  = document.getElementById('movFeedback');
-  fb.textContent = 'Guardando...'; fb.classList.add('show');
-  try {
-    const grupoConDestino = { ...currentGrupo, vehiculoDestino: destino };
-    const nuevo = await apiUpdate(grupoConDestino, -qty);
-    actualizarRcStock(nuevo);
-    fb.textContent = `✅ Salida ${qty} → ${destino} — Stock: ${nuevo}`;
-    document.getElementById('qtyVal').value = 1;
-    setTimeout(() => fb.classList.remove('show'), 3000);
-    stockCargarLista();
-  } catch(e) {
-    fb.textContent = '❌ Error al guardar.';
-    setTimeout(() => fb.classList.remove('show'), 3000);
-  }
-}
-
-// ── UTILS ──
-function lev(a,b) {
-  const m=a.length,n=b.length,dp=Array.from({length:m+1},(_,i)=>[i]);
-  for(let j=0;j<=n;j++)dp[0][j]=j;
-  for(let i=1;i<=m;i++)for(let j=1;j<=n;j++)
-    dp[i][j]=a[i-1]===b[j-1]?dp[i-1][j-1]:1+Math.min(dp[i-1][j-1],dp[i][j-1],dp[i-1][j]);
-  return dp[m][n];
-}
-
-// ── REQUISICIÓN ──
-function reqInit() {
-  var sel = document.getElementById('reqModelo');
-  if (sel.options.length > 1) return;
-  var modelos = [];
-  var seen = {};
-  for (var key in DB) {
-    var v = DB[key];
-    for (var i = 0; i < v.modelos.length; i++) {
-      if (!seen[v.modelos[i]]) { seen[v.modelos[i]] = true; modelos.push(v.modelos[i]); }
-    }
-  }
-  modelos.sort();
-  for (var i = 0; i < modelos.length; i++) {
-    var o = document.createElement('option');
-    o.value = modelos[i]; o.textContent = modelos[i];
-    sel.appendChild(o);
-  }
-}
-
-function reqCargarFiltros() {
-  var modelo = document.getElementById('reqModelo').value;
-  var checks = document.getElementById('reqChecks');
-  var label  = document.getElementById('reqFiltrosLabel');
-  var btn    = document.getElementById('reqBtn');
-  checks.innerHTML = '';
-  if (!modelo) { label.style.display = 'none'; btn.disabled = true; return; }
-  var tipos = [];
-  for (var key in DB) {
-    var v = DB[key];
-    if (v.modelos.indexOf(modelo) !== -1 && v.codigos.length > 0) tipos.push(v.tipo);
-  }
-  tipos.sort();
-  if (!tipos.length) { label.style.display = 'none'; btn.disabled = true; return; }
-  label.style.display = 'block';
-  for (var i = 0; i < tipos.length; i++) {
-    (function(tipo) {
-      var id = 'chk_' + tipo.replace(/[^a-z0-9]/gi, '_');
-      var div = document.createElement('div');
-      div.className = 'req-check';
-      var inp = document.createElement('input');
-      inp.type = 'checkbox'; inp.id = id; inp.value = tipo;
-      var lbl = document.createElement('label');
-      lbl.className = 'req-check-label'; lbl.setAttribute('for', id); lbl.textContent = tipo;
-      var qty = document.createElement('input');
-      qty.type = 'number'; qty.min = '1'; qty.value = '1';
-      qty.className = 'req-qty';
-      qty.addEventListener('click', function(e) { e.stopPropagation(); });
-      div.appendChild(inp); div.appendChild(lbl); div.appendChild(qty);
-      div.addEventListener('click', function(e) {
-        if (e.target.tagName === 'INPUT' && e.target.type === 'number') return;
-        if (e.target.tagName !== 'INPUT') div.querySelector('input[type=checkbox]').click();
-        div.classList.toggle('selected', div.querySelector('input[type=checkbox]').checked);
-        btn.disabled = !checks.querySelector('input[type=checkbox]:checked');
-      });
-      checks.appendChild(div);
-    })(tipos[i]);
-  }
-  btn.disabled = true;
-}
-
-function reqGenerarPDF() {
-  var modelo      = document.getElementById('reqModelo').value;
-  var movil       = document.getElementById('reqMovil').value.trim() || '—';
-  var solicitante = document.getElementById('reqSolicitante').value.trim() || '—';
-  var obs         = document.getElementById('reqObs').value.trim();
-  var allChecked  = document.querySelectorAll('#reqChecks input:checked,#reqCustomChecks input:checked'); var checked = allChecked;
-  if (!checked.length) return;
-  var filtros = [];
-  for (var i = 0; i < checked.length; i++) filtros.push(checked[i].value);
-  var ahora = new Date();
-  var fecha = ahora.toLocaleDateString('es-AR', { day:'2-digit', month:'2-digit', year:'numeric' });
-  var hora  = ahora.toLocaleTimeString('es-AR', { hour:'2-digit', minute:'2-digit' });
-  // Sequential REQ number
-  var lastNro = parseInt(localStorage.getItem('inventra_req_nro') || '0') + 1;
-  localStorage.setItem('inventra_req_nro', lastNro);
-  var nro = 'REQ-' + String(lastNro).padStart(4, '0');
-  var filtrosHTML = '';
-  for (var i = 0; i < filtros.length; i++) {
-    var qtyInput = checked[i].parentElement.querySelector('input[type=number]');
-    var qty = qtyInput ? qtyInput.value : '1';
-    filtrosHTML += '<div class="pdf-filtro-item"><div class="pdf-filtro-check"></div><div class="pdf-filtro-name">FILTRO ' + filtros[i].toUpperCase() + '</div><div class="pdf-filtro-qty">x' + qty + '</div></div>';
-  }
-  var obsHTML = obs ? '<div class="pdf-obs"><div class="pdf-obs-label">Observaciones</div><div class="pdf-obs-value">' + obs + '</div></div>' : '';
-  document.getElementById('pdf-print').innerHTML =
-    '<div class="pdf-header"><div class="pdf-sub">' + nro + ' &middot; ' + fecha + ' ' + hora + '</div></div>' +
-    '<div class="pdf-row"><div class="pdf-field"><div class="pdf-field-label">Veh\u00edculo</div><div class="pdf-field-value">' + modelo + '</div></div>' +
-    '<div class="pdf-field"><div class="pdf-field-label">M\u00f3vil</div><div class="pdf-field-value">' + movil + '</div></div></div>' +
-    '<div class="pdf-row"><div class="pdf-field"><div class="pdf-field-label">Solicitado por</div><div class="pdf-field-value">' + solicitante + '</div></div></div>' +
-    '<div class="pdf-filtros-title">Insumos a preparar</div>' + filtrosHTML + obsHTML +
-    '';
-  var prevTitle = document.title;
-  document.title = nro;
-  window.print();
-  document.title = prevTitle;
-}
-
-// reqInit called after DB loads
-
-
-function reqAgregarItem() {
-  var input = document.getElementById('reqCustomItem');
-  var val = input.value.trim();
-  if (!val) return;
-  var checks = document.getElementById('reqCustomChecks');
-  var id = 'chk_custom_' + Date.now();
-  var div = document.createElement('div');
-  div.className = 'req-check selected';
-  var btn = document.createElement('button');
-  btn.textContent = '✕';
-  btn.style.cssText = 'background:none;border:none;color:#999;font-size:18px;cursor:pointer;padding:0;';
-  btn.addEventListener('click', function(e) {
-    e.stopPropagation();
-    div.remove();
-    document.getElementById('reqBtn').disabled = !document.querySelectorAll('#reqChecks input:checked,#reqCustomChecks input:checked').length;
-  });
-  var inp = document.createElement('input');
-  inp.type = 'checkbox'; inp.id = id; inp.value = val; inp.checked = true;
-  var lbl = document.createElement('label');
-  lbl.className = 'req-check-label'; lbl.setAttribute('for', id); lbl.textContent = val;
-  var qty = document.createElement('input');
-  qty.type = 'number'; qty.min = '1'; qty.value = '1';
-  qty.className = 'req-qty';
-  qty.addEventListener('click', function(e) { e.stopPropagation(); });
-  div.appendChild(inp); div.appendChild(lbl); div.appendChild(qty); div.appendChild(btn);
-  div.addEventListener('click', function(e) {
-    if (e.target.tagName === 'BUTTON') return;
-    if (e.target.tagName !== 'INPUT') div.querySelector('input').click();
-    div.classList.toggle('selected', div.querySelector('input').checked);
-    document.getElementById('reqBtn').disabled = !document.querySelectorAll('#reqChecks input:checked,#reqCustomChecks input:checked').length;
-  });
-  checks.appendChild(div);
-  input.value = '';
-  document.getElementById('reqBtn').disabled = false;
-}
-
-
-// ── IMPRIMIR ETIQUETA ──
-function imprimirEtiqueta(codigo, marca, tipo, modelos, showlubUrl) {
-  var modelosStr = Array.isArray(modelos) ? modelos.join(' / ') : modelos;
-  var qrHtml = '';
-  if (showlubUrl) {
-    var qrApi = 'https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=' + encodeURIComponent(showlubUrl);
-    qrHtml = '<div class="etq-qr"><img src="' + qrApi + '" width="80" height="80"><div class="etq-qr-label">Ver en Showlub</div></div>';
-  }
-  var html = '<!DOCTYPE html><html><head><meta charset="UTF-8"><title>' + codigo + '</title><style>' +
-    'body{margin:0;padding:16px;font-family:Arial,sans-serif;}' +
-    '.etq{border:2px solid #000;border-radius:8px;padding:14px 16px;width:130mm;box-sizing:border-box;display:flex;gap:12px;align-items:flex-start;}' +
-    '.etq-info{flex:1;}' +
-    '.etq-codigo{font-size:28px;font-weight:900;letter-spacing:1px;margin-bottom:6px;}' +
-    '.etq-marca{font-size:14px;font-weight:700;color:#444;margin-bottom:8px;}' +
-    '.etq-tipo{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:1px;background:#eee;padding:3px 8px;border-radius:4px;display:inline-block;margin-bottom:10px;}' +
-    '.etq-mod-label{font-size:9px;font-weight:700;color:#999;text-transform:uppercase;letter-spacing:1px;margin-bottom:3px;}' +
-    '.etq-mod{font-size:11px;font-weight:600;line-height:1.5;}' +
-    '.etq-qr{display:flex;flex-direction:column;align-items:center;gap:4px;flex-shrink:0;}' +
-    '.etq-qr-label{font-size:8px;color:#666;text-align:center;max-width:80px;}' +
-    '@media print{@page{margin:0;size:150mm 70mm;}}' +
-    '</style></head><body>' +
-    '<div class="etq">' +
-    '<div class="etq-info">' +
-    '<div class="etq-codigo">' + codigo + '</div>' +
-    '<div class="etq-marca">' + marca + '</div>' +
-    '<div class="etq-tipo">' + tipo + '</div>' +
-    '<div class="etq-mod-label">Compatible con</div>' +
-    '<div class="etq-mod">' + modelosStr + '</div>' +
-    '</div>' +
-    qrHtml +
-    '</div>' +
-    '<script>window.onload=function(){window.print();window.close();}<\/script>' +
-    '</body></html>';
-  var w = window.open('', '_blank', 'width=500,height=350');
-  w.document.write(html);
-  w.document.close();
-}
-
-
-// ── SHOWLUB ──
-var showlubCache = {};
-
-function buscarShowlub(codigo, btn) {
-  if (showlubCache[codigo]) {
-    window.open(showlubCache[codigo], '_blank');
-    return;
-  }
-  var orig = btn.textContent;
-  btn.textContent = 'Buscando...';
-  btn.disabled = true;
-
-  fetch('/.netlify/functions/showlub?q=' + encodeURIComponent(codigo))
-    .then(function(r) { return r.json(); })
-    .then(function(data) {
-      if (data.link) {
-        showlubCache[codigo] = data.link;
-        // Actualizar btn etiqueta para incluir el link
-        var btnEtq = btn.previousElementSibling;
-        if (btnEtq) {
-          var oldClick = btnEtq.onclick;
-          (function(c, m, t, mod, url) {
-            btnEtq.onclick = function() { imprimirEtiqueta(c, m, t, mod, url); };
-          })(
-            window._lastCodigo || codigo,
-            window._lastMarca  || '',
-            window._lastTipo   || '',
-            window._lastModelos|| [],
-            data.link
-          );
-        }
-        window.open(data.link, '_blank');
-        btn.textContent = '✅ ABIERTO EN SHOWLUB';
-        btn.style.borderColor = '#1e7e34';
-        btn.style.color = '#1e7e34';
-      } else {
-        btn.textContent = '❌ No encontrado en Showlub';
-        btn.disabled = false;
-      }
-    })
-    .catch(function() {
-      btn.textContent = orig;
-      btn.disabled = false;
-    });
-}
-
-
-// ── PEDIDOS ──
-var PED_PASS = 'Tallerocme1234';
-var pedItems = [];
-
-function pedLogin() {
-  var val = document.getElementById('pedPass').value;
-  if (val === PED_PASS) {
-    sessionStorage.setItem('ped_auth', '1');
-    document.getElementById('ped-login-screen').style.display = 'none';
-    document.getElementById('ped-content').style.display = 'block';
-    pedInitModelos();
-    pedCargarSeguimiento();
-  } else {
-    document.getElementById('pedPassErr').style.display = 'block';
-  }
-}
-
-function pedCerrarSesion() {
-  sessionStorage.removeItem('ped_auth');
-  document.getElementById('ped-login-screen').style.display = 'flex';
-  document.getElementById('ped-content').style.display = 'none';
-  document.getElementById('pedPass').value = '';
-}
-
-// Check auth when pedidos page is shown
-function pedCheckAuth() {
-  if (sessionStorage.getItem('ped_auth') === '1') {
-    document.getElementById('ped-login-screen').style.display = 'none';
-    document.getElementById('ped-content').style.display = 'block';
-    pedInitModelos();
-    pedCargarSeguimiento();
-  } else {
-    document.getElementById('ped-login-screen').style.display = 'flex';
-    document.getElementById('ped-content').style.display = 'none';
-  }
-}
-
-function pedShowTab(tab) {
-  document.querySelectorAll('.ped-tab').forEach(function(t) { t.classList.remove('on'); });
-  document.getElementById('pedTab-' + tab).classList.add('on');
-  document.getElementById('pedPane-nuevo').style.display = tab === 'nuevo' ? 'block' : 'none';
-  document.getElementById('pedPane-seguimiento').style.display = tab === 'seguimiento' ? 'block' : 'none';
-  if (tab === 'seguimiento') pedCargarSeguimiento();
-}
-
-function pedInitModelos() {
-  var sel = document.getElementById('pedModelo');
-  if (sel.options.length > 1) return;
-  var modelos = [];
-  var seen = {};
-  for (var key in DB) {
-    var v = DB[key];
-    for (var i = 0; i < v.modelos.length; i++) {
-      if (!seen[v.modelos[i]]) { seen[v.modelos[i]] = true; modelos.push(v.modelos[i]); }
-    }
-  }
-  modelos.sort();
-  modelos.forEach(function(m) {
-    var o = document.createElement('option');
+  for (const k in DB) (DB[k].modelos || []).forEach(m => set.add(m));
+  const sel = document.getElementById('vehicleSelect');
+  [...set].sort().forEach(m => {
+    const o = document.createElement('option');
     o.value = m; o.textContent = m;
     sel.appendChild(o);
   });
 }
 
-function pedCargarFiltros() {
-  var modelo = document.getElementById('pedModelo').value;
-  var container = document.getElementById('pedItemsList');
-  container.innerHTML = '';
-  pedItems = [];
-  if (!modelo) return;
-  var tipos = [];
-  for (var key in DB) {
-    var v = DB[key];
-    if (v.modelos.indexOf(modelo) !== -1 && v.codigos.length > 0) tipos.push(v.tipo);
+function onVehicleChange() {
+  const modelo = document.getElementById('vehicleSelect').value;
+  const sec   = document.getElementById('tipoSection');
+  const grid  = document.getElementById('tipoGrid');
+  const table = document.getElementById('codesTable');
+  table.classList.remove('show');
+  table.innerHTML = '';
+  if (!modelo) { sec.style.display = 'none'; return; }
+
+  const tipos = new Set();
+  for (const k in DB) {
+    const g = DB[k];
+    if ((g.modelos || []).includes(modelo) && g.codigos.length) tipos.add(g.tipo);
   }
-  tipos.sort();
-  // Show as checkboxes — user ticks what they want
-  tipos.forEach(function(tipo) {
-    var id = 'pedchk_' + tipo.replace(/[^a-z0-9]/gi, '_');
-    var div = document.createElement('div');
-    div.className = 'req-check';
-    var inp = document.createElement('input');
-    inp.type = 'checkbox'; inp.id = id; inp.value = 'Filtro ' + tipo;
-    var lbl = document.createElement('label');
-    lbl.className = 'req-check-label'; lbl.setAttribute('for', id); lbl.textContent = 'Filtro ' + tipo;
-    div.appendChild(inp); div.appendChild(lbl);
-    div.addEventListener('click', function(e) {
-      if (e.target.tagName !== 'INPUT') div.querySelector('input').click();
-      div.classList.toggle('selected', div.querySelector('input').checked);
-    });
-    container.appendChild(div);
-  });
+  grid.innerHTML = [...tipos].sort().map(t =>
+    `<button class="tipo-btn" data-tipo="${esc(t)}">${esc(t)}</button>`).join('');
+  sec.style.display = 'block';
 }
 
-function pedAgregarItem() {
-  var inp = document.getElementById('pedItemInput');
-  var val = inp.value.trim();
-  if (!val) return;
-  pedItems.push(val);
-  pedRenderItems();
-  inp.value = '';
-}
+document.getElementById('tipoGrid').addEventListener('click', e => {
+  const btn = e.target.closest('.tipo-btn');
+  if (btn) mostrarTipo(document.getElementById('vehicleSelect').value, btn.dataset.tipo, btn);
+});
 
-function pedRenderItems() {
-  var container = document.getElementById('pedItemsList');
-  container.innerHTML = '';
-  pedItems.forEach(function(item, idx) {
-    var div = document.createElement('div');
-    div.className = 'ped-item-row';
-    div.innerHTML = '<span class="ped-item-name">' + item + '</span>' +
-      '<button class="ped-item-del" onclick="pedEliminarItem(' + idx + ')">✕</button>';
-    container.appendChild(div);
-  });
-}
+function mostrarTipo(modelo, tipo, btn) {
+  document.querySelectorAll('.tipo-btn').forEach(b => b.classList.remove('on'));
+  btn.classList.add('on');
 
-function pedEliminarItem(idx) {
-  pedItems.splice(idx, 1);
-  pedRenderItems();
-}
-
-function pedCrear() {
-  var movil = document.getElementById('pedMovil').value.trim();
-  var modelo = document.getElementById('pedModelo').value;
-  var nroSol = document.getElementById('pedNroSol').value.trim();
-  var nroOT = document.getElementById('pedNroOT').value.trim();
-  var obs = document.getElementById('pedObs').value.trim();
-
-  // Collect checked filter items
-  var checkedItems = [];
-  document.querySelectorAll('#pedItemsList input[type=checkbox]:checked').forEach(function(c) {
-    checkedItems.push(c.value);
-  });
-  var allItems = checkedItems.concat(pedItems);
-  if (!movil || !nroSol || allItems.length === 0) {
-    alert('Completá al menos: Móvil, Nº Solicitud y al menos un ítem.');
-    return;
+  const codigos = [];
+  const vistos = new Set();
+  for (const gkey in DB) {
+    const g = DB[gkey];
+    if (g.tipo !== tipo || !(g.modelos || []).includes(modelo)) continue;
+    for (const c of g.codigos) {
+      const n = norm(c.codigo);
+      if (!vistos.has(n)) { vistos.add(n); codigos.push(c); }
+    }
   }
 
-  var btn = document.querySelector('#pedPane-nuevo .ped-submit');
-  btn.disabled = true; btn.textContent = 'Guardando...';
+  const principales = codigos.filter(c => LOGOS[c.marca.toUpperCase()]);
+  const resto       = codigos.filter(c => !LOGOS[c.marca.toUpperCase()]);
 
-  var body = {
-    accion: 'nuevoPedido',
-    movil: movil,
-    modelo: modelo,
-    nroSolicitud: nroSol,
-    nroOT: nroOT,
-    items: allItems.join(' | '),
-    obs: obs
-  };
+  const principalesHTML = principales.length
+    ? `<div class="eq-main">${principales.map(filaEquiv).join('')}</div>` : '';
 
-  fetch('/.netlify/functions/sheets', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(body)
-  })
-  .then(function(r) { return r.json(); })
-  .then(function(data) {
-    if (data.ok) {
-      btn.textContent = '✅ Pedido creado';
-      setTimeout(function() {
-        btn.disabled = false; btn.textContent = '📦 CREAR PEDIDO';
-        document.getElementById('pedMovil').value = '';
-        document.getElementById('pedModelo').value = '';
-        document.getElementById('pedNroSol').value = '';
-        document.getElementById('pedNroOT').value = '';
-        document.getElementById('pedObs').value = '';
-        pedItems = [];
-        document.getElementById('pedModelo').value = '';
-        pedCargarFiltros();
-        pedShowTab('seguimiento');
-      }, 1200);
-    } else {
-      btn.disabled = false; btn.textContent = '📦 CREAR PEDIDO';
-      alert('Error: ' + (data.error || 'desconocido'));
-    }
-  })
-  .catch(function() { btn.disabled = false; btn.textContent = '📦 CREAR PEDIDO'; });
+  const restoHTML = resto.length ? `
+    <button class="equiv-toggle" id="vehEquivToggle" onclick="toggleVehEquiv()">
+      Más equivalencias (${resto.length})
+      <span class="arr">▾</span>
+    </button>
+    <div class="equiv-body" id="vehEquivBody">
+      <div class="equiv-grid">
+        ${resto.map(c => `<button class="eq-chip" data-codigo="${esc(c.codigo.toUpperCase())}">
+          <span class="eq-code">${esc(c.codigo.toUpperCase())}</span>
+          <span class="eq-marca" style="display:block;">${esc(c.marca)}</span>
+        </button>`).join('')}
+      </div>
+    </div>` : '';
+
+  const table = document.getElementById('codesTable');
+  table.innerHTML = `
+    <div class="ct-head">
+      <span class="ct-title">${esc(tipo)}</span>
+      <span class="ct-count">${esc(modelo)} · ${codigos.length} códigos</span>
+    </div>
+    ${principalesHTML}${restoHTML}
+    ${!codigos.length ? '<div class="rc-nf">No hay códigos cargados para esta combinación.</div>' : ''}`;
+  table.classList.add('show');
+  table.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }
 
-function pedCargarSeguimiento() {
-  var container = document.getElementById('pedListaContainer');
-  container.innerHTML = '<div style="text-align:center;color:var(--muted);padding:40px 0;">Cargando...</div>';
-
-  fetch('/.netlify/functions/sheets?accion=pedidos')
-  .then(function(r) { return r.json(); })
-  .then(function(data) {
-    var pedidos = data.pedidos || [];
-    document.getElementById('pedCount').textContent = pedidos.length + ' pedidos';
-    if (!pedidos.length) {
-      container.innerHTML = '<div style="text-align:center;color:var(--muted);padding:40px 0;">Sin pedidos aún</div>';
-      return;
-    }
-    container.innerHTML = '';
-    pedidos.reverse().forEach(function(p) {
-      container.appendChild(pedRenderCard(p));
-    });
-  })
-  .catch(function() {
-    container.innerHTML = '<div style="text-align:center;color:#c5221f;padding:40px 0;">Error al cargar</div>';
-  });
+function toggleVehEquiv() {
+  document.getElementById('vehEquivToggle').classList.toggle('open');
+  document.getElementById('vehEquivBody').classList.toggle('open');
 }
 
-function pedRenderCard(p) {
-  var badgeClass = p.estado === 'Llegó' ? 'llego' : p.estado === 'En tránsito' ? 'transito' : 'pedido';
-  var div = document.createElement('div');
-  div.className = 'ped-card';
+// Tocar un código en la vista por modelo lo abre en el escáner
+document.getElementById('codesTable').addEventListener('click', e => {
+  const el = e.target.closest('[data-codigo]');
+  if (!el) return;
+  goPage('scanner');
+  buscar(el.dataset.codigo);
+});
 
-  var itemsChips = (p.items || '').split(' | ').map(function(i) {
-    return '<span class="ped-chip">' + i + '</span>';
-  }).join('');
-
-  var priceRow = p.estado === 'Llegó' ? (
-    '<div style="margin-top:10px;">' +
-    '<div class="ped-label" style="margin-top:0;">Precio real</div>' +
-    '<div class="ped-price-row">' +
-    '<input class="ped-price-input" type="text" placeholder="$ 0.00" value="' + (p.precio || '') + '" id="price_' + p.id + '">' +
-    '<button class="ped-act-btn orange" onclick="pedGuardarPrecio(\'' + p.id + '\')" style="flex:0;padding:10px 14px;">Guardar</button>' +
-    '</div></div>'
-  ) : '';
-
-  var sedeRow = p.sede ? ('<div class="ped-detail-row"><span class="ped-detail-label">Sede destino</span><span class="ped-detail-val">' + p.sede + '</span></div>') : '';
-  var precioRow = p.precio ? ('<div class="ped-detail-row"><span class="ped-detail-label">Precio</span><span class="ped-detail-val" style="color:var(--orange);">$ ' + p.precio + '</span></div>') : '';
-
-  div.innerHTML =
-    '<div class="ped-card-head" onclick="pedToggleCard(this)">' +
-      '<div class="ped-card-left">' +
-        '<div class="ped-card-nro">SOL ' + p.nroSolicitud + (p.nroOT ? ' &bull; OT ' + p.nroOT : '') + '</div>' +
-        '<div class="ped-card-sub">' + (p.movil || '') + (p.modelo ? ' &bull; ' + p.modelo : '') + ' &bull; ' + (p.fecha || '') + '</div>' +
-      '</div>' +
-      '<span class="ped-badge ' + badgeClass + '">' + p.estado + '</span>' +
-    '</div>' +
-    '<div class="ped-card-body">' +
-      sedeRow +
-      precioRow +
-      '<div class="ped-detail-row"><span class="ped-detail-label">Items</span></div>' +
-      '<div class="ped-items-chips">' + itemsChips + '</div>' +
-      (p.obs ? '<div class="ped-detail-row"><span class="ped-detail-label">Obs.</span><span class="ped-detail-val">' + p.obs + '</span></div>' : '') +
-      '<div class="ped-actions">' +
-        (p.estado === 'Pedido' ? '<button class="ped-act-btn blue" onclick="pedActualizar(\'' + p.id + '\', \'En tránsito\', this)">✈️ Enviado a sede</button>' : '') +
-        (p.estado === 'Pedido' ? '<button class="ped-act-btn green" onclick="pedActualizar(\'' + p.id + '\', \'Llegó\', this)">✅ Llegó</button>' : '') +
-        (p.estado === 'En tránsito' ? '<input id="sede_' + p.id + '" class="ped-price-input" placeholder="Nombre de sede..." style="flex:1">' : '') +
-        (p.estado === 'En tránsito' ? '<button class="ped-act-btn blue" onclick="pedEnviarSede(\'' + p.id + '\')" style="flex:0;padding:10px 14px;">Confirmar</button>' : '') +
-        (p.estado === 'En tránsito' ? '<button class="ped-act-btn green" onclick="pedActualizar(\'' + p.id + '\', \'Llegó\', this)" style="margin-top:6px;width:100%;">✅ Llegó</button>' : '') +
-      '</div>' +
-      priceRow +
-    '</div>';
-  return div;
+/* ──────────────────────────────────────────────
+   ESTADO DE CONEXIÓN
+   ────────────────────────────────────────────── */
+function actualizarConexion() {
+  document.body.classList.toggle('offline', !navigator.onLine);
 }
-
-function pedToggleCard(head) {
-  var body = head.nextElementSibling;
-  body.classList.toggle('open');
-}
-
-function pedActualizar(id, estado, btn) {
-  if (btn) { btn.disabled = true; btn.textContent = '...'; }
-  fetch('/.netlify/functions/sheets', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ accion: 'actualizarPedido', id: id, estado: estado })
-  })
-  .then(function(r) { return r.json(); })
-  .then(function() { pedCargarSeguimiento(); })
-  .catch(function() { if (btn) { btn.disabled = false; } });
-}
-
-function pedEnviarSede(id) {
-  var sede = document.getElementById('sede_' + id).value.trim();
-  if (!sede) { alert('Indicá la sede destino'); return; }
-  fetch('/.netlify/functions/sheets', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ accion: 'actualizarPedido', id: id, estado: 'En tránsito', sede: sede })
-  })
-  .then(function(r) { return r.json(); })
-  .then(function() { pedCargarSeguimiento(); });
-}
-
-function pedGuardarPrecio(id) {
-  var val = document.getElementById('price_' + id).value.trim();
-  fetch('/.netlify/functions/sheets', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ accion: 'actualizarPedido', id: id, precio: val })
-  })
-  .then(function(r) { return r.json(); })
-  .then(function() { pedCargarSeguimiento(); });
-}
-
+window.addEventListener('online', actualizarConexion);
+window.addEventListener('offline', actualizarConexion);
+actualizarConexion();
 </script>
-<!-- PAGE: HISTORIAL -->
-<div class="page" id="page-historial">
-  <div style="height:12px"></div>
-  <div class="sec-title">Historial</div>
-  <div class="sec-sub">Últimos movimientos registrados</div>
-
-  <div class="hist-list">
-    <div class="hist-hdr">
-      <span class="hist-hdr-title">📋 Movimientos</span>
-      <button class="hist-refresh" onclick="histCargar()">↻ Actualizar</button>
-    </div>
-    <div id="histBody"><div class="sl-empty">Cargando...</div></div>
-  </div>
-  <div style="height:24px"></div>
-</div>
-
-
-
-<!-- MODAL SALIDA -->
-<div class="salida-modal-overlay" id="salidaOverlay">
-  <div class="salida-modal">
-    <div class="salida-modal-handle"></div>
-    <div class="salida-modal-title">¿A qué vehículo va?</div>
-    <div class="salida-modal-sub">Escribí el modelo destino</div>
-    <input id="salidaVehInput" type="text" placeholder="Escribí el vehículo..." autocomplete="off">
-    <div class="salida-modal-btns">
-      <button class="salida-modal-cancel" onclick="cerrarModalSalida()">Cancelar</button>
-      <button class="salida-modal-ok" onclick="confirmarSalida()">Confirmar salida</button>
-    </div>
-  </div>
-</div>
-
-
-<!-- PAGE: REQUISICION -->
-<div class="page" id="page-requisicion">
-  <div style="height:12px"></div>
-  <div style="padding:0 16px 8px;">
-    <div style="font-size:22px;font-weight:900;letter-spacing:-0.5px;">REQUISICI&Oacute;N</div>
-    <div style="font-size:13px;color:var(--muted);margin-top:2px;">Gener&aacute; un pedido de filtros para imprimir</div>
-  </div>
-  <div class="req-section">
-    <div class="req-label">Modelo de veh&iacute;culo</div>
-    <select class="req-select" id="reqModelo" onchange="reqCargarFiltros()">
-      <option value="">&mdash; Selecion&aacute; el veh&iacute;culo &mdash;</option>
-    </select>
-    <div class="req-label">M&oacute;vil / Identificaci&oacute;n</div>
-    <input class="req-input" id="reqMovil" type="text" placeholder="Ej: MV45, Unidad 03...">
-    <div class="req-label">Solicitado por</div>
-    <input class="req-input" id="reqSolicitante" type="text" placeholder="Nombre de quien solicita">
-    <div class="req-label" id="reqFiltrosLabel" style="display:none">Insumos a preparar</div>
-    <div class="req-checks" id="reqChecks"></div>
-    <div class="req-label">Observaciones / Adicionales</div>
-    <textarea class="req-textarea" id="reqObs" placeholder="Ej: Revisar trampa de agua..."></textarea>
-    <div class="req-label">Agregar insumo personalizado</div>
-    <div style="display:flex;gap:8px;margin-bottom:4px;">
-      <input class="req-input" id="reqCustomItem" type="text" placeholder="Ej: Trampa de agua, correa..." style="flex:1;">
-      <button onclick="reqAgregarItem()" style="width:48px;height:52px;background:var(--orange);color:#fff;border:none;border-radius:12px;font-size:24px;cursor:pointer;flex-shrink:0;">+</button>
-    </div>
-    <div class="req-checks" id="reqCustomChecks" style="margin-bottom:8px;"></div>
-    <div style="height:16px"></div>
-    <button class="req-btn" id="reqBtn" onclick="reqGenerarPDF()" disabled>&#128424; GENERAR E IMPRIMIR</button>
-  </div>
-</div>
-<div id="pdf-print"></div>
-
-<!-- PAGE: PEDIDOS -->
-<div class="page" id="page-pedidos">
-  <div id="ped-login-screen" class="ped-login">
-    <div style="font-size:36px;">&#x1F4E6;</div>
-    <div class="ped-login-title">Pedidos</div>
-    <div class="ped-login-sub">Ingres&#225; la contrase&#241;a</div>
-    <input class="ped-login-input" id="pedPass" type="password" placeholder="&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;" onkeydown="if(event.key==='Enter') pedLogin()">
-    <button class="ped-login-btn" onclick="pedLogin()">INGRESAR</button>
-    <div id="pedPassErr" style="color:#c5221f;font-size:13px;font-weight:700;display:none;">Contrase&#241;a incorrecta</div>
-  </div>
-  <div id="ped-content" style="display:none;">
-    <div style="height:12px"></div>
-    <div style="padding:0 16px 8px;display:flex;justify-content:space-between;align-items:center;">
-      <div style="font-size:22px;font-weight:900;">PEDIDOS</div>
-      <button onclick="pedCerrarSesion()" style="background:none;border:none;color:var(--muted);font-size:13px;font-weight:700;cursor:pointer;">Cerrar sesi&#243;n</button>
-    </div>
-    <div class="ped-tabs">
-      <button class="ped-tab on" id="pedTab-nuevo" onclick="pedShowTab('nuevo')">NUEVO PEDIDO</button>
-      <button class="ped-tab" id="pedTab-seguimiento" onclick="pedShowTab('seguimiento')">SEGUIMIENTO</button>
-    </div>
-    <div id="pedPane-nuevo" class="ped-section">
-      <div class="ped-label">M&#243;vil</div>
-      <input class="ped-input" id="pedMovil" type="text" placeholder="">
-      <div class="ped-label">Modelo de veh&#237;culo</div>
-      <select class="ped-select" id="pedModelo" onchange="pedCargarFiltros()">
-        <option value="">-- Selecion&#225; el veh&#237;culo --</option>
-      </select>
-      <div class="ped-label">N&#250;mero de Solicitud</div>
-      <input class="ped-input" id="pedNroSol" type="text" placeholder="">
-      <div class="ped-label">N&#250;mero de OT</div>
-      <input class="ped-input" id="pedNroOT" type="text" placeholder="">
-      <div class="ped-label">Items a pedir</div>
-      <div class="ped-items-list" id="pedItemsList"></div>
-      <div class="ped-add-row">
-        <input class="ped-input" id="pedItemInput" type="text" placeholder="" style="flex:1" onkeydown="if(event.key==='Enter') pedAgregarItem()">
-        <button class="ped-btn" onclick="pedAgregarItem()">+</button>
-      </div>
-      <div class="ped-label">Observaciones</div>
-      <input class="ped-input" id="pedObs" type="text" placeholder="">
-      <button class="ped-submit" onclick="pedCrear()">CREAR PEDIDO</button>
-    </div>
-    <div id="pedPane-seguimiento" class="ped-section" style="display:none;">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
-        <div style="font-size:13px;color:var(--muted);font-weight:700;" id="pedCount"></div>
-        <button class="ped-btn-outline" onclick="pedCargarSeguimiento()" style="padding:8px 14px;font-size:12px;">Actualizar</button>
-      </div>
-      <div id="pedListaContainer"><div style="text-align:center;color:var(--muted);padding:40px 0;">Cargando...</div></div>
-    </div>
-  </div>
-</div>
 </body>
 </html>
