@@ -170,6 +170,79 @@ button { font-family: inherit; color: inherit; cursor: pointer; }
 }
 .vacio-t { font-size: 15px; font-weight: 700; color: var(--texto); }
 
+/* ── AUTOCOMPLETADO ─────────────────────────────── */
+.buscador { position: relative; }
+.sugerencias {
+  position: absolute; top: calc(100% - 6px); left: 14px; right: 14px; z-index: 30;
+  background: var(--panel); border: 1px solid var(--linea); border-radius: var(--r2);
+  box-shadow: 0 12px 28px #0f172a1f; overflow: hidden; max-height: 322px; overflow-y: auto;
+}
+.sugerencias[hidden] { display: none; }
+.sug {
+  display: grid; grid-template-columns: 1fr auto; gap: 4px 12px; align-items: center;
+  width: 100%; padding: 10px 13px; border: none; background: none; text-align: left;
+  border-bottom: 1px solid var(--linea-2);
+}
+.sug:last-child { border-bottom: none; }
+.sug:hover, .sug.marcado { background: var(--azul-claro); }
+.sug-cod { font-family: var(--mono); font-size: 14.5px; font-weight: 700; word-break: break-all; }
+.sug-cod b { color: var(--azul); }
+.sug-marca {
+  grid-column: 1; font-size: 10.5px; font-weight: 700; letter-spacing: .4px;
+  text-transform: uppercase; color: var(--tenue);
+}
+.sug-tipo { grid-column: 2; grid-row: 1 / span 2; font-size: 10.5px; font-weight: 600; color: var(--tenue); white-space: nowrap; }
+
+/* ── MIS MARCAS ─────────────────────────────────── */
+.btn-icono {
+  width: 34px; height: 34px; flex-shrink: 0; display: grid; place-items: center;
+  border: 1px solid var(--linea); background: var(--panel); border-radius: 8px; color: var(--tenue);
+}
+.btn-icono:hover { color: var(--azul); border-color: var(--azul); }
+.btn-icono svg { width: 17px; height: 17px; }
+.btn-icono.activo { color: var(--azul); border-color: var(--azul); background: var(--azul-claro); }
+
+.modal { position: fixed; inset: 0; z-index: 90; display: flex; align-items: flex-end; justify-content: center; }
+.modal[hidden] { display: none; }
+.modal-fondo { position: absolute; inset: 0; background: #0f172a66; }
+.modal-caja {
+  position: relative; background: var(--panel); width: 100%; max-width: 480px;
+  max-height: 82dvh; display: flex; flex-direction: column;
+  border-radius: 14px 14px 0 0; box-shadow: 0 -8px 40px #0f172a2e;
+}
+@media (min-width: 640px) { .modal { align-items: center; } .modal-caja { border-radius: 14px; max-height: 78dvh; } }
+.modal-tope { padding: 16px; border-bottom: 1px solid var(--linea); display: flex; align-items: center; gap: 12px; }
+.modal-tit { font-size: 16px; font-weight: 800; margin-right: auto; }
+.modal-x { width: 32px; height: 32px; border: none; background: var(--fondo); border-radius: 7px; color: var(--tenue); font-size: 15px; }
+.modal-buscar {
+  margin: 12px 16px 0; padding: 11px 13px; font-family: var(--ui); font-size: 14px;
+  background: var(--fondo); border: 1px solid transparent; border-radius: var(--r2); outline: none;
+}
+.modal-buscar:focus { border-color: var(--azul); background: var(--panel); }
+.modal-lista { flex: 1; overflow-y: auto; padding: 8px 8px 4px; }
+.mfila {
+  display: flex; align-items: center; gap: 11px; width: 100%; padding: 10px 8px;
+  border: none; background: none; text-align: left; border-radius: 7px;
+}
+.mfila:hover { background: var(--fondo); }
+.mcheck {
+  width: 19px; height: 19px; flex-shrink: 0; border: 2px solid var(--linea);
+  border-radius: 5px; display: grid; place-items: center; color: #fff;
+}
+.mfila[aria-pressed="true"] .mcheck { background: var(--azul); border-color: var(--azul); }
+.mcheck svg { width: 12px; height: 12px; opacity: 0; }
+.mfila[aria-pressed="true"] .mcheck svg { opacity: 1; }
+.mnombre { flex: 1; font-size: 14px; font-weight: 700; }
+.mcant { font-size: 11px; font-weight: 600; color: var(--tenue); font-family: var(--mono); }
+.modal-pie { padding: 12px 16px calc(12px + env(safe-area-inset-bottom)); border-top: 1px solid var(--linea); }
+.modal-ok { width: 100%; padding: 13px; border: none; border-radius: var(--r2); background: var(--azul); color: #fff; font-size: 14px; font-weight: 800; }
+
+.grupo-marcas {
+  padding: 9px 16px; border-top: 1px solid var(--linea-2); background: #FAFBFC;
+  font-size: 10px; font-weight: 800; letter-spacing: .9px; text-transform: uppercase; color: var(--tenue);
+}
+.fila.preferida .fila-marca { color: var(--azul); }
+
 /* ── PIE ────────────────────────────────────────── */
 .pie {
   flex-shrink: 0;
@@ -279,6 +352,11 @@ button { font-family: inherit; color: inherit; cursor: pointer; }
     <button class="tab" role="tab" aria-selected="true"  onclick="irA('buscar')"  id="tab-buscar">Buscar</button>
     <button class="tab" role="tab" aria-selected="false" onclick="irA('vehiculo')" id="tab-vehiculo">Por vehículo</button>
   </div>
+  <button class="btn-icono" id="btnMarcas" onclick="abrirMarcas()" title="Mis marcas" aria-label="Mis marcas">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M4 4h6l10 10-6 6L4 10V4Z"/><circle cx="8.5" cy="8.5" r="1.4" fill="currentColor" stroke="none"/>
+    </svg>
+  </button>
 </header>
 
 <main class="envoltorio">
@@ -290,10 +368,12 @@ button { font-family: inherit; color: inherit; cursor: pointer; }
         <div class="buscador-etq">Código del filtro</div>
         <div class="campo">
           <input id="entrada" type="text" inputmode="text" autocomplete="off"
-                 autocapitalize="characters" spellcheck="false"
+                 autocapitalize="characters" spellcheck="false" role="combobox"
+                 aria-expanded="false" aria-autocomplete="list" aria-controls="sugerencias"
                  placeholder="Escribí o pegá el código">
           <button onclick="buscarManual()">Buscar</button>
         </div>
+        <div class="sugerencias" id="sugerencias" role="listbox" hidden></div>
       </div>
 
       <div class="camara" id="camara" hidden>
@@ -338,6 +418,19 @@ button { font-family: inherit; color: inherit; cursor: pointer; }
   </section>
 
 </main>
+
+<div class="modal" id="modalMarcas" hidden>
+  <div class="modal-fondo" onclick="cerrarMarcas()"></div>
+  <div class="modal-caja" role="dialog" aria-modal="true" aria-labelledby="modalTit">
+    <div class="modal-tope">
+      <span class="modal-tit" id="modalTit">Mis marcas</span>
+      <button class="modal-x" onclick="cerrarMarcas()" aria-label="Cerrar">✕</button>
+    </div>
+    <input class="modal-buscar" id="filtroMarcas" type="text" placeholder="Filtrar marcas" autocomplete="off" spellcheck="false">
+    <div class="modal-lista" id="listaMarcas"></div>
+    <div class="modal-pie"><button class="modal-ok" onclick="cerrarMarcas()">Listo</button></div>
+  </div>
+</div>
 
 <footer class="pie">
   <span>&copy; <span id="anio">2026</span> RepSearch. Todos los derechos reservados.</span>
@@ -397,13 +490,25 @@ document.getElementById('anio').textContent = new Date().getFullYear();
 let DB = {};
 const IDX  = new Map();   // código normalizado -> [grupos]
 const BIDX = new Map();   // prefijo             -> [{codigo, marca, grupo}]
+const SUG  = [];          // catálogo para el autocompletado
+const MARCAS = new Map(); // clave de marca -> {nombre, cantidad}
+
+/* En la base la misma marca aparece escrita de varias formas: DONALDSON y
+   Donaldson, AC DELCO y ACDELCO y Acdelco. Son 954 formas para 780 marcas
+   reales. Esta clave las unifica para ordenar y para "mis marcas". */
+function normMarca(m) {
+  return String(m || '').trim().toLowerCase().normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]/g, '');
+}
 
 fetch('database.json')
   .then(r => r.json())
-  .then(d => { DB = d; construirIndices(); poblarVehiculos(); })
+  .then(d => { DB = d; construirIndices(); poblarVehiculos(); guardarPref(); })
   .catch(() => mostrarAviso('nada', 'No se pudo cargar la base', 'Recargá la página.'));
 
 function construirIndices() {
+  const conteo = new Map();   // clave -> Map(grafía -> veces)
+
   for (const gkey in DB) {
     const g = DB[gkey];
     g._tn = normTipo(g.tipo);
@@ -411,15 +516,108 @@ function construirIndices() {
     for (const c of g.codigos) {
       const n = norm(c.codigo);
       if (!n) continue;
+
+      c._m = normMarca(c.marca);
+      if (!conteo.has(c._m)) conteo.set(c._m, new Map());
+      const grafias = conteo.get(c._m);
+      const nom = String(c.marca || '').trim();
+      grafias.set(nom, (grafias.get(nom) || 0) + 1);
+
       if (!IDX.has(n)) IDX.set(n, []);
       IDX.get(n).push(g);
+
       for (const b of prefijos(c.codigo)) {
         if (!BIDX.has(b)) BIDX.set(b, []);
         BIDX.get(b).push({ codigo: c.codigo, marca: c.marca, grupo: g });
       }
     }
   }
+
+  // De cada marca nos quedamos con la grafía más usada
+  for (const [clave, grafias] of conteo) {
+    let mejor = '', total = 0, max = -1;
+    for (const [nom, veces] of grafias) {
+      total += veces;
+      if (veces > max) { max = veces; mejor = nom; }
+    }
+    MARCAS.set(clave, { nombre: mejor, cantidad: total });
+  }
+
+  // Catálogo de sugerencias: un renglón por código único
+  for (const [n, grupos] of IDX) {
+    const g = grupos[0];
+    const c = g.codigos.find(x => norm(x.codigo) === n);
+    SUG.push({ n, codigo: c.codigo.toUpperCase(), marca: marcaDe(c), tipo: g.tipo });
+  }
+  SUG.sort((a, b) => a.n.length - b.n.length || a.n.localeCompare(b.n));
 }
+
+/* Nombre de marca unificado, para que no se vea DONALDSON y Donaldson */
+function marcaDe(c) {
+  const m = MARCAS.get(c._m || normMarca(c.marca));
+  return m ? m.nombre : (c.marca || '—');
+}
+
+/* ═══════════════════════════════════════════════════════
+   MIS MARCAS
+   ═══════════════════════════════════════════════════════ */
+const CLAVE_PREF = 'repsearch.marcas';
+let marcasPref = new Set();
+
+try {
+  marcasPref = new Set(JSON.parse(localStorage.getItem(CLAVE_PREF) || '[]'));
+} catch (e) { /* navegación privada: se sigue sin preferencias */ }
+
+function guardarPref() {
+  try { localStorage.setItem(CLAVE_PREF, JSON.stringify([...marcasPref])); } catch (e) {}
+  document.getElementById('btnMarcas').classList.toggle('activo', marcasPref.size > 0);
+}
+
+function abrirMarcas() {
+  document.getElementById('modalMarcas').hidden = false;
+  document.getElementById('filtroMarcas').value = '';
+  pintarMarcas('');
+  document.getElementById('filtroMarcas').focus();
+}
+
+function cerrarMarcas() {
+  document.getElementById('modalMarcas').hidden = true;
+  if (ultimoResultado) mostrarResultado(ultimoResultado, true);
+}
+
+function pintarMarcas(filtro) {
+  const f = normMarca(filtro);
+  const lista = [...MARCAS.entries()]
+    .filter(([clave]) => !f || clave.includes(f))
+    .sort((a, b) => {
+      const pa = marcasPref.has(a[0]), pb = marcasPref.has(b[0]);
+      if (pa !== pb) return pa ? -1 : 1;                 // las elegidas arriba
+      return b[1].cantidad - a[1].cantidad ||            // después, las más usadas
+             a[1].nombre.localeCompare(b[1].nombre, 'es');
+    });
+
+  document.getElementById('listaMarcas').innerHTML = lista.map(([clave, m]) => `
+    <button class="mfila" aria-pressed="${marcasPref.has(clave)}" data-marca="${esc(clave)}">
+      <span class="mcheck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"/></svg></span>
+      <span class="mnombre">${esc(m.nombre)}</span>
+      <span class="mcant">${m.cantidad}</span>
+    </button>`).join('');
+}
+
+document.getElementById('filtroMarcas').addEventListener('input', e => pintarMarcas(e.target.value));
+
+document.getElementById('listaMarcas').addEventListener('click', e => {
+  const b = e.target.closest('.mfila');
+  if (!b) return;
+  const clave = b.dataset.marca;
+  if (marcasPref.has(clave)) marcasPref.delete(clave); else marcasPref.add(clave);
+  b.setAttribute('aria-pressed', marcasPref.has(clave));
+  guardarPref();
+});
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && !document.getElementById('modalMarcas').hidden) cerrarMarcas();
+});
 
 /* ═══════════════════════════════════════════════════════
    NAVEGACIÓN
@@ -553,7 +751,7 @@ function armarResultado(grupos, needle, marca, tipoLabel) {
       if (norm(cu) !== needle && !mapa.has(cu)) mapa.set(cu, c);
     }
   const equivalencias = [...mapa.values()]
-    .sort((a, b) => (a.marca || '').localeCompare(b.marca || '', 'es') ||
+    .sort((a, b) => marcaDe(a).localeCompare(marcaDe(b), 'es') ||
                     a.codigo.localeCompare(b.codigo, 'es'));
   return { marca, tipo: tipoLabel, modelos, equivalencias };
 }
@@ -570,7 +768,7 @@ function buscarEnDB(codigo, tipoPref) {
     const encontrado = base.codigos.find(c => norm(c.codigo) === needle);
     return {
       key: encontrado.codigo.toUpperCase(),
-      data: armarResultado(expandirPorTipo(needle, tn), needle, encontrado.marca, base.tipo),
+      data: armarResultado(expandirPorTipo(needle, tn), needle, marcaDe(encontrado), base.tipo),
       tipos: tipos.map(t => ({ id: t, label: hits.find(g => g._tn === t).tipo })),
       tipoActual: tn
     };
@@ -582,7 +780,7 @@ function buscarEnDB(codigo, tipoPref) {
     const bn = norm(c.codigo);
     return {
       key: c.codigo.toUpperCase(),
-      data: armarResultado(expandirPorTipo(bn, c.grupo._tn), bn, c.marca, c.grupo.tipo),
+      data: armarResultado(expandirPorTipo(bn, c.grupo._tn), bn, marcaDe(c), c.grupo.tipo),
       aprox: true, orig: codigo, tipos: [], tipoActual: c.grupo._tn
     };
   }
@@ -598,10 +796,107 @@ function buscar(codigo, tipoPref) {
 
 function buscarManual() {
   const v = document.getElementById('entrada').value.trim();
-  if (v) buscar(v);
+  if (v) { cerrarSugerencias(); buscar(v); }
 }
-document.getElementById('entrada').addEventListener('keydown', e => {
-  if (e.key === 'Enter') { e.target.blur(); buscarManual(); }
+
+/* ═══════════════════════════════════════════════════════
+   AUTOCOMPLETADO
+   ═══════════════════════════════════════════════════════ */
+const entrada  = document.getElementById('entrada');
+const cajaSug  = document.getElementById('sugerencias');
+const TOPE_SUG = 8;
+let marcado = -1;
+
+function sugerencias(q) {
+  const nq = norm(q);
+  if (nq.length < 2) return [];
+  const empiezan = [], contienen = [];
+  for (const s of SUG) {
+    if (s.n.startsWith(nq)) empiezan.push(s);
+    else if (contienen.length < TOPE_SUG && s.n.includes(nq)) contienen.push(s);
+    if (empiezan.length >= TOPE_SUG) break;     // SUG ya viene ordenado por largo
+  }
+  return [...empiezan, ...contienen].slice(0, TOPE_SUG);
+}
+
+/* Resalta en el código la parte que la persona ya escribió */
+function resaltar(codigo, q) {
+  const nq = norm(q);
+  if (!nq) return esc(codigo);
+  let restante = nq.length, salida = '', abierto = false;
+  for (const ch of codigo) {
+    const cuenta = /[A-Za-z0-9]/.test(ch);
+    if (cuenta && restante > 0) {
+      if (!abierto) { salida += '<b>'; abierto = true; }
+      restante--;
+    } else if (abierto && (!cuenta ? restante <= 0 : true) && restante <= 0) {
+      salida += '</b>'; abierto = false;
+    }
+    salida += esc(ch);
+  }
+  return salida + (abierto ? '</b>' : '');
+}
+
+function pintarSugerencias() {
+  const q = entrada.value;
+  const lista = sugerencias(q);
+  marcado = -1;
+  if (!lista.length) { cerrarSugerencias(); return; }
+  cajaSug.innerHTML = lista.map((s, i) => `
+    <button class="sug" role="option" data-i="${i}" data-codigo="${esc(s.codigo)}">
+      <span class="sug-cod">${resaltar(s.codigo, q)}</span>
+      <span class="sug-marca">${esc(s.marca)}</span>
+      <span class="sug-tipo">${esc(s.tipo)}</span>
+    </button>`).join('');
+  cajaSug.hidden = false;
+  entrada.setAttribute('aria-expanded', 'true');
+}
+
+function cerrarSugerencias() {
+  cajaSug.hidden = true;
+  cajaSug.innerHTML = '';
+  marcado = -1;
+  entrada.setAttribute('aria-expanded', 'false');
+}
+
+function moverMarcado(paso) {
+  const items = cajaSug.querySelectorAll('.sug');
+  if (!items.length) return;
+  marcado = (marcado + paso + items.length) % items.length;
+  items.forEach((el, i) => el.classList.toggle('marcado', i === marcado));
+  items[marcado].scrollIntoView({ block: 'nearest' });
+}
+
+entrada.addEventListener('input', pintarSugerencias);
+entrada.addEventListener('focus', () => { if (entrada.value.trim()) pintarSugerencias(); });
+
+entrada.addEventListener('keydown', e => {
+  const abierto = !cajaSug.hidden;
+  if (e.key === 'ArrowDown' && abierto) { e.preventDefault(); moverMarcado(1); return; }
+  if (e.key === 'ArrowUp'   && abierto) { e.preventDefault(); moverMarcado(-1); return; }
+  if (e.key === 'Escape'    && abierto) { cerrarSugerencias(); return; }
+  if (e.key === 'Enter') {
+    e.preventDefault();
+    const elegido = abierto && marcado >= 0 ? cajaSug.querySelectorAll('.sug')[marcado] : null;
+    if (elegido) { elegirSugerencia(elegido.dataset.codigo); }
+    else { entrada.blur(); buscarManual(); }
+  }
+});
+
+cajaSug.addEventListener('mousedown', e => {
+  const b = e.target.closest('.sug');
+  if (b) { e.preventDefault(); elegirSugerencia(b.dataset.codigo); }
+});
+
+function elegirSugerencia(codigo) {
+  entrada.value = codigo;
+  cerrarSugerencias();
+  entrada.blur();
+  buscar(codigo);
+}
+
+document.addEventListener('click', e => {
+  if (!e.target.closest('.buscador')) cerrarSugerencias();
 });
 
 /* ═══════════════════════════════════════════════════════
@@ -610,17 +905,39 @@ document.getElementById('entrada').addEventListener('keydown', e => {
 const panelRes = document.getElementById('resultados');
 const TOPE = 10;   // equivalencias visibles antes de plegar
 
-function filasEquiv(lista, plegar) {
-  const visibles = plegar ? lista.slice(0, TOPE) : lista;
-  const filas = visibles.map(c => `
-    <button class="fila" data-codigo="${esc(c.codigo.toUpperCase())}">
-      <span class="fila-marca">${esc(c.marca || '—')}</span>
+function filaEquiv(c, pref) {
+  return `
+    <button class="fila${pref ? ' preferida' : ''}" data-codigo="${esc(c.codigo.toUpperCase())}">
+      <span class="fila-marca">${esc(marcaDe(c))}</span>
       <span class="fila-codigo">${esc(c.codigo.toUpperCase())}</span>
       <span class="fila-ir" aria-hidden="true">›</span>
-    </button>`).join('');
-  const resto = lista.length - visibles.length;
-  return `<div class="equiv-lista">${filas}</div>` +
-    (resto > 0 ? `<button class="ver-mas" data-vermas="1">Ver las ${lista.length} equivalencias</button>` : '');
+    </button>`;
+}
+
+/* Si hay marcas elegidas, esas van arriba completas y el resto queda plegado.
+   Si no hay ninguna elegida, se muestran las primeras y se ofrece ver todas. */
+function filasEquiv(lista, plegar) {
+  const prefe = marcasPref.size ? lista.filter(c => marcasPref.has(c._m || normMarca(c.marca))) : [];
+  const resto = marcasPref.size ? lista.filter(c => !marcasPref.has(c._m || normMarca(c.marca))) : lista;
+
+  let html = '';
+  if (prefe.length) {
+    html += `<div class="grupo-marcas">Tus marcas · ${prefe.length}</div>
+             <div class="equiv-lista">${prefe.map(c => filaEquiv(c, true)).join('')}</div>`;
+  }
+
+  const visibles = plegar ? resto.slice(0, prefe.length ? 0 : TOPE) : resto;
+  if (visibles.length) {
+    html += (prefe.length ? `<div class="grupo-marcas">Otras marcas · ${resto.length}</div>` : '') +
+            `<div class="equiv-lista">${visibles.map(c => filaEquiv(c, false)).join('')}</div>`;
+  }
+
+  const ocultas = resto.length - visibles.length;
+  if (ocultas > 0) {
+    html += `<button class="ver-mas" data-vermas="1">${
+      prefe.length ? `Ver otras ${ocultas} marcas` : `Ver las ${lista.length} equivalencias`}</button>`;
+  }
+  return html;
 }
 
 let ultimoResultado = null;
@@ -755,7 +1072,7 @@ function mostrarTipo(modelo, tipo) {
       if (!vistos.has(n)) { vistos.add(n); codigos.push(c); }
     }
   }
-  codigos.sort((a, b) => (a.marca || '').localeCompare(b.marca || '', 'es') ||
+  codigos.sort((a, b) => marcaDe(a).localeCompare(marcaDe(b), 'es') ||
                          a.codigo.localeCompare(b.codigo, 'es'));
 
   document.getElementById('tablaVehiculo').innerHTML = codigos.length ? `
