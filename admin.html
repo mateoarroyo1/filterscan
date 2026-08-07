@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RepSearch — Editar la base de filtros</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --azul:#1B5EFF; --azul-claro:#EEF3FF; --azul-oscuro:#0E3FBF;
+  --ambar:#B4690E; --ambar-bg:#FEF6E7; --rojo:#C0392B; --rojo-bg:#FDEEEC;
+  --verde:#1A7A3C; --verde-bg:#ECFAF0;
+  --fondo:#F1F3F6; --panel:#fff; --linea:#E2E6EC; --linea-2:#EEF0F4;
+  --texto:#101215; --tenue:#6B7280;
+  --ui:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,'SF Mono',monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--ui);background:var(--fondo);color:var(--texto);min-height:100vh;-webkit-font-smoothing:antialiased}
+button{font-family:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:2.5px solid var(--azul);outline-offset:2px;border-radius:4px}
+
+.barra{background:var(--panel);border-bottom:1px solid var(--linea);padding:14px 20px;display:flex;align-items:center;gap:14px;position:sticky;top:0;z-index:10}
+.marca{font-size:17px;font-weight:900;letter-spacing:-.4px}
+.marca em{font-style:normal;color:var(--azul)}
+.sub{font-size:13px;color:var(--tenue);font-weight:600;margin-right:auto}
+.volver{font-size:13px;font-weight:700;color:var(--azul);text-decoration:none}
+
+.envoltorio{max-width:820px;margin:0 auto;padding:24px 16px 60px}
+
+.paso{background:var(--panel);border:1px solid var(--linea);border-radius:12px;margin-bottom:16px;overflow:hidden}
+.paso-tope{padding:18px 20px;display:flex;gap:14px;align-items:flex-start}
+.num{width:28px;height:28px;flex-shrink:0;border-radius:50%;background:var(--azul);color:#fff;display:grid;place-items:center;font-size:14px;font-weight:800}
+.paso-tit{font-size:16px;font-weight:800;margin-bottom:3px}
+.paso-txt{font-size:13.5px;color:var(--tenue);line-height:1.6}
+.paso-txt code{font-family:var(--mono);font-size:12.5px;background:var(--fondo);padding:1px 5px;border-radius:4px;color:var(--texto)}
+.paso-acc{padding:0 20px 18px 62px}
+
+.btn{padding:13px 20px;border:none;border-radius:8px;background:var(--azul);color:#fff;font-size:14px;font-weight:800;display:inline-flex;align-items:center;gap:9px}
+.btn:hover{background:var(--azul-oscuro)}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.btn.gris{background:var(--texto)}
+.btn.verde{background:var(--verde)}
+.btn svg{width:17px;height:17px}
+
+.soltar{border:2px dashed var(--linea);border-radius:9px;padding:26px 20px;text-align:center;transition:all .15s;cursor:pointer;background:#FAFBFC}
+.soltar:hover,.soltar.encima{border-color:var(--azul);background:var(--azul-claro)}
+.soltar-t{font-size:14px;font-weight:700;margin-bottom:3px}
+.soltar-d{font-size:12.5px;color:var(--tenue)}
+
+.reporte{border-top:1px solid var(--linea);display:none}
+.reporte.ver{display:block}
+.rsec{padding:16px 20px;border-bottom:1px solid var(--linea-2)}
+.rsec:last-child{border-bottom:none}
+.rtit{font-size:10px;font-weight:800;letter-spacing:.9px;text-transform:uppercase;color:var(--tenue);margin-bottom:11px}
+.cifras{display:grid;grid-template-columns:repeat(auto-fit,minmax(96px,1fr));gap:10px}
+.cifra{background:var(--fondo);border-radius:8px;padding:11px 13px}
+.cifra-n{font-family:var(--mono);font-size:19px;font-weight:700;line-height:1.1}
+.cifra-e{font-size:11px;color:var(--tenue);font-weight:600;margin-top:3px}
+.cifra.mas .cifra-n{color:var(--verde)} .cifra.menos .cifra-n{color:var(--rojo)}
+
+.msj{display:flex;gap:11px;padding:12px 14px;border-radius:8px;margin-bottom:8px;font-size:13px;line-height:1.55}
+.msj:last-child{margin-bottom:0}
+.msj.error{background:var(--rojo-bg);color:#8C2A1F}
+.msj.aviso{background:var(--ambar-bg);color:#7C4A06}
+.msj.ok{background:var(--verde-bg);color:#14602F}
+.msj b{display:block;margin-bottom:2px}
+.msj .ico{font-weight:800;flex-shrink:0}
+.msj ul{margin:5px 0 0 16px;font-size:12.5px}
+.msj li{margin-bottom:2px}
+.msj code{font-family:var(--mono);font-size:12px}
+
+.nota{font-size:12.5px;color:var(--tenue);line-height:1.6;margin-top:12px}
+.oculto{display:none}
+label.check{display:flex;align-items:center;gap:9px;font-size:13.5px;font-weight:600;margin-bottom:14px;cursor:pointer}
+label.check input{width:17px;height:17px;accent-color:var(--azul)}
+.pie{text-align:center;font-size:11px;color:#A9B0BA;padding:20px;line-height:1.7}
+</style>
+</head>
+<body>
+
+<header class="barra">
+  <div class="marca">REP<em>SEARCH</em></div>
+  <div class="sub">Editar la base de filtros</div>
+  <a class="volver" href="index.html">← Volver a la app</a>
+</header>
+
+<main class="envoltorio">
+
+  <div class="paso">
+    <div class="paso-tope">
+      <div class="num">1</div>
+      <div>
+        <div class="paso-tit">Descargá la planilla</div>
+        <div class="paso-txt">Se baja un Excel con todos los filtros cargados hoy, una fila por código.</div>
+      </div>
+    </div>
+    <div class="paso-acc">
+      <button class="btn gris" id="btnBajar" disabled>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v13m0 0 5-5m-5 5-5-5M4 21h16"/></svg>
+        <span id="btnBajarTxt">Cargando la base...</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="paso">
+    <div class="paso-tope">
+      <div class="num">2</div>
+      <div>
+        <div class="paso-tit">Editala en Excel</div>
+        <div class="paso-txt">
+          Agregá filas para códigos nuevos, borrá las que ya no van, corregí nombres.
+          Los códigos que van juntos en un mismo grupo son los que comparten
+          <code>VEHICULO</code> y <code>TIPO</code>: todos esos se muestran como equivalentes entre sí.
+          Para dar de alta un vehículo nuevo, agregá filas con su nombre. Guardá el archivo como Excel, no como CSV.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="paso">
+    <div class="paso-tope">
+      <div class="num">3</div>
+      <div>
+        <div class="paso-tit">Subila y revisá los cambios</div>
+        <div class="paso-txt">Antes de generar nada te muestro qué cambia y te aviso si algo quedó mal cargado.</div>
+      </div>
+    </div>
+    <div class="paso-acc">
+      <label class="check">
+        <input type="checkbox" id="unificar" checked>
+        Unificar automáticamente nombres escritos de dos formas
+      </label>
+      <div class="soltar" id="soltar">
+        <div class="soltar-t">Arrastrá el Excel acá</div>
+        <div class="soltar-d">o tocá para elegirlo</div>
+      </div>
+      <input type="file" id="archivo" accept=".xlsx,.xls" class="oculto">
+    </div>
+    <div class="reporte" id="reporte"></div>
+  </div>
+
+  <div class="paso oculto" id="paso4">
+    <div class="paso-tope">
+      <div class="num">4</div>
+      <div>
+        <div class="paso-tit">Descargá el archivo y subilo a GitHub</div>
+        <div class="paso-txt">
+          Bajá el <code>database.json</code> nuevo. Después entrá al repositorio en GitHub,
+          abrí el <code>database.json</code> viejo, tocá el lápiz para editar, borrá todo el
+          contenido y pegá el nuevo. O más simple: arrastrá el archivo sobre la lista de
+          archivos del repositorio y confirmá. La web se actualiza sola en un par de minutos.
+        </div>
+      </div>
+    </div>
+    <div class="paso-acc">
+      <button class="btn verde" id="btnJson">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v13m0 0 5-5m-5 5-5-5M4 21h16"/></svg>
+        Descargar database.json
+      </button>
+      <div class="nota">Guardá también el Excel que usaste. Es tu copia de seguridad y el punto de partida de la próxima edición.</div>
+    </div>
+  </div>
+
+</main>
+
+<footer class="pie">
+  <span>&copy; <span id="anio">2026</span> RepSearch. Todos los derechos reservados.</span><br>
+  <span>Creado por Mateo Arroyo &middot; Argentina</span>
+</footer>
+
+<script src="vendor/xlsx.mini.min.js"></script>
+<script>
+'use strict';
+document.getElementById('anio').textContent = new Date().getFullYear();
+
+const COLUMNAS = ['VEHICULO', 'TIPO', 'MARCA', 'CODIGO'];
+
+let DB_ACTUAL = null;
+let DB_NUEVA  = null;
+
+const sinAcentos = t => String(t).normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+const clave      = t => sinAcentos(String(t)).toLowerCase().trim().replace(/\s+/g, ' ');
+const claveCod   = c => String(c).toUpperCase().replace(/[^A-Z0-9]/g, '');
+const esc        = s => String(s).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+
+/* ── Cargar la base actual ── */
+fetch('database.json')
+  .then(r => r.json())
+  .then(d => {
+    DB_ACTUAL = d;
+    const b = document.getElementById('btnBajar');
+    b.disabled = false;
+    document.getElementById('btnBajarTxt').textContent =
+      `Descargar planilla (${filasDe(d).length.toLocaleString('es-AR')} filas)`;
+  })
+  .catch(() => {
+    document.getElementById('btnBajarTxt').textContent = 'No se pudo cargar database.json';
+  });
+
+function filasDe(db) {
+  const filas = [];
+  for (const k in db) {
+    const g = db[k];
+    for (const c of (g.codigos || [])) {
+      filas.push([(g.modelos || [])[0] || '', g.tipo || '', c.marca || '', c.codigo || '']);
+    }
+  }
+  return filas;
+}
+
+/* ── PASO 1: generar el Excel ── */
+document.getElementById('btnBajar').addEventListener('click', () => {
+  const filas = filasDe(DB_ACTUAL)
+    .sort((a, b) => a[0].localeCompare(b[0], 'es') || a[1].localeCompare(b[1], 'es') ||
+                    a[2].localeCompare(b[2], 'es') || a[3].localeCompare(b[3], 'es'));
+
+  const hoja = XLSX.utils.aoa_to_sheet([COLUMNAS, ...filas]);
+
+  /* Todas las celdas como texto. Sin esto Excel convierte 7006011810001
+     en notación científica y 3129-34 en una fecha, y arruina la base:
+     el 35% de los códigos son solo números. */
+  const rango = XLSX.utils.decode_range(hoja['!ref']);
+  for (let f = rango.s.r; f <= rango.e.r; f++) {
+    for (let c = rango.s.c; c <= rango.e.c; c++) {
+      const celda = hoja[XLSX.utils.encode_cell({ r: f, c })];
+      if (celda) { celda.t = 's'; celda.z = '@'; }
+    }
+  }
+  hoja['!cols'] = [{ wch: 34 }, { wch: 26 }, { wch: 22 }, { wch: 20 }];
+  hoja['!freeze'] = { xSplit: 0, ySplit: 1 };
+
+  const guia = XLSX.utils.aoa_to_sheet([
+    ['CÓMO EDITAR ESTA PLANILLA'], [''],
+    ['Una fila = un código de filtro.'], [''],
+    ['VEHICULO  El vehículo tal como aparece en la app. Escribilo siempre igual.'],
+    ['TIPO      Aceite, Aire primario, Combustible, Habitáculo, etc.'],
+    ['MARCA     La marca del filtro: Mann, Donaldson, Fleetguard...'],
+    ['CODIGO    El código. Da igual si lleva guiones, espacios o barras.'], [''],
+    ['Todos los códigos que comparten el mismo VEHICULO y el mismo TIPO'],
+    ['se muestran en la app como equivalentes entre sí.'], [''],
+    ['PARA AGREGAR UN VEHÍCULO NUEVO'],
+    ['Agregá filas con el nombre del vehículo nuevo, un tipo de filtro y sus códigos.'], [''],
+    ['PARA BORRAR'],
+    ['Borrá la fila entera. Si borrás todas las de un vehículo, desaparece de la app.'], [''],
+    ['IMPORTANTE'],
+    ['Guardá siempre como Excel (.xlsx), nunca como CSV.'],
+    ['No cambies los títulos de las columnas ni el orden.'],
+    ['No borres la primera fila.']
+  ]);
+  guia['!cols'] = [{ wch: 92 }];
+
+  const libro = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(libro, hoja, 'FILTROS');
+  XLSX.utils.book_append_sheet(libro, guia, 'INSTRUCCIONES');
+  XLSX.writeFile(libro, `repsearch-filtros-${new Date().toISOString().slice(0, 10)}.xlsx`);
+});
+
+/* ── PASO 3: leer el Excel ── */
+const zona = document.getElementById('soltar');
+const input = document.getElementById('archivo');
+
+zona.addEventListener('click', () => input.click());
+zona.addEventListener('dragover', e => { e.preventDefault(); zona.classList.add('encima'); });
+zona.addEventListener('dragleave', () => zona.classList.remove('encima'));
+zona.addEventListener('drop', e => {
+  e.preventDefault(); zona.classList.remove('encima');
+  if (e.dataTransfer.files[0]) leer(e.dataTransfer.files[0]);
+});
+input.addEventListener('change', e => { if (e.target.files[0]) leer(e.target.files[0]); });
+
+function leer(archivo) {
+  const lector = new FileReader();
+  lector.onload = e => {
+    try {
+      const libro = XLSX.read(new Uint8Array(e.target.result), { type: 'array' });
+      const hoja = libro.Sheets['FILTROS'] || libro.Sheets[libro.SheetNames[0]];
+      // raw:false mantiene los códigos como texto
+      const filas = XLSX.utils.sheet_to_json(hoja, { header: 1, raw: false, defval: '' });
+      procesar(filas, archivo.name);
+    } catch (err) {
+      pintarReporte(`<div class="rsec"><div class="msj error"><span class="ico">✕</span>
+        <span><b>No se pudo leer el archivo</b>Asegurate de que sea un Excel (.xlsx) y volvé a intentar.</span></div></div>`);
+    }
+  };
+  lector.readAsArrayBuffer(archivo);
+}
+
+function procesar(filas, nombreArchivo) {
+  document.getElementById('paso4').classList.add('oculto');
+  const errores = [], avisos = [];
+
+  if (!filas.length) {
+    return pintarReporte(seccion(`<div class="msj error"><span class="ico">✕</span>
+      <span><b>La planilla está vacía</b></span></div>`));
+  }
+
+  /* Encabezados */
+  const enc = (filas[0] || []).map(x => clave(x).toUpperCase());
+  const idx = {};
+  for (const col of COLUMNAS) idx[col] = enc.indexOf(col);
+  const faltan = COLUMNAS.filter(c => idx[c] === -1);
+  if (faltan.length) {
+    return pintarReporte(seccion(`<div class="msj error"><span class="ico">✕</span>
+      <span><b>Faltan columnas</b>No encontré: ${esc(faltan.join(', '))}.
+      La primera fila tiene que tener los títulos ${esc(COLUMNAS.join(', '))}.</span></div>`));
+  }
+
+  /* Leer filas */
+  const unificar = document.getElementById('unificar').checked;
+  const registros = [], incompletas = [];
+  const grafiasTipo = new Map(), grafiasMarca = new Map(), grafiasVeh = new Map();
+
+  const anotar = (mapa, valor) => {
+    const k = clave(valor);
+    if (!mapa.has(k)) mapa.set(k, new Map());
+    const m = mapa.get(k);
+    m.set(valor.trim(), (m.get(valor.trim()) || 0) + 1);
+  };
+
+  for (let i = 1; i < filas.length; i++) {
+    const f = filas[i];
+    const veh = String(f[idx.VEHICULO] ?? '').trim();
+    const tip = String(f[idx.TIPO] ?? '').trim();
+    const mar = String(f[idx.MARCA] ?? '').trim();
+    const cod = String(f[idx.CODIGO] ?? '').trim();
+    if (!veh && !tip && !mar && !cod) continue;          // fila vacía: se ignora
+    if (!veh || !tip || !cod) { incompletas.push(i + 1); continue; }
+    anotar(grafiasVeh, veh); anotar(grafiasTipo, tip); anotar(grafiasMarca, mar || '—');
+    registros.push({ veh, tip, mar: mar || '—', cod, fila: i + 1 });
+  }
+
+  if (!registros.length) {
+    return pintarReporte(seccion(`<div class="msj error"><span class="ico">✕</span>
+      <span><b>No se leyó ninguna fila válida</b>Revisá que las columnas tengan datos.</span></div>`));
+  }
+
+  /* Grafía preferida = la más usada */
+  const preferida = mapa => {
+    const out = new Map();
+    for (const [k, m] of mapa) {
+      let mejor = '', max = -1;
+      for (const [nom, veces] of m) if (veces > max) { max = veces; mejor = nom; }
+      out.set(k, mejor);
+    }
+    return out;
+  };
+  const prefTipo = preferida(grafiasTipo), prefMarca = preferida(grafiasMarca), prefVeh = preferida(grafiasVeh);
+
+  const dobles = (mapa, etiqueta) => {
+    const lista = [...mapa.entries()].filter(([, m]) => m.size > 1);
+    if (!lista.length) return;
+    avisos.push({
+      titulo: `${lista.length} ${etiqueta} escritos de más de una forma`,
+      detalle: unificar
+        ? 'Se unificaron con la grafía más usada de cada uno.'
+        : 'Quedaron como grupos separados. Marcá la casilla de arriba para unificarlos.',
+      items: lista.slice(0, 8).map(([, m]) => [...m.keys()].join('  /  '))
+    });
+  };
+  dobles(grafiasVeh, 'vehículos'); dobles(grafiasTipo, 'tipos'); dobles(grafiasMarca, 'marcas');
+
+  /* Armar la base nueva */
+  const nueva = {};
+  const vistosPorGrupo = new Map();
+  const duplicados = [];
+
+  for (const r of registros) {
+    const veh = unificar ? prefVeh.get(clave(r.veh))   : r.veh;
+    const tip = unificar ? prefTipo.get(clave(r.tip))  : r.tip;
+    const mar = unificar ? prefMarca.get(clave(r.mar)) : r.mar;
+    const k = `${sinAcentos(tip).toUpperCase()}__${sinAcentos(veh).toUpperCase()}`;
+
+    if (!nueva[k]) { nueva[k] = { tipo: tip, modelos: [veh], codigos: [] }; vistosPorGrupo.set(k, new Set()); }
+    const ya = vistosPorGrupo.get(k);
+    const cc = claveCod(r.cod);
+    if (!cc) continue;
+    if (ya.has(cc)) { duplicados.push(`${r.cod} en ${veh} · ${tip} (fila ${r.fila})`); continue; }
+    ya.add(cc);
+    nueva[k].codigos.push({ marca: mar, codigo: r.cod });
+  }
+
+  if (incompletas.length) errores.push({
+    titulo: `${incompletas.length} fila${incompletas.length > 1 ? 's' : ''} sin datos suficientes`,
+    detalle: 'Se saltearon. Toda fila necesita al menos VEHICULO, TIPO y CODIGO.',
+    items: ['Filas: ' + incompletas.slice(0, 25).join(', ') + (incompletas.length > 25 ? '...' : '')]
+  });
+
+  if (duplicados.length) avisos.push({
+    titulo: `${duplicados.length} código${duplicados.length > 1 ? 's' : ''} repetido${duplicados.length > 1 ? 's' : ''} dentro del mismo grupo`,
+    detalle: 'Se guardó una sola vez cada uno.',
+    items: duplicados.slice(0, 8)
+  });
+
+  const vacios = Object.entries(nueva).filter(([, g]) => !g.codigos.length).map(([k]) => k);
+  if (vacios.length) avisos.push({
+    titulo: `${vacios.length} grupo${vacios.length > 1 ? 's' : ''} sin ningún código`,
+    detalle: 'Van a aparecer vacíos en la app.',
+    items: vacios.slice(0, 8)
+  });
+
+  DB_NUEVA = nueva;
+  pintarReporte(comparar(DB_ACTUAL, nueva, errores, avisos, nombreArchivo));
+  document.getElementById('paso4').classList.remove('oculto');
+  document.getElementById('paso4').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+/* ── Comparar con la base actual ── */
+function comparar(vieja, nueva, errores, avisos, nombreArchivo) {
+  const resumen = db => {
+    const cods = new Set(), vehs = new Set(), tipos = new Set(), marcas = new Set();
+    for (const k in db) {
+      const g = db[k];
+      (g.modelos || []).forEach(m => vehs.add(clave(m)));
+      tipos.add(clave(g.tipo));
+      for (const c of (g.codigos || [])) {
+        cods.add(clave(g.tipo) + '|' + claveCod(c.codigo));
+        marcas.add(clave(c.marca));
+      }
+    }
+    return { cods, vehs, tipos, marcas, grupos: Object.keys(db).length };
+  };
+  const a = resumen(vieja), b = resumen(nueva);
+  const dif = (x, y) => [...y].filter(v => !x.has(v));
+
+  const codsMas = dif(a.cods, b.cods).length, codsMenos = dif(b.cods, a.cods).length;
+  const vehMas = dif(a.vehs, b.vehs), vehMenos = dif(b.vehs, a.vehs);
+  const totalNuevo = [...Object.values(nueva)].reduce((n, g) => n + g.codigos.length, 0);
+
+  let h = seccion(`
+    <div class="rtit">Qué cambia respecto de la base actual</div>
+    <div class="cifras">
+      <div class="cifra"><div class="cifra-n">${totalNuevo.toLocaleString('es-AR')}</div><div class="cifra-e">códigos en total</div></div>
+      <div class="cifra ${codsMas ? 'mas' : ''}"><div class="cifra-n">${codsMas ? '+' : ''}${codsMas}</div><div class="cifra-e">códigos nuevos</div></div>
+      <div class="cifra ${codsMenos ? 'menos' : ''}"><div class="cifra-n">${codsMenos ? '−' : ''}${codsMenos}</div><div class="cifra-e">códigos borrados</div></div>
+      <div class="cifra"><div class="cifra-n">${b.vehs.size}</div><div class="cifra-e">vehículos</div></div>
+      <div class="cifra"><div class="cifra-n">${b.tipos.size}</div><div class="cifra-e">tipos</div></div>
+      <div class="cifra"><div class="cifra-n">${b.marcas.size}</div><div class="cifra-e">marcas</div></div>
+    </div>`);
+
+  const listas = [];
+  if (vehMas.length)   listas.push({ c: 'ok',    t: `${vehMas.length} vehículo${vehMas.length > 1 ? 's' : ''} nuevo${vehMas.length > 1 ? 's' : ''}`, i: vehMas.slice(0, 10) });
+  if (vehMenos.length) listas.push({ c: 'aviso', t: `${vehMenos.length} vehículo${vehMenos.length > 1 ? 's' : ''} que desaparece${vehMenos.length > 1 ? 'n' : ''}`, i: vehMenos.slice(0, 10) });
+
+  if (listas.length || errores.length || avisos.length) {
+    let cuerpo = '<div class="rtit">Revisá antes de continuar</div>';
+    for (const e of errores)
+      cuerpo += msj('error', '✕', e.titulo, e.detalle, e.items);
+    for (const l of listas)
+      cuerpo += msj(l.c, l.c === 'ok' ? '+' : '!', l.t, '', l.i.map(x => x.toUpperCase()));
+    for (const v of avisos)
+      cuerpo += msj('aviso', '!', v.titulo, v.detalle, v.items);
+    h += seccion(cuerpo);
+  } else {
+    h += seccion(msj('ok', '✓', 'Todo en orden', 'No se detectó ningún problema en la planilla.', []));
+  }
+
+  h += seccion(`<div class="nota">Leído de <b>${esc(nombreArchivo)}</b>. Todavía no se cambió nada:
+    la app sigue mostrando la base vieja hasta que subas el archivo nuevo a GitHub.</div>`);
+  return h;
+}
+
+function msj(clase, ico, titulo, detalle, items) {
+  return `<div class="msj ${clase}"><span class="ico">${ico}</span><span>
+    <b>${esc(titulo)}</b>${esc(detalle)}
+    ${items && items.length ? `<ul>${items.map(i => `<li><code>${esc(i)}</code></li>`).join('')}</ul>` : ''}
+  </span></div>`;
+}
+const seccion = html => `<div class="rsec">${html}</div>`;
+
+function pintarReporte(html) {
+  const r = document.getElementById('reporte');
+  r.innerHTML = html;
+  r.classList.add('ver');
+}
+
+/* ── PASO 4: descargar el JSON ── */
+document.getElementById('btnJson').addEventListener('click', () => {
+  if (!DB_NUEVA) return;
+  const blob = new Blob([JSON.stringify(DB_NUEVA, null, 1)], { type: 'application/json' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'database.json';
+  a.click();
+  URL.revokeObjectURL(a.href);
+});
+</script>
+</body>
+</html>
