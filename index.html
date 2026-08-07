@@ -179,19 +179,21 @@ button { font-family: inherit; color: inherit; cursor: pointer; }
 }
 .sugerencias[hidden] { display: none; }
 .sug {
-  display: grid; grid-template-columns: 1fr auto; gap: 4px 12px; align-items: center;
+  display: grid; grid-template-columns: 42px 1fr auto; gap: 11px; align-items: center;
   width: 100%; padding: 10px 13px; border: none; background: none; text-align: left;
   border-bottom: 1px solid var(--linea-2);
 }
+.sug-txt { min-width: 0; }
 .sug:last-child { border-bottom: none; }
 .sug:hover, .sug.marcado { background: var(--azul-claro); }
-.sug-cod { font-family: var(--mono); font-size: 14.5px; font-weight: 700; word-break: break-all; }
+.sug-cod { font-family: var(--mono); font-size: 14.5px; font-weight: 700; word-break: break-all; display: block; }
 .sug-cod b { color: var(--azul); }
 .sug-marca {
-  grid-column: 1; font-size: 10.5px; font-weight: 700; letter-spacing: .4px;
-  text-transform: uppercase; color: var(--tenue);
+  display: block; font-size: 10.5px; font-weight: 700; letter-spacing: .4px;
+  text-transform: uppercase; color: var(--tenue); margin-top: 1px;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
 }
-.sug-tipo { grid-column: 2; grid-row: 1 / span 2; font-size: 10.5px; font-weight: 600; color: var(--tenue); white-space: nowrap; }
+.sug-tipo { font-size: 10.5px; font-weight: 600; color: var(--tenue); white-space: nowrap; }
 
 /* ── MIS MARCAS ─────────────────────────────────── */
 .btn-icono {
@@ -242,6 +244,31 @@ button { font-family: inherit; color: inherit; cursor: pointer; }
   font-size: 10px; font-weight: 800; letter-spacing: .9px; text-transform: uppercase; color: var(--tenue);
 }
 .fila.preferida .fila-marca { color: var(--azul); }
+
+/* ── INSIGNIAS DE MARCA Y FABRICANTE ────────────── */
+/* Por defecto es un cuadradito de color con las iniciales. Si en la
+   configuración de arriba del script le ponés un archivo de imagen,
+   muestra el logo real en su lugar. */
+.logo {
+  width: 42px; height: 28px; flex-shrink: 0; border-radius: 6px;
+  display: grid; place-items: center; overflow: hidden;
+  font-size: 11px; font-weight: 900; letter-spacing: -.2px; color: #fff;
+  background: #98A2B3;
+}
+.logo.grande { width: 54px; height: 36px; border-radius: 7px; font-size: 13px; }
+.logo.tres { letter-spacing: -.3px; }
+.logo img { width: 100%; height: 100%; object-fit: contain; padding: 1px; background: #fff; }
+.logo.conimagen { background: #fff; border: 1px solid var(--linea); }
+.marca-linea { display: flex; align-items: center; gap: 9px; }
+
+/* Vehículos como chips con el logo del fabricante */
+.vehiculos { display: flex; flex-wrap: wrap; gap: 6px; }
+.veh-chip {
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 4px 10px 4px 4px; background: var(--fondo);
+  border-radius: 999px; font-size: 12.5px; font-weight: 700;
+}
+.veh-chip .logo { width: 32px; height: 21px; border-radius: 5px; font-size: 8.5px; }
 
 /* ── PIE ────────────────────────────────────────── */
 .pie {
@@ -301,17 +328,19 @@ button { font-family: inherit; color: inherit; cursor: pointer; }
 }
 .equiv-lista { border-top: 1px solid var(--linea-2); }
 .fila {
-  display: grid; grid-template-columns: 96px 1fr auto; gap: 12px; align-items: center;
-  width: 100%; padding: 12px 16px; border: none; background: none; text-align: left;
+  display: grid; grid-template-columns: 42px 1fr auto; gap: 12px; align-items: center;
+  width: 100%; padding: 11px 16px; border: none; background: none; text-align: left;
   border-bottom: 1px solid var(--linea-2); transition: background .1s;
 }
 .fila:last-child { border-bottom: none; }
 .fila:hover { background: var(--azul-claro); }
+.fila-txt { min-width: 0; }
+.fila-codigo { font-family: var(--mono); font-size: 14.5px; font-weight: 700; word-break: break-all; display: block; }
 .fila-marca {
-  font-size: 10.5px; font-weight: 800; letter-spacing: .5px; text-transform: uppercase;
-  color: var(--tenue); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  font-size: 10.5px; font-weight: 700; letter-spacing: .4px; text-transform: uppercase;
+  color: var(--tenue); display: block; margin-top: 1px;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
 }
-.fila-codigo { font-family: var(--mono); font-size: 14.5px; font-weight: 700; word-break: break-all; }
 .fila-ir { color: #C4CAD3; font-size: 16px; line-height: 1; }
 .fila:hover .fila-ir { color: var(--azul); }
 
@@ -439,6 +468,108 @@ button { font-family: inherit; color: inherit; cursor: pointer; }
 
 <script>
 'use strict';
+
+/* ═══════════════════════════════════════════════════════
+   LOGOS  —  esto es lo único que hay que tocar para
+             agregar o cambiar un logo
+   ═══════════════════════════════════════════════════════
+
+   Cada marca tiene un color y, opcionalmente, un archivo de imagen.
+
+     img: ''                  -> muestra un cuadradito de color con las
+                                 iniciales (funciona sin internet, sin archivos)
+     img: 'logos/mann.png'    -> muestra esa imagen
+     sigla: 'MN'              -> las 2 o 3 letras del cuadradito.
+                                 Si no la ponés se calculan solas, pero
+                                 conviene fijarla para que no haya dos
+                                 marcas con las mismas letras.
+
+   Para poner logos reales: creá una carpeta "logos" al lado de este
+   archivo, meté ahí los PNG o SVG (cuadrados, fondo transparente,
+   unos 64x64), y escribí el nombre del archivo en img.
+   No uses direcciones de internet: la app tiene que andar sin señal.
+
+   La clave de la izquierda es la marca en minúscula y sin espacios
+   ni guiones. Por ejemplo "AC DELCO" y "ACDELCO" son las dos "acdelco".  */
+
+const LOGOS_MARCA = {
+  mann:       { sigla: 'MN', color: '#C8102E', img: 'logos/mann.png' },
+  fleetguard: { sigla: 'FG', color: '#C8102E', img: 'logos/fleetguard.png' },
+  donaldson:  { sigla: 'DO', color: '#00539B', img: 'logos/donaldson.png' },
+  fram:       { sigla: 'FR', color: '#F36F21', img: 'logos/fram.png' },
+  wix:        { sigla: 'WI', color: '#E4002B', img: 'logos/wix.png' },
+  baldwin:    { sigla: 'BA', color: '#00843D', img: 'logos/baldwin.png' },
+  bosch:      { sigla: 'BS', color: '#E20015', img: '' },
+  mahle:      { sigla: 'MH', color: '#00843D', img: 'logos/mahle.png' },
+  hengst:     { sigla: 'HE', color: '#004B87', img: '' },
+  purolator:  { sigla: 'PU', color: '#0057B8', img: '' },
+  tecfil:     { sigla: 'TE', color: '#0072CE', img: '' },
+  wega:       { sigla: 'WE', color: '#D6001C', img: 'logos/wega.png' },
+  vox:        { sigla: 'VX', color: '#005EB8', img: '' },
+  inpeca:     { sigla: 'IN', color: '#00786F', img: '' },
+  japanparts: { sigla: 'JP', color: '#B01116', img: '' },
+  ford:       { sigla: 'FO', color: '#1C3F94', img: 'logos/ford.png' },
+  volvo:      { sigla: 'VL', color: '#003057', img: 'logos/volvo.png' },
+  scania:     { sigla: 'SC', color: '#041E42', img: 'logos/scania.png' },
+  komatsu:    { sigla: 'KO', color: '#004B87', img: '' },
+  casecaseih: { sigla: 'CS', color: '#C8102E', img: '' }
+};
+
+/* Fabricantes de vehículo. "busca" son las palabras que aparecen en el
+   nombre del modelo; alcanza con que coincida una. */
+const LOGOS_VEHICULO = [
+  { clave: 'ford',        nombre: 'Ford', sigla: 'FO',        busca: ['FORD'],                    color: '#1C3F94', img: 'logos/ford.png' },
+  { clave: 'volkswagen',  nombre: 'Volkswagen', sigla: 'VW',  busca: ['VOLKSWAGEN', 'VW'],        color: '#001E50', img: 'logos/volkswagen.png' },
+  { clave: 'scania',      nombre: 'Scania', sigla: 'SC',      busca: ['SCANIA'],                  color: '#041E42', img: 'logos/scania.png' },
+  { clave: 'volvo',       nombre: 'Volvo', sigla: 'VL',       busca: ['VOLVO'],                   color: '#003057', img: 'logos/volvo.png' },
+  { clave: 'iveco',       nombre: 'Iveco', sigla: 'IV',       busca: ['IVECO'],                   color: '#005BA9', img: 'logos/iveco.png' },
+  { clave: 'cummins',     nombre: 'Cummins', sigla: 'CU',     busca: ['CUMMINS'],                 color: '#C8102E', img: 'logos/cummins.png' },
+  { clave: 'caterpillar', nombre: 'Caterpillar', sigla: 'CAT', busca: ['CATERPILLAR', 'CAT '],     color: '#FFC72C', img: 'logos/caterpillar.png' },
+  { clave: 'hyundai',     nombre: 'Hyundai', sigla: 'HY',     busca: ['HYUNDAI'],                 color: '#002C5F', img: 'logos/hyundai.png' },
+  { clave: 'johndeere',   nombre: 'John Deere', sigla: 'JD',  busca: ['JOHN DEERE'],              color: '#367C2B', img: 'logos/johndeere.png' },
+  { clave: 'toyota',      nombre: 'Toyota', sigla: 'TO',      busca: ['TOYOTA'],                  color: '#EB0A1E', img: '' },
+  { clave: 'renault',     nombre: 'Renault', sigla: 'RE',     busca: ['RENAULT'],                 color: '#EFDF00', img: '' },
+  { clave: 'peugeot',     nombre: 'Peugeot', sigla: 'PE',     busca: ['PEUGEOT'],                 color: '#00427E', img: 'logos/peugeot.png' },
+  { clave: 'citroen',     nombre: 'Citroën', sigla: 'CI',     busca: ['CITROEN', 'CITROËN'],      color: '#C4002B', img: 'logos/citroen.png' },
+  { clave: 'bobcat',      nombre: 'Bobcat', sigla: 'BC',      busca: ['BOBCAT'],                  color: '#F26722', img: '' },
+  { clave: 'mustang',     nombre: 'Mustang', sigla: 'MU',     busca: ['MUSTANG'],                 color: '#D2202F', img: '' },
+  { clave: 'mwm',         nombre: 'MWM', sigla: 'MW',         busca: ['MWM'],                     color: '#004B8D', img: '' },
+  { clave: 'watermaster', nombre: 'Watermaster', sigla: 'WM', busca: ['WATERMASTER', 'DRAGA'],    color: '#0091C9', img: '' }
+];
+
+/* Color de fondo por defecto para las marcas que no están en la lista */
+const COLOR_NEUTRO = '#98A2B3';
+
+/* ─────────────────────────────────────────────────── */
+
+function iniciales(nombre) {
+  const p = String(nombre).trim().split(/\s+/).filter(Boolean);
+  if (p.length >= 2) return (p[0][0] + p[1][0]).toUpperCase();
+  return String(nombre).replace(/[^A-Za-z0-9]/g, '').slice(0, 2).toUpperCase() || '?';
+}
+
+function insignia(nombre, cfg, grande) {
+  const clase = 'logo' + (grande ? ' grande' : '') + (cfg && cfg.img ? ' conimagen' : '');
+  if (cfg && cfg.img) {
+    return `<span class="${clase}"><img src="${esc(cfg.img)}" alt="${esc(nombre)}" loading="lazy"></span>`;
+  }
+  const color = (cfg && cfg.color) || COLOR_NEUTRO;
+  const texto = (cfg && cfg.sigla) || iniciales(nombre);
+  const extra = texto.length > 2 ? ' tres' : '';
+  return `<span class="${clase}${extra}" style="background:${esc(color)}" aria-hidden="true">${esc(texto)}</span>`;
+}
+
+/* Detecta el fabricante a partir del nombre del modelo.
+   "EXCAVADORA CATERPILLAR 320D2 GC" -> Caterpillar */
+function fabricanteDe(modelo) {
+  const m = String(modelo).toUpperCase();
+  return LOGOS_VEHICULO.find(f => f.busca.some(b => m.includes(b))) || null;
+}
+
+function chipVehiculo(modelo) {
+  const f = fabricanteDe(modelo);
+  return `<span class="veh-chip">${insignia(f ? f.nombre : modelo, f)}${esc(modelo)}</span>`;
+}
 
 /* ═══════════════════════════════════════════════════════
    NORMALIZACIÓN
@@ -599,6 +730,7 @@ function pintarMarcas(filtro) {
   document.getElementById('listaMarcas').innerHTML = lista.map(([clave, m]) => `
     <button class="mfila" aria-pressed="${marcasPref.has(clave)}" data-marca="${esc(clave)}">
       <span class="mcheck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"/></svg></span>
+      ${insignia(m.nombre, LOGOS_MARCA[clave])}
       <span class="mnombre">${esc(m.nombre)}</span>
       <span class="mcant">${m.cantidad}</span>
     </button>`).join('');
@@ -844,8 +976,11 @@ function pintarSugerencias() {
   if (!lista.length) { cerrarSugerencias(); return; }
   cajaSug.innerHTML = lista.map((s, i) => `
     <button class="sug" role="option" data-i="${i}" data-codigo="${esc(s.codigo)}">
-      <span class="sug-cod">${resaltar(s.codigo, q)}</span>
-      <span class="sug-marca">${esc(s.marca)}</span>
+      ${insignia(s.marca, LOGOS_MARCA[normMarca(s.marca)])}
+      <span class="sug-txt">
+        <span class="sug-cod">${resaltar(s.codigo, q)}</span>
+        <span class="sug-marca">${esc(s.marca)}</span>
+      </span>
       <span class="sug-tipo">${esc(s.tipo)}</span>
     </button>`).join('');
   cajaSug.hidden = false;
@@ -906,10 +1041,14 @@ const panelRes = document.getElementById('resultados');
 const TOPE = 10;   // equivalencias visibles antes de plegar
 
 function filaEquiv(c, pref) {
+  const marca = marcaDe(c);
   return `
     <button class="fila${pref ? ' preferida' : ''}" data-codigo="${esc(c.codigo.toUpperCase())}">
-      <span class="fila-marca">${esc(marcaDe(c))}</span>
-      <span class="fila-codigo">${esc(c.codigo.toUpperCase())}</span>
+      ${insignia(marca, LOGOS_MARCA[c._m || normMarca(c.marca)])}
+      <span class="fila-txt">
+        <span class="fila-codigo">${esc(c.codigo.toUpperCase())}</span>
+        <span class="fila-marca">${esc(marca)}</span>
+      </span>
       <span class="fila-ir" aria-hidden="true">›</span>
     </button>`;
 }
@@ -949,7 +1088,8 @@ function mostrarResultado(f, mantenerPliegue) {
 
   const { key: codigo, data, aprox, orig, tipos, tipoActual } = f;
   const eq = data.equivalencias || [];
-  const modelos = (data.modelos || []).join(' · ') || '—';
+  const modelos = (data.modelos || []).length
+    ? `<span class="vehiculos">${data.modelos.map(chipVehiculo).join('')}</span>` : '—';
 
   panelRes.innerHTML = `
     <div class="ficha">
@@ -959,9 +1099,10 @@ function mostrarResultado(f, mantenerPliegue) {
       <div class="ficha-cuerpo">
         <div class="codigo-titulo">${esc(codigo)}</div>
         <div class="datos">
-          <span class="dato-e">Marca</span><span class="dato-v">${esc(data.marca || '—')}</span>
+          <span class="dato-e">Marca</span>
+          <span class="dato-v"><span class="marca-linea">${insignia(data.marca || '—', LOGOS_MARCA[normMarca(data.marca)], true)}${esc(data.marca || '—')}</span></span>
           <span class="dato-e">Tipo</span><span class="dato-v">${esc(data.tipo)}</span>
-          <span class="dato-e">Vehículo</span><span class="dato-v chico">${esc(modelos)}</span>
+          <span class="dato-e">Vehículo</span><span class="dato-v chico">${modelos}</span>
         </div>
       </div>
 
@@ -1077,7 +1218,8 @@ function mostrarTipo(modelo, tipo) {
 
   document.getElementById('tablaVehiculo').innerHTML = codigos.length ? `
     <div class="ficha">
-      <div class="ficha-cinta"><span class="punto"></span>${esc(tipo)} · ${esc(modelo)}</div>
+      <div class="ficha-cinta">${(() => { const f = fabricanteDe(modelo);
+        return insignia(f ? f.nombre : modelo, f); })()}${esc(tipo)} · ${esc(modelo)}</div>
       <div class="equiv-tit"><span>Códigos compatibles</span><span>${codigos.length}</span></div>
       ${filasEquiv(codigos, false)}
     </div>` : `
