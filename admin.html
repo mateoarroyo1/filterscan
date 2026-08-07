@@ -74,10 +74,33 @@ button{font-family:inherit;color:inherit;cursor:pointer}
 .oculto{display:none}
 label.check{display:flex;align-items:center;gap:9px;font-size:13.5px;font-weight:600;margin-bottom:14px;cursor:pointer}
 label.check input{width:17px;height:17px;accent-color:var(--azul)}
+.login{position:fixed;inset:0;background:var(--fondo);z-index:100;display:grid;place-items:center;padding:20px}
+.login[hidden]{display:none}
+.login-caja{background:var(--panel);border:1px solid var(--linea);border-radius:12px;padding:28px;width:100%;max-width:360px}
+.login-tit{font-size:18px;font-weight:900;margin-bottom:4px}
+.login-sub{font-size:13px;color:var(--tenue);margin-bottom:20px;line-height:1.5}
+.login input{width:100%;padding:13px 14px;font-family:var(--ui);font-size:15px;background:var(--fondo);
+  border:2px solid transparent;border-radius:8px;outline:none;margin-bottom:12px}
+.login input:focus{border-color:var(--azul);background:var(--panel)}
+.login .btn{width:100%;justify-content:center}
+.login-error{font-size:13px;color:var(--rojo);font-weight:600;margin-top:12px;display:none}
+.login-error.ver{display:block}
+.guardado{padding:14px 20px;border-top:1px solid var(--linea);display:none}
+.guardado.ver{display:block}
 .pie{text-align:center;font-size:11px;color:#A9B0BA;padding:20px;line-height:1.7}
 </style>
 </head>
 <body>
+
+<div class="login" id="login">
+  <div class="login-caja">
+    <div class="login-tit">Editar la base de filtros</div>
+    <div class="login-sub">Esta sección modifica los datos que ve todo el taller. Ingresá la contraseña.</div>
+    <input type="password" id="clave" placeholder="Contraseña" autocomplete="current-password">
+    <button class="btn" id="btnEntrar">Entrar</button>
+    <div class="login-error" id="loginError"></div>
+  </div>
+</div>
 
 <header class="barra">
   <div class="marca">REP<em>SEARCH</em></div>
@@ -144,22 +167,25 @@ label.check input{width:17px;height:17px;accent-color:var(--azul)}
     <div class="paso-tope">
       <div class="num">4</div>
       <div>
-        <div class="paso-tit">Descargá el archivo y subilo a GitHub</div>
+        <div class="paso-tit">Guardá los cambios</div>
         <div class="paso-txt">
-          Bajá el <code>database.json</code> nuevo. Después entrá al repositorio en GitHub,
-          abrí el <code>database.json</code> viejo, tocá el lápiz para editar, borrá todo el
-          contenido y pegá el nuevo. O más simple: arrastrá el archivo sobre la lista de
-          archivos del repositorio y confirmá. La web se actualiza sola en un par de minutos.
+          Se publican en la web para todo el taller. Tarda uno o dos minutos en verse.
+          Cada guardado queda registrado, así que siempre se puede volver atrás.
         </div>
       </div>
     </div>
     <div class="paso-acc">
-      <button class="btn verde" id="btnJson">
+      <button class="btn verde" id="btnGuardar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5 10 17.5 19 6.5"/></svg>
+        <span id="btnGuardarTxt">Guardar y publicar</span>
+      </button>
+      <button class="btn gris" id="btnJson" style="margin-left:8px">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v13m0 0 5-5m-5 5-5-5M4 21h16"/></svg>
-        Descargar database.json
+        Solo descargar
       </button>
       <div class="nota">Guardá también el Excel que usaste. Es tu copia de seguridad y el punto de partida de la próxima edición.</div>
     </div>
+    <div class="guardado" id="guardado"></div>
   </div>
 
 </main>
@@ -474,7 +500,78 @@ function pintarReporte(html) {
   r.classList.add('ver');
 }
 
-/* ── PASO 4: descargar el JSON ── */
+/* ═══════════════════════════════════════════════
+   LOGIN
+   La contraseña se verifica en el servidor, no acá.
+   ═══════════════════════════════════════════════ */
+const API = '/.netlify/functions/guardar';
+let CLAVE = sessionStorage.getItem('repsearch.clave') || '';
+
+async function pedirServidor(datos) {
+  const r = await fetch(API, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ clave: CLAVE, ...datos })
+  });
+  const j = await r.json().catch(() => ({}));
+  if (!r.ok) throw new Error(j.error || `Error ${r.status}`);
+  return j;
+}
+
+async function entrar(clave) {
+  const err = document.getElementById('loginError');
+  const btn = document.getElementById('btnEntrar');
+  err.classList.remove('ver');
+  btn.disabled = true; btn.textContent = 'Verificando...';
+  CLAVE = clave;
+  try {
+    await pedirServidor({ accion: 'verificar' });
+    sessionStorage.setItem('repsearch.clave', clave);
+    document.getElementById('login').hidden = true;
+  } catch (e) {
+    CLAVE = '';
+    err.textContent = e.message;
+    err.classList.add('ver');
+  } finally {
+    btn.disabled = false; btn.textContent = 'Entrar';
+  }
+}
+
+document.getElementById('btnEntrar').addEventListener('click',
+  () => entrar(document.getElementById('clave').value));
+document.getElementById('clave').addEventListener('keydown',
+  e => { if (e.key === 'Enter') entrar(e.target.value); });
+
+// Si ya se entró antes en esta sesión, no vuelve a preguntar
+if (CLAVE) {
+  pedirServidor({ accion: 'verificar' })
+    .then(() => { document.getElementById('login').hidden = true; })
+    .catch(() => { sessionStorage.removeItem('repsearch.clave'); CLAVE = ''; });
+}
+
+/* ── PASO 4: guardar en la web ── */
+document.getElementById('btnGuardar').addEventListener('click', async () => {
+  if (!DB_NUEVA) return;
+  const btn = document.getElementById('btnGuardar');
+  const txt = document.getElementById('btnGuardarTxt');
+  const caja = document.getElementById('guardado');
+  btn.disabled = true; txt.textContent = 'Guardando...';
+  caja.classList.remove('ver');
+  try {
+    const r = await pedirServidor({ database: DB_NUEVA, autor: 'admin' });
+    caja.innerHTML = msj('ok', '\u2713', 'Guardado y publicado',
+      `Quedaron ${r.grupos} grupos y ${r.codigos.toLocaleString('es-AR')} códigos. ` +
+      `La web se actualiza sola en uno o dos minutos.`, []);
+    txt.textContent = 'Guardado';
+  } catch (e) {
+    caja.innerHTML = msj('error', '\u2715', 'No se pudo guardar', e.message, []);
+    txt.textContent = 'Reintentar';
+    btn.disabled = false;
+  }
+  caja.classList.add('ver');
+});
+
+/* ── Alternativa: descargar el JSON ── */
 document.getElementById('btnJson').addEventListener('click', () => {
   if (!DB_NUEVA) return;
   const blob = new Blob([JSON.stringify(DB_NUEVA, null, 1)], { type: 'application/json' });
