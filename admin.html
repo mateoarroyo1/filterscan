@@ -156,6 +156,11 @@ label.check input{width:16px;height:16px;accent-color:var(--azul)}
 .login .btn{width:100%;justify-content:center}
 .login-error{font-size:13px;color:var(--rojo);font-weight:600;margin-top:12px;display:none}
 .login-error.ver{display:block}
+.aviso-modo{background:var(--ambar-bg);border-bottom:1px solid #F3D9A8;padding:11px 18px;
+  font-size:13px;color:#7C4A06;line-height:1.5;display:none}
+.aviso-modo.ver{display:block}
+.aviso-modo b{font-weight:800}
+.aviso-modo code{font-family:var(--mono);font-size:12px;background:#fff8;padding:1px 5px;border-radius:4px}
 .pie{text-align:center;font-size:11px;color:#A9B0BA;padding:18px;line-height:1.7}
 </style>
 </head>
@@ -167,6 +172,9 @@ label.check input{width:16px;height:16px;accent-color:var(--azul)}
     <div class="login-sub">Esta sección modifica los datos que ve todo el taller.</div>
     <input type="password" id="clave" placeholder="Contraseña" autocomplete="current-password">
     <button class="btn" id="btnEntrar">Entrar</button>
+    <div style="font-size:12px;color:var(--tenue);margin-top:12px;line-height:1.5">
+      Queda recordada por 8 horas en este dispositivo. Si es una computadora compartida, usá el botón Salir al terminar.
+    </div>
     <div class="login-error" id="loginError"></div>
   </div>
 </div>
@@ -179,7 +187,10 @@ label.check input{width:16px;height:16px;accent-color:var(--azul)}
   </div>
   <div class="estado" id="estado">Cargando...</div>
   <a class="volver" href="index.html">Ver la app →</a>
+  <button class="btn borde chico" id="btnSalir" onclick="cerrarSesion()" hidden>Salir</button>
 </header>
+
+<div class="aviso-modo" id="avisoModo"></div>
 
 <main class="envoltorio">
 
@@ -247,7 +258,7 @@ label.check input{width:16px;height:16px;accent-color:var(--azul)}
 <div class="barra-guardado" id="barraGuardado">
   <span class="bg-txt">Hay cambios sin publicar</span>
   <button class="btn borde" onclick="descartar()">Descartar</button>
-  <button class="btn borde" id="btnJson">Descargar JSON</button>
+  <button class="btn" id="btnJson">Descargar database.json</button>
   <button class="btn verde" id="btnGuardar"><span id="btnGuardarTxt">Guardar y publicar</span></button>
 </div>
 
@@ -323,8 +334,10 @@ function marcarCambio() {
   e.classList.toggle('sucio', hay);
   e.textContent = hay ? 'Cambios sin publicar' : `${contarCods(GRUPOS).toLocaleString('es-AR')} códigos`;
   const btn = document.getElementById('btnGuardar');
-  btn.disabled = false;
-  document.getElementById('btnGuardarTxt').textContent = 'Guardar y publicar';
+  if (PUEDE_PUBLICAR) {
+    btn.disabled = false;
+    document.getElementById('btnGuardarTxt').textContent = 'Guardar y publicar';
+  }
 }
 
 window.addEventListener('beforeunload', e => {
@@ -556,7 +569,75 @@ function descartar() {
    LOGIN — la contraseña se verifica en el
    servidor, no acá.
    ═══════════════════════════════════════════ */
-let CLAVE = sessionStorage.getItem('repsearch.clave') || '';
+/* La sesión dura unas horas y se renueva sola mientras se use, así no hay
+   que escribir la contraseña cada vez que se entra y se sale durante el día.
+   Para cambiar cuánto dura, tocá este número. */
+const HORAS_SESION = 8;
+const LLAVE_SESION = 'repsearch.sesion';
+
+function leerSesion() {
+  try {
+    const s = JSON.parse(localStorage.getItem(LLAVE_SESION) || 'null');
+    if (!s || !s.clave || !s.hasta || Date.now() > s.hasta) {
+      localStorage.removeItem(LLAVE_SESION);
+      return '';
+    }
+    return s.clave;
+  } catch { return ''; }
+}
+
+function renovarSesion(clave) {
+  try {
+    localStorage.setItem(LLAVE_SESION, JSON.stringify({
+      clave, hasta: Date.now() + HORAS_SESION * 3600 * 1000
+    }));
+  } catch {}
+}
+
+function cerrarSesion() {
+  try { localStorage.removeItem(LLAVE_SESION); } catch {}
+  if (haycambios() && !confirm('Hay cambios sin publicar. ¿Salir igual?')) {
+    renovarSesion(CLAVE); return;
+  }
+  location.reload();
+}
+
+let CLAVE = leerSesion();
+let PUEDE_PUBLICAR = false;
+
+/* Si el servidor todavía no está configurado, el editor abre igual y se
+   trabaja en modo local: se edita todo y se baja el archivo a mano.
+   Sin esto, no configurar Netlify dejaba la página inutilizable. */
+async function verEstadoServidor() {
+  try {
+    const r = await fetch(API, {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ accion: 'estado' })
+    });
+    if (!r.ok) throw new Error();
+    const j = await r.json();
+    PUEDE_PUBLICAR = !!j.configurado;
+    if (!PUEDE_PUBLICAR) modoLocal(
+      `Falta cargar en Netlify: <code>${(j.falta || []).join('</code> <code>')}</code>.`);
+  } catch {
+    PUEDE_PUBLICAR = false;
+    modoLocal('No se encontró la función de guardado en el servidor.');
+  }
+  return PUEDE_PUBLICAR;
+}
+
+function modoLocal(motivo) {
+  document.getElementById('login').hidden = true;
+  const a = document.getElementById('avisoModo');
+  a.innerHTML = `<b>Modo local.</b> Podés editar todo y descargar el archivo,
+    pero todavía no se puede publicar directo a la web. ${motivo}
+    Cuando lo configures, el botón de publicar se activa solo.`;
+  a.classList.add('ver');
+  const b = document.getElementById('btnGuardar');
+  b.disabled = true;
+  b.title = 'Configurá el servidor para publicar desde acá';
+  document.getElementById('btnGuardarTxt').textContent = 'Publicar (no configurado)';
+}
 
 async function pedirServidor(datos) {
   const r = await fetch(API, {
@@ -565,6 +646,7 @@ async function pedirServidor(datos) {
   });
   const j = await r.json().catch(() => ({}));
   if (!r.ok) throw new Error(j.error || `Error ${r.status}`);
+  if (CLAVE) renovarSesion(CLAVE);      // cada uso corre el vencimiento
   return j;
 }
 
@@ -574,8 +656,9 @@ async function entrar(c) {
   CLAVE = c;
   try {
     await pedirServidor({ accion: 'verificar' });
-    sessionStorage.setItem('repsearch.clave', c);
+    renovarSesion(c);
     document.getElementById('login').hidden = true;
+    document.getElementById('btnSalir').hidden = false;
   } catch (e) {
     CLAVE = ''; err.textContent = e.message; err.classList.add('ver');
   } finally { btn.disabled = false; btn.textContent = 'Entrar'; }
@@ -583,11 +666,16 @@ async function entrar(c) {
 
 document.getElementById('btnEntrar').addEventListener('click', () => entrar(document.getElementById('clave').value));
 document.getElementById('clave').addEventListener('keydown', e => { if (e.key === 'Enter') entrar(e.target.value); });
-if (CLAVE) {
+verEstadoServidor().then(listo => {
+  if (!listo) return;                       // modo local: ya se ocultó el login
+  if (!CLAVE) return;                       // hay que pedir la contraseña
   pedirServidor({ accion: 'verificar' })
-    .then(() => { document.getElementById('login').hidden = true; })
-    .catch(() => { sessionStorage.removeItem('repsearch.clave'); CLAVE = ''; });
-}
+    .then(() => {
+      document.getElementById('login').hidden = true;
+      document.getElementById('btnSalir').hidden = false;
+    })
+    .catch(() => { try { localStorage.removeItem(LLAVE_SESION); } catch {} CLAVE = ''; });
+});
 
 /* ═══════════════════════════════════════════
    GUARDAR
