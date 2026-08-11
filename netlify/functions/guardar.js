@@ -33,15 +33,28 @@ exports.handler = async (event) => {
   const REPO   = process.env.GITHUB_REPO;
   const RAMA   = process.env.GITHUB_BRANCH || 'main';
 
-  if (!CLAVE || !TOKEN || !REPO) {
-    return { statusCode: 500, headers: cors, body: JSON.stringify({
-      error: 'Falta configurar el servidor. Revisá las variables ADMIN_PASSWORD, GITHUB_TOKEN y GITHUB_REPO en Netlify.'
-    }) };
-  }
-
   let cuerpo;
   try { cuerpo = JSON.parse(event.body || '{}'); }
   catch { return { statusCode: 400, headers: cors, body: JSON.stringify({ error: 'Pedido mal formado' }) }; }
+
+  /* Consulta sin contraseña: solo dice si el servidor está listo para publicar.
+     Sirve para que el editor abra igual cuando todavía no se configuró nada,
+     en vez de dejar a la persona afuera sin poder hacer nada. */
+  const configurado = !!(CLAVE && TOKEN && REPO);
+  if (cuerpo.accion === 'estado') {
+    return { statusCode: 200, headers: cors, body: JSON.stringify({
+      configurado,
+      falta: configurado ? [] : [
+        !CLAVE && 'ADMIN_PASSWORD', !TOKEN && 'GITHUB_TOKEN', !REPO && 'GITHUB_REPO'
+      ].filter(Boolean)
+    }) };
+  }
+
+  if (!configurado) {
+    return { statusCode: 503, headers: cors, body: JSON.stringify({
+      error: 'Falta configurar el servidor. Revisá las variables ADMIN_PASSWORD, GITHUB_TOKEN y GITHUB_REPO en Netlify.'
+    }) };
+  }
 
   /* Comparación en tiempo constante, para que no se pueda adivinar la
      contraseña midiendo cuánto tarda en responder. */
