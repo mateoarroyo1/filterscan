@@ -233,6 +233,10 @@ label.check input{width:16px;height:16px;accent-color:var(--azul)}
         <div>
           <div class="paso-tit">Editala y volvé a subirla</div>
           <div class="paso-txt">
+            <b>La planilla que subas pasa a ser la base completa.</b> No se suma a lo que ya había:
+            lo reemplaza. Las filas que dejes se conservan, las que agregues se cargan y
+            <b>las que borres se borran de la app</b>. Por eso conviene bajar la planilla,
+            editarla sobre eso y volver a subirla entera.<br><br>
             Los códigos que comparten <code>VEHICULO</code> y <code>TIPO</code> se muestran como equivalentes entre sí.
             Guardá siempre como Excel, nunca como CSV.
           </div>
@@ -245,7 +249,7 @@ label.check input{width:16px;height:16px;accent-color:var(--azul)}
           <div class="soltar-d">o tocá para elegirlo</div>
         </div>
         <input type="file" id="archivo" accept=".xlsx,.xls" class="oculto">
-        <div class="nota">Lo que subas reemplaza todo lo cargado. Vas a poder revisarlo antes de publicar.</div>
+        <div class="nota">Nada se publica al subir: primero te muestro qué cambia y lo revisás.</div>
       </div>
       <div class="reporte" id="reporte"></div>
     </div>
@@ -872,6 +876,20 @@ function procesar(filas, nombreArchivo) {
 
   let cuerpo = '';
   for (const e of errores) cuerpo += msj('error', '\u2715', e.titulo, e.detalle, e.items);
+
+  /* Si la planilla trae menos códigos que los que había, se avisa fuerte.
+     Es el error más caro posible: subir una planilla incompleta y borrar
+     media base sin darse cuenta. */
+  if (delta < 0) {
+    const porcentaje = Math.round(Math.abs(delta) / antesCods * 100);
+    cuerpo += msj(porcentaje >= 20 ? 'error' : 'aviso', '\u2715',
+      `Se van a borrar ${Math.abs(delta).toLocaleString('es-AR')} códigos`,
+      porcentaje >= 20
+        ? `Es el ${porcentaje}% de la base. Si no era lo que querías, no publiques: `
+          + `volvé a bajar la planilla y editá sobre esa.`
+        : `La planilla que subiste tiene menos filas que la base actual. `
+          + `Revisá que sea a propósito antes de publicar.`, []);
+  }
   if (vehMas.length) cuerpo += msj('ok', '+',
     `${vehMas.length} vehículo${vehMas.length > 1 ? 's' : ''} nuevo${vehMas.length > 1 ? 's' : ''}`, '',
     vehMas.slice(0, 8).map(v => v.toUpperCase()));
