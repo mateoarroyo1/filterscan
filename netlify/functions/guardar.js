@@ -13,7 +13,10 @@
  *   GITHUB_BRANCH    opcional, por defecto "main"
  */
 
-const ARCHIVO = 'database.json';
+/* Esta función escribe dos archivos distintos según lo que le pidan:
+   la base de filtros o la configuración visual (logo, nombre, tema). */
+const ARCHIVOS = { database: 'database.json', config: 'config.json' };
+const MAX_LOGO = 300 * 1024;   // 300 KB de logo en base64
 
 exports.handler = async (event) => {
   const cors = {
@@ -77,29 +80,53 @@ exports.handler = async (event) => {
     return { statusCode: 200, headers: cors, body: JSON.stringify({ ok: true }) };
   }
 
-  /* ── Revisar que lo que llega tenga sentido, para no pisar la base con basura ── */
-  const base = cuerpo.database;
-  if (!base || typeof base !== 'object' || Array.isArray(base)) {
-    return { statusCode: 400, headers: cors, body: JSON.stringify({ error: 'La base no tiene el formato esperado' }) };
-  }
-  const claves = Object.keys(base);
-  if (claves.length < 10) {
-    return { statusCode: 400, headers: cors, body: JSON.stringify({
-      error: `Solo llegaron ${claves.length} grupos. Por seguridad no se guarda una base tan chica; parece un error.`
-    }) };
-  }
-  let totalCodigos = 0;
-  for (const k of claves) {
-    const g = base[k];
-    if (!g || typeof g.tipo !== 'string' || !Array.isArray(g.modelos) || !Array.isArray(g.codigos)) {
-      return { statusCode: 400, headers: cors, body: JSON.stringify({ error: `El grupo "${k}" está mal formado` }) };
+  /* ── Revisar que lo que llega tenga sentido ── */
+  const cual = cuerpo.archivo === 'config' ? 'config' : 'database';
+  const ARCHIVO = ARCHIVOS[cual];
+  let contenidoJson, resumen;
+
+  if (cual === 'config') {
+    const c = cuerpo.config;
+    if (!c || typeof c !== 'object' || Array.isArray(c)) {
+      return { statusCode: 400, headers: cors, body: JSON.stringify({ error: 'La configuración no tiene el formato esperado' }) };
     }
-    totalCodigos += g.codigos.length;
-  }
-  if (totalCodigos < 100) {
-    return { statusCode: 400, headers: cors, body: JSON.stringify({
-      error: `Solo llegaron ${totalCodigos} códigos. Por seguridad no se guarda; parece un error.`
-    }) };
+    if (typeof c.logo === 'string' && c.logo.length > MAX_LOGO) {
+      return { statusCode: 400, headers: cors, body: JSON.stringify({
+        error: `El logo pesa ${Math.round(c.logo.length / 1024)} KB y el máximo son ${MAX_LOGO / 1024} KB. Probá con una imagen más chica.`
+      }) };
+    }
+    if (typeof c.logo === 'string' && c.logo && !/^data:image\/(png|jpeg|webp|svg\+xml);base64,/.test(c.logo)) {
+      return { statusCode: 400, headers: cors, body: JSON.stringify({ error: 'El logo tiene que ser una imagen PNG, JPG, WEBP o SVG' }) };
+    }
+    contenidoJson = JSON.stringify(c, null, 1);
+    resumen = { empresa: c.empresa || '', conLogo: !!c.logo, tema: c.tema || 'claro' };
+
+  } else {
+    const base = cuerpo.database;
+    if (!base || typeof base !== 'object' || Array.isArray(base)) {
+      return { statusCode: 400, headers: cors, body: JSON.stringify({ error: 'La base no tiene el formato esperado' }) };
+    }
+    const claves = Object.keys(base);
+    if (claves.length < 10) {
+      return { statusCode: 400, headers: cors, body: JSON.stringify({
+        error: `Solo llegaron ${claves.length} grupos. Por seguridad no se guarda una base tan chica; parece un error.`
+      }) };
+    }
+    let totalCodigos = 0;
+    for (const k of claves) {
+      const g = base[k];
+      if (!g || typeof g.tipo !== 'string' || !Array.isArray(g.modelos) || !Array.isArray(g.codigos)) {
+        return { statusCode: 400, headers: cors, body: JSON.stringify({ error: `El grupo "${k}" está mal formado` }) };
+      }
+      totalCodigos += g.codigos.length;
+    }
+    if (totalCodigos < 100) {
+      return { statusCode: 400, headers: cors, body: JSON.stringify({
+        error: `Solo llegaron ${totalCodigos} códigos. Por seguridad no se guarda; parece un error.`
+      }) };
+    }
+    contenidoJson = JSON.stringify(base, null, 1);
+    resumen = { grupos: claves.length, codigos: totalCodigos };
   }
 
   /* ── Guardar en GitHub ── */
@@ -123,15 +150,18 @@ exports.handler = async (event) => {
     }
     const sha = actual.ok ? (await actual.json()).sha : undefined;
 
-    const contenido = Buffer.from(JSON.stringify(base, null, 1), 'utf8').toString('base64');
+    const contenido = Buffer.from(contenidoJson, 'utf8').toString('base64');
     const quien = (cuerpo.autor || 'admin').toString().slice(0, 40);
     const fecha = new Date().toLocaleString('es-AR', { timeZone: 'America/Argentina/Buenos_Aires' });
+    const mensaje = cual === 'config'
+      ? `Actualizar configuración (${quien}, ${fecha})`
+      : `Actualizar filtros — ${resumen.grupos} grupos, ${resumen.codigos} códigos (${quien}, ${fecha})`;
 
     const guardado = await fetch(api, {
       method: 'PUT',
       headers: cabeceras,
       body: JSON.stringify({
-        message: `Actualizar filtros — ${claves.length} grupos, ${totalCodigos} códigos (${quien}, ${fecha})`,
+        message: mensaje,
         content: contenido,
         branch: RAMA,
         ...(sha ? { sha } : {})
@@ -148,9 +178,7 @@ exports.handler = async (event) => {
 
     const r = await guardado.json();
     return { statusCode: 200, headers: cors, body: JSON.stringify({
-      ok: true,
-      grupos: claves.length,
-      codigos: totalCodigos,
+      ok: true, archivo: cual, ...resumen,
       commit: r.commit && r.commit.sha ? r.commit.sha.slice(0, 7) : null
     }) };
 
