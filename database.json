@@ -5207,7 +5207,7 @@
    }
   ]
  },
- "HABITÁCULO__FORD CARGO 1933": {
+ "HABITACULO__FORD CARGO 1933": {
   "tipo": "Habitáculo",
   "modelos": [
    "FORD CARGO 1933"
@@ -5283,7 +5283,7 @@
    }
   ]
  },
- "HABITÁCULO__VOLVO FM440": {
+ "HABITACULO__VOLVO FM440": {
   "tipo": "Habitáculo",
   "modelos": [
    "VOLVO FM440"
@@ -6035,7 +6035,7 @@
    }
   ]
  },
- "DIRECCIÓN HIDRÁULICA__VOLVO FM440": {
+ "DIRECCION HIDRAULICA__VOLVO FM440": {
   "tipo": "Dirección hidráulica",
   "modelos": [
    "VOLVO FM440"
@@ -6439,7 +6439,7 @@
    }
   ]
  },
- "TRANSMISIÓN__RETRO HYUNDAI H940C": {
+ "TRANSMISION__RETRO HYUNDAI H940C": {
   "tipo": "Transmisión",
   "modelos": [
    "RETRO HYUNDAI H940C"
@@ -8471,7 +8471,7 @@
    }
   ]
  },
- "DIRECCIÓN HIDRÁULICA__FORD CARGO 1722": {
+ "DIRECCION HIDRAULICA__FORD CARGO 1722": {
   "tipo": "Dirección hidráulica",
   "modelos": [
    "FORD CARGO 1722"
@@ -8835,130 +8835,6 @@
    }
   ]
  },
- "DIRECCIÓN HIDRÁULICA__FORD CARGO 1933": {
-  "tipo": "Dirección hidráulica",
-  "modelos": [
-   "FORD CARGO 1933"
-  ],
-  "codigos": [
-   {
-    "marca": "BALDWIN",
-    "codigo": "P106HD"
-   },
-   {
-    "marca": "MANN",
-    "codigo": "H601/10"
-   },
-   {
-    "marca": "MANN",
-    "codigo": "H601/4"
-   },
-   {
-    "marca": "MERCEDES BENZ",
-    "codigo": "1842225"
-   },
-   {
-    "marca": "MERCEDES BENZ",
-    "codigo": "1842325"
-   },
-   {
-    "marca": "MERCEDES BENZ",
-    "codigo": "4660204"
-   },
-   {
-    "marca": "DONALDSON",
-    "codigo": "P550309"
-   },
-   {
-    "marca": "MERCEDES BENZ",
-    "codigo": "4660604"
-   },
-   {
-    "marca": "DONALDSON",
-    "codigo": "P779625"
-   },
-   {
-    "marca": "MERCEDES BENZ",
-    "codigo": "11842225"
-   },
-   {
-    "marca": "DONALDSON",
-    "codigo": "P172890"
-   },
-   {
-    "marca": "MERCEDES BENZ",
-    "codigo": "A0001842225"
-   },
-   {
-    "marca": "DONALDSON",
-    "codigo": "P779624"
-   },
-   {
-    "marca": "FIAT",
-    "codigo": "2966261"
-   },
-   {
-    "marca": "FIAT",
-    "codigo": "79850021"
-   },
-   {
-    "marca": "RENAULT",
-    "codigo": "5000814407"
-   },
-   {
-    "marca": "FIAT",
-    "codigo": "7632141102"
-   },
-   {
-    "marca": "SCANIA",
-    "codigo": "153468"
-   },
-   {
-    "marca": "SCANIA",
-    "codigo": "1953094"
-   },
-   {
-    "marca": "FLEETGUARD",
-    "codigo": "HF6162"
-   },
-   {
-    "marca": "FLEETGUARD",
-    "codigo": "LF595"
-   },
-   {
-    "marca": "FORD",
-    "codigo": "BD7T3K758A"
-   },
-   {
-    "marca": "FORD",
-    "codigo": "T11145397"
-   },
-   {
-    "marca": "FRAM",
-    "codigo": "CH803APL"
-   },
-   {
-    "marca": "VOLVO",
-    "codigo": "349619"
-   },
-   {
-    "marca": "KOMATSU",
-    "codigo": "1083258"
-   },
-   {
-    "marca": "WIX",
-    "codigo": "W51314"
-   },
-   {
-    "marca": "WIX",
-    "codigo": "WL10145"
-   },
-   {
-    "marca": "FLEETGUARD",
-    "codigo": "LF4143"
-   }
-  ]
- },
  "SECADOR DE AIRE__FORD CARGO 1933": {
   "tipo": "Secador de aire",
   "modelos": [
@@ -9151,7 +9027,7 @@
    }
   ]
  },
- "HABITÁCULO__VW SAVEIRO 2017": {
+ "HABITACULO__VW SAVEIRO 2017": {
   "tipo": "Habitáculo",
   "modelos": [
    "VW SAVEIRO 2017"
@@ -9339,7 +9215,7 @@
    }
   ]
  },
- "HABITÁCULO__IVECO DAILY 35C14": {
+ "HABITACULO__IVECO DAILY 35C14": {
   "tipo": "Habitáculo",
   "modelos": [
    "IVECO DAILY 35C14"
@@ -9535,7 +9411,7 @@
    }
   ]
  },
- "HABITÁCULO__IVECO DAILY 70C17": {
+ "HABITACULO__IVECO DAILY 70C17": {
   "tipo": "Habitáculo",
   "modelos": [
    "IVECO DAILY 70C17"
@@ -9719,7 +9595,7 @@
    }
   ]
  },
- "HABITÁCULO__IVECO DAILY 70-170": {
+ "HABITACULO__IVECO DAILY 70-170": {
   "tipo": "Habitáculo",
   "modelos": [
    "IVECO DAILY 70-170"
@@ -9903,7 +9779,7 @@
    }
   ]
  },
- "HABITÁCULO__IVECO DAILY 55C17": {
+ "HABITACULO__IVECO DAILY 55C17": {
   "tipo": "Habitáculo",
   "modelos": [
    "IVECO DAILY 55C17"
@@ -10067,7 +9943,7 @@
    }
   ]
  },
- "HABITÁCULO__VW GOL": {
+ "HABITACULO__VW GOL": {
   "tipo": "Habitáculo",
   "modelos": [
    "VW GOL"
@@ -10872,10 +10748,6 @@
    {
     "marca": "KOMATSU",
     "codigo": "CU3903410"
-   },
-   {
-    "marca": "KOMATSU",
-    "codigo": "6732716120"
    },
    {
     "marca": "KOMATSU",
@@ -11831,7 +11703,7 @@
    }
   ]
  },
- "HIDRÁULICO__BOBCAT S130": {
+ "HIDRAULICO__BOBCAT S130": {
   "tipo": "Hidráulico",
   "modelos": [
    "BOBCAT S130"
@@ -12115,7 +11987,7 @@
    }
   ]
  },
- "HIDRÁULICO 2__BOBCAT S130": {
+ "HIDRAULICO 2__BOBCAT S130": {
   "tipo": "Hidráulico 2",
   "modelos": [
    "BOBCAT S130"
@@ -13863,7 +13735,7 @@
    }
   ]
  },
- "HABITÁCULO__SCANIA P360": {
+ "HABITACULO__SCANIA P360": {
   "tipo": "Habitáculo",
   "modelos": [
    "SCANIA P360"
@@ -14239,7 +14111,7 @@
    }
   ]
  },
- "HABITÁCULO__SCANIA G410": {
+ "HABITACULO__SCANIA G410": {
   "tipo": "Habitáculo",
   "modelos": [
    "SCANIA G410"
@@ -14611,7 +14483,7 @@
    }
   ]
  },
- "HABITÁCULO__SCANIA G320": {
+ "HABITACULO__SCANIA G320": {
   "tipo": "Habitáculo",
   "modelos": [
    "SCANIA G320"
@@ -14707,7 +14579,7 @@
    }
   ]
  },
- "DIRECCIÓN HIDRÁULICA__SCANIA G320": {
+ "DIRECCION HIDRAULICA__SCANIA G320": {
   "tipo": "Dirección hidráulica",
   "modelos": [
    "SCANIA G320"
@@ -14831,7 +14703,7 @@
    }
   ]
  },
- "ACEITE CENTRÍFUGO__SCANIA G320": {
+ "ACEITE CENTRIFUGO__SCANIA G320": {
   "tipo": "Aceite centrífugo",
   "modelos": [
    "SCANIA G320"
@@ -15219,7 +15091,7 @@
    }
   ]
  },
- "HABITÁCULO__SCANIA P410": {
+ "HABITACULO__SCANIA P410": {
   "tipo": "Habitáculo",
   "modelos": [
    "SCANIA P410"
@@ -15947,7 +15819,7 @@
    }
   ]
  },
- "HABITÁCULO__FORD CARGO 1932": {
+ "HABITACULO__FORD CARGO 1932": {
   "tipo": "Habitáculo",
   "modelos": [
    "FORD CARGO 1932"
@@ -16295,7 +16167,7 @@
    }
   ]
  },
- "DIRECCIÓN HIDRÁULICA__FORD CARGO 1932": {
+ "DIRECCION HIDRAULICA__FORD CARGO 1932": {
   "tipo": "Dirección hidráulica",
   "modelos": [
    "FORD CARGO 1932"
@@ -16655,7 +16527,7 @@
    }
   ]
  },
- "HABITÁCULO__TOYOTA HILUX 2.4 TDI": {
+ "HABITACULO__TOYOTA HILUX 2.4 TDI": {
   "tipo": "Habitáculo",
   "modelos": [
    "TOYOTA HILUX 2.4 TDI"
@@ -16755,7 +16627,7 @@
    }
   ]
  },
- "HABITÁCULO__FORD RANGER 2.0L": {
+ "HABITACULO__FORD RANGER 2.0L": {
   "tipo": "Habitáculo",
   "modelos": [
    "FORD RANGER 2.0L"
@@ -16855,7 +16727,7 @@
    }
   ]
  },
- "HABITÁCULO__FORD RANGER 2.2L": {
+ "HABITACULO__FORD RANGER 2.2L": {
   "tipo": "Habitáculo",
   "modelos": [
    "FORD RANGER 2.2L"
@@ -18283,7 +18155,7 @@
    }
   ]
  },
- "HIDRÁULICO__EXCAVADORA CATERPILLAR 320D2 GC": {
+ "HIDRAULICO__EXCAVADORA CATERPILLAR 320D2 GC": {
   "tipo": "Hidráulico",
   "modelos": [
    "EXCAVADORA CATERPILLAR 320D2 GC"
@@ -18351,7 +18223,7 @@
    }
   ]
  },
- "HIDRÁULICO 2__EXCAVADORA CATERPILLAR 320D2 GC": {
+ "HIDRAULICO 2__EXCAVADORA CATERPILLAR 320D2 GC": {
   "tipo": "Hidráulico 2",
   "modelos": [
    "EXCAVADORA CATERPILLAR 320D2 GC"
@@ -18387,7 +18259,7 @@
    }
   ]
  },
- "HIDRÁULICO 3__EXCAVADORA CATERPILLAR 320D2 GC": {
+ "HIDRAULICO 3__EXCAVADORA CATERPILLAR 320D2 GC": {
   "tipo": "Hidráulico 3",
   "modelos": [
    "EXCAVADORA CATERPILLAR 320D2 GC"
@@ -18507,7 +18379,7 @@
    }
   ]
  },
- "HIDRÁULICO CARTUCHO__EXCAVADORA HYUNDAI R210LC-7": {
+ "HIDRAULICO CARTUCHO__EXCAVADORA HYUNDAI R210LC-7": {
   "tipo": "Hidráulico cartucho",
   "modelos": [
    "EXCAVADORA HYUNDAI R210LC-7"
@@ -18571,7 +18443,7 @@
    }
   ]
  },
- "HIDRÁULICO__EXCAVADORA HYUNDAI R210LC-7": {
+ "HIDRAULICO__EXCAVADORA HYUNDAI R210LC-7": {
   "tipo": "Hidráulico",
   "modelos": [
    "EXCAVADORA HYUNDAI R210LC-7"
